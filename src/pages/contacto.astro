@@ -4,8 +4,8 @@ import { Image } from 'astro:assets';
 import ContactForm from '../components/ContactForm.astro';
 import data from '../data/contacto.json';
 import heroImg from '../assets/images/coleccion-bari.webp';
-import portraitImg from '../assets/images/contacto-portrait.webp';
-import showroomImg from '../assets/images/showroom-cubes.webp';
+import buzonImg from '../assets/images/buzon-de-transparencia.webp';
+import bolsaImg from '../assets/images/bolsa-de-trabajo.webp';
 
 const { hero, form, links } = data;
 ---
@@ -30,14 +30,12 @@ const { hero, form, links } = data;
   </section>
 
   <section class="mx-auto grid max-w-[1728px] grid-cols-1 gap-6 px-6 py-16 md:grid-cols-2 md:px-12 xl:px-[72px]">
-    <a href={links[0].href} class="group relative flex min-h-[260px] items-end overflow-hidden rounded-3xl xl:min-h-[300px]">
-      <Image src={portraitImg} alt={links[0].title} class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" width={1200} height={800} />
-      <div class="absolute inset-0 -z-10 bg-black/35"></div>
+    <a href={links[0].href} class="group relative flex min-h-[260px] items-end justify-end overflow-hidden rounded-3xl xl:min-h-[300px]">
+      <Image src={buzonImg} alt={links[0].title} class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" width={750} height={682} />
       <span class="m-6 rounded-full bg-terza-teal px-6 py-3 text-base font-semibold text-white">{links[0].title}</span>
     </a>
-    <a href={links[1].href} class="group relative flex min-h-[260px] items-end overflow-hidden rounded-3xl xl:min-h-[300px]">
-      <Image src={showroomImg} alt={links[1].title} class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" width={1200} height={800} />
-      <div class="absolute inset-0 -z-10 bg-black/35"></div>
+    <a href={links[1].href} class="group relative flex min-h-[260px] items-end justify-end overflow-hidden rounded-3xl xl:min-h-[300px]">
+      <Image src={bolsaImg} alt={links[1].title} class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" width={1400} height={460} />
       <span class="m-6 rounded-full bg-terza-teal px-6 py-3 text-base font-semibold text-white">{links[1].title}</span>
     </a>
   </section>
