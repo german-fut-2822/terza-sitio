@@ -45,7 +45,10 @@ const groupImages: Record<string, ImageMetadata> = {
             </svg>
           </button>
 
-          <div class="invisible absolute left-0 top-full w-[min(820px,90vw)] translate-y-1 rounded-2xl border border-terza-mist bg-white p-6 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100" data-menu>
+          <div
+            class="invisible absolute left-0 top-full w-[min(820px,90vw)] translate-y-1 rounded-2xl border border-terza-mist bg-white p-6 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+            data-menu
+          >
             <div class="flex gap-8">
               <div class="w-52 shrink-0 border-r border-terza-mist pr-5">
                 <p class="mb-1 text-lg font-semibold text-terza-ink">{cat.label}</p>
@@ -166,4 +169,22 @@ const groupImages: Record<string, ImageMetadata> = {
       });
     });
   });
+
+  const menus = document.querySelectorAll<HTMLElement>('[data-menu]');
+  const fixMenuOverflow = () => {
+    const margin = 16;
+    menus.forEach((menuEl) => {
+      const wrapper = menuEl.parentElement;
+      if (!wrapper) return;
+      menuEl.style.left = '0px';
+      const wrapperLeft = wrapper.getBoundingClientRect().left;
+      const menuWidth = menuEl.offsetWidth;
+      const viewportWidth = document.documentElement.clientWidth;
+      const maxAbsoluteLeft = Math.max(margin, viewportWidth - menuWidth - margin);
+      const clampedAbsoluteLeft = Math.min(Math.max(wrapperLeft, margin), maxAbsoluteLeft);
+      menuEl.style.left = `${clampedAbsoluteLeft - wrapperLeft}px`;
+    });
+  };
+  fixMenuOverflow();
+  window.addEventListener('resize', fixMenuOverflow);
 </script>
