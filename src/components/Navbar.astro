@@ -1,0 +1,92 @@
+---
+import general from '../data/general.json';
+
+const { logo, nav } = general;
+---
+
+<header class="relative z-50 border-b border-terza-mist bg-white">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
+    <a href="/" class="flex items-center gap-1 text-2xl font-semibold tracking-tight text-terza-ink">
+      {logo.text}
+      <span class="mb-3 h-2 w-2 rounded-[2px] bg-terza-lime"></span>
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex">
+      {nav.map((cat) => (
+        <div class="group relative">
+          <button class="flex items-center gap-1 py-6 text-[15px] font-medium text-terza-ink transition-colors group-hover:text-terza-teal">
+            {cat.label}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="mt-0.5 transition-transform group-hover:rotate-180">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+
+          <div class="invisible absolute left-0 top-full w-[min(900px,90vw)] translate-y-1 rounded-2xl border border-terza-mist bg-white p-8 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+            <p class="mb-1 text-xl font-semibold text-terza-ink">{cat.label}</p>
+            <p class="mb-6 max-w-sm text-sm text-terza-ink/60">{cat.description}</p>
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+              {cat.groups.map((group) => (
+                <div>
+                  <a href={`/${cat.slug}/${group.slug}`} class="mb-3 block text-sm font-semibold text-terza-teal hover:underline">
+                    {group.label}
+                  </a>
+                  <ul class="space-y-2">
+                    {group.items.map((item: string) => (
+                      <li>
+                        <a href={`/${cat.slug}/${group.slug}`} class="text-sm text-terza-ink/80 hover:text-terza-teal">
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button aria-label="Buscar" class="flex h-10 w-10 items-center justify-center rounded-full bg-terza-lime-light text-terza-teal">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.6"></circle>
+          <path d="M16 16L12.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+      </button>
+      <a href="/contacto" class="hidden whitespace-nowrap rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark md:inline-block">
+        Contáctanos
+      </a>
+      <a href="/quiero-ser-distribuidor" class="hidden whitespace-nowrap rounded-full bg-terza-lime px-5 py-2.5 text-sm font-semibold text-terza-ink hover:brightness-95 lg:inline-block">
+        Quiero ser distribuidor
+      </a>
+      <button id="mobile-menu-toggle" aria-label="Menú" class="flex h-10 w-10 items-center justify-center lg:hidden">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M3 6H19M3 11H19M3 16H19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-terza-mist bg-white px-6 py-4 lg:hidden">
+    <ul class="space-y-1">
+      {nav.map((cat) => (
+        <li>
+          <a href={`/${cat.slug}`} class="block py-2 text-base font-medium text-terza-ink">{cat.label}</a>
+        </li>
+      ))}
+      <li class="pt-3">
+        <a href="/contacto" class="block rounded-full bg-terza-teal px-4 py-2.5 text-center text-sm font-semibold text-white">Contáctanos</a>
+      </li>
+      <li class="pt-2">
+        <a href="/quiero-ser-distribuidor" class="block rounded-full bg-terza-lime px-4 py-2.5 text-center text-sm font-semibold text-terza-ink">Quiero ser distribuidor</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

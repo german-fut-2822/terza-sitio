@@ -1,0 +1,13 @@
+{
+  "seo": { "title": "Quiero ser distribuidor | Terza", "description": "Forma parte de la red de distribuidores autorizados Terza." },
+  "hero": {
+    "title": "Quiero ser distribuidor",
+    "description": "Forma parte de la red de distribuidores autorizados Terza y lleva nuestras soluciones a más espacios."
+  },
+  "form": {
+    "title": "Envíanos un mensaje",
+    "fields": ["Nombre", "Apellido", "Email", "Teléfono", "Elige un estado", "Ciudad"],
+    "consent": "Acepto Aviso de Privacidad",
+    "submit": "Enviar mensaje"
+  }
+}

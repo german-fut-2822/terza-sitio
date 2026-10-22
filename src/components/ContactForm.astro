@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  fields: string[];
+  consent: string;
+  submit: string;
+}
+
+const { title, fields, consent, submit } = Astro.props;
+---
+
+<div class="w-full max-w-lg rounded-3xl bg-white p-8 shadow-xl">
+  <p class="mb-5 text-xl font-semibold text-terza-ink">{title}</p>
+  <form class="space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+      {fields.slice(0, 4).map((field) => (
+        <input
+          type="text"
+          placeholder={`${field.startsWith('Elige') ? '' : '*'}${field}`}
+          class="col-span-1 rounded-xl border border-terza-ink/15 bg-terza-mist/40 px-4 py-3 text-sm placeholder:text-terza-ink/50 focus:border-terza-teal focus:outline-none"
+        />
+      ))}
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      {fields.slice(4).map((field) => (
+        <input
+          type="text"
+          placeholder={field.startsWith('Elige') ? field : `*${field}`}
+          class="col-span-1 rounded-xl border border-terza-ink/15 bg-terza-mist/40 px-4 py-3 text-sm placeholder:text-terza-ink/50 focus:border-terza-teal focus:outline-none"
+        />
+      ))}
+    </div>
+    <textarea
+      placeholder="Mensaje:"
+      rows="4"
+      class="w-full rounded-xl border border-terza-ink/15 bg-terza-mist/40 px-4 py-3 text-sm placeholder:text-terza-ink/50 focus:border-terza-teal focus:outline-none"
+    ></textarea>
+    <label class="flex items-center gap-2 text-sm text-terza-ink/80">
+      <input type="checkbox" class="h-4 w-4 rounded border-terza-ink/30" />
+      Acepto <span class="font-semibold">Aviso de Privacidad</span>
+    </label>
+    <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-terza-lime px-6 py-3 text-sm font-semibold text-terza-ink hover:brightness-95">
+      {submit}
+      <span>→</span>
+    </button>
+  </form>
+</div>

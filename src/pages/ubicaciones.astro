@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import data from '../data/ubicaciones.json';
+import heroImg from '../assets/images/ubicaciones-hero.webp';
+
+import oficinaCentral from '../assets/images/oficina-central.webp';
+import showroomCubes from '../assets/images/showroom-cubes.webp';
+import oficinaCdmx from '../assets/images/oficina-cdmx.webp';
+import oficinaGdl from '../assets/images/oficina-gdl.webp';
+import oficinaPuebla from '../assets/images/oficina-puebla.webp';
+
+const images: Record<string, ImageMetadata> = {
+  'oficina-central': oficinaCentral,
+  'showroom-cubes': showroomCubes,
+  'oficina-cdmx': oficinaCdmx,
+  'oficina-gdl': oficinaGdl,
+  'oficina-puebla': oficinaPuebla,
+};
+
+const { hero, locations } = data;
+const tagStyle: Record<string, string> = {
+  Planta: 'bg-terza-teal',
+  Showroom: 'bg-terza-lime text-terza-ink',
+  Oficina: 'bg-terza-lime text-terza-ink',
+};
+---
+
+<Layout title={data.seo.title} description={data.seo.description}>
+  <section class="relative isolate flex min-h-[420px] items-end overflow-hidden">
+    <Image src={heroImg} alt="Equipo Terza en planta" class="absolute inset-0 -z-10 h-full w-full object-cover" width={2000} height={1200} />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/75 via-black/30 to-black/10"></div>
+
+    <div class="mx-auto w-full max-w-[1400px] px-6 py-14 text-white lg:px-10">
+      <h1 class="text-5xl font-bold">{hero.title}</h1>
+      <p class="mt-2 max-w-sm whitespace-pre-line text-white/85">{hero.description}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[1400px] grid-cols-1 gap-5 px-6 py-10 md:grid-cols-3 lg:grid-cols-5 lg:px-10">
+    {locations.map((loc: { tag: string; name: string; address: string; phone: string; image: string }, i: number) => (
+      <div class="overflow-hidden rounded-2xl border border-terza-mist">
+        <div class="relative h-36">
+          <Image src={images[loc.image]} alt={loc.name} class="h-full w-full object-cover" width={400} height={300} />
+          <span class={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold text-white ${tagStyle[loc.tag] ?? 'bg-terza-teal'}`}>
+            {loc.tag}
+          </span>
+        </div>
+        <div class={`p-4 ${i === 0 ? 'bg-terza-teal text-white' : 'bg-terza-ink/5 text-terza-ink'}`}>
+          <p class="font-semibold">{loc.name}</p>
+          <p class={`mt-1 text-xs ${i === 0 ? 'text-white/75' : 'text-terza-ink/60'}`}>{loc.address}</p>
+          <p class="mt-2 text-sm font-semibold">{loc.phone}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+</Layout>

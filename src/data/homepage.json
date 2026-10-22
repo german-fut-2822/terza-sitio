@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "badge": "NUEVO PRODUCTO",
+    "swatches": ["#00514a", "#bcdc00", "#f9f8f5"],
+    "eyebrow": "BY TERZA",
+    "title": "flexiROC",
+    "subtitle": "Recubrimiento de piedra flexible.",
+    "cta": { "label": "Descubre la nueva colección", "href": "/muros/flexiroc" }
+  },
+  "nuevosProductos": {
+    "title": "Nuevos Productos",
+    "featured": { "title": "flexiROC", "subtitle": "Recubrimiento de piedra flexible.", "href": "/muros/flexiroc" },
+    "items": [
+      { "name": "Flexiroc Arenisca", "sku": "T15-FR026-SL106" },
+      { "name": "Flexiroc Caliza Española", "sku": "T15-FR026-SL107" },
+      { "name": "Flexiroc Travertino Greige", "sku": "T15-FR026-GT101" },
+      { "name": "Flexiroc Terra", "sku": "T15-FR026-TL102" }
+    ],
+    "cta": { "label": "Ver todo", "href": "/muros/flexiroc" }
+  },
+  "transformarEspacios": {
+    "title": "Todo para transformar tus espacios",
+    "description": "Soluciones para interiores, exteriores y proyectos comerciales, con diseño, funcionalidad y alto desempeño.",
+    "cta": { "label": "Conoce Terza", "href": "/nosotros" },
+    "stat": { "value": "+45 años", "label": "de experiencia" },
+    "highlights": [
+      { "title": "Fabricante líder", "description": "en pasto sintético y alfombras en México y Latinoamérica." },
+      { "title": "Presencia nacional", "description": "en proyectos residenciales y comerciales." }
+    ]
+  },
+  "decoradorVirtual": {
+    "eyebrow": "DECORADOR VIRTUAL",
+    "title": "Visualiza tu espacio antes de decidir",
+    "description": "Prueba nuestros productos en tus propios espacios con el Decorador Virtual de Terza.",
+    "cta": { "label": "Prueba el decorador", "href": "/decorador-virtual" }
+  },
+  "shawContract": {
+    "title": "ShawContract®",
+    "description": "Soluciones en alfombra modular, alfombra de rollo y pisos vinílicos para proyectos comerciales que exigen diseño y desempeño.",
+    "cta": { "label": "Conoce más", "href": "/shaw-contract" },
+    "segments": ["Workplace", "Hospitality", "Education", "Healthcare"]
+  },
+  "blog": {
+    "eyebrow": "BLOG | IDEAS",
+    "title": "Ideas para transformar tus espacios.",
+    "description": "Consejos, tendencias y guías prácticas para crear espacios más funcionales, bonitos y duraderos.",
+    "cta": { "label": "Ver todas las ideas", "href": "/blog" },
+    "posts": [
+      { "category": "PISOS", "title": "Piso laminado vs. vinílico: Guía definitiva para elegir el ideal." },
+      { "category": "TIPS", "title": "¿Cómo elegir alfombras para oficinas de alto, medio y bajo tráfico?" },
+      { "category": "MUROS", "title": "Tipos de lambrín: ¿Cómo elegir entre colores claros y oscuros para tus muros?" }
+    ]
+  },
+  "ctaDistribuidor": {
+    "title": "¿Quieres ser distribuidor Terza?",
+    "description": "Amplía tu oferta de productos y haz crecer tu negocio con el respaldo de Terza",
+    "stats": [
+      { "value": "+1,500", "label": "estilos y colores" },
+      { "value": "Amplio", "label": "portafolio de soluciones" },
+      { "value": "Respaldo", "label": "y asesoría especializada" }
+    ],
+    "cta": { "label": "Quiero ser distribuidor", "href": "/quiero-ser-distribuidor" }
+  },
+  "contactoTeaser": {
+    "eyebrow": "CONTÁCTANOS",
+    "title": "¿En qué podemos ayudarte?",
+    "description": "Ya sea que estés transformando un espacio o desarrollando un proyecto, estamos aquí para asesorarte",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  },
+  "ubicacionesTeaser": {
+    "eyebrow": "NUESTRAS UBICACIONES",
+    "title": "Conoce nuestros espacios.",
+    "description": "Visita nuestro Showroom en Monterrey o descubre nuestras ubicaciones en México.",
+    "cta": { "label": "Ver ubicaciones", "href": "/ubicaciones" }
+  }
+}

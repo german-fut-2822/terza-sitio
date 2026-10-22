@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
+.DS_Store
+
+# Raw design source (PDF mockups, original heavy photos/fonts) -
+# kept locally for reference, never committed. Optimized copies
+# used in the site live under src/assets or public/.
+_source-design/

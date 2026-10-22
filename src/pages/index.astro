@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import home from '../data/homepage.json';
+
+import heroFlexiroc from '../assets/images/hero-flexiroc.webp';
+import transformarEspacios from '../assets/images/transformar-espacios.webp';
+import decoradorTerza from '../assets/images/decorador-virtual-terza.webp';
+import decoradorMuestras from '../assets/images/decorador-virtual-muestras.webp';
+import shawWorkplace from '../assets/images/shawcontract-workplace.webp';
+import contactoPortrait from '../assets/images/contacto-portrait.webp';
+import showroomCubes from '../assets/images/showroom-cubes.webp';
+
+const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtual, shawContract, blog, ctaDistribuidor, contactoTeaser, ubicacionesTeaser } = home;
+---
+
+<Layout title="Terza | Fabricante de pisos, muros, persianas y exterior">
+  <!-- Hero -->
+  <section class="relative isolate flex min-h-[560px] items-center overflow-hidden">
+    <Image src={heroFlexiroc} alt="Flexiroc, recubrimiento de piedra flexible" class="absolute inset-0 -z-10 h-full w-full object-cover" width={2400} height={1400} />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/55 via-black/25 to-transparent"></div>
+
+    <div class="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-10">
+      <span class="mb-5 inline-block rounded-full bg-terza-teal px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white">
+        {hero.badge}
+      </span>
+      <div class="mb-3 flex items-center gap-2">
+        {hero.swatches.map((c: string) => <span class="h-4 w-4 rounded-full border border-white/40" style={`background:${c}`}></span>)}
+      </div>
+      <p class="text-sm font-medium uppercase tracking-wide text-white/80">{hero.eyebrow}</p>
+      <h1 class="text-6xl font-bold leading-none text-white md:text-7xl">{hero.title}</h1>
+      <p class="mt-3 max-w-xs text-lg text-white/90">{hero.subtitle}</p>
+      <a href={hero.cta.href} class="mt-8 inline-block rounded-full bg-terza-lime px-6 py-3 text-sm font-semibold text-terza-ink hover:brightness-95">
+        {hero.cta.label}
+      </a>
+    </div>
+  </section>
+
+  <!-- Nuevos productos -->
+  <section class="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
+    <h2 class="mb-6 text-3xl font-bold text-terza-ink">{nuevosProductos.title}</h2>
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+      <a href={nuevosProductos.featured.href} class="col-span-2 flex flex-col justify-between rounded-2xl bg-terza-teal p-5 text-white md:col-span-1">
+        <div>
+          <p class="text-xl font-bold leading-none">{nuevosProductos.featured.title}</p>
+          <p class="mt-1 text-xs text-white/80">{nuevosProductos.featured.subtitle}</p>
+        </div>
+        <span class="mt-6 text-sm font-semibold">Ver todo →</span>
+      </a>
+      {nuevosProductos.items.map((item: { name: string; sku: string }, i: number) => (
+        <div class="flex flex-col overflow-hidden rounded-2xl border border-terza-mist">
+          <div class={`relative flex h-32 items-start p-3 ${['bg-[#c9b391]', 'bg-[#4b5d57]', 'bg-[#d8d3c8]', 'bg-[#8a5a3c]'][i % 4]}`}>
+            <span class="rounded-full bg-terza-lime px-2.5 py-1 text-[10px] font-bold uppercase text-terza-ink">Nuevo</span>
+          </div>
+          <div class="p-3">
+            <p class="text-sm font-semibold text-terza-ink">{item.name}</p>
+            <p class="text-xs text-terza-ink/50">{item.sku}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <a href={nuevosProductos.cta.href} class="mt-6 inline-block rounded-full bg-terza-lime px-5 py-2.5 text-sm font-semibold text-terza-ink hover:brightness-95">
+      {nuevosProductos.cta.label} →
+    </a>
+  </section>
+
+  <!-- Todo para transformar tus espacios -->
+  <section class="grid grid-cols-1 lg:grid-cols-[minmax(0,420px)_1fr]">
+    <div class="flex flex-col justify-center gap-5 bg-white px-6 py-14 lg:px-10">
+      <h2 class="text-4xl font-bold leading-tight text-terza-ink">{transformar.title}</h2>
+      <p class="text-terza-ink/70">{transformar.description}</p>
+      <a href={transformar.cta.href} class="inline-block w-fit rounded-full bg-terza-lime px-6 py-3 text-sm font-semibold text-terza-ink hover:brightness-95">
+        {transformar.cta.label} →
+      </a>
+    </div>
+    <div class="relative">
+      <Image src={transformarEspacios} alt="Sala con vista a la montaña, piso de madera Terza" class="h-full w-full object-cover" width={2000} height={1200} />
+    </div>
+    <div class="col-span-full flex flex-col gap-6 bg-terza-teal px-6 py-6 text-white md:flex-row md:items-center lg:px-10">
+      <div class="flex items-center gap-4">
+        <div class="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-ink">
+          <span class="text-lg font-extrabold leading-none">{transformar.stat.value}</span>
+        </div>
+        <p class="text-xs uppercase tracking-wide text-white/70">{transformar.stat.label}</p>
+      </div>
+      {transformar.highlights.map((h: { title: string; description: string }) => (
+        <div class="border-t border-white/15 pt-4 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+          <p class="font-semibold">{h.title}</p>
+          <p class="text-sm text-white/75">{h.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Decorador virtual -->
+  <section class="mx-auto grid max-w-[1400px] grid-cols-1 gap-6 px-6 py-16 lg:grid-cols-2 lg:px-10">
+    <Image src={decoradorTerza} alt="Decorador Virtual Terza en un celular" class="h-full w-full rounded-3xl object-cover" width={1200} height={900} />
+    <div class="relative overflow-hidden rounded-3xl bg-terza-lime-light p-8">
+      <p class="text-xs font-semibold uppercase tracking-wide text-terza-teal">{decoradorVirtual.eyebrow}</p>
+      <h2 class="mt-2 max-w-xs text-3xl font-bold text-terza-ink">{decoradorVirtual.title}</h2>
+      <p class="mt-3 max-w-xs text-terza-ink/70">{decoradorVirtual.description}</p>
+      <a href={decoradorVirtual.cta.href} class="mt-6 inline-block rounded-full bg-terza-lime px-6 py-3 text-sm font-semibold text-terza-ink ring-1 ring-terza-ink/10 hover:brightness-95">
+        {decoradorVirtual.cta.label} →
+      </a>
+      <Image src={decoradorMuestras} alt="Muestras del Decorador Virtual" class="pointer-events-none absolute -bottom-6 -right-6 w-40 rotate-3 rounded-xl shadow-xl md:w-52" width={400} height={400} />
+    </div>
+  </section>
+
+  <!-- ShawContract -->
+  <section class="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 py-16 lg:grid-cols-2 lg:px-10">
+    <div>
+      <h2 class="text-4xl font-bold text-terza-ink">{shawContract.title}</h2>
+      <p class="mt-4 max-w-md text-terza-ink/70">{shawContract.description}</p>
+      <a href={shawContract.cta.href} class="mt-6 inline-block rounded-full bg-terza-teal px-6 py-3 text-sm font-semibold text-white hover:bg-terza-teal-dark">
+        {shawContract.cta.label} →
+      </a>
+      <div class="mt-10 grid grid-cols-4 gap-3">
+        {shawContract.segments.map((seg: string) => (
+          <div>
+            {seg === 'Workplace' ? (
+              <Image src={shawWorkplace} alt="ShawContract Workplace" class="aspect-square w-full rounded-xl object-cover" width={300} height={300} />
+            ) : (
+              <div class="aspect-square w-full rounded-xl bg-gradient-to-br from-terza-ink/10 to-terza-ink/20"></div>
+            )}
+            <p class="mt-2 text-[11px] font-semibold uppercase tracking-wide text-terza-ink/70">{seg}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="min-h-[320px] rounded-3xl bg-gradient-to-br from-terza-teal to-terza-teal-dark"></div>
+  </section>
+
+  <!-- Blog / Ideas -->
+  <section class="bg-terza-mist px-6 py-16 lg:px-10">
+    <div class="mx-auto max-w-[1400px]">
+      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-terza-ink/50">{blog.eyebrow}</p>
+          <h2 class="mt-1 text-3xl font-bold text-terza-ink">{blog.title}</h2>
+        </div>
+        <p class="max-w-sm text-sm text-terza-ink/70">{blog.description}</p>
+        <a href={blog.cta.href} class="whitespace-nowrap rounded-full bg-terza-lime px-5 py-2.5 text-sm font-semibold text-terza-ink hover:brightness-95">
+          {blog.cta.label} →
+        </a>
+      </div>
+      <div class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+        {blog.posts.map((post: { category: string; title: string }) => (
+          <div class="overflow-hidden rounded-2xl bg-white">
+            <div class="h-40 bg-gradient-to-br from-terza-ink/10 to-terza-ink/25"></div>
+            <div class="p-5">
+              <p class="text-xs font-semibold uppercase tracking-wide text-terza-ink/50">{post.category}</p>
+              <p class="mt-2 font-semibold text-terza-ink">{post.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA distribuidor -->
+  <section class="bg-terza-teal px-6 py-12 text-white lg:px-10">
+    <div class="mx-auto flex max-w-[1400px] flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+      <div class="max-w-sm">
+        <h2 class="text-2xl font-bold">{ctaDistribuidor.title}</h2>
+        <p class="mt-2 text-sm text-white/75">{ctaDistribuidor.description}</p>
+      </div>
+      <div class="flex flex-wrap gap-6">
+        {ctaDistribuidor.stats.map((s: { value: string; label: string }) => (
+          <div class="border-l border-white/20 pl-4">
+            <p class="font-semibold">{s.value}</p>
+            <p class="text-xs text-white/70">{s.label}</p>
+          </div>
+        ))}
+      </div>
+      <a href={ctaDistribuidor.cta.href} class="w-fit rounded-full bg-terza-lime px-6 py-3 text-sm font-semibold text-terza-ink hover:brightness-95">
+        {ctaDistribuidor.cta.label} →
+      </a>
+    </div>
+  </section>
+
+  <!-- Contacto + Ubicaciones teaser -->
+  <section class="grid grid-cols-1 md:grid-cols-2">
+    <div class="relative flex min-h-[360px] items-end overflow-hidden p-8 text-white md:p-12">
+      <Image src={contactoPortrait} alt="Equipo Terza" class="absolute inset-0 -z-10 h-full w-full object-cover" width={1200} height={900} />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-t from-terza-ink/80 via-terza-ink/20 to-transparent"></div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-white/70">{contactoTeaser.eyebrow}</p>
+        <h2 class="mt-1 max-w-xs text-3xl font-bold">{contactoTeaser.title}</h2>
+        <p class="mt-2 max-w-xs text-sm text-white/80">{contactoTeaser.description}</p>
+        <a href={contactoTeaser.cta.href} class="mt-5 inline-block rounded-full bg-terza-teal px-6 py-3 text-sm font-semibold hover:bg-terza-teal-dark">
+          {contactoTeaser.cta.label} →
+        </a>
+      </div>
+    </div>
+    <div class="relative flex min-h-[360px] items-end overflow-hidden bg-terza-mist p-8 md:p-12">
+      <Image src={showroomCubes} alt="Showroom Terza" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-90" width={1400} height={1000} />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-t from-white/95 via-white/40 to-transparent"></div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-terza-teal/80">{ubicacionesTeaser.eyebrow}</p>
+        <h2 class="mt-1 max-w-xs text-3xl font-bold text-terza-teal">{ubicacionesTeaser.title}</h2>
+        <p class="mt-2 max-w-xs text-sm text-terza-ink/70">{ubicacionesTeaser.description}</p>
+        <a href={ubicacionesTeaser.cta.href} class="mt-5 inline-block rounded-full bg-terza-teal px-6 py-3 text-sm font-semibold text-white hover:bg-terza-teal-dark">
+          {ubicacionesTeaser.cta.label} →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,64 @@
+{
+  "logo": { "text": "terza" },
+  "nav": [
+    {
+      "label": "Pisos",
+      "slug": "pisos",
+      "description": "Soluciones que combinan diseño, funcionalidad y durabilidad para tus espacios.",
+      "groups": [
+        { "label": "Pisos vinílicos", "slug": "pisos-vinilicos", "items": ["Colección Bilbao", "Colección Norwich", "Colección Sevilla", "Colección Vigo"] },
+        { "label": "Pisos laminados", "slug": "pisos-laminados", "items": ["Colección Class", "Colección Imperial Plus", "Colección Mammut Plus", "Colección Trend"] },
+        { "label": "Pisos de madera", "slug": "pisos-de-madera", "items": ["Colección Bari", "Colección Cannes", "Colección Montpellier", "Colección Napoli 2.0"] },
+        { "label": "Alfombras", "slug": "alfombras", "items": ["Colección Allegro", "Colección Gladiador", "Colección Guerrero", "Colección Terza Kids"] }
+      ]
+    },
+    {
+      "label": "Muros",
+      "slug": "muros",
+      "description": "Revestimientos y soluciones decorativas que transforman tus espacios.",
+      "groups": [
+        { "label": "Lambrín y Paneles", "slug": "lambrin-y-paneles", "items": ["Lambrín en Arco", "Lambrín Irregular", "Panel Liso Tipo Mármol", "Panel Liso Tipo Madera"] },
+        { "label": "Flexiroc", "slug": "flexiroc", "items": ["Granito Blanco Colonial", "Travertino Greige", "Caliza Española", "Roca Blanca"] },
+        { "label": "Follaje artificial", "slug": "follaje-artificial", "items": ["Brooklyn", "Green Boxus", "Spring Boxus", "Victoria"] }
+      ]
+    },
+    {
+      "label": "Persianas",
+      "slug": "persianas",
+      "description": "Control de luz, privacidad y estilo para cada ambiente.",
+      "groups": [
+        { "label": "Persianas enrollables", "slug": "persianas-enrollables", "items": ["Stylo", "Optima", "Select"] },
+        { "label": "Persianas de madera", "slug": "persianas-de-madera", "items": ["Lake Forest 2", "Traditions 1", "Traditions 2"] }
+      ]
+    },
+    {
+      "label": "Exterior",
+      "slug": "exterior",
+      "description": "Soluciones que llevan el diseño a tus espacios al aire libre.",
+      "groups": [
+        { "label": "Deck", "slug": "deck", "items": ["Deck", "Lambrín de Exterior", "Vigas", "Cladding"] },
+        { "label": "Pasto sintético", "slug": "pasto-sintetico", "items": ["Colección Bay", "Colección Breeze", "Colección Emerald", "Colección Playground"] }
+      ]
+    },
+    {
+      "label": "Accesorios",
+      "slug": "accesorios",
+      "description": "Complementos que dan el toque final y mejoran la funcionalidad de tus proyectos.",
+      "groups": [
+        { "label": "Para piso", "slug": "para-piso", "items": ["Adhesivos", "Limpiadores", "Molduras", "Zoclos"] },
+        { "label": "Para exterior", "slug": "para-exterior", "items": ["Clips", "Tapas", "Tornillos", "Vigas"] }
+      ]
+    }
+  ],
+  "footer": {
+    "tagline": "Transformamos espacios contigo.",
+    "columns": [
+      { "title": "Productos", "links": ["Pisos", "Muros", "Persianas", "Exterior", "Accesorios"] },
+      { "title": "Recursos", "links": ["Catálogos digitales", "Blog - Ideas", "Decorador Virtual", "Material Lab", "Shaw Contract"] },
+      { "title": "Nosotros", "links": ["Quienes somos", "Quiero ser distribuidor", "Contacto"] }
+    ],
+    "legal": ["Aviso de privacidad", "Buzón de Transparencia"],
+    "social": ["facebook", "instagram", "youtube", "linkedin"],
+    "copyright": "© 2026 Terza. Todos los derechos reservados."
+  }
+}

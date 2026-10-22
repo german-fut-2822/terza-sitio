@@ -1,0 +1,18 @@
+{
+  "seo": { "title": "Contáctanos | Terza", "description": "Estamos listos para ayudarte en cada etapa de tu proyecto." },
+  "hero": {
+    "title": "Contáctanos",
+    "description": "Estamos listos para ayudarte en cada etapa de tu proyecto.",
+    "cta": { "label": "Ver ubicaciones", "href": "/ubicaciones" }
+  },
+  "form": {
+    "title": "Envíanos un mensaje",
+    "fields": ["Nombre", "Apellido", "Email", "Teléfono", "Elige un estado", "Ciudad"],
+    "consent": "Acepto Aviso de Privacidad",
+    "submit": "Enviar mensaje"
+  },
+  "links": [
+    { "title": "Buzón de Transparencia", "href": "/buzon-de-transparencia" },
+    { "title": "Bolsa de trabajo", "href": "/bolsa-de-trabajo" }
+  ]
+}

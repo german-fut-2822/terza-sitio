@@ -1,0 +1,44 @@
+{
+  "seo": { "title": "Nuestras ubicaciones | Terza", "description": "Estamos cerca de ti. Conoce nuestras localidades." },
+  "hero": {
+    "title": "Nuestras ubicaciones",
+    "description": "Estamos cerca de ti.\nConoce nuestras localidades."
+  },
+  "locations": [
+    {
+      "tag": "Planta",
+      "name": "Oficina Central",
+      "address": "Carretera a Monclova km. 11.5 El Carmen, Nuevo León C.P. 66550",
+      "phone": "(81) 8748-4900",
+      "image": "oficina-central"
+    },
+    {
+      "tag": "Showroom",
+      "name": "Material Lab Mty",
+      "address": "PLAZA GM3 - Av. Manuel Gómez Morín 1105, SPGG, N.L. C.P. 66254",
+      "phone": "(81) 8748-5693",
+      "image": "showroom-cubes"
+    },
+    {
+      "tag": "Oficina",
+      "name": "Oficina CDMX",
+      "address": "Av. Paseo de las Palmas No. 525 piso 4 Col. Lomas de Chapultepec Del. Miguel Hidalgo, C.P. 11000",
+      "phone": "(55) 5010-7600",
+      "image": "oficina-cdmx"
+    },
+    {
+      "tag": "Oficina",
+      "name": "Oficina Guadalajara",
+      "address": "Av. Alemania #1771, Col. Moderna, Guadalajara, Jalisco C.P. 44190",
+      "phone": "(33) 5000-3600",
+      "image": "oficina-gdl"
+    },
+    {
+      "tag": "Oficina",
+      "name": "Oficina Puebla",
+      "address": "Calle 2 Sur No. 3510 Planta Alta, Col. Huexotitla Puebla, Puebla C.P. 72534",
+      "phone": "(222) 372-9021",
+      "image": "oficina-puebla"
+    }
+  ]
+}
