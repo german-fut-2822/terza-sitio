@@ -43,21 +43,20 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
 
 <Layout title="Terza | Fabricante de pisos, muros, persianas y exterior">
   <!-- Hero -->
-  <section class="relative isolate flex h-[70vh] max-h-[560px] min-h-[380px] items-end overflow-hidden">
+  <section class="relative isolate flex min-h-[420px] items-end overflow-hidden md:min-h-[560px] xl:h-[702px]">
     <Image src={heroFlexiroc} alt="Flexiroc, recubrimiento de piedra flexible" class="absolute inset-0 -z-10 h-full w-full object-cover" width={2400} height={1400} />
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/55 via-black/25 to-transparent"></div>
 
-    <div class="mx-auto w-full max-w-[1728px] px-6 pb-8 pt-10 md:pb-10 lg:px-12 xl:pb-12 xl:pt-14 xl:pl-[296px]">
-      <span class="mb-4 inline-block rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white">
-        {hero.badge}
-      </span>
-      <div class="mb-2 flex items-center gap-2.5">
-        <Image src={logoFlexirocDots} alt="" class="h-[28px] w-auto" width={75} height={26} />
-        <span class="text-sm font-medium uppercase tracking-wide text-white/80">{hero.eyebrow}</span>
+    <div class="mx-auto w-full max-w-[1728px] px-6 pb-8 md:pb-10 lg:px-12 xl:pb-[83px] xl:pl-[296px]">
+      <div class="flex items-center gap-5">
+        <span class="inline-block rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white">
+          {hero.badge}
+        </span>
+        <Image src={logoFlexirocDots} alt="" class="h-7 w-auto" width={75} height={26} />
       </div>
-      <Image src={logoFlexiroc} alt="flexiROC" class="-ml-1 h-20 w-auto sm:h-24 md:h-32 xl:h-[205px]" width={960} height={439} />
-      <p class="mt-2 max-w-xs text-xl text-white/90 xl:text-2xl">{hero.subtitle}</p>
-      <a href={hero.cta.href} class="mt-7 inline-block rounded-full bg-terza-lime px-8 py-4 text-lg font-semibold text-terza-ink hover:brightness-95">
+      <Image src={logoFlexiroc} alt="flexiROC by Terza" class="-ml-1 mt-8 h-20 w-auto sm:h-24 md:h-32 xl:h-[205px]" width={960} height={439} />
+      <p class="mt-6 max-w-xs text-lg text-white/90 xl:text-xl">{hero.subtitle}</p>
+      <a href={hero.cta.href} class="mt-9 inline-block rounded-full bg-terza-lime-light px-8 py-4 text-lg font-semibold text-terza-ink hover:brightness-95">
         {hero.cta.label}
       </a>
     </div>
@@ -93,14 +92,14 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
   </section>
 
   <!-- Todo para transformar tus espacios -->
-  <section class="relative isolate flex min-h-[640px] flex-col justify-between overflow-hidden md:min-h-[600px] md:justify-start xl:min-h-[660px]">
-    <!-- Capa 1: fondo -->
-    <Image src={transformarEspacios} alt="Sala con vista a la montaña, piso de madera Terza" class="absolute inset-y-0 left-0 z-0 h-full w-full max-w-none object-cover md:w-[122%]" width={2000} height={1200} />
+  <section class="relative isolate flex flex-col overflow-hidden xl:min-h-[660px]">
+    <!-- Capa 1: fondo (mobile/tablet: imagen estática arriba; desktop: fondo absoluto) -->
+    <Image src={transformarEspacios} alt="Sala con vista a la montaña, piso de madera Terza" class="h-[260px] w-full object-cover sm:h-[320px] md:h-[400px] xl:absolute xl:inset-y-0 xl:left-0 xl:z-0 xl:h-full xl:w-[122%] xl:max-w-none" width={2000} height={1200} />
 
-    <!-- Capa 2: difuminado blanco + texto -->
-    <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-full bg-gradient-to-r from-white via-white/80 to-transparent md:w-[62%] xl:w-[55%]"></div>
+    <!-- Capa 2: difuminado blanco + texto (solo desktop) -->
+    <div class="pointer-events-none hidden bg-gradient-to-r from-white via-white/80 to-transparent xl:absolute xl:inset-y-0 xl:left-0 xl:z-10 xl:block xl:w-[55%]"></div>
 
-    <div class="relative z-10 flex flex-col gap-5 px-6 py-10 md:w-[58%] md:px-12 md:pt-12 xl:w-[44%] xl:pl-16 xl:pr-8 xl:pt-14">
+    <div class="relative z-10 flex flex-col gap-5 px-6 py-10 sm:px-12 sm:pt-12 xl:w-[44%] xl:pl-16 xl:pr-8 xl:pt-14">
       <h2 class="max-w-[210px] text-3xl font-bold leading-[1.15] text-terza-ink md:max-w-[240px] md:text-4xl xl:max-w-[300px] xl:text-[44px]">{transformar.title}</h2>
       <p class="max-w-[220px] text-terza-ink/70 xl:max-w-[240px]">{transformar.description}</p>
       <a href={transformar.cta.href} class="inline-flex w-fit items-center justify-center rounded-full bg-terza-lime px-8 py-3 text-base font-semibold text-terza-ink hover:brightness-95 xl:h-[78px] xl:w-[396px] xl:px-0 xl:text-lg">
@@ -109,16 +108,16 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     </div>
 
     <!-- Capa 3: tarjeta verde + badge -->
-    <div class="relative z-20 flex flex-col gap-6 bg-[#0e483f]/50 px-6 py-7 text-white md:absolute md:inset-x-0 md:bottom-0 md:left-[38%] md:flex-row md:items-center md:gap-14 md:rounded-tl-[32px] md:px-12 md:py-8 xl:gap-20 xl:rounded-tl-[48px] xl:px-[72px] xl:py-[70px]">
-      <div class="relative h-10 w-24 shrink-0 md:w-[200px] xl:w-[260px]">
-        <div class="absolute left-0 top-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal md:-left-16 md:-top-[150px] md:h-[200px] md:w-[200px] xl:-left-24 xl:-top-[195px] xl:h-[260px] xl:w-[260px]">
-          <span class="text-lg font-extrabold leading-none md:text-2xl xl:text-3xl">{transformar.stat.value.split(' ')[0]}</span>
-          <span class="text-lg font-extrabold leading-none md:text-2xl xl:text-3xl">{transformar.stat.value.split(' ')[1]}</span>
-          <span class="mt-1 text-[9px] text-terza-teal/80 md:text-sm xl:text-base">{transformar.stat.label}</span>
+    <div class="relative z-20 flex flex-col gap-10 bg-[#0e483f] px-6 py-7 text-white sm:px-10 xl:absolute xl:inset-x-0 xl:bottom-0 xl:left-[38%] xl:flex-row xl:items-center xl:gap-20 xl:rounded-tl-[48px] xl:bg-[#0e483f]/50 xl:px-[72px] xl:py-8">
+      <div class="relative h-10 w-24 shrink-0 xl:w-[230px]">
+        <div class="absolute left-0 top-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal xl:-top-[95px] xl:h-[230px] xl:w-[230px]">
+          <span class="text-lg font-extrabold leading-none xl:text-3xl">{transformar.stat.value.split(' ')[0]}</span>
+          <span class="text-lg font-extrabold leading-none xl:text-3xl">{transformar.stat.value.split(' ')[1]}</span>
+          <span class="mt-1 text-[9px] text-terza-teal/80 xl:text-base">{transformar.stat.label}</span>
         </div>
       </div>
       {transformar.highlights.map((h: { title: string; description: string }) => (
-        <div class="max-w-[220px] border-t border-white/20 pt-4 md:max-w-[260px] md:border-l md:border-t-0 md:pl-10 md:pt-0 xl:max-w-xs xl:pl-10">
+        <div class="max-w-[220px] border-t border-white/20 pt-4 xl:max-w-xs xl:border-l xl:border-t-0 xl:pl-10 xl:pt-0">
           <p class="text-xl font-bold text-white xl:text-2xl">{h.title}</p>
           <p class="mt-1 text-white/75">{h.description}</p>
         </div>
@@ -197,7 +196,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
   <!-- CTA distribuidor -->
   <section class="relative overflow-hidden bg-terza-teal px-6 py-8 text-white md:px-12 xl:px-[72px] xl:py-10">
     <Image src={distribuidorMateriales} alt="" class="pointer-events-none absolute inset-y-4 left-4 hidden w-[240px] rounded-2xl object-cover md:block" width={857} height={710} />
-    <div class="mx-auto flex max-w-[1728px] flex-col gap-8 lg:flex-row lg:items-center lg:justify-between md:pl-[260px]">
+    <div class="mx-auto flex max-w-[1728px] flex-col gap-8 md:pl-[260px] xl:flex-row xl:items-center xl:justify-between">
       <div class="max-w-md">
         <h2 class="text-2xl font-bold leading-tight md:text-3xl xl:text-4xl">
           {ctaDistribuidor.title.split(' distribuidor ')[0]}<br />
@@ -205,9 +204,9 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
         </h2>
         <p class="mt-2 text-sm text-white/80">{ctaDistribuidor.description}</p>
       </div>
-      <div class="flex flex-wrap gap-8">
+      <div class="flex flex-col gap-4 xl:flex-row xl:flex-wrap xl:gap-8">
         {ctaDistribuidor.stats.map((s: { value: string; label: string }) => (
-          <div class="max-w-[150px] border-l border-white/20 px-6 first:pl-0">
+          <div class="max-w-[220px] border-t border-white/15 pt-4 first:border-t-0 first:pt-0 xl:max-w-[150px] xl:border-l xl:border-t-0 xl:px-6 xl:pt-0 xl:first:border-l-0 xl:first:pl-0">
             {/^[+\d]/.test(s.value) ? (
               <>
                 <p class="text-xl font-bold text-terza-lime">{s.value}</p>
@@ -241,7 +240,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
         </a>
       </div>
     </div>
-    <div class="relative flex min-h-[420px] items-center overflow-hidden bg-terza-mist p-8 md:p-12 xl:min-h-[480px] xl:px-[72px]">
+    <div class="relative isolate flex min-h-[420px] items-center overflow-hidden bg-terza-mist p-8 md:p-12 xl:min-h-[480px] xl:px-[72px]">
       <Image src={showroomCubes} alt="Showroom Terza" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-90" width={1400} height={1000} />
       <div class="absolute inset-0 -z-10 bg-gradient-to-l from-transparent via-white/85 to-white"></div>
       <div>
