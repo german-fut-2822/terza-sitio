@@ -1,25 +1,31 @@
 ---
+import { Image } from 'astro:assets';
 import general from '../data/general.json';
+import terzaLogo from '../assets/images/terza-logo.webp';
 
 const { logo, footer } = general;
+
+const icons: Record<string, string> = {
+  facebook: 'M13.5 9H15.5V6.5H13.5C11.8 6.5 10.5 7.8 10.5 9.5V11H9V13.5H10.5V18H13V13.5H15L15.5 11H13V9.5C13 9.2 13.2 9 13.5 9Z',
+  instagram: 'M12 7.5C9.5 7.5 7.5 9.5 7.5 12S9.5 16.5 12 16.5 16.5 14.5 16.5 12 14.5 7.5 12 7.5ZM12 14.5C10.6 14.5 9.5 13.4 9.5 12S10.6 9.5 12 9.5 14.5 10.6 14.5 12 13.4 14.5 12 14.5ZM16.8 6.2C16.2 6.2 15.8 6.6 15.8 7.2S16.2 8.2 16.8 8.2 17.8 7.8 17.8 7.2 17.3 6.2 16.8 6.2Z',
+  youtube: 'M10 9.5L14.5 12L10 14.5V9.5Z',
+  linkedin: 'M8.3 9.5H6V17H8.3V9.5ZM7.1 8.5C7.9 8.5 8.5 7.9 8.5 7.1S7.9 5.7 7.1 5.7 5.7 6.3 5.7 7.1 6.3 8.5 7.1 8.5ZM12 9.5H9.8V17H12V13.1C12 11 14.8 10.8 14.8 13.1V17H17V12.3C17 8.8 13.3 9 12 10.7V9.5Z',
+};
 ---
 
-<footer class="bg-terza-cream px-6 py-14 lg:px-10">
-  <div class="mx-auto grid max-w-[1400px] grid-cols-2 gap-10 md:grid-cols-5">
+<footer class="bg-terza-cream px-6 py-16 md:px-12 xl:px-[72px] xl:py-20">
+  <div class="mx-auto grid max-w-[1728px] grid-cols-2 gap-10 md:grid-cols-5">
     <div class="col-span-2 md:col-span-1">
-      <p class="flex items-center gap-1 text-2xl font-semibold text-terza-ink">
-        {logo.text}
-        <span class="mb-3 h-2 w-2 rounded-[2px] bg-terza-lime"></span>
-      </p>
-      <p class="mt-3 max-w-[16ch] text-sm text-terza-ink/70">{footer.tagline}</p>
+      <Image src={terzaLogo} alt={logo.text} class="h-8 w-auto" width={300} height={100} />
+      <p class="mt-4 max-w-[18ch] text-terza-ink/70">{footer.tagline}</p>
     </div>
 
     {footer.columns.map((col) => (
       <div>
-        <p class="mb-3 text-sm font-semibold text-terza-ink">{col.title}</p>
-        <ul class="space-y-2">
+        <p class="mb-4 text-lg font-semibold text-terza-ink">{col.title}</p>
+        <ul class="space-y-3">
           {col.links.map((link: string) => (
-            <li><a href="#" class="text-sm text-terza-ink/70 hover:text-terza-teal">{link}</a></li>
+            <li><a href="#" class="text-terza-ink/70 hover:text-terza-teal">{link}</a></li>
           ))}
         </ul>
       </div>
@@ -28,16 +34,16 @@ const { logo, footer } = general;
     <div>
       <div class="flex gap-3">
         {footer.social.map((s: string) => (
-          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-terza-teal text-[11px] font-semibold uppercase text-white">
-            {s.slice(0, 2)}
+          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-terza-teal text-white">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d={icons[s] ?? ''}></path></svg>
           </span>
         ))}
       </div>
-      <p class="mt-4 text-sm font-semibold text-terza-ink">{footer.copyright}</p>
+      <p class="mt-5 font-semibold text-terza-ink">{footer.copyright}</p>
     </div>
   </div>
 
-  <div class="mx-auto mt-10 flex max-w-[1400px] flex-wrap gap-x-6 gap-y-2 border-t border-terza-ink/10 pt-6 text-xs text-terza-ink/60">
+  <div class="mx-auto mt-12 flex max-w-[1728px] flex-wrap gap-x-6 gap-y-2 border-t border-terza-ink/10 pt-6 text-sm text-terza-ink/60">
     {footer.legal.map((item: string) => <a href="#" class="hover:text-terza-teal">{item}</a>)}
   </div>
 </footer>

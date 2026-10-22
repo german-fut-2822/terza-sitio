@@ -1,63 +1,113 @@
 ---
+import { Image } from 'astro:assets';
 import general from '../data/general.json';
+import terzaLogo from '../assets/images/terza-logo.webp';
+
+import catPisosVinilicos from '../assets/images/cat-pisos-vinilicos.webp';
+import catPisosLaminados from '../assets/images/cat-pisos-laminados.webp';
+import catPisosMadera from '../assets/images/cat-pisos-madera.webp';
+import catAlfombras from '../assets/images/cat-alfombras.webp';
+import catFollajeArtificial from '../assets/images/cat-follaje-artificial.webp';
+import catFlexiroc from '../assets/images/banner-flexiroc-vertical.webp';
+import catPersianas from '../assets/images/cat-persianas.webp';
+import catDeck from '../assets/images/cat-deck.webp';
+import catPastoSintetico from '../assets/images/cat-pasto-sintetico.webp';
 
 const { logo, nav } = general;
+
+const groupImages: Record<string, ImageMetadata> = {
+  'pisos-vinilicos': catPisosVinilicos,
+  'pisos-laminados': catPisosLaminados,
+  'pisos-de-madera': catPisosMadera,
+  alfombras: catAlfombras,
+  'follaje-artificial': catFollajeArtificial,
+  flexiroc: catFlexiroc,
+  'persianas-enrollables': catPersianas,
+  'persianas-de-madera': catPersianas,
+  deck: catDeck,
+  'pasto-sintetico': catPastoSintetico,
+};
 ---
 
 <header class="relative z-50 border-b border-terza-mist bg-white">
-  <div class="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-4 lg:px-10">
-    <a href="/" class="flex items-center gap-1 text-2xl font-semibold tracking-tight text-terza-ink">
-      {logo.text}
-      <span class="mb-3 h-2 w-2 rounded-[2px] bg-terza-lime"></span>
+  <div class="mx-auto flex max-w-[1728px] items-center justify-between gap-4 px-6 py-4 md:px-10 xl:px-[45px] xl:py-7">
+    <a href="/" class="flex items-center">
+      <Image src={terzaLogo} alt={logo.text} class="h-8 w-auto xl:h-16" width={300} height={100} />
     </a>
 
-    <nav class="hidden items-center gap-6 lg:flex">
+    <nav class="hidden items-center gap-7 lg:flex">
       {nav.map((cat) => (
         <div class="group relative">
-          <button class="flex items-center gap-1 py-6 text-[15px] font-medium text-terza-ink transition-colors group-hover:text-terza-teal">
+          <button class="flex items-center gap-1.5 py-6 text-base font-medium text-terza-ink transition-colors group-hover:text-terza-teal xl:text-lg">
             {cat.label}
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="mt-0.5 transition-transform group-hover:rotate-180">
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="mt-0.5 transition-transform group-hover:rotate-180">
               <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
 
-          <div class="invisible absolute left-0 top-full w-[min(900px,90vw)] translate-y-1 rounded-2xl border border-terza-mist bg-white p-8 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-            <p class="mb-1 text-xl font-semibold text-terza-ink">{cat.label}</p>
-            <p class="mb-6 max-w-sm text-sm text-terza-ink/60">{cat.description}</p>
-            <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {cat.groups.map((group) => (
-                <div>
-                  <a href={`/${cat.slug}/${group.slug}`} class="mb-3 block text-sm font-semibold text-terza-teal hover:underline">
-                    {group.label}
-                  </a>
-                  <ul class="space-y-2">
-                    {group.items.map((item: string) => (
-                      <li>
-                        <a href={`/${cat.slug}/${group.slug}`} class="text-sm text-terza-ink/80 hover:text-terza-teal">
-                          {item}
-                        </a>
-                      </li>
+          <div class="invisible absolute left-0 top-full w-[min(820px,90vw)] translate-y-1 rounded-2xl border border-terza-mist bg-white p-6 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100" data-menu>
+            <div class="flex gap-8">
+              <div class="w-52 shrink-0 border-r border-terza-mist pr-5">
+                <p class="mb-1 text-lg font-semibold text-terza-ink">{cat.label}</p>
+                <p class="mb-4 text-xs text-terza-ink/55">{cat.description}</p>
+                <nav class="space-y-1">
+                  {cat.groups.map((group, gi: number) => (
+                    <button
+                      type="button"
+                      data-group-trigger
+                      data-target={group.slug}
+                      aria-current={gi === 0 ? 'true' : 'false'}
+                      class:list={[
+                        'menu-trigger flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-colors',
+                        gi === 0 ? 'is-active bg-terza-mist font-semibold text-terza-teal' : 'font-medium text-terza-ink/75 hover:bg-terza-mist/60',
+                      ]}
+                    >
+                      {group.label}
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3.5L9 7L5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </button>
+                  ))}
+                </nav>
+              </div>
+
+              <div class="flex-1">
+                {cat.groups.map((group, gi: number) => (
+                  <div data-group-panel={group.slug} class:list={['flex flex-wrap gap-4', gi !== 0 && 'hidden']}>
+                    {group.items.map((item: string, ii: number) => (
+                      <a href={`/${cat.slug}/${group.slug}`} class="group/card block w-[calc(25%-12px)] min-w-[120px]">
+                        {groupImages[group.slug] ? (
+                          <Image
+                            src={groupImages[group.slug]}
+                            alt={item}
+                            class="aspect-square w-full rounded-xl object-cover transition-transform group-hover/card:scale-[0.97]"
+                            width={300}
+                            height={300}
+                          />
+                        ) : (
+                          <div class={`aspect-square w-full rounded-xl ${['bg-[#c9b391]', 'bg-[#4b5d57]', 'bg-[#d8d3c8]', 'bg-[#8a5a3c]'][ii % 4]} transition-transform group-hover/card:scale-[0.97]`}></div>
+                        )}
+                        <p class="mt-2 text-sm text-terza-ink/80 group-hover/card:text-terza-teal">{item}</p>
+                      </a>
                     ))}
-                  </ul>
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       ))}
     </nav>
 
-    <div class="flex items-center gap-3">
-      <button aria-label="Buscar" class="flex h-10 w-10 items-center justify-center rounded-full bg-terza-lime-light text-terza-teal">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <div class="flex items-center gap-3 xl:gap-4">
+      <button aria-label="Buscar" class="flex h-10 w-10 items-center justify-center rounded-full bg-terza-lime-light text-terza-teal xl:h-14 xl:w-14">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="xl:h-5 xl:w-5">
           <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.6"></circle>
           <path d="M16 16L12.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
         </svg>
       </button>
-      <a href="/contacto" class="hidden whitespace-nowrap rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark md:inline-block">
+      <a href="/contacto" class="hidden whitespace-nowrap rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark md:inline-block xl:px-8 xl:py-4 xl:text-lg">
         Contáctanos
       </a>
-      <a href="/quiero-ser-distribuidor" class="hidden whitespace-nowrap rounded-full bg-terza-lime px-5 py-2.5 text-sm font-semibold text-terza-ink hover:brightness-95 lg:inline-block">
+      <a href="/quiero-ser-distribuidor" class="hidden whitespace-nowrap rounded-full bg-terza-lime px-5 py-2.5 text-sm font-semibold text-terza-ink hover:brightness-95 lg:inline-block xl:px-8 xl:py-4 xl:text-lg">
         Quiero ser distribuidor
       </a>
       <button id="mobile-menu-toggle" aria-label="Menú" class="flex h-10 w-10 items-center justify-center lg:hidden">
@@ -89,4 +139,31 @@ const { logo, nav } = general;
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+
+  document.querySelectorAll<HTMLElement>('[data-menu]').forEach((menuEl) => {
+    const triggers = menuEl.querySelectorAll<HTMLElement>('[data-group-trigger]');
+    const panels = menuEl.querySelectorAll<HTMLElement>('[data-group-panel]');
+
+    const activate = (target: string | undefined) => {
+      triggers.forEach((t) => {
+        const active = t.dataset.target === target;
+        t.classList.toggle('is-active', active);
+        t.classList.toggle('bg-terza-mist', active);
+        t.classList.toggle('font-semibold', active);
+        t.classList.toggle('text-terza-teal', active);
+        t.classList.toggle('font-medium', !active);
+        t.classList.toggle('text-terza-ink/75', !active);
+        t.classList.toggle('hover:bg-terza-mist/60', !active);
+      });
+      panels.forEach((p) => p.classList.toggle('hidden', p.dataset.groupPanel !== target));
+    };
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('mouseenter', () => activate(trigger.dataset.target));
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        activate(trigger.dataset.target);
+      });
+    });
+  });
 </script>

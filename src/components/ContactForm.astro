@@ -9,37 +9,37 @@ interface Props {
 const { title, fields, consent, submit } = Astro.props;
 ---
 
-<div class="w-full max-w-lg rounded-3xl bg-white p-8 shadow-xl">
-  <p class="mb-5 text-xl font-semibold text-terza-ink">{title}</p>
-  <form class="space-y-4">
-    <div class="grid grid-cols-2 gap-4">
+<div class="w-full max-w-2xl rounded-[28px] bg-terza-cream p-8 shadow-xl xl:p-12">
+  <p class="mb-6 text-2xl font-bold text-terza-ink xl:text-3xl">{title}</p>
+  <form class="space-y-5">
+    <div class="grid grid-cols-2 gap-5">
       {fields.slice(0, 4).map((field) => (
         <input
           type="text"
           placeholder={`${field.startsWith('Elige') ? '' : '*'}${field}`}
-          class="col-span-1 rounded-xl border border-terza-ink/15 bg-terza-mist/40 px-4 py-3 text-sm placeholder:text-terza-ink/50 focus:border-terza-teal focus:outline-none"
+          class="col-span-1 rounded-xl border-0 bg-white px-5 py-4 text-terza-ink placeholder:text-terza-ink/45 focus:outline focus:outline-2 focus:outline-terza-teal"
         />
       ))}
     </div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-5">
       {fields.slice(4).map((field) => (
         <input
           type="text"
           placeholder={field.startsWith('Elige') ? field : `*${field}`}
-          class="col-span-1 rounded-xl border border-terza-ink/15 bg-terza-mist/40 px-4 py-3 text-sm placeholder:text-terza-ink/50 focus:border-terza-teal focus:outline-none"
+          class="col-span-1 rounded-xl border-0 bg-white px-5 py-4 text-terza-ink placeholder:text-terza-ink/45 focus:outline focus:outline-2 focus:outline-terza-teal"
         />
       ))}
     </div>
     <textarea
       placeholder="Mensaje:"
       rows="4"
-      class="w-full rounded-xl border border-terza-ink/15 bg-terza-mist/40 px-4 py-3 text-sm placeholder:text-terza-ink/50 focus:border-terza-teal focus:outline-none"
+      class="w-full rounded-xl border-0 bg-white px-5 py-4 text-terza-ink placeholder:text-terza-ink/45 focus:outline focus:outline-2 focus:outline-terza-teal"
     ></textarea>
-    <label class="flex items-center gap-2 text-sm text-terza-ink/80">
+    <label class="flex items-center gap-2 text-terza-ink/80">
       <input type="checkbox" class="h-4 w-4 rounded border-terza-ink/30" />
       Acepto <span class="font-semibold">Aviso de Privacidad</span>
     </label>
-    <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-terza-lime px-6 py-3 text-sm font-semibold text-terza-ink hover:brightness-95">
+    <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-3.5 text-base font-semibold text-terza-ink hover:brightness-95">
       {submit}
       <span>→</span>
     </button>
