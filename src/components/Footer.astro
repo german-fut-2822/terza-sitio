@@ -11,39 +11,45 @@ const icons: Record<string, string> = {
   youtube: 'M10 9.5L14.5 12L10 14.5V9.5Z',
   linkedin: 'M8.3 9.5H6V17H8.3V9.5ZM7.1 8.5C7.9 8.5 8.5 7.9 8.5 7.1S7.9 5.7 7.1 5.7 5.7 6.3 5.7 7.1 6.3 8.5 7.1 8.5ZM12 9.5H9.8V17H12V13.1C12 11 14.8 10.8 14.8 13.1V17H17V12.3C17 8.8 13.3 9 12 10.7V9.5Z',
 };
+
+const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
 ---
 
 <footer class="bg-terza-cream px-6 py-16 md:px-12 xl:px-[72px] xl:py-20">
-  <div class="mx-auto grid max-w-[1728px] grid-cols-2 gap-10 md:grid-cols-5">
-    <div class="col-span-2 md:col-span-1">
+  <div class="mx-auto grid max-w-[1728px] grid-cols-1 gap-10 md:grid-cols-5">
+    <div>
       <Image src={terzaLogo} alt={logo.text} class="h-8 w-auto" width={300} height={100} />
-      <p class="mt-4 max-w-[18ch] text-terza-ink/70">{footer.tagline}</p>
+      <p class="mt-4 max-w-[180px] text-sm font-medium text-terza-ink/80">{footer.tagline}</p>
     </div>
 
     {footer.columns.map((col) => (
       <div>
-        <p class="mb-4 text-lg font-semibold text-terza-ink">{col.title}</p>
-        <ul class="space-y-3">
+        <p class="mb-3 text-base font-bold text-terza-ink">{col.title}</p>
+        <ul class="space-y-2">
           {col.links.map((link: string) => (
-            <li><a href="#" class="text-terza-ink/70 hover:text-terza-teal">{link}</a></li>
+            <li><a href="#" class="text-sm text-terza-ink/70 hover:text-terza-teal">{link}</a></li>
           ))}
         </ul>
+        {col.title === 'Nosotros' && (
+          <ul class="mt-6 space-y-2">
+            {footer.legal.map((item: string) => (
+              <li><a href="#" class="text-sm text-terza-ink/70 hover:text-terza-teal">{item}</a></li>
+            ))}
+          </ul>
+        )}
       </div>
     ))}
 
     <div>
-      <div class="flex gap-3">
+      <div class="mb-4 flex items-center gap-4 text-xl text-terza-teal">
         {footer.social.map((s: string) => (
-          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-terza-teal text-white">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d={icons[s] ?? ''}></path></svg>
-          </span>
+          <a href="#" aria-label={s} class="hover:text-terza-teal-dark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d={icons[s] ?? ''}></path></svg>
+          </a>
         ))}
       </div>
-      <p class="mt-5 font-semibold text-terza-ink">{footer.copyright}</p>
+      <p class="text-sm font-bold text-terza-ink">{copyrightMain}</p>
+      <p class="mt-1 text-sm text-terza-ink/60">{copyrightSub}</p>
     </div>
-  </div>
-
-  <div class="mx-auto mt-12 flex max-w-[1728px] flex-wrap gap-x-6 gap-y-2 border-t border-terza-ink/10 pt-6 text-sm text-terza-ink/60">
-    {footer.legal.map((item: string) => <a href="#" class="hover:text-terza-teal">{item}</a>)}
   </div>
 </footer>
