@@ -3,30 +3,7 @@ import { Image } from 'astro:assets';
 import general from '../data/general.json';
 import terzaLogo from '../assets/images/terza-logo.webp';
 
-import catPisosVinilicos from '../assets/images/cat-pisos-vinilicos.webp';
-import catPisosLaminados from '../assets/images/cat-pisos-laminados.webp';
-import catPisosMadera from '../assets/images/cat-pisos-madera.webp';
-import catAlfombras from '../assets/images/cat-alfombras.webp';
-import catFollajeArtificial from '../assets/images/cat-follaje-artificial.webp';
-import catFlexiroc from '../assets/images/banner-flexiroc-vertical.webp';
-import catPersianas from '../assets/images/cat-persianas.webp';
-import catDeck from '../assets/images/cat-deck.webp';
-import catPastoSintetico from '../assets/images/cat-pasto-sintetico.webp';
-
 const { logo, nav } = general;
-
-const groupImages: Record<string, ImageMetadata> = {
-  'pisos-vinilicos': catPisosVinilicos,
-  'pisos-laminados': catPisosLaminados,
-  'pisos-de-madera': catPisosMadera,
-  alfombras: catAlfombras,
-  'follaje-artificial': catFollajeArtificial,
-  flexiroc: catFlexiroc,
-  'persianas-enrollables': catPersianas,
-  'persianas-de-madera': catPersianas,
-  deck: catDeck,
-  'pasto-sintetico': catPastoSintetico,
-};
 ---
 
 <header class="relative z-50 border-b border-terza-mist bg-white">
@@ -75,19 +52,9 @@ const groupImages: Record<string, ImageMetadata> = {
               <div class="flex-1">
                 {cat.groups.map((group, gi: number) => (
                   <div data-group-panel={group.slug} class:list={['flex flex-wrap gap-4', gi !== 0 && 'hidden']}>
-                    {group.items.map((item: string, ii: number) => (
+                    {group.items.map((item: string) => (
                       <a href={`/${cat.slug}/${group.slug}`} class="group/card block w-[calc(25%-12px)] min-w-[120px]">
-                        {groupImages[group.slug] ? (
-                          <Image
-                            src={groupImages[group.slug]}
-                            alt={item}
-                            class="aspect-square w-full rounded-xl object-cover transition-transform group-hover/card:scale-[0.97]"
-                            width={300}
-                            height={300}
-                          />
-                        ) : (
-                          <div class={`aspect-square w-full rounded-xl ${['bg-[#c9b391]', 'bg-[#4b5d57]', 'bg-[#d8d3c8]', 'bg-[#8a5a3c]'][ii % 4]} transition-transform group-hover/card:scale-[0.97]`}></div>
-                        )}
+                        <div class="aspect-square w-full rounded-xl bg-terza-lime transition-transform group-hover/card:scale-[0.97]"></div>
                         <p class="mt-2 text-sm text-terza-ink/80 group-hover/card:text-terza-teal">{item}</p>
                       </a>
                     ))}
