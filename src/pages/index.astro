@@ -100,8 +100,8 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     <div class="pointer-events-none hidden bg-gradient-to-r from-white via-white/80 to-transparent xl:absolute xl:inset-y-0 xl:left-0 xl:z-10 xl:block xl:w-[55%]"></div>
 
     <div class="relative z-10 flex flex-col gap-5 px-6 py-10 sm:px-12 sm:pt-12 xl:w-[44%] xl:pl-16 xl:pr-8 xl:pt-14">
-      <h2 class="max-w-[210px] text-3xl font-bold leading-[1.15] text-terza-ink md:max-w-[240px] md:text-4xl xl:max-w-[300px] xl:text-[44px]">{transformar.title}</h2>
-      <p class="max-w-[220px] text-terza-ink/70 xl:max-w-[240px]">{transformar.description}</p>
+      <h2 class="max-w-[210px] text-3xl font-bold leading-[1.15] text-terza-ink md:max-w-[240px] md:text-4xl xl:max-w-[300px] xl:text-[48px]">{transformar.title}</h2>
+      <p class="max-w-[220px] text-terza-ink/70 xl:max-w-[240px] xl:text-xl">{transformar.description}</p>
       <a href={transformar.cta.href} class="inline-flex w-fit items-center justify-center rounded-full bg-terza-lime px-8 py-3 text-base font-semibold text-terza-ink hover:brightness-95 xl:h-[78px] xl:w-[396px] xl:px-0 xl:text-lg">
         {transformar.cta.label} →
       </a>
@@ -111,9 +111,9 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     <div class="relative z-20 flex flex-col gap-10 bg-[#0e483f] px-6 py-7 text-white sm:px-10 xl:absolute xl:inset-x-0 xl:bottom-0 xl:left-[38%] xl:flex-row xl:items-center xl:gap-20 xl:rounded-tl-[48px] xl:bg-[#0e483f]/50 xl:px-[72px] xl:py-8">
       <div class="relative h-10 w-24 shrink-0 xl:w-[230px]">
         <div class="absolute left-0 top-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal xl:-top-[95px] xl:h-[230px] xl:w-[230px]">
-          <span class="text-lg font-extrabold leading-none xl:text-3xl">{transformar.stat.value.split(' ')[0]}</span>
-          <span class="text-lg font-extrabold leading-none xl:text-3xl">{transformar.stat.value.split(' ')[1]}</span>
-          <span class="mt-1 text-[9px] text-terza-teal/80 xl:text-base">{transformar.stat.label}</span>
+          <span class="text-lg font-extrabold leading-none xl:text-[42px]">{transformar.stat.value.split(' ')[0]}</span>
+          <span class="text-lg font-extrabold leading-none xl:text-[42px]">{transformar.stat.value.split(' ')[1]}</span>
+          <span class="mt-1 text-[9px] text-terza-teal/80 xl:text-lg">{transformar.stat.label}</span>
         </div>
       </div>
       {transformar.highlights.map((h: { title: string; description: string }) => (
@@ -129,10 +129,10 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
   <section class="grid grid-cols-1 items-center bg-terza-lime-pale lg:grid-cols-12">
     <Image src={decoradorTerza} alt="Decorador Virtual Terza en un celular" class="h-full min-h-[360px] w-full object-cover object-bottom lg:col-span-6 lg:rounded-r-[32px] xl:rounded-r-[56px]" width={1200} height={900} />
     <div class="flex flex-col gap-4 px-6 py-10 md:px-12 lg:col-span-3 lg:px-8 xl:px-10 xl:py-14">
-      <p class="text-sm font-semibold uppercase tracking-wider text-terza-teal">{decoradorVirtual.eyebrow}</p>
-      <h2 class="max-w-sm text-3xl font-bold leading-tight text-terza-ink md:text-4xl">{decoradorVirtual.title}</h2>
-      <p class="max-w-xs text-terza-ink/70">{decoradorVirtual.description}</p>
-      <a href={decoradorVirtual.cta.href} class="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-terza-lime px-6 py-3 text-sm font-bold text-terza-ink hover:brightness-95">
+      <p class="text-sm font-semibold uppercase tracking-wider text-terza-teal xl:text-base">{decoradorVirtual.eyebrow}</p>
+      <h2 class="max-w-sm text-3xl font-bold leading-tight text-terza-ink md:text-4xl xl:text-[40px]">{decoradorVirtual.title}</h2>
+      <p class="max-w-xs text-terza-ink/70 xl:text-xl">{decoradorVirtual.description}</p>
+      <a href={decoradorVirtual.cta.href} class="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-terza-lime px-6 py-3 text-sm font-bold text-terza-ink hover:brightness-95 xl:text-base">
         {decoradorVirtual.cta.label} →
       </a>
     </div>
@@ -147,15 +147,15 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
       <h2 class="text-4xl font-bold text-terza-ink md:text-5xl">
         {shawContract.title.replace('®', '')}<sup class="text-lg font-normal md:text-xl">®</sup>
       </h2>
-      <p class="mt-4 max-w-md text-lg text-terza-ink/70">{shawContract.description}</p>
-      <a href={shawContract.cta.href} class="mt-7 inline-flex items-center gap-2 rounded-full bg-terza-teal px-6 py-3 text-sm font-semibold text-white hover:bg-terza-teal-dark">
+      <p class="mt-4 max-w-md text-lg text-terza-ink/70 xl:text-[22px]">{shawContract.description}</p>
+      <a href={shawContract.cta.href} class="mt-7 inline-flex items-center gap-2 rounded-full bg-terza-teal px-6 py-3 text-sm font-semibold text-white hover:bg-terza-teal-dark xl:text-base">
         {shawContract.cta.label} →
       </a>
       <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {shawContract.segments.map((seg: string) => (
           <div>
             <Image src={shawSegmentImages[seg]} alt={`ShawContract ${seg}`} class="aspect-square w-full rounded-2xl object-cover" width={300} height={300} />
-            <p class="mt-2.5 text-xs font-bold uppercase tracking-widest text-terza-ink">{seg}</p>
+            <p class="mt-2.5 text-xs font-bold uppercase tracking-widest text-terza-ink xl:text-sm">{seg}</p>
           </div>
         ))}
       </div>
@@ -168,11 +168,11 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     <div class="mx-auto max-w-[1728px]">
       <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-terza-teal">{blog.eyebrow}</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-terza-teal xl:text-sm">{blog.eyebrow}</p>
           <h2 class="mt-2 text-3xl font-bold text-terza-ink md:text-4xl">{blog.title}</h2>
         </div>
-        <p class="max-w-xs text-sm text-terza-ink/60">{blog.description}</p>
-        <a href={blog.cta.href} class="whitespace-nowrap rounded-full bg-terza-lime px-6 py-3 text-sm font-bold text-terza-ink hover:brightness-95">
+        <p class="max-w-xs text-sm text-terza-ink/60 xl:text-lg">{blog.description}</p>
+        <a href={blog.cta.href} class="whitespace-nowrap rounded-full bg-terza-lime px-6 py-3 text-sm font-bold text-terza-ink hover:brightness-95 xl:text-base">
           {blog.cta.label} →
         </a>
       </div>
@@ -182,10 +182,10 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
             <Image src={blogImages[post.category]} alt={post.title} class="h-56 w-full object-cover" width={700} height={450} />
             <div class="p-5">
               <div class="flex items-center justify-between gap-3">
-                <p class="text-xs font-bold uppercase tracking-wider text-terza-teal">{post.category}</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-terza-teal xl:text-sm">{post.category}</p>
                 <span class="shrink-0 text-xl text-terza-ink">→</span>
               </div>
-              <p class="mt-2 text-sm font-bold leading-snug text-terza-ink">{post.title}</p>
+              <p class="mt-2 text-sm font-bold leading-snug text-terza-ink xl:text-lg">{post.title}</p>
             </div>
           </div>
         ))}
@@ -200,18 +200,18 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     </div>
     <div class="mx-auto flex w-full max-w-[1728px] flex-col gap-6 px-6 py-8 md:px-12 xl:flex-row xl:items-center xl:gap-4 xl:px-8 xl:py-7">
       <div class="xl:w-[32%] xl:shrink-0">
-        <h2 class="text-2xl font-bold leading-tight md:text-3xl xl:text-2xl">
+        <h2 class="text-2xl font-bold leading-tight md:text-3xl xl:text-[28px]">
           {ctaDistribuidor.title.split(' distribuidor ')[0]}<br />
           <span class="text-terza-lime">distribuidor {ctaDistribuidor.title.split(' distribuidor ')[1]}</span>
         </h2>
-        <p class="mt-2 max-w-xs text-sm text-white/80 xl:max-w-none">{ctaDistribuidor.description}</p>
+        <p class="mt-2 max-w-xs text-sm text-white/80 xl:max-w-none xl:text-base">{ctaDistribuidor.description}</p>
       </div>
       {ctaDistribuidor.stats.map((s: { value: string; label: string }, i: number) => (
         <>
           <div class="hidden h-12 w-px shrink-0 bg-white/20 xl:block"></div>
           <div class="xl:w-[11%] xl:shrink-0">
             <p class={`text-xl font-bold ${i === 0 ? 'text-terza-lime' : 'text-white'}`}>{s.value}</p>
-            <p class="text-sm text-white/80">{s.label}</p>
+            <p class="text-sm text-white/80 xl:text-base">{s.label}</p>
           </div>
         </>
       ))}
