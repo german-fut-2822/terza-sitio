@@ -136,8 +136,8 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
         {decoradorVirtual.cta.label} →
       </a>
     </div>
-    <div class="flex items-center justify-center px-6 py-10 lg:col-span-3 lg:px-6 xl:px-10">
-      <Image src={decoradorMuestras} alt="Muestras del Decorador Virtual" class="w-full max-w-[320px] xl:max-w-[380px]" width={600} height={600} />
+    <div class="flex items-center justify-center px-6 py-10 lg:col-span-3 lg:block lg:overflow-hidden lg:p-0">
+      <Image src={decoradorMuestras} alt="Muestras del Decorador Virtual" class="w-full max-w-[420px] lg:w-[112%] lg:max-w-none xl:w-[114%]" width={1200} height={1072} />
     </div>
   </section>
 
@@ -194,46 +194,43 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
   </section>
 
   <!-- CTA distribuidor -->
-  <section class="relative overflow-hidden bg-terza-teal px-6 py-8 text-white md:px-12 xl:px-[72px] xl:py-10">
-    <Image src={distribuidorMateriales} alt="" class="pointer-events-none absolute inset-y-4 left-4 hidden w-[240px] rounded-2xl object-cover md:block" width={857} height={710} />
-    <div class="mx-auto flex max-w-[1728px] flex-col gap-8 md:pl-[260px] xl:flex-row xl:items-center xl:justify-between">
-      <div class="max-w-md">
-        <h2 class="text-2xl font-bold leading-tight md:text-3xl xl:text-4xl">
+  <section class="flex items-stretch bg-terza-teal text-white">
+    <div class="relative hidden w-[200px] shrink-0 sm:block md:w-[240px] xl:w-[240px]">
+      <Image src={distribuidorMateriales} alt="" class="absolute inset-0 h-full w-full object-cover object-left" width={857} height={710} />
+    </div>
+    <div class="mx-auto flex w-full max-w-[1728px] flex-col gap-6 px-6 py-8 md:px-12 xl:flex-row xl:items-center xl:gap-4 xl:px-8 xl:py-7">
+      <div class="xl:w-[32%] xl:shrink-0">
+        <h2 class="text-2xl font-bold leading-tight md:text-3xl xl:text-2xl">
           {ctaDistribuidor.title.split(' distribuidor ')[0]}<br />
           <span class="text-terza-lime">distribuidor {ctaDistribuidor.title.split(' distribuidor ')[1]}</span>
         </h2>
-        <p class="mt-2 text-sm text-white/80">{ctaDistribuidor.description}</p>
+        <p class="mt-2 max-w-xs text-sm text-white/80 xl:max-w-none">{ctaDistribuidor.description}</p>
       </div>
-      <div class="flex flex-col gap-4 xl:flex-row xl:flex-wrap xl:gap-8">
-        {ctaDistribuidor.stats.map((s: { value: string; label: string }) => (
-          <div class="max-w-[220px] border-t border-white/15 pt-4 first:border-t-0 first:pt-0 xl:max-w-[150px] xl:border-l xl:border-t-0 xl:px-6 xl:pt-0 xl:first:border-l-0 xl:first:pl-0">
-            {/^[+\d]/.test(s.value) ? (
-              <>
-                <p class="text-xl font-bold text-terza-lime">{s.value}</p>
-                <p class="text-sm text-white/80">{s.label}</p>
-              </>
-            ) : (
-              <p class="text-sm text-white/90">{s.value} {s.label}</p>
-            )}
+      {ctaDistribuidor.stats.map((s: { value: string; label: string }, i: number) => (
+        <>
+          <div class="hidden h-12 w-px shrink-0 bg-white/20 xl:block"></div>
+          <div class="xl:w-[11%] xl:shrink-0">
+            <p class={`text-xl font-bold ${i === 0 ? 'text-terza-lime' : 'text-white'}`}>{s.value}</p>
+            <p class="text-sm text-white/80">{s.label}</p>
           </div>
-        ))}
-      </div>
-      <a href={ctaDistribuidor.cta.href} class="inline-flex w-fit items-center gap-2 rounded-full bg-terza-lime px-7 py-3.5 text-base font-bold text-terza-ink hover:brightness-95">
+        </>
+      ))}
+      <a href={ctaDistribuidor.cta.href} class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-terza-lime px-7 py-3.5 text-base font-bold text-terza-ink hover:brightness-95 xl:ml-auto">
         {ctaDistribuidor.cta.label} →
       </a>
     </div>
   </section>
 
   <!-- Contacto + Ubicaciones teaser -->
-  <section class="grid grid-cols-1 md:grid-cols-2">
-    <div class="relative flex min-h-[420px] items-stretch overflow-hidden bg-gradient-to-r from-white via-[#e8f7cc] to-[#c2e812] xl:min-h-[480px]">
-      <div class="relative hidden w-[32%] shrink-0 sm:block xl:w-[30%]">
+  <section class="grid grid-cols-1 border-t-2 border-terza-teal md:grid-cols-2">
+    <div class="relative flex min-h-[420px] items-stretch overflow-hidden bg-[linear-gradient(to_right,white_0%,white_58%,#c2e812_100%)] xl:min-h-[480px]">
+      <div class="relative hidden w-[38%] shrink-0 sm:block xl:w-[42%]">
         <Image src={contactoPortrait} alt="Equipo Terza" class="h-full w-full object-cover object-[35%_bottom]" width={1200} height={900} />
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#e8f7cc]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_55%,white_100%)]"></div>
       </div>
       <div class="flex flex-1 flex-col justify-center p-8 md:p-12 xl:px-14">
         <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{contactoTeaser.eyebrow}</p>
-        <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-5xl">{contactoTeaser.title}</h2>
+        <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-6xl">{contactoTeaser.title}</h2>
         <p class="mt-3 max-w-xs text-sm text-terza-ink/70">{contactoTeaser.description}</p>
         <a href={contactoTeaser.cta.href} class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-terza-teal px-6 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark">
           {contactoTeaser.cta.label} →
@@ -242,10 +239,10 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     </div>
     <div class="relative isolate flex min-h-[420px] items-center overflow-hidden bg-terza-mist p-8 md:p-12 xl:min-h-[480px] xl:px-[72px]">
       <Image src={showroomCubes} alt="Showroom Terza" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-90" width={1400} height={1000} />
-      <div class="absolute inset-0 -z-10 bg-gradient-to-l from-transparent via-white/85 to-white"></div>
+      <div class="absolute inset-0 -z-10 bg-gradient-to-l from-transparent via-white/85 to-white xl:bg-[linear-gradient(to_right,white_0%,white_35%,transparent_70%,transparent_100%)]"></div>
       <div>
         <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{ubicacionesTeaser.eyebrow}</p>
-        <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-5xl">
+        <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-6xl">
           {ubicacionesTeaser.title.split(' ').slice(0, -1).join(' ')} <span class="text-[#a8d900]">{ubicacionesTeaser.title.split(' ').at(-1)}</span>
         </h2>
         <p class="mt-3 max-w-xs text-sm text-terza-ink/70">{ubicacionesTeaser.description}</p>
