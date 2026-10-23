@@ -19,11 +19,6 @@ const images: Record<string, ImageMetadata> = {
 };
 
 const { hero, locations } = data;
-const tagStyle: Record<string, string> = {
-  Planta: 'bg-terza-lime text-terza-ink',
-  Showroom: 'bg-terza-lime text-terza-ink',
-  Oficina: 'bg-terza-lime text-terza-ink',
-};
 ---
 
 <Layout title={data.seo.title} description={data.seo.description}>
@@ -39,16 +34,16 @@ const tagStyle: Record<string, string> = {
 
   <section class="mx-auto grid max-w-[1728px] grid-cols-1 gap-6 px-6 py-12 md:grid-cols-3 md:px-12 lg:grid-cols-5 xl:px-[72px] xl:py-14">
     {locations.map((loc: { tag: string; name: string; address: string; phone: string; image: string }, i: number) => (
-      <div class="overflow-hidden rounded-2xl border border-terza-mist">
+      <div class="flex flex-col overflow-hidden rounded-[28px]">
         <div class="relative h-48 xl:h-56">
           <Image src={images[loc.image]} alt={loc.name} class="h-full w-full object-cover" width={400} height={300} />
-          <span class={`absolute left-4 top-4 rounded-full px-4 py-1.5 text-sm font-semibold text-white ${tagStyle[loc.tag] ?? 'bg-terza-teal'}`}>
+          <span class="absolute left-0 top-0 flex h-14 w-[68%] items-center rounded-tl-[28px] rounded-br-[56px] bg-terza-lime pl-6 text-base font-bold text-terza-ink xl:h-16 xl:rounded-br-[64px] xl:pl-7 xl:text-lg">
             {loc.tag}
           </span>
         </div>
-        <div class={`p-5 ${i === 0 ? 'bg-terza-teal text-white' : 'bg-terza-ink/5 text-terza-ink'}`}>
+        <div class={`flex flex-1 flex-col justify-center p-5 text-white ${i === 0 ? 'bg-terza-teal' : 'bg-[#686868]'}`}>
           <p class="text-lg font-semibold">{loc.name}</p>
-          <p class={`mt-1.5 text-sm ${i === 0 ? 'text-white/75' : 'text-terza-ink/60'}`}>{loc.address}</p>
+          <p class="mt-1.5 text-sm text-white/75">{loc.address}</p>
           <p class="mt-3 font-semibold">{loc.phone}</p>
         </div>
       </div>
