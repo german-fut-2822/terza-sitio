@@ -5,11 +5,23 @@ import terzaLogo from '../assets/images/terza-logo.webp';
 
 const { logo, footer } = general;
 
-const icons: Record<string, string> = {
-  facebook: 'M13.5 9H15.5V6.5H13.5C11.8 6.5 10.5 7.8 10.5 9.5V11H9V13.5H10.5V18H13V13.5H15L15.5 11H13V9.5C13 9.2 13.2 9 13.5 9Z',
-  instagram: 'M12 7.5C9.5 7.5 7.5 9.5 7.5 12S9.5 16.5 12 16.5 16.5 14.5 16.5 12 14.5 7.5 12 7.5ZM12 14.5C10.6 14.5 9.5 13.4 9.5 12S10.6 9.5 12 9.5 14.5 10.6 14.5 12 13.4 14.5 12 14.5ZM16.8 6.2C16.2 6.2 15.8 6.6 15.8 7.2S16.2 8.2 16.8 8.2 17.8 7.8 17.8 7.2 17.3 6.2 16.8 6.2Z',
-  youtube: 'M10 9.5L14.5 12L10 14.5V9.5Z',
-  linkedin: 'M8.3 9.5H6V17H8.3V9.5ZM7.1 8.5C7.9 8.5 8.5 7.9 8.5 7.1S7.9 5.7 7.1 5.7 5.7 6.3 5.7 7.1 6.3 8.5 7.1 8.5ZM12 9.5H9.8V17H12V13.1C12 11 14.8 10.8 14.8 13.1V17H17V12.3C17 8.8 13.3 9 12 10.7V9.5Z',
+const icons: Record<string, { viewBox: string; path: string }> = {
+  facebook: {
+    viewBox: '0 0 320 512',
+    path: 'M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z',
+  },
+  instagram: {
+    viewBox: '0 0 448 512',
+    path: 'M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z',
+  },
+  youtube: {
+    viewBox: '0 0 576 512',
+    path: 'M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z',
+  },
+  linkedin: {
+    viewBox: '0 0 448 512',
+    path: 'M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z',
+  },
 };
 
 const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
@@ -18,22 +30,22 @@ const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
 <footer class="bg-terza-cream px-6 py-16 md:px-12 xl:px-[72px] xl:py-20">
   <div class="mx-auto grid max-w-[1728px] grid-cols-1 gap-10 md:grid-cols-5">
     <div>
-      <Image src={terzaLogo} alt={logo.text} class="h-8 w-auto" width={300} height={100} />
-      <p class="mt-4 max-w-[180px] text-sm font-medium text-terza-ink/80">{footer.tagline}</p>
+      <Image src={terzaLogo} alt={logo.text} class="h-12 w-auto" width={300} height={100} />
+      <p class="mt-4 max-w-[180px] text-sm font-medium text-terza-ink">{footer.tagline}</p>
     </div>
 
     {footer.columns.map((col) => (
       <div>
         <p class="mb-3 text-base font-bold text-terza-ink">{col.title}</p>
-        <ul class="space-y-2">
+        <ul class="space-y-1">
           {col.links.map((link: string) => (
-            <li><a href="#" class="text-sm text-terza-ink/70 hover:text-terza-teal">{link}</a></li>
+            <li><a href="#" class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{link}</a></li>
           ))}
         </ul>
         {col.title === 'Nosotros' && (
-          <ul class="mt-6 space-y-2">
+          <ul class="mt-6 space-y-1">
             {footer.legal.map((item: string) => (
-              <li><a href="#" class="text-sm text-terza-ink/70 hover:text-terza-teal">{item}</a></li>
+              <li><a href="#" class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{item}</a></li>
             ))}
           </ul>
         )}
@@ -41,15 +53,15 @@ const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
     ))}
 
     <div>
-      <div class="mb-4 flex items-center gap-4 text-xl text-terza-teal">
+      <div class="mb-4 flex items-center gap-4 text-terza-teal">
         {footer.social.map((s: string) => (
           <a href="#" aria-label={s} class="hover:text-terza-teal-dark">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d={icons[s] ?? ''}></path></svg>
+            <svg class="h-9 w-auto" viewBox={icons[s]?.viewBox ?? '0 0 24 24'} fill="currentColor"><path d={icons[s]?.path ?? ''}></path></svg>
           </a>
         ))}
       </div>
       <p class="text-sm font-bold text-terza-ink">{copyrightMain}</p>
-      <p class="mt-1 text-sm text-terza-ink/60">{copyrightSub}</p>
+      <p class="mt-1 text-sm text-terza-ink">{copyrightSub}</p>
     </div>
   </div>
 </footer>
