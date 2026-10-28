@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import data from '../data/catalogos.json';
+import heroImg from '../assets/images/transformar-espacios.webp';
+import pisosMaderaImg from '../assets/images/coleccion-bari.webp';
+import flexirocImg from '../assets/images/catalogo-flexiroc.webp';
+
+const { hero, catalogos, cta } = data;
+const catalogoImages: Record<string, ImageMetadata> = {
+  'pisos-madera': pisosMaderaImg,
+  flexiroc: flexirocImg,
+};
+---
+
+<Layout title={data.seo.title} description={data.seo.description}>
+  <section class="relative isolate flex h-[300px] items-center overflow-hidden md:h-[360px] xl:h-[440px]">
+    <Image src={heroImg} alt="Sala Terza con vista a la montaña" class="absolute inset-0 -z-10 h-full w-full object-cover" width={2000} height={1200} loading="eager" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/50 via-black/25 to-transparent"></div>
+    <div class="mx-auto w-full max-w-[1728px] px-6 text-white md:px-12 xl:px-[72px]">
+      <h1 class="text-5xl font-bold leading-none md:text-6xl xl:text-7xl">{hero.title}</h1>
+      <p class="mt-5 max-w-3xl text-lg leading-tight md:text-2xl xl:text-3xl">{hero.description}</p>
+    </div>
+  </section>
+
+  <!-- Catálogos: tarjeta con foto y nombre + botón de descarga -->
+  <section class="mx-auto grid max-w-[1728px] grid-cols-1 gap-x-10 gap-y-12 px-6 py-12 sm:grid-cols-2 md:px-12 lg:grid-cols-3 xl:grid-cols-4 xl:px-[72px] 2xl:grid-cols-5 xl:py-16">
+    {catalogos.map((cat) => (
+      <div class="flex flex-col">
+        <div class="overflow-hidden rounded-[28px] bg-terza-teal">
+          <Image src={catalogoImages[cat.image]} alt={cat.title} class="aspect-[16/15] w-full object-cover" width={700} height={656} />
+          <div class="px-6 py-4 text-white">
+            <p class="text-2xl font-bold leading-tight">{cat.title}</p>
+            <p class="mt-1 text-lg">{cat.subtitle}</p>
+          </div>
+        </div>
+        <!-- pdf: "#" mientras no tengamos el archivo -->
+        <a href={cat.pdf} target={cat.pdf !== '#' ? '_blank' : undefined} rel="noopener" class="mt-5 inline-flex items-center justify-between rounded-full bg-terza-lime px-8 py-2.5 text-lg font-bold text-terza-ink hover:brightness-95 xl:text-xl">
+          {cta}
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    ))}
+  </section>
+</Layout>

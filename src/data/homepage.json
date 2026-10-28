@@ -1,11 +1,11 @@
 {
   "hero": {
-    "badge": "NUEVO PRODUCTO",
-    "swatches": ["#00514a", "#bcdc00", "#f9f8f5"],
-    "eyebrow": "BY TERZA",
-    "title": "flexiROC",
-    "subtitle": "Recubrimiento de piedra flexible.",
-    "cta": { "label": "Descubre la nueva colección", "href": "/muros/flexiroc" }
+    "slides": [
+      { "image": "maderas", "title": ["Pisos", "de madera"], "cta": { "label": "Descubre la nueva colección", "href": "/pisos/pisos-de-madera" } },
+      { "image": "flexiroc", "logo": "Flexiroc", "subtitle": "Recubrimiento de piedra flexible", "cta": { "label": "Descubre la nueva colección", "href": "/muros/flexiroc" } },
+      { "image": "pasto", "title": ["Pasto", "sintético"], "cta": { "label": "Descubre tu pasto ideal", "href": "/exterior/pasto-sintetico" } },
+      { "image": "vinilico", "title": ["Piso vinílico", "Norwich"], "cta": { "label": "Explora los nuevos colores", "href": "/pisos/pisos-vinilicos" } }
+    ]
   },
   "nuevosProductos": {
     "title": "Nuevos Productos",

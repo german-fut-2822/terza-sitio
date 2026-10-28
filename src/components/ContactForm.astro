@@ -6,40 +6,38 @@ interface Props {
   submit: string;
 }
 
-const { title, fields, consent, submit } = Astro.props;
+const { title, consent, submit } = Astro.props;
+
+const estados = [
+  'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Ciudad de México',
+  'Coahuila', 'Colima', 'Durango', 'Estado de México', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán',
+  'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa',
+  'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas',
+];
+
+const field = 'w-full rounded-xl border-0 bg-white px-4 py-3 text-base text-terza-ink placeholder:text-terza-ink/40 focus:outline focus:outline-2 focus:outline-terza-teal';
+const [consentLead, consentLink] = consent.split(/(?=Aviso)/);
 ---
 
-<div class="w-full max-w-2xl rounded-[28px] bg-terza-cream p-8 shadow-xl xl:p-12">
-  <p class="mb-6 text-2xl font-bold text-terza-ink xl:text-3xl">{title}</p>
-  <form class="space-y-5">
-    <div class="grid grid-cols-2 gap-5">
-      {fields.slice(0, 4).map((field) => (
-        <input
-          type="text"
-          placeholder={`${field.startsWith('Elige') ? '' : '*'}${field}`}
-          class="col-span-1 rounded-xl border-0 bg-white px-5 py-4 text-terza-ink placeholder:text-terza-ink/45 focus:outline focus:outline-2 focus:outline-terza-teal"
-        />
-      ))}
-    </div>
-    <div class="grid grid-cols-2 gap-5">
-      {fields.slice(4).map((field) => (
-        <input
-          type="text"
-          placeholder={field.startsWith('Elige') ? field : `*${field}`}
-          class="col-span-1 rounded-xl border-0 bg-white px-5 py-4 text-terza-ink placeholder:text-terza-ink/45 focus:outline focus:outline-2 focus:outline-terza-teal"
-        />
-      ))}
-    </div>
-    <textarea
-      placeholder="Mensaje:"
-      rows="4"
-      class="w-full rounded-xl border-0 bg-white px-5 py-4 text-terza-ink placeholder:text-terza-ink/45 focus:outline focus:outline-2 focus:outline-terza-teal"
-    ></textarea>
-    <label class="flex items-center gap-2 text-terza-ink/80">
-      <input type="checkbox" class="h-4 w-4 rounded border-terza-ink/30" />
-      Acepto <span class="font-semibold">Aviso de Privacidad</span>
+<div class="w-full max-w-[560px] rounded-[36px] lg:max-w-none bg-terza-cream p-7 shadow-xl md:p-9">
+  <p class="mb-5 text-2xl font-bold text-black xl:text-[28px]">{title}</p>
+  <form class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+    <input type="text" name="nombre" placeholder="*Nombre" required autocomplete="given-name" class={field} />
+    <input type="text" name="apellido" placeholder="*Apellido" required autocomplete="family-name" class={field} />
+    <input type="email" name="email" placeholder="*Email" required autocomplete="email" class={field} />
+    <input type="tel" name="telefono" placeholder="*Teléfono" required autocomplete="tel" class={field} />
+    <select name="estado" class:list={[field, 'invalid:text-terza-ink/40']} required>
+      <option value="" disabled selected>Elige un estado</option>
+      {estados.map((estado) => <option value={estado} class="text-terza-ink">{estado}</option>)}
+    </select>
+    <input type="text" name="ciudad" placeholder="*Ciudad" required autocomplete="address-level2" class={field} />
+    <textarea name="mensaje" placeholder="Mensaje:" rows="6" class:list={[field, 'mt-2 resize-none sm:col-span-2']}></textarea>
+
+    <label class="mt-2 flex items-center gap-3 text-sm text-terza-ink/70 sm:col-span-2">
+      <input type="checkbox" name="aviso" required class="h-4 w-4 shrink-0 rounded-none border-terza-ink/40 accent-terza-teal" />
+      <span>{consentLead}<a href="#" class="font-semibold text-terza-ink hover:text-terza-teal">{consentLink}</a></span>
     </label>
-    <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-3.5 text-base font-semibold text-terza-ink hover:brightness-95">
+    <button type="submit" class="inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95 sm:col-span-2">
       {submit}
       <span>→</span>
     </button>

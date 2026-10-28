@@ -14,23 +14,25 @@ const { logo, nav } = general;
 
     <nav class="hidden items-center gap-7 lg:flex">
       {nav.map((cat) => (
-        <div class="group relative">
-          <button class="flex items-center gap-1.5 py-6 text-base font-medium text-terza-ink transition-colors group-hover:text-terza-teal xl:py-4 xl:text-lg">
+        <div class="group">
+          <button class="relative flex items-center gap-1.5 py-6 text-base font-medium text-terza-ink transition-colors group-hover:text-terza-teal xl:py-4 xl:text-lg">
             {cat.label}
             <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="mt-0.5 transition-transform group-hover:rotate-180">
               <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
+            <!-- Puente invisible para no perder el hover entre el botón y el panel -->
+            <span class="absolute inset-x-0 top-full h-10" aria-hidden="true"></span>
           </button>
 
           <div
-            class="invisible absolute left-0 top-full w-[min(820px,90vw)] translate-y-1 rounded-2xl border border-terza-mist bg-white p-6 opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+            class="invisible absolute inset-x-0 top-full border-y border-terza-mist bg-white opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:opacity-100"
             data-menu
           >
-            <div class="flex gap-8">
-              <div class="w-52 shrink-0 border-r border-terza-mist pr-5">
-                <p class="mb-1 text-lg font-semibold text-terza-ink">{cat.label}</p>
-                <p class="mb-4 text-xs text-terza-ink/55">{cat.description}</p>
-                <nav class="space-y-1">
+            <div class="mx-auto flex max-w-[1728px] gap-10 px-6 py-10 md:px-10 xl:gap-16 xl:px-[45px] xl:py-14">
+              <div class="w-64 shrink-0 xl:w-80">
+                <p class="mb-2 text-2xl font-bold text-terza-ink xl:text-3xl">{cat.label}</p>
+                <p class="mb-6 text-sm text-terza-ink">{cat.description}</p>
+                <nav class="space-y-1 pl-12 xl:pl-16">
                   {cat.groups.map((group, gi: number) => (
                     <button
                       type="button"
@@ -38,8 +40,8 @@ const { logo, nav } = general;
                       data-target={group.slug}
                       aria-current={gi === 0 ? 'true' : 'false'}
                       class:list={[
-                        'menu-trigger flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-colors',
-                        gi === 0 ? 'is-active bg-terza-mist font-semibold text-terza-teal' : 'font-medium text-terza-ink/75 hover:bg-terza-mist/60',
+                        'menu-trigger flex w-full items-center justify-between py-2 text-left text-sm font-medium transition-colors hover:text-terza-teal xl:text-base',
+                        gi === 0 ? 'is-active text-terza-teal' : 'text-terza-ink',
                       ]}
                     >
                       {group.label}
@@ -51,13 +53,19 @@ const { logo, nav } = general;
 
               <div class="flex-1">
                 {cat.groups.map((group, gi: number) => (
-                  <div data-group-panel={group.slug} class:list={['flex flex-wrap gap-4', gi !== 0 && 'hidden']}>
-                    {group.items.map((item: string) => (
-                      <a href={`/${cat.slug}/${group.slug}`} class="group/card block w-[calc(25%-12px)] min-w-[120px]">
-                        <div class="aspect-square w-full rounded-xl bg-terza-lime transition-transform group-hover/card:scale-[0.97]"></div>
-                        <p class="mt-2 text-sm text-terza-ink/80 group-hover/card:text-terza-teal">{item}</p>
-                      </a>
-                    ))}
+                  <div data-group-panel={group.slug} class:list={['flex flex-col', gi !== 0 && 'hidden']}>
+                    <div class="grid grid-cols-4 gap-6 xl:gap-8">
+                      {group.items.map((item: string) => (
+                        <a href={`/${cat.slug}/${group.slug}`} class="group/card block">
+                          <div class="aspect-[3/2] w-full rounded-2xl bg-terza-teal transition-transform group-hover/card:scale-[0.97]"></div>
+                          <p class="mt-3 text-sm font-medium text-terza-teal xl:text-base">{item}</p>
+                        </a>
+                      ))}
+                    </div>
+                    <a href={`/${cat.slug}/${group.slug}`} class="mt-8 inline-flex w-fit items-center gap-3 self-end rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95 xl:text-lg">
+                      Ver más
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -74,10 +82,10 @@ const { logo, nav } = general;
           <path d="M16 16L12.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
         </svg>
       </button>
-      <a href="/contacto" class="hidden whitespace-nowrap rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark md:inline-block xl:px-8 xl:py-4 xl:text-lg">
+      <a href="/contacto" class="hidden whitespace-nowrap rounded-full bg-terza-teal px-5 py-1.5 text-sm font-semibold text-white hover:bg-terza-teal-dark md:inline-block xl:px-8 xl:text-lg">
         Contáctanos
       </a>
-      <a href="/quiero-ser-distribuidor" class="hidden whitespace-nowrap rounded-full bg-terza-lime px-5 py-2.5 text-sm font-semibold text-terza-ink hover:brightness-95 lg:inline-block xl:px-8 xl:py-4 xl:text-lg">
+      <a href="/quiero-ser-distribuidor" class="hidden whitespace-nowrap rounded-full bg-terza-lime px-5 py-1.5 text-sm font-semibold text-white hover:brightness-95 lg:inline-block xl:px-8 xl:text-lg">
         Quiero ser distribuidor
       </a>
       <button id="mobile-menu-toggle" aria-label="Menú" class="flex h-10 w-10 items-center justify-center lg:hidden">
@@ -96,10 +104,10 @@ const { logo, nav } = general;
         </li>
       ))}
       <li class="pt-3">
-        <a href="/contacto" class="block rounded-full bg-terza-teal px-4 py-2.5 text-center text-sm font-semibold text-white">Contáctanos</a>
+        <a href="/contacto" class="block rounded-full bg-terza-teal px-4 py-1.5 text-center text-sm font-semibold text-white">Contáctanos</a>
       </li>
       <li class="pt-2">
-        <a href="/quiero-ser-distribuidor" class="block rounded-full bg-terza-lime px-4 py-2.5 text-center text-sm font-semibold text-terza-ink">Quiero ser distribuidor</a>
+        <a href="/quiero-ser-distribuidor" class="block rounded-full bg-terza-lime px-4 py-1.5 text-center text-sm font-semibold text-white">Quiero ser distribuidor</a>
       </li>
     </ul>
   </div>
@@ -118,12 +126,8 @@ const { logo, nav } = general;
       triggers.forEach((t) => {
         const active = t.dataset.target === target;
         t.classList.toggle('is-active', active);
-        t.classList.toggle('bg-terza-mist', active);
-        t.classList.toggle('font-semibold', active);
         t.classList.toggle('text-terza-teal', active);
-        t.classList.toggle('font-medium', !active);
-        t.classList.toggle('text-terza-ink/75', !active);
-        t.classList.toggle('hover:bg-terza-mist/60', !active);
+        t.classList.toggle('text-terza-ink', !active);
       });
       panels.forEach((p) => p.classList.toggle('hidden', p.dataset.groupPanel !== target));
     };
@@ -136,22 +140,4 @@ const { logo, nav } = general;
       });
     });
   });
-
-  const menus = document.querySelectorAll<HTMLElement>('[data-menu]');
-  const fixMenuOverflow = () => {
-    const margin = 16;
-    menus.forEach((menuEl) => {
-      const wrapper = menuEl.parentElement;
-      if (!wrapper) return;
-      menuEl.style.left = '0px';
-      const wrapperLeft = wrapper.getBoundingClientRect().left;
-      const menuWidth = menuEl.offsetWidth;
-      const viewportWidth = document.documentElement.clientWidth;
-      const maxAbsoluteLeft = Math.max(margin, viewportWidth - menuWidth - margin);
-      const clampedAbsoluteLeft = Math.min(Math.max(wrapperLeft, margin), maxAbsoluteLeft);
-      menuEl.style.left = `${clampedAbsoluteLeft - wrapperLeft}px`;
-    });
-  };
-  fixMenuOverflow();
-  window.addEventListener('resize', fixMenuOverflow);
 </script>

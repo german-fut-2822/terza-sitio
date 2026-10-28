@@ -58,7 +58,12 @@
       { "title": "Nosotros", "links": ["Quienes somos", "Quiero ser distribuidor", "Contacto"] }
     ],
     "legal": ["Aviso de privacidad", "Buzón de Transparencia"],
-    "social": ["facebook", "instagram", "youtube", "linkedin"],
+    "social": [
+      { "name": "facebook", "href": "https://www.facebook.com/TerzaMexico/" },
+      { "name": "instagram", "href": "https://www.instagram.com/terzamexico/" },
+      { "name": "youtube", "href": "https://www.youtube.com/channel/UCnIDmz5VV5tsZ7pMiOvwa1A" },
+      { "name": "linkedin", "href": "https://www.linkedin.com/company/terza-s-a-/" }
+    ],
     "copyright": "© 2026 Terza. Todos los derechos reservados."
   }
 }

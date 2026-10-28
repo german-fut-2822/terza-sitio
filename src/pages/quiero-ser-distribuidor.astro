@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import ContactForm from '../components/ContactForm.astro';
+import FormHero from '../components/FormHero.astro';
 import data from '../data/distribuidor.json';
 import heroImg from '../assets/images/showroom-cubes.webp';
 
@@ -9,18 +8,6 @@ const { hero, form } = data;
 ---
 
 <Layout title={data.seo.title} description={data.seo.description}>
-  <section class="relative isolate flex min-h-[640px] items-center overflow-hidden xl:min-h-[966px]">
-    <Image src={heroImg} alt="Showroom Terza" class="absolute inset-0 -z-10 h-full w-full object-cover" width={2000} height={1400} />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/55 via-black/30 to-black/5"></div>
-
-    <div class="mx-auto grid w-full max-w-[1728px] grid-cols-1 gap-10 px-6 py-16 md:px-12 lg:grid-cols-2 xl:px-[72px]">
-      <div class="flex flex-col justify-center text-white">
-        <h1 class="text-4xl font-bold leading-[1.15] md:text-5xl xl:text-7xl xl:leading-[1.1]">{hero.title}</h1>
-        <p class="mt-4 max-w-md text-lg text-white/85">{hero.description}</p>
-      </div>
-      <div class="flex items-center justify-center lg:justify-end">
-        <ContactForm title={form.title} fields={form.fields} consent={form.consent} submit={form.submit} />
-      </div>
-    </div>
-  </section>
+  <!-- Encuadre en la parte alta del showroom: repisas de muestras, rack de colores y muro de duelas -->
+  <FormHero image={heroImg} alt="Showroom Terza" imageClass="object-cover object-[50%_25%]" title={hero.title} description={hero.description} form={form} />
 </Layout>

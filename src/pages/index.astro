@@ -1,11 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import home from '../data/homepage.json';
 
-import heroFlexiroc from '../assets/images/hero-flexiroc-live.webp';
+import heroMaderas from '../assets/images/hero/banner-hero-maderas.webp';
+import heroMaderasMobile from '../assets/images/hero/banner-hero-maderas-mobile.webp';
+import heroFlexiroc from '../assets/images/hero/banner-hero-flexiroc-v3.webp';
+import heroFlexirocMobile from '../assets/images/hero/banner-hero-flexiroc-v3-mobile.webp';
+import heroPasto from '../assets/images/hero/banner-hero-pasto-sintetico-v2.webp';
+import heroPastoMobile from '../assets/images/hero/banner-hero-pasto-sintetico-v2-mobile.webp';
+import heroVinilico from '../assets/images/hero/banner-hero-piso-vinilico-v2.webp';
+import heroVinilicoMobile from '../assets/images/hero/banner-hero-piso-vinilico-v2-mobile.webp';
+import logoFlexirocBlanco from '../assets/images/hero/logo-flexiroc-blanco.webp';
 import logoFlexiroc from '../assets/images/logo-flexiroc.webp';
-import logoFlexirocDots from '../assets/images/logo-flexiroc-dots.webp';
 import transformarEspacios from '../assets/images/transformar-espacios.webp';
 import decoradorTerza from '../assets/images/decorador-virtual-terza.webp';
 import decoradorMuestras from '../assets/images/decorador-virtual-muestras.webp';
@@ -38,43 +45,99 @@ const blogImages: Record<string, ImageMetadata> = {
   MUROS: blogMuros,
 };
 
-const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtual, shawContract, blog, ctaDistribuidor, contactoTeaser, ubicacionesTeaser } = home;
+// Banners del hero de terza.com: versión ancha (2000x750) y cuadrada para celular (900x900)
+const heroImages: Record<string, [ImageMetadata, ImageMetadata]> = {
+  maderas: [heroMaderas, heroMaderasMobile],
+  flexiroc: [heroFlexiroc, heroFlexirocMobile],
+  pasto: [heroPasto, heroPastoMobile],
+  vinilico: [heroVinilico, heroVinilicoMobile],
+};
+const heroSlides = await Promise.all(
+  home.hero.slides.map(async (slide) => {
+    const [desktop, mobile] = heroImages[slide.image];
+    return {
+      ...slide,
+      desktop: await getImage({ src: desktop, width: 2000 }),
+      mobile: await getImage({ src: mobile, width: 900 }),
+    };
+  }),
+);
+
+const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, shawContract, blog, ctaDistribuidor, contactoTeaser, ubicacionesTeaser } = home;
 ---
 
 <Layout title="Terza | Fabricante de pisos, muros, persianas y exterior">
   <!-- Hero -->
-  <section class="relative isolate flex min-h-[420px] items-end overflow-hidden md:min-h-[560px] xl:h-[702px]">
-    <Image src={heroFlexiroc} alt="Flexiroc, recubrimiento de piedra flexible" class="absolute inset-0 -z-10 h-full w-full object-cover" width={2400} height={1400} />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/55 via-black/25 to-transparent"></div>
+  <section class="group/hero relative isolate flex min-h-[420px] items-end overflow-hidden md:min-h-[560px] xl:h-[702px]" data-hero>
+    <!-- Slides (crossfade): imagen cuadrada en celular, ancha desde md -->
+    {heroSlides.map((slide, i) => (
+      <picture data-hero-slide class:list={['absolute inset-0 -z-10 transition-opacity duration-1000', i === 0 ? 'opacity-100' : 'opacity-0']}>
+        <source media="(min-width: 768px)" srcset={slide.desktop.src} />
+        <img src={slide.mobile.src} alt="" class="h-full w-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} />
+      </picture>
+    ))}
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/45 via-black/15 to-transparent"></div>
 
-    <div class="mx-auto w-full max-w-[1728px] px-6 pb-8 md:pb-10 lg:px-12 xl:pb-[83px] xl:pl-[296px]">
-      <div class="flex items-center gap-5">
-        <span class="inline-block rounded-full bg-terza-teal px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white">
-          {hero.badge}
-        </span>
-        <Image src={logoFlexirocDots} alt="" class="h-7 w-auto" width={75} height={26} />
-      </div>
-      <Image src={logoFlexiroc} alt="flexiROC by Terza" class="-ml-1 mt-8 h-20 w-auto sm:h-24 md:h-32 xl:h-[205px]" width={960} height={439} />
-      <p class="mt-6 max-w-xs text-lg text-white/90 xl:text-xl">{hero.subtitle}</p>
-      <a href={hero.cta.href} class="mt-9 inline-block rounded-full bg-terza-lime-light px-8 py-4 text-lg font-semibold text-black hover:brightness-95">
-        {hero.cta.label}
-      </a>
+    <button type="button" aria-label="Anterior" data-hero-prev class="absolute left-5 top-1/2 z-10 flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-white transition hover:bg-black/70 md:-translate-x-5 md:opacity-0 md:group-hover/hero:translate-x-0 md:group-hover/hero:opacity-100">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 4L6.5 10L12.5 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <button type="button" aria-label="Siguiente" data-hero-next class="absolute right-5 top-1/2 z-10 flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-white transition hover:bg-black/70 md:translate-x-5 md:opacity-0 md:group-hover/hero:translate-x-0 md:group-hover/hero:opacity-100">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 4L13.5 10L7.5 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+
+    <!-- Textos apilados en la misma celda; solo el activo es visible -->
+    <div class="mx-auto grid w-full max-w-[1728px] px-6 pb-10 md:pb-12 lg:px-12 xl:pb-[83px] xl:pl-[296px]">
+      {heroSlides.map((slide, i) => (
+        <div data-hero-caption class:list={['col-start-1 row-start-1 self-end transition-[opacity,visibility] duration-700', i === 0 ? 'visible opacity-100' : 'invisible opacity-0']}>
+          {slide.logo ? (
+            <h2 class="mb-3">
+              <Image src={logoFlexirocBlanco} alt={slide.logo} class="block h-auto w-[157px] md:w-[200px] 2xl:w-[300px]" width={604} height={439} />
+            </h2>
+          ) : (
+            <h2 class="mb-3 text-[30px] font-semibold uppercase leading-[1.05] text-white md:mb-[18px] md:text-[40px] lg:text-[66px] 2xl:text-[78px]">
+              {slide.title?.map((line, li) => (
+                <>
+                  {li > 0 && <br />}
+                  {line}
+                </>
+              ))}
+            </h2>
+          )}
+          {slide.subtitle && <p class="mb-5 max-w-[640px] text-base text-white md:mb-7 md:text-[22px]">{slide.subtitle}</p>}
+          <a href={slide.cta.href} class="inline-block min-w-[280px] rounded-[1.3rem] border border-[#caff66] bg-[#caff66] px-5 py-3 text-center text-base font-medium text-[#1b1b1b] transition hover:border-terza-teal hover:bg-terza-teal hover:text-white md:min-w-[320px] md:px-[2.7rem] md:py-[1.1rem] md:text-lg lg:min-w-[380px] lg:text-xl">
+            {slide.cta.label}
+          </a>
+        </div>
+      ))}
     </div>
   </section>
 
   <!-- Nuevos productos -->
   <section class="mx-auto max-w-[1728px] px-6 py-10 md:px-12 xl:px-[72px] xl:py-12">
-    <h2 class="mb-7 text-3xl font-bold text-black md:text-4xl">{nuevosProductos.title}</h2>
-    <div class="grid grid-cols-2 gap-5 md:grid-cols-5 xl:gap-6">
-      <a href={nuevosProductos.featured.href} class="group relative col-span-2 flex min-h-[358px] flex-col justify-end overflow-hidden rounded-2xl p-5 text-white md:col-span-1">
+    <div class="mb-7 flex items-center justify-between gap-4">
+      <h2 class="text-3xl font-bold text-black md:text-4xl">{nuevosProductos.title}</h2>
+      <div class="flex gap-2" data-slider-controls>
+        <button type="button" aria-label="Anterior" data-slider-prev class="flex h-11 w-11 items-center justify-center rounded-full border border-terza-teal text-terza-teal transition hover:bg-terza-teal hover:text-white disabled:pointer-events-none disabled:opacity-30">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9H3M3 9L8 4M3 9L8 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <button type="button" aria-label="Siguiente" data-slider-next class="flex h-11 w-11 items-center justify-center rounded-full border border-terza-teal text-terza-teal transition hover:bg-terza-teal hover:text-white disabled:pointer-events-none disabled:opacity-30">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-5 xl:gap-6">
+      <a href={nuevosProductos.featured.href} class="group relative isolate flex min-h-[358px] flex-col justify-end overflow-hidden rounded-2xl p-5 text-white">
         <Image src={transformarEspacios} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" width={600} height={716} />
         <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/35 to-black/5"></div>
         <Image src={logoFlexiroc} alt={nuevosProductos.featured.title} class="h-10 w-auto self-start" width={960} height={439} />
         <p class="mt-2 text-sm text-white/85">{nuevosProductos.featured.subtitle}</p>
-        <span class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-terza-teal px-4 py-2 text-sm font-semibold">Ver todo →</span>
+        <span class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-terza-teal px-4 py-1.5 text-sm font-semibold">Ver todo →</span>
       </a>
+      <!-- Slider en bucle: las flechas (o el swipe) rotan las tarjetas una a la vez. El padding deja ver la sombra. -->
+      <div data-slider class="-mx-3 -my-4 touch-pan-y overflow-hidden px-3 py-4 md:col-span-4">
+      <div data-slider-track class="flex gap-5 xl:gap-6">
       {nuevosProductos.items.map((item: { name: string; sku: string }, i: number) => (
-        <div class="relative flex flex-col overflow-visible rounded-2xl border border-terza-mist bg-white">
+        <div data-slide class="relative flex shrink-0 basis-[78%] flex-col overflow-visible rounded-2xl bg-white shadow-[0_4px_18px_rgba(0,0,0,0.08)] sm:basis-[calc((100%-20px)/2)] md:basis-[calc((100%-40px)/3)] lg:basis-[calc((100%-60px)/4)] xl:basis-[calc((100%-72px)/4)]">
           <div class="relative isolate h-[220px] overflow-hidden rounded-t-2xl p-3 xl:h-[248px]">
             <Image src={swatchImages[i % 4]} alt={item.name} class="absolute inset-0 -z-10 h-full w-full object-cover" width={400} height={400} />
             <span class="inline-block rounded-full bg-terza-lime px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black">Nuevo</span>
@@ -88,6 +151,8 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
           </div>
         </div>
       ))}
+      </div>
+      </div>
     </div>
   </section>
 
@@ -102,24 +167,24 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
     <div class="relative z-10 flex flex-col gap-5 px-6 py-10 sm:px-12 sm:pt-12 xl:w-[44%] xl:pl-16 xl:pr-8 xl:pt-14">
       <h2 class="max-w-[210px] text-3xl font-bold leading-[1.15] text-black md:max-w-[240px] md:text-4xl xl:max-w-[300px] xl:text-[48px]">{transformar.title}</h2>
       <p class="max-w-[220px] text-black xl:max-w-[240px] xl:text-xl">{transformar.description}</p>
-      <a href={transformar.cta.href} class="inline-flex w-fit items-center justify-center rounded-full bg-terza-lime px-8 py-3 text-base font-semibold text-black hover:brightness-95 xl:h-[78px] xl:w-[396px] xl:px-0 xl:text-lg">
+      <a href={transformar.cta.href} class="inline-flex w-fit items-center justify-center rounded-full bg-terza-lime px-8 py-1.5 text-base font-semibold text-black hover:brightness-95 xl:px-12 xl:text-lg">
         {transformar.cta.label} →
       </a>
     </div>
 
     <!-- Capa 3: tarjeta verde + badge -->
-    <div class="relative z-20 flex flex-col gap-10 bg-[#0e483f] px-6 py-7 text-white sm:px-10 xl:absolute xl:inset-x-0 xl:bottom-0 xl:left-[38%] xl:flex-row xl:items-center xl:gap-20 xl:rounded-tl-[48px] xl:bg-[#0e483f]/50 xl:px-[72px] xl:py-8">
-      <div class="relative h-10 w-24 shrink-0 xl:w-[230px]">
-        <div class="absolute left-0 top-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal xl:-top-[95px] xl:h-[230px] xl:w-[230px]">
-          <span class="text-lg font-extrabold leading-none xl:text-[42px]">{transformar.stat.value.split(' ')[0]}</span>
-          <span class="text-lg font-extrabold leading-none xl:text-[42px]">{transformar.stat.value.split(' ')[1]}</span>
-          <span class="mt-1 text-[9px] text-terza-teal/80 xl:text-lg">{transformar.stat.label}</span>
+    <div class="relative z-20 flex flex-col gap-10 bg-[#0e483f] px-6 py-7 text-white sm:px-10 xl:absolute xl:inset-x-0 xl:bottom-0 xl:left-[27%] xl:flex-row xl:items-center xl:gap-10 xl:rounded-tl-[40px] xl:bg-[#0e483f]/50 xl:px-12 xl:py-6">
+      <div class="relative h-10 w-24 shrink-0 xl:w-[170px]">
+        <div class="absolute left-0 top-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal xl:-top-[52px] xl:h-[170px] xl:w-[170px]">
+          <span class="text-xl font-extrabold leading-[0.95] xl:text-[40px]">{transformar.stat.value.split(' ')[0]}</span>
+          <span class="text-xl font-extrabold leading-[0.95] xl:text-[40px]">{transformar.stat.value.split(' ')[1]}</span>
+          <span class="mt-1 text-[10px] font-medium text-terza-teal xl:mt-2 xl:text-base">{transformar.stat.label}</span>
         </div>
       </div>
-      {transformar.highlights.map((h: { title: string; description: string }) => (
-        <div class="max-w-[220px] border-t border-white/20 pt-4 xl:max-w-xs xl:border-l xl:border-t-0 xl:pl-10 xl:pt-0">
-          <p class="text-xl font-bold text-white xl:text-2xl">{h.title}</p>
-          <p class="mt-1 text-white/75">{h.description}</p>
+      {transformar.highlights.map((h: { title: string; description: string }, i: number) => (
+        <div class:list={['max-w-[220px] border-t border-white/20 pt-4 xl:max-w-none xl:border-t-0 xl:pt-0', i > 0 && 'xl:border-l xl:pl-10']}>
+          <p class="text-xl font-bold text-white xl:whitespace-nowrap xl:text-2xl">{h.title}</p>
+          <p class="mt-1 text-white/75 xl:max-w-[270px]">{h.description}</p>
         </div>
       ))}
     </div>
@@ -132,7 +197,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
       <p class="text-sm font-semibold uppercase tracking-wider text-terza-teal xl:text-base">{decoradorVirtual.eyebrow}</p>
       <h2 class="max-w-sm text-3xl font-bold leading-tight text-black md:text-4xl xl:text-[40px]">{decoradorVirtual.title}</h2>
       <p class="max-w-xs text-black xl:text-xl">{decoradorVirtual.description}</p>
-      <a href={decoradorVirtual.cta.href} class="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-terza-lime px-6 py-3 text-sm font-bold text-black hover:brightness-95 xl:text-base">
+      <a href={decoradorVirtual.cta.href} class="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-terza-lime px-6 py-1.5 text-sm font-bold text-black hover:brightness-95 xl:text-base">
         {decoradorVirtual.cta.label} →
       </a>
     </div>
@@ -148,7 +213,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
         {shawContract.title.replace('®', '')}<sup class="text-lg font-normal md:text-xl">®</sup>
       </h2>
       <p class="mt-4 max-w-md text-lg text-black xl:text-[22px]">{shawContract.description}</p>
-      <a href={shawContract.cta.href} class="mt-7 inline-flex items-center gap-2 rounded-full bg-terza-teal px-6 py-3 text-sm font-semibold text-white hover:bg-terza-teal-dark xl:text-base">
+      <a href={shawContract.cta.href} class="mt-7 inline-flex items-center gap-2 rounded-full bg-terza-teal px-6 py-1.5 text-sm font-semibold text-white hover:bg-terza-teal-dark xl:text-base">
         {shawContract.cta.label} →
       </a>
       <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -172,7 +237,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
           <h2 class="mt-2 text-3xl font-bold text-black md:text-4xl">{blog.title}</h2>
         </div>
         <p class="max-w-xs text-sm text-black xl:text-lg">{blog.description}</p>
-        <a href={blog.cta.href} class="whitespace-nowrap rounded-full bg-terza-lime px-6 py-3 text-sm font-bold text-black hover:brightness-95 xl:text-base">
+        <a href={blog.cta.href} class="whitespace-nowrap rounded-full bg-terza-lime px-6 py-1.5 text-sm font-bold text-black hover:brightness-95 xl:text-base">
           {blog.cta.label} →
         </a>
       </div>
@@ -196,7 +261,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
   <!-- CTA distribuidor -->
   <section class="flex items-stretch bg-terza-teal text-white">
     <div class="relative hidden w-[200px] shrink-0 sm:block md:w-[240px] xl:w-[240px]">
-      <Image src={distribuidorMateriales} alt="" class="absolute inset-0 h-full w-full object-cover object-left" width={857} height={710} />
+      <Image src={distribuidorMateriales} alt="" class="absolute inset-0 h-full w-full object-cover object-left" width={857} height={648} />
     </div>
     <div class="mx-auto flex w-full max-w-[1728px] flex-col gap-6 px-6 py-8 md:px-12 xl:flex-row xl:items-center xl:gap-4 xl:px-8 xl:py-7">
       <div class="xl:w-[32%] xl:shrink-0">
@@ -215,7 +280,7 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
           </div>
         </>
       ))}
-      <a href={ctaDistribuidor.cta.href} class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-terza-lime px-7 py-3.5 text-base font-bold text-black hover:brightness-95 xl:ml-auto">
+      <a href={ctaDistribuidor.cta.href} class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-black hover:brightness-95 xl:ml-auto">
         {ctaDistribuidor.cta.label} →
       </a>
     </div>
@@ -223,33 +288,120 @@ const { hero, nuevosProductos, transformarEspacios: transformar, decoradorVirtua
 
   <!-- Contacto + Ubicaciones teaser -->
   <section class="grid grid-cols-1 border-t-2 border-terza-teal md:grid-cols-2">
-    <div class="relative flex min-h-[420px] items-stretch overflow-hidden bg-[linear-gradient(to_right,white_0%,white_58%,#c2e812_100%)] xl:min-h-[480px]">
-      <div class="relative hidden w-[38%] shrink-0 sm:block xl:w-[42%]">
-        <Image src={contactoPortrait} alt="Equipo Terza" class="h-full w-full object-cover object-[35%_bottom]" width={1200} height={900} />
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_55%,white_100%)]"></div>
-      </div>
-      <div class="flex flex-1 flex-col justify-center p-8 md:p-12 xl:px-14">
+    <div class="relative isolate flex min-h-[420px] items-stretch overflow-hidden bg-[linear-gradient(to_right,#f7fbe2_0%,#f7fbe2_35%,#e3f38f_55%,#c9ea2c_75%,#c2e812_100%)] xl:min-h-[480px]">
+      <!-- La foto se desvanece solo en su borde derecho para no tapar a la persona -->
+      <Image src={contactoPortrait} alt="Equipo Terza" class="absolute inset-y-0 left-0 -z-10 hidden h-full w-[55%] object-cover object-[35%_bottom] [mask-image:linear-gradient(to_right,black_0%,black_55%,transparent_100%)] sm:block" width={1200} height={900} />
+      <div class="hidden w-[38%] shrink-0 sm:block xl:w-[42%]"></div>
+      <div class="flex flex-1 flex-col items-end p-8 text-right md:p-12 xl:px-14">
         <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{contactoTeaser.eyebrow}</p>
         <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-6xl">{contactoTeaser.title}</h2>
         <p class="mt-3 max-w-xs text-sm text-terza-teal">{contactoTeaser.description}</p>
-        <a href={contactoTeaser.cta.href} class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-terza-teal px-6 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark">
+        <a href={contactoTeaser.cta.href} class="mt-6 inline-flex md:mt-auto w-fit items-center gap-2 rounded-full bg-terza-teal px-7 py-1.5 text-base font-semibold text-white hover:bg-terza-teal-dark">
           {contactoTeaser.cta.label} →
         </a>
       </div>
     </div>
-    <div class="relative isolate flex min-h-[420px] items-center overflow-hidden bg-terza-mist p-8 md:p-12 xl:min-h-[480px] xl:px-[72px]">
+    <!-- Mismo padding vertical que Contacto: etiqueta, título y botón quedan alineados entre columnas -->
+    <div class="relative isolate flex min-h-[420px] items-stretch overflow-hidden bg-terza-mist p-8 md:p-12 xl:min-h-[480px] xl:px-[72px]">
       <Image src={showroomCubes} alt="Showroom Terza" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-90" width={1400} height={1000} />
       <div class="absolute inset-0 -z-10 bg-gradient-to-l from-transparent via-white/85 to-white xl:bg-[linear-gradient(to_right,white_0%,white_35%,transparent_70%,transparent_100%)]"></div>
-      <div>
+      <div class="flex flex-col items-start">
         <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{ubicacionesTeaser.eyebrow}</p>
         <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-6xl">
           {ubicacionesTeaser.title.split(' ').slice(0, -1).join(' ')} <span class="text-[#a8d900]">{ubicacionesTeaser.title.split(' ').at(-1)}</span>
         </h2>
         <p class="mt-3 max-w-xs text-sm text-terza-teal">{ubicacionesTeaser.description}</p>
-        <a href={ubicacionesTeaser.cta.href} class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-terza-teal px-6 py-2.5 text-sm font-semibold text-white hover:bg-terza-teal-dark">
+        <a href={ubicacionesTeaser.cta.href} class="mt-6 inline-flex md:mt-auto w-fit items-center gap-2 rounded-full bg-terza-teal px-7 py-1.5 text-base font-semibold text-white hover:bg-terza-teal-dark">
           {ubicacionesTeaser.cta.label} →
         </a>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  // Hero: crossfade con autoplay de 5 s (igual que terza.com); las flechas reinician el temporizador.
+  document.querySelectorAll<HTMLElement>('[data-hero]').forEach((hero) => {
+    const slides = [...hero.querySelectorAll<HTMLElement>('[data-hero-slide]')];
+    const captions = [...hero.querySelectorAll<HTMLElement>('[data-hero-caption]')];
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        s.classList.toggle('opacity-100', i === current);
+        s.classList.toggle('opacity-0', i !== current);
+      });
+      captions.forEach((c, i) => {
+        c.classList.toggle('visible', i === current);
+        c.classList.toggle('opacity-100', i === current);
+        c.classList.toggle('invisible', i !== current);
+        c.classList.toggle('opacity-0', i !== current);
+      });
+    };
+    const restart = () => {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => show(current + 1), 5000);
+    };
+
+    hero.querySelector('[data-hero-prev]')?.addEventListener('click', () => { show(current - 1); restart(); });
+    hero.querySelector('[data-hero-next]')?.addEventListener('click', () => { show(current + 1); restart(); });
+    if (slides.length > 1) restart();
+  });
+
+  // Slider en bucle: se desliza una tarjeta y luego se mueve el nodo al otro extremo,
+  // así funciona aunque todas las tarjetas quepan en pantalla.
+  document.querySelectorAll<HTMLElement>('[data-slider]').forEach((slider) => {
+    const track = slider.querySelector<HTMLElement>('[data-slider-track]');
+    const section = slider.closest('section');
+    if (!track || track.children.length < 2) {
+      section?.querySelector('[data-slider-controls]')?.classList.add('hidden');
+      return;
+    }
+    const duration = 450;
+    let busy = false;
+
+    const step = () => {
+      const slide = track.firstElementChild as HTMLElement;
+      return slide.offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
+    };
+    const setX = (x: number, animate: boolean) => {
+      track.style.transition = animate ? `transform ${duration}ms ease` : 'none';
+      track.style.transform = `translateX(${x}px)`;
+    };
+
+    const next = () => {
+      if (busy) return;
+      busy = true;
+      setX(-step(), true);
+      setTimeout(() => {
+        track.appendChild(track.firstElementChild!);
+        setX(0, false);
+        busy = false;
+      }, duration);
+    };
+    const prev = () => {
+      if (busy) return;
+      busy = true;
+      track.prepend(track.lastElementChild!);
+      setX(-step(), false);
+      track.offsetWidth; // fuerza el reflow antes de animar
+      setX(0, true);
+      setTimeout(() => (busy = false), duration);
+    };
+
+    section?.querySelector('[data-slider-prev]')?.addEventListener('click', prev);
+    section?.querySelector('[data-slider-next]')?.addEventListener('click', next);
+
+    slider.addEventListener('dragstart', (e) => e.preventDefault());
+    let startX: number | null = null;
+    slider.addEventListener('pointerdown', (e) => (startX = e.clientX));
+    slider.addEventListener('pointerup', (e) => {
+      if (startX === null) return;
+      const dx = e.clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+    });
+  });
+</script>

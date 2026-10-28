@@ -1,0 +1,12 @@
+{
+  "seo": { "title": "Catálogos digitales | Terza", "description": "Explora nuestras colecciones y encuentra inspiración, especificaciones y soluciones para cada espacio." },
+  "hero": {
+    "title": "Catálogos digitales",
+    "description": "Explora nuestras colecciones y encuentra inspiración, especificaciones y soluciones para cada espacio."
+  },
+  "catalogos": [
+    { "image": "pisos-madera", "title": "Pisos de madera", "subtitle": "Catálogo 2026", "pdf": "#" },
+    { "image": "flexiroc", "title": "Flexiroc", "subtitle": "Catálogo 2026", "pdf": "#" }
+  ],
+  "cta": "Descargar PDF"
+}

@@ -24,6 +24,13 @@ const icons: Record<string, { viewBox: string; path: string }> = {
   },
 };
 
+// Páginas del footer que ya existen; el resto sigue en '#'
+const footerHrefs: Record<string, string> = {
+  'Quiero ser distribuidor': '/quiero-ser-distribuidor',
+  Contacto: '/contacto',
+  'Catálogos digitales': '/catalogos-digitales',
+};
+
 const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
 ---
 
@@ -39,7 +46,7 @@ const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
         <p class="mb-3 text-base font-bold text-terza-ink">{col.title}</p>
         <ul class="space-y-1">
           {col.links.map((link: string) => (
-            <li><a href="#" class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{link}</a></li>
+            <li><a href={footerHrefs[link] ?? '#'} class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{link}</a></li>
           ))}
         </ul>
         {col.title === 'Nosotros' && (
@@ -54,9 +61,9 @@ const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
 
     <div>
       <div class="mb-4 flex items-center gap-4 text-terza-teal">
-        {footer.social.map((s: string) => (
-          <a href="#" aria-label={s} class="hover:text-terza-teal-dark">
-            <svg class="h-9 w-auto" viewBox={icons[s]?.viewBox ?? '0 0 24 24'} fill="currentColor"><path d={icons[s]?.path ?? ''}></path></svg>
+        {footer.social.map((s: { name: string; href: string }) => (
+          <a href={s.href} target="_blank" rel="noopener" aria-label={`Terza en ${s.name}`} class="hover:text-terza-teal-dark">
+            <svg class="h-9 w-auto" viewBox={icons[s.name]?.viewBox ?? '0 0 24 24'} fill="currentColor"><path d={icons[s.name]?.path ?? ''}></path></svg>
           </a>
         ))}
       </div>

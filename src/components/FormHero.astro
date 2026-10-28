@@ -1,0 +1,40 @@
+---
+// Hero de las páginas con formulario (Contacto, Quiero ser distribuidor):
+// foto de fondo, texto a la izquierda y formulario a la derecha (un poco más de la mitad del ancho).
+import { Image } from 'astro:assets';
+import ContactForm from './ContactForm.astro';
+
+interface Props {
+  image: ImageMetadata;
+  alt: string;
+  /** Clases de encuadre de la foto (object-position, ancho, etc.) */
+  imageClass?: string;
+  title: string;
+  description: string;
+  cta?: { label: string; href: string };
+  form: { title: string; fields: string[]; consent: string; submit: string };
+  /** false cuando la foto ya viene oscurecida */
+  overlay?: boolean;
+}
+
+const { image, alt, imageClass = 'object-cover', title, description, cta, form, overlay = true } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden">
+  <Image src={image} alt={alt} class:list={['absolute inset-y-0 right-0 -z-10 h-full w-full', imageClass]} loading="eager" />
+  {overlay && <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/35 to-black/20"></div>}
+
+  <div class="mx-auto grid w-full max-w-[1728px] grid-cols-1 items-start gap-10 px-6 py-12 md:px-12 md:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16 xl:px-[72px] xl:py-20">
+    <div class="text-white lg:pt-20">
+      <h1 class="text-5xl font-bold leading-none md:text-6xl xl:text-7xl">{title}</h1>
+      <p class="mt-4 max-w-md text-lg leading-tight md:text-2xl">{description}</p>
+      {cta && (
+        <a href={cta.href} class="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-terza-lime px-9 py-2.5 text-lg font-bold text-white hover:brightness-95 xl:text-xl">
+          {cta.label}
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      )}
+    </div>
+    <ContactForm title={form.title} fields={form.fields} consent={form.consent} submit={form.submit} />
+  </div>
+</section>
