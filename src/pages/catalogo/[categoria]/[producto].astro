@@ -3,7 +3,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import ProductCard from '../../../components/catalogo/ProductCard.astro';
 import QuoteModal from '../../../components/catalogo/QuoteModal.astro';
-import { productos, categoriaDe, familiaDe, productosDe, foto, urlCategoria, urlProducto } from '../../../lib/catalogo';
+import { productos, categorias, categoriaDe, familiaDe, productosDe, foto, fotoOg, urlCategoria, urlProducto } from '../../../lib/catalogo';
 
 export function getStaticPaths() {
   return productos.map((p) => ({ params: { categoria: p.categoria, producto: p.slug }, props: { p } }));
@@ -13,7 +13,14 @@ const { p } = Astro.props;
 const cat = categoriaDe(p.categoria);
 const familia = familiaDe(p);
 // Otras familias de la misma categoría (una tarjeta por familia)
-const relacionados = [...new Map(productosDe(p.categoria).filter((x) => x.familia !== p.familia).map((x) => [x.familia, x])).values()].slice(0, 4);
+// Si la categoría tiene pocas familias (p. ej. Pisos híbridos solo tiene Kiwi), se completa con las demás categorías
+// de la misma sección (Pisos, Muros, Exterior…), en el orden del menú
+const unaPorFamilia = (lista: typeof productos) => [...new Map(lista.map((x) => [`${x.categoria}|${x.familia}`, x])).values()];
+const hermanas = categorias.filter((c) => c.seccion === cat.seccion && c.slug !== cat.slug).map((c) => c.slug);
+const relacionados = [
+  ...unaPorFamilia(productosDe(p.categoria).filter((x) => x.familia !== p.familia)),
+  ...unaPorFamilia(productos.filter((x) => hermanas.includes(x.categoria))),
+].slice(0, 4);
 const nombre = `${p.familia} ${p.variante}`;
 // Texto de la vista previa al compartir: categoría, producto y hasta 3 datos de la ficha técnica
 const datos = p.specs.filter(([e]) => !['Nombre', 'SKU', 'Estilo', 'Color', 'Colección'].includes(e)).slice(0, 3).map(([e, v]) => `${e}: ${v}`);
@@ -28,7 +35,7 @@ const compartir = [
 const linkSvg = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.5 11.5a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1M11.5 8.5a3.5 3.5 0 0 0-5 0L4 11a3.5 3.5 0 0 0 5 5l1-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 ---
 
-<Layout title={`${nombre} | ${cat.nombre} | Terza`} description={descripcion} image={foto(p.fotos[0]) ?? undefined} imageAlt={nombre} type="product">
+<Layout title={`${nombre} | ${cat.nombre} | Terza`} description={descripcion} image={fotoOg(p.fotos[0])} imageAlt={nombre} type="product">
   <section class="mx-auto max-w-[1728px] px-6 pt-10 md:px-12 xl:px-[72px] xl:pt-14">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <nav class="flex flex-wrap items-center gap-y-1 text-sm text-black/60" aria-label="Ruta">

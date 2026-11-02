@@ -35,6 +35,9 @@ export const ETIQUETAS_FILTRO: Record<string, string> = {
 export const foto = (base: string | null | undefined, tamano: 'lg' | 'sm' = 'lg') =>
   base ? `${data.rutaFotos}${tamano === 'sm' ? '/sm' : ''}/${base}.webp` : null;
 
+// Versión JPG de 400 px para la vista previa al compartir (scripts/generar-og.mjs); WhatsApp no muestra WebP
+export const fotoOg = (base: string | null | undefined) => (base ? `${data.rutaFotos}/og/${base}.jpg` : undefined);
+
 export const urlCategoria = (slug: string) => `/catalogo/${slug}`;
 
 // Páginas con la información de cada línea de producto (como terza.com/alfombras); se agregan aquí conforme existan

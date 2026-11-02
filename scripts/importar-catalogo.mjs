@@ -8,6 +8,7 @@
 // y muestras de color). Las que ya existen no se vuelven a bajar.
 import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
 import sharp from 'sharp';
+import { generarOg } from './generar-og.mjs';
 
 const ORIGEN = 'https://www.terza.com';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36';
@@ -159,3 +160,6 @@ const categorias = CATEGORIAS.map(({ sku, tipo, ...cat }) => ({
 await writeFile('src/data/catalogo.json', JSON.stringify({ rutaFotos: RUTA_FOTOS, categorias, productos }, null, 1));
 console.log(`Listo: ${productos.length} productos en ${categorias.length} categorías.`);
 if (fallidas.length) console.log(`Fotos que no se pudieron bajar (${fallidas.length}):`, fallidas.join(', '));
+
+// Versiones JPG para la vista previa al compartir (WhatsApp no muestra WebP)
+await generarOg();
