@@ -21,7 +21,7 @@
   "transformarEspacios": {
     "title": "Todo para transformar tus espacios",
     "description": "Soluciones para interiores, exteriores y proyectos comerciales, con diseño, funcionalidad y alto desempeño.",
-    "cta": { "label": "Conoce Terza", "href": "/nosotros" },
+    "cta": { "label": "Conoce Terza", "href": "/quienes-somos" },
     "stat": { "value": "+45 años", "label": "de experiencia" },
     "highlights": [
       { "title": "Fabricante líder", "description": "en pasto sintético y alfombras en México y Latinoamérica." },
@@ -37,7 +37,7 @@
   "shawContract": {
     "title": "ShawContract®",
     "description": "Soluciones en alfombra modular, alfombra de rollo y pisos vinílicos para proyectos comerciales que exigen diseño y desempeño.",
-    "cta": { "label": "Conoce más", "href": "/shaw-contract" },
+    "cta": { "label": "Conoce más", "href": "https://www.shawcontract.com/es-la" },
     "segments": ["Workplace", "Hospitality", "Education", "Healthcare"]
   },
   "blog": {

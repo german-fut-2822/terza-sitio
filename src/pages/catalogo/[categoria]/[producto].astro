@@ -1,0 +1,194 @@
+---
+// Ficha de producto: galería, información técnica, colores de la misma familia y compartir.
+import Layout from '../../../layouts/Layout.astro';
+import ProductCard from '../../../components/catalogo/ProductCard.astro';
+import QuoteModal from '../../../components/catalogo/QuoteModal.astro';
+import { productos, categoriaDe, familiaDe, productosDe, foto, urlCategoria, urlProducto } from '../../../lib/catalogo';
+
+export function getStaticPaths() {
+  return productos.map((p) => ({ params: { categoria: p.categoria, producto: p.slug }, props: { p } }));
+}
+
+const { p } = Astro.props;
+const cat = categoriaDe(p.categoria);
+const familia = familiaDe(p);
+// Otras familias de la misma categoría (una tarjeta por familia)
+const relacionados = [...new Map(productosDe(p.categoria).filter((x) => x.familia !== p.familia).map((x) => [x.familia, x])).values()].slice(0, 4);
+const nombre = `${p.familia} ${p.variante}`;
+
+const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+const compartir = [
+  { id: 'facebook', label: 'Compartir en Facebook', svg: '<svg width="18" height="18" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true"><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg>' },
+  { id: 'whatsapp', label: 'Compartir por WhatsApp', svg: '<svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>' },
+  { id: 'linkedin', label: 'Compartir en LinkedIn', svg: '<svg width="18" height="18" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg>' },
+];
+const linkSvg = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.5 11.5a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1M11.5 8.5a3.5 3.5 0 0 0-5 0L4 11a3.5 3.5 0 0 0 5 5l1-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+---
+
+<Layout title={`${nombre} | ${cat.nombre} | Terza`} description={p.descripcion || `${nombre}: ${cat.intro}`}>
+  <section class="mx-auto max-w-[1728px] px-6 pt-10 md:px-12 xl:px-[72px] xl:pt-14">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <nav class="flex flex-wrap items-center gap-y-1 text-sm text-black/60" aria-label="Ruta">
+        <a href="/" class="hover:text-terza-teal">Inicio</a><span class="mx-2">/</span>
+        <a href="/catalogo" class="hover:text-terza-teal">Catálogo</a><span class="mx-2">/</span>
+        <a href={urlCategoria(cat.slug)} class="hover:text-terza-teal">{cat.nombre}</a><span class="mx-2">/</span>
+        <span class="text-black">{p.variante}</span>
+      </nav>
+      <!-- Regresa al listado; si se llegó desde él, conserva los filtros (ver script) -->
+      <a href={urlCategoria(cat.slug)} data-regresar class="inline-flex items-center gap-2 rounded-full bg-terza-mist px-5 py-1.5 text-sm font-bold text-terza-teal transition-colors hover:bg-terza-teal hover:text-white">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15 9H3M3 9L8 4M3 9L8 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        Regresar al listado
+      </a>
+    </div>
+
+    <div class="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
+      <!-- Galería -->
+      <div class="lg:sticky lg:top-6 lg:self-start">
+        <div class="relative">
+          <div class="aspect-square overflow-hidden rounded-[28px] bg-terza-mist shadow-[0_4px_18px_rgba(0,0,0,0.08)]">
+            {p.fotos[0] && <img id="foto-principal" src={foto(p.fotos[0])} alt={nombre} class="h-full w-full object-cover" />}
+          </div>
+          {p.nuevo && <span class="absolute left-4 top-4 rounded-full bg-terza-lime px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-terza-ink">Nuevo</span>}
+
+          <!-- Miniaturas sobre la foto, abajo a la derecha -->
+          {p.fotos.length > 1 && (
+            <ul class="absolute bottom-3 right-3 flex gap-2 md:bottom-5 md:right-5 md:gap-3">
+              {p.fotos.map((f, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class="gallery-thumb block h-14 w-14 overflow-hidden rounded-xl border-4 border-white bg-terza-mist shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] transition hover:-translate-y-0.5 data-[active]:ring-[3px] data-[active]:ring-terza-lime md:h-20 md:w-20 md:rounded-2xl"
+                    data-src={foto(f)}
+                    data-active={i === 0 ? '' : undefined}
+                    aria-label={`Ver foto ${i + 1} de ${p.fotos.length}`}
+                  >
+                    <img src={foto(f, 'sm')} alt="" loading="lazy" class="h-full w-full object-cover" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+
+      <!-- Información -->
+      <div>
+        <p class="text-sm font-bold uppercase tracking-widest text-terza-teal">{cat.nombre}</p>
+        <h1 class="mt-3 text-4xl font-bold uppercase leading-[1.05] text-black md:text-5xl">{p.familia}</h1>
+        <p class="mt-2 text-2xl text-black md:text-3xl">{p.variante}</p>
+        {p.descripcion && <p class="mt-6 max-w-xl text-lg text-black/80">{p.descripcion}</p>}
+
+        <div class="mt-8 rounded-[28px] bg-terza-mist p-6 md:p-8">
+          <h2 class="text-2xl font-bold text-black">Información</h2>
+          <dl class="mt-5 grid gap-x-10 gap-y-3 sm:grid-cols-2">
+            {p.specs.map(([etiqueta, valor]) => (
+              <div class="flex gap-2 border-b border-black/10 pb-3 text-sm md:text-base">
+                <dt class="font-bold text-terza-teal">{etiqueta}:</dt>
+                <dd class="text-black">{valor}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        {familia.length > 1 && (
+          <div class="mt-10">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-terza-teal">
+              Colores disponibles <span class="font-normal text-black/50">({familia.length})</span>
+            </h2>
+            <ul class="mt-5 flex flex-wrap gap-3">
+              {familia.map((x) => (
+                <li>
+                  <a
+                    href={urlProducto(x)}
+                    class:list={['relative block h-14 w-14 overflow-hidden rounded-full bg-terza-mist ring-offset-2 transition md:h-16 md:w-16', x.slug === p.slug ? 'ring-[3px] ring-terza-lime' : 'hover:ring-2 hover:ring-terza-teal/30']}
+                    title={x.variante}
+                    aria-label={x.variante}
+                    aria-current={x.slug === p.slug ? 'page' : undefined}
+                  >
+                    {x.fotos[0] && <img src={foto(x.fotos[0], 'sm')} alt="" loading="lazy" class="h-full w-full scale-150 object-cover" />}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Decorador virtual (como en las fichas de terza.com) -->
+        <div class="mt-10 rounded-[28px] bg-terza-lime-pale p-6 md:p-8">
+          <h2 class="text-xl font-bold text-black md:text-2xl">Visualiza este producto en tu espacio</h2>
+          <a href="/decorador-virtual" class="mt-5 inline-flex items-center gap-3 rounded-full bg-terza-lime-light px-8 py-2.5 text-base font-bold text-terza-ink transition-colors hover:bg-terza-teal hover:text-white">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="2"></rect><path d="M12 16V20M8 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            Ver decorador
+          </a>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/contacto" data-cotizar aria-haspopup="dialog" aria-controls="cotizacion" class="inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95">Solicitar cotización <Fragment set:html={arrow} /></a>
+          <a href={urlCategoria(cat.slug)} class="inline-flex items-center gap-2 rounded-full bg-terza-teal px-7 py-1.5 text-base font-bold text-white hover:bg-terza-teal-dark">Ver más {cat.nombre.toLowerCase()}</a>
+        </div>
+
+        <div class="mt-10">
+          <h2 class="text-sm font-bold uppercase tracking-widest text-terza-teal">Compartir</h2>
+          <ul class="mt-4 flex gap-2">
+            {compartir.map((c) => (
+              <li><a data-share={c.id} href="#" target="_blank" rel="noopener" aria-label={c.label} class="flex h-11 w-11 items-center justify-center rounded-full bg-terza-lime text-terza-ink transition-colors hover:bg-terza-teal hover:text-white" set:html={c.svg} /></li>
+            ))}
+            <li><button type="button" data-share="copiar" aria-label="Copiar enlace" class="flex h-11 w-11 items-center justify-center rounded-full bg-terza-lime text-terza-ink transition-colors hover:bg-terza-teal hover:text-white" set:html={linkSvg} /></li>
+          </ul>
+          <p class="copy-ok mt-3 hidden text-sm text-terza-teal">Enlace copiado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteModal categoria={p.categoria} categoriaNombre={cat.nombre} producto={nombre} sku={p.sku} />
+
+  {relacionados.length > 0 && (
+    <section class="mt-20 bg-terza-mist xl:mt-28">
+      <div class="mx-auto max-w-[1728px] px-6 py-14 md:px-12 xl:px-[72px] xl:py-20">
+        <div class="flex items-end justify-between gap-6">
+          <h2 class="text-3xl font-bold text-black md:text-4xl">También te puede interesar</h2>
+          <a href={urlCategoria(cat.slug)} class="hidden items-center gap-2 font-bold text-terza-teal hover:underline sm:inline-flex">Ver toda la categoría <Fragment set:html={arrow} /></a>
+        </div>
+        <div class="mt-10 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+          {relacionados.map((x) => <ProductCard producto={x} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<script>
+  // Regresar: si la página anterior es el listado de esta categoría (con o sin filtros), volver a esa misma URL
+  const regresar = document.querySelector<HTMLAnchorElement>('[data-regresar]');
+  if (regresar && document.referrer) {
+    const anterior = new URL(document.referrer);
+    if (anterior.origin === location.origin && anterior.pathname.replace(/\/$/, '') === regresar.pathname.replace(/\/$/, '')) {
+      regresar.href = anterior.pathname + anterior.search;
+    }
+  }
+
+  // Galería: la miniatura elegida pasa a la foto principal
+  const principal = document.getElementById('foto-principal') as HTMLImageElement | null;
+  const thumbs = document.querySelectorAll<HTMLElement>('.gallery-thumb');
+  thumbs.forEach((t) => t.addEventListener('click', () => {
+    if (principal) principal.src = t.dataset.src!;
+    thumbs.forEach((x) => x.toggleAttribute('data-active', x === t));
+  }));
+
+  // Compartir con la URL actual de la ficha
+  const url = encodeURIComponent(location.href);
+  const texto = encodeURIComponent(document.title);
+  const destinos: Record<string, string> = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    whatsapp: `https://wa.me/?text=${texto}%20${url}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+  };
+  document.querySelectorAll<HTMLAnchorElement>('a[data-share]').forEach((a) => { a.href = destinos[a.dataset.share!]; });
+  document.querySelector('[data-share="copiar"]')?.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(location.href); } catch { /* sin permiso de portapapeles */ }
+    const ok = document.querySelector('.copy-ok')!;
+    ok.classList.remove('hidden');
+    setTimeout(() => ok.classList.add('hidden'), 2500);
+  });
+</script>

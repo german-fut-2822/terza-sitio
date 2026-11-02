@@ -26,9 +26,22 @@ const icons: Record<string, { viewBox: string; path: string }> = {
 
 // Páginas del footer que ya existen; el resto sigue en '#'
 const footerHrefs: Record<string, string> = {
+  // Productos: páginas de línea ya creadas
+  Alfombras: '/pisos/alfombras',
+  Deck: '/exterior/deck',
+  'Lambrín y paneles': '/muros/lambrin-y-paneles',
+  'Follaje artificial': '/muros/follaje-artificial',
+  'Pasto sintético': '/exterior/pasto-sintetico',
+  Persianas: '/persianas',
+  'Pisos laminados': '/pisos/pisos-laminados',
+  'Pisos de madera': '/pisos/pisos-de-madera',
+  'Pisos vinílicos': '/pisos/pisos-vinilicos',
+  'Quienes somos': '/quienes-somos',
   'Quiero ser distribuidor': '/quiero-ser-distribuidor',
   Contacto: '/contacto',
   'Catálogos digitales': '/catalogos-digitales',
+  'Buzón de Transparencia': '/buzon-de-transparencia',
+  'Shaw Contract': 'https://www.shawcontract.com/es-la',
 };
 
 const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
@@ -46,13 +59,13 @@ const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
         <p class="mb-3 text-base font-bold text-terza-ink">{col.title}</p>
         <ul class="space-y-1">
           {col.links.map((link: string) => (
-            <li><a href={footerHrefs[link] ?? '#'} class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{link}</a></li>
+            <li><a href={footerHrefs[link] ?? '#'} target={footerHrefs[link]?.startsWith('http') ? '_blank' : undefined} rel={footerHrefs[link]?.startsWith('http') ? 'noopener' : undefined} class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{link}</a></li>
           ))}
         </ul>
         {col.title === 'Nosotros' && (
           <ul class="mt-6 space-y-1">
             {footer.legal.map((item: string) => (
-              <li><a href="#" class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{item}</a></li>
+              <li><a href={footerHrefs[item] ?? '#'} class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{item}</a></li>
             ))}
           </ul>
         )}

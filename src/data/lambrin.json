@@ -1,0 +1,66 @@
+{
+  "seo": {
+    "title": "Lambrín y paneles | Terza",
+    "description": "Lambrín y paneles de PVC Terza: variedad de estilos para espacios únicos, con garantía de 15 años para uso interior."
+  },
+  "hero": { "title": "Lambrín y paneles", "subtitle": "Variedad de estilos para espacios únicos." },
+  "intro": {
+    "title": "Proyectos que marcan la diferencia.",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "/decorador-virtual" },
+      { "label": "Catálogo", "href": "/catalogo/paneles" }
+    ]
+  },
+  "ideales": {
+    "title": "Los lambrines y paneles son ideales para:",
+    "items": ["Salas", "Habitaciones", "Oficinas", "Supermercados", "Hoteles"],
+    "closing": "Y muchos otros espacios interiores más."
+  },
+  "beneficios": {
+    "title": "Beneficios del lambrín y paneles de Terza",
+    "items": [
+      { "icon": "icono-01", "label": "Resistentes a la humedad" },
+      { "icon": "icono-04", "label": "Anti insectos" },
+      { "icon": "icono-02", "label": "Anticorrosivos" },
+      { "icon": "icono-05", "label": "De larga vida útil" },
+      { "icon": "icono-03", "label": "Fáciles de limpiar" }
+    ]
+  },
+  "porQue": {
+    "title": "¿Por qué optar por lambrín y paneles de Terza?",
+    "items": [
+      { "image": "img-02", "title": "Calidad Inigualable", "description": "Los lambrines y paneles de primera categoría ofrecen gran resistencia y durabilidad a lo largo del tiempo, superando los estándares de calidad más existentes del mercado con garantía de 15 años para uso interior." },
+      { "image": "img-03", "title": "Precio Competitivo", "description": "Además de ofrecer una calidad superior, los lambrines y paneles de Terza se distinguen por su precio altamente competitivo. Al eliminar costos innecesarios, logramos adaptarnos a diversos presupuestos. Elegir Terza no solo significa obtener lo mejor en términos de calidad, sino también hacer una inversión inteligente." },
+      { "image": "img-04", "title": "Compromiso con el cliente", "description": "En Terza estamos comprometidos con la satisfacción del cliente y en brindar soluciones que superen sus expectativas. Por ello, nos aseguramos de ofrecer una experiencia de diseño interior única." }
+    ]
+  },
+  "mantenimiento": [
+    "Los lambrines y paneles de Terza no requieren mantenimiento. Se limpian regularmente con un detergente suave y agua.",
+    "Se recomienda evitar el uso de productos químicos agresivos o limpiadores abrasivos que puedan dañar su superficie."
+  ],
+  "catalogo": {
+    "title": "Catálogo de Lambrín y paneles Terza",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/paneles" }
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿Qué son los lambrines y paneles?", "a": "Los lambrines y paneles son una placa decorativa alternativa a la pintura y al papel tapiz para las paredes y techos interiores a partir de resina de PVC." },
+      { "q": "¿Por qué elegir lambrines y paneles?", "a": "Elegir lambrines y paneles es una excelente opción debido a sus múltiples ventajas. Son de material resistente a la humedad, fácil de limpiar y mantener. Su durabilidad los convierte en una inversión a largo plazo, son ligeros, fáciles de instalar y disponibles en una gran variedad de diseños, lo que los haces perfectos para adaptarse a diferentes estilos de decoración. Con sus bajos costos de mantenimiento y su capacidad para resistir condiciones adversas, los lambrines y paneles son una opción práctica, segura y económica para cualquier espacio." },
+      { "q": "¿Para qué espacios se recomiendan los lambrines y paneles?", "a": "Los lambrines y paneles son una opción versátil y funcional que se recomiendan para una amplia variedad de espacios. Gracias a su resistencia a la humedad, son ideales para baños, cocinas y lavanderías. También son una excelente alternativa para oficinas, locales comerciales y hospitales, ya que su fácil limpieza y mantenimiento, garantizan un ambiente higiénico. Además, su diseño moderno y variedad de acabados los hacen perfectos para salas, pasillos y habitaciones. Su instalación es práctica y pueden colocarse tanto en superficies verticales como en techos gracias a su peso ligero." },
+      { "q": "¿Cuáles son las opciones de diseño y color para lambrines y paneles?", "a": "Existen dos tipos de formatos para los lambrines y paneles. El formato Plank, disponible en los colores Natural, Light Gray, Slate, Dark Walnut y el formato Wall, disponible en los colores Classic Walnut, Tan, White Marble y Black Marble." },
+      { "q": "¿Cómo se limpian los lambrines y paneles?", "a": "Para mantener los lambrines y paneles en perfectas condiciones, basta con limpiarlos regularmente con un paño húmedo y jabón neutro. En caso de manchas difíciles, se puede utilizar una mezcla de agua con un poco de vinagre o un limpiador multiusos no abrasivo. Es importante evitar productos químicos agresivos, como solventes o cloro, ya que pueden dañar su superficie." },
+      { "q": "¿Cuánto tiempo duran los lambrines y paneles?", "a": "Los lambrines y paneles de Terza tienen una garantía de 15 años para uso interior. Tomando en cuenta que son altamente duraderos, su resistencia a los cambios de temperatura y a la corrosión los hacen ideales para espacios interiores. A diferencia de otros revestimientos, no se deforman, pudren ni requieren tratamientos especiales para conservar su apariencia. Con una limpieza adecuada y evitando golpes fuertes, pueden mantener su funcionalidad y estética por muchos años." },
+      { "q": "¿Qué tan seguros son los lambrines y paneles?", "a": "Los lambrines y paneles son seguros e higiénicos gracias a que no acumulan humedad ni microorganismos. Además, son libres de astillas y con bordes suaves, ideales para hogares con niños o mascotas. Su durabilidad y composición no tóxica los convierten en una opción confiable para distintos espacios." },
+      { "q": "¿Qué se debe evitar para el cuidado de los lambrines y paneles?", "a": "Para mantener los lambrines y paneles en buen estado, se debe evitar su exposición a fuentes de calor extremo, el uso de productos químicos agresivos, golpes e instalación en exteriores sin protección, ya que la radiación UV puede deteriorarlos. Además, una instalación incorrecta puede afectar su durabilidad, por lo que es recomendable seguir las instrucciones del fabricante o contar con un profesional. Siguiendo estos cuidados, los lambrines y paneles se conservarán en excelente estado por muchos años." },
+      { "q": "¿Los lambrines y paneles son adecuados para áreas de alto tráfico?", "a": "Sí, al ser de fácil limpieza y gran durabilidad pueden usarse en áreas de alto tráfico sin problema." },
+      { "q": "¿Los lambrines y paneles son resistentes a los arañazos y golpes?", "a": "Sí, los lambrines y paneles pueden soportar golpes y arañazos moderados sin romperse o agrietarse." },
+      { "q": "¿Los lambrines y paneles son resistentes a la humedad?", "a": "Sí, los lambrines y paneles son altamente resistentes al agua y a la humedad, lo que los hace ideales para lugares con alta exposición al agua o al vapor. A diferencia de la madera natural, los lambrines y paneles no se hinchan, pudren ni desarrollan moho con facilidad." },
+      { "q": "¿Cómo se comparan los lambrines y paneles con otros materiales en términos de costo y calidad?", "a": "Terza cuenta con lambrines y paneles a precios competitivos y su calidad comparada con otros materiales de revestimiento es muy alta." }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

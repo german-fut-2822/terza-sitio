@@ -1,0 +1,135 @@
+{
+  "seo": {
+    "title": "Persianas | Terza",
+    "description": "Persianas Terza: privacidad con diseños exclusivos. Persianas enrollables, Stylo, de madera, exteriores y motorizadas."
+  },
+  "hero": { "title": "Persianas", "subtitle": "Privacidad con diseños exclusivos." },
+  "intro": {
+    "title": "Conoce la variedad de persianas que ofrecemos en Terza",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "/decorador-virtual" },
+      { "label": "Catálogo", "href": "/catalogo#persianas" }
+    ]
+  },
+  "porQue": {
+    "title": "¿Por qué elegir persianas Terza?",
+    "paragraphs": [
+      "Nuestras persianas ofrecen opciones personalizables que aumentan la privacidad y aportan una hermosa vista a los espacios, haciendo juego con el resto de la decoración. Además, puedes encontrar una variedad de persianas, las cuales se adaptan a habitaciones en las que se busca la entrada de luz exterior, lo cual contribuye al ahorro de energía, o para habitaciones que requieren poca iluminación."
+    ]
+  },
+  "beneficios": {
+    "title": "Beneficios de las persianas",
+    "items": [
+      { "title": "Control lumínico:", "description": "Permiten alcanzar una oscuridad completa durante la noche, favoreciendo el descanso y el confort." },
+      { "title": "Protección solar:", "description": "Bloquean la radiación solar no deseada, regulando la cantidad de luz que entra según las preferencias del usuario." },
+      { "title": "Decoración elegante:", "description": "Aportan un toque de sofisticación y estilo, personalizando los espacios con un diseño atractivo." }
+    ]
+  },
+  "tipos": {
+    "title": "Conoce la variedad de persianas que te ofrecemos:",
+    "items": [
+      {
+        "image": "tipo-enrollables",
+        "title": "Persianas Enrollables",
+        "bullets": [
+          "Algunas ventajas de las persianas enrollables es que son de fácil manejo, mantenimiento y operación.",
+          "Variedad de colores para distintos niveles de privacidad.",
+          "Versiones manuales y/o motorizadas de persianas compatibles con sistemas inteligentes.",
+          "Permiten instalarse en ventanales.",
+          "Telas y componentes de la mayor calidad con certificaciones internacionales."
+        ],
+        "cta": { "label": "Ver catálogo", "href": "/catalogo/persianas-enrollables" }
+      },
+      {
+        "image": "tipo-stylo",
+        "title": "Persianas Stylo",
+        "bullets": [
+          "Control de luz y visibilidad hacia el exterior.",
+          "Fácil manejo, mantenimiento y operación.",
+          "Manejo manual o con motorización.",
+          "Persianas ideales para diseños minimalistas.",
+          "Franjas que permiten graduar la entrada de luz.",
+          "Diseños contemporáneos en una gama de colores y texturas de tendencia."
+        ],
+        "cta": { "label": "Ver catálogo", "href": "/catalogo/persianas-enrollables?linea=Stylo" }
+      },
+      {
+        "image": "tipo-madera",
+        "title": "Persianas de madera",
+        "bullets": [
+          "La línea de maderas e imitación de madera más completa de México, con más de 50 colores.",
+          "Fabricadas con madera de Basswood, la mejor madera para fabricar persianas debido a su estabilidad, ligereza y atractiva veta.",
+          "Diseño sofisticado, práctico y funcional con la belleza natural de la madera.",
+          "Brindan un entorno acogedor.",
+          "Estas persianas tienen un diseño siempre en tendencia."
+        ],
+        "cta": { "label": "Ver catálogo", "href": "/catalogo/persianas-de-madera" }
+      },
+      {
+        "image": "tipo-exterior",
+        "title": "Persianas exteriores",
+        "bullets": [
+          "Las persianas para exterior ideales para disfrutar tus espacios al aire libre con una mayor comodidad.",
+          "Fabricadas con telas y mecanismos certificados para estar a la intemperie.",
+          "Larga vida útil.",
+          "Posibilidad de motorización.",
+          "Evitan que la luz solar impacte directamente en las personas o en los muebles exteriores."
+        ],
+        "cta": { "label": "Ver catálogo", "href": "/catalogo/persianas-enrollables" }
+      }
+    ]
+  },
+  "cuidados": {
+    "title": "Cuidados esenciales de las persianas",
+    "items": [
+      { "icon": "icono-01", "title": "Limpieza inmediata", "description": "El polvo acumulado puede afectar el funcionamiento y la apariencia de las persianas. Pasa un plumero o aspiradora con cepillo suave al menos una vez por semana." },
+      { "icon": "icono-02", "title": "No mojar en exceso", "description": "Evita usar demasiada agua al limpiarlas, ya que la humedad puede dañar los materiales y provocar manchas." },
+      { "icon": "icono-03", "title": "Evitar movimientos bruscos", "description": "En persianas motorizadas, no fuerces el mecanismo manualmente. En las manuales, baja y sube las láminas suavemente." }
+    ]
+  },
+  "colecciones": {
+    "title": "Conoce las distintas colecciones que Terza Persianas tiene para ti y elige la que más se adapte a tu estilo de vida.",
+    "items": [
+      { "image": "marca-optima", "name": "Optima", "years": "2", "label": "Años de garantía", "description": "Fabricada con tecnología de punta, en nuestra planta en Nuevo León, la colección de persianas enrollables OPTIMA cuenta con una variedad de telas y colores que se adaptan a las diferentes necesidades de nuestros clientes." },
+      { "image": "marca-select", "name": "Select", "years": "5", "label": "Años de garantía", "description": "Fabricada en nuestra planta, cuentan con una amplia variedad de telas y colores. Las persianas enrollables SELECT cuentan con certificaciones internacionales, lo que hace de esta colección un producto de primera calidad." },
+      { "image": "marca-graber", "name": "Graber", "years": "10", "label": "Años de garantía", "description": "Somos socios comerciales de Springs Window Fashions, líder mundial en la fabricación de persianas lo que nos permite ofrecer 3 líneas de productos Graber en el mercado mexicano: Enrollables, Persianas de Madera, Persianas para Exterior." },
+      { "image": "marca-stylo", "name": "Stylo", "years": "2", "label": "Años de garantía", "description": "Fabricadas con tecnología de punta en nuestra planta en Nuevo León, las persianas Stylo son perfectas para quien busca un producto contemporáneo que regule el paso de luz y la visibilidad al exterior. Cuentan con una gama de colores y texturas de tendencia, atractivas para nuestros clientes." }
+    ]
+  },
+  "motorizadas": {
+    "title": "Persianas Motorizadas",
+    "lead": "<strong>En Terza Persianas contamos con las mejores persianas inteligentes.</strong>",
+    "items": [
+      "Permite subir o bajar las persianas sin esfuerzo, con solo tocar un botón o usar el celular.",
+      "Contamos con motores de baterías de litio, de corriente eléctrica y motores ultra silenciosos.",
+      "Compatibles con todos los sistemas inteligentes y asistentes virtuales.",
+      "Permite ajustar con exactitud la cantidad de luz que entra.",
+      "Posibilidad de programar horarios para apertura y cierre."
+    ]
+  },
+  "catalogo": {
+    "title": "Catálogo de Persianas Terza",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo#persianas" }
+  },
+  "videos": {
+    "title": "Instalación de persianas Terza",
+    "items": [
+      { "src": "https://www.youtube.com/embed/Ku1VPnL1LvY", "title": "Video instalación 1" },
+      { "src": "https://www.youtube.com/embed/Gy_H-6jySkM", "title": "Video instalación 2" }
+    ]
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿Qué tipos de persianas existen?", "a": "<p>Existe una gran variedad de persianas para decorar los espacios según su funcionalidad y estilo. Pueden utilizarse persianas enrollables, stylo, de madera o también, se puede optar por persianas motorizadas para darle más sofisticación y modernidad a los espacios.</p>" },
+      { "q": "¿Cuántos años duran las persianas?", "a": "<p>Esto depende mucho del material con el que está fabricada la persiana: tela, madera, plástico o metal.</p><p>Las de material rígido pueden llegar a durar más de 30 años con el correcto cuidado y respectivo mantenimiento. En el caso de las persianas de madera necesitan cuidados un poco más específicos pues elementos externos como la lluvia y el sol eventualmente las van deteriorando. Hay que tomar en cuenta que una persiana de materiales plásticos va a requerir un mantenimiento más sencillo.</p><p>Y en el caso de las persianas de tela el tiempo de vida es un poco menor, sin embargo con los correctos cuidados no debería de existir problema alguno por un largo tiempo.</p><p>Terza ofrece la mejor garantía del mercado asegurando la compra de sus persianas.</p>" },
+      { "q": "¿Cuáles son las diferencias entre persianas y cortinas?", "a": "<p>Una de las principales diferencias entre cortina y persiana es su funcionamiento y el material con el que están elaboradas, ya que las cortinas se corren de manera horizontal y se conforman de telas extensas, las cuales se cuelgan de una varilla, ayudando a controlar la entrada y salida de la luz.</p><p>En cambio, las persianas se abren y cierran de manera vertical y están elaboradas por diversos materiales resistentes que ayudan a la durabilidad y a la vez brindan versatilidad a cualquier decoración, con la opción de sincronizarse con dispositivos inteligentes.</p>" },
+      { "q": "¿Son compatibles con sistemas inteligentes para el hogar?", "a": "<p>Sí, las persianas motorizadas pueden conectarse a redes Wi-Fi o sistemas domóticos para que las controles desde tu celular o mediante asistentes de voz como Alexa.</p>" },
+      { "q": "¿Se pueden instalar las persianas en ventanales grandes?", "a": "<p>Sí. Existen modelos como las persianas enrollables, verticales o paneles deslizantes que se adaptan bien a ventanales amplios, permitiendo control eficiente de luz y estética uniforme</p>" }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

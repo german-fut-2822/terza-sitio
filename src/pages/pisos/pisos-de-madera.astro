@@ -1,0 +1,85 @@
+---
+// Misma estructura y textos que terza.com/pisos-de-madera, con el diseño de las páginas de línea (ver Deck y Lambrín).
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import LineaHero from '../../components/linea/LineaHero.astro';
+import BleedSplit from '../../components/linea/BleedSplit.astro';
+import ContactBand from '../../components/linea/ContactBand.astro';
+import FaqAccordion from '../../components/linea/FaqAccordion.astro';
+import data from '../../data/pisos-de-madera.json';
+import heroImg from '../../assets/images/pisos-de-madera/header.jpg';
+import catalogoImg from '../../assets/images/cat-pisos-madera.webp';
+
+const { hero, intro, porQue, colecciones, catalogo, marcas, faqs, cierre } = data;
+
+// Fotos y logos de terza.com/pisos-de-madera
+const assets = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/pisos-de-madera/*.png', { eager: true });
+const img = (name: string) => assets[`../../assets/images/pisos-de-madera/${name}.png`].default;
+
+const isExternal = (href: string) => href.startsWith('http');
+const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+---
+
+<Layout title={data.seo.title} description={data.seo.description}>
+  <LineaHero image={heroImg} alt="Familia sentada sobre piso de madera Terza en la cocina" title={hero.title} subtitle={hero.subtitle} />
+
+  <!-- Intro centrada con botones -->
+  <section class="mx-auto max-w-[1100px] px-6 py-14 text-center md:px-12 xl:py-20">
+    <h2 class="text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl" set:html={intro.title} />
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      {intro.ctas.map((cta, i) => (
+        <a href={cta.href} class:list={['inline-flex items-center gap-2 rounded-full px-7 py-1.5 text-base font-bold', i === 0 ? 'bg-terza-lime text-terza-ink hover:brightness-95' : 'bg-terza-teal text-white hover:bg-terza-teal-dark']}>
+          {cta.label} <Fragment set:html={arrow} />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Pisos de Madera Terza (caja de color de terza.com) -->
+  <BleedSplit image={img('img-01')} alt="Mujer recostada sobre piso de madera Terza" tone="teal">
+    <h2 class="text-3xl font-bold leading-[1.15] md:text-4xl xl:text-5xl">{porQue.title}</h2>
+    {porQue.paragraphs.map((p) => <p class="mt-5 max-w-xl text-lg text-white/85 xl:text-xl">{p}</p>)}
+  </BleedSplit>
+
+  <!-- Colecciones Unika y Vallée du Mât en zigzag -->
+  <section class="flex flex-col gap-14 py-16 xl:gap-20 xl:py-24">
+    {colecciones.map((col, i) => (
+      <BleedSplit image={img(col.image)} alt={col.alt} imageSide={i % 2 === 0 ? 'right' : 'left'} tone={i === 1 ? 'mist' : 'white'}>
+        <h2 class="text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl">{col.title}</h2>
+        {col.description && <p class="mt-5 max-w-xl text-lg text-black xl:text-xl">{col.description}</p>}
+        <a href={col.cta.href} target={isExternal(col.cta.href) ? '_blank' : undefined} rel={isExternal(col.cta.href) ? 'noopener' : undefined}
+          class="mt-8 inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95">
+          {col.cta.label} <Fragment set:html={arrow} />
+        </a>
+      </BleedSplit>
+    ))}
+  </section>
+
+  <!-- Catálogo -->
+  <section class="mx-auto grid max-w-[1728px] grid-cols-1 items-center gap-10 px-6 pb-16 md:px-12 lg:grid-cols-2 xl:gap-20 xl:px-[72px] xl:pb-24">
+    <div>
+      <h2 class="text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl">{catalogo.title}</h2>
+      <p class="mt-5 text-lg text-black xl:text-xl">{catalogo.description}</p>
+      <a href={catalogo.cta.href} class="mt-8 inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95">
+        {catalogo.cta.label} <Fragment set:html={arrow} />
+      </a>
+    </div>
+    <Image src={catalogoImg} alt="Piso de madera Terza en una sala" class="aspect-[16/9] w-full rounded-[28px] object-cover shadow-[0_4px_18px_rgba(0,0,0,0.08)]" />
+  </section>
+
+  <!-- Colecciones (logos claros sobre caja verde oscuro) -->
+  <section class="mx-auto max-w-[1728px] px-6 md:px-12 xl:px-[72px]">
+    <div class="rounded-[28px] bg-terza-teal px-6 py-12 text-center text-white md:px-12 xl:py-16">
+      <h2 class="mx-auto max-w-[1000px] text-3xl font-bold leading-[1.15] md:text-4xl xl:text-5xl">{marcas.title}</h2>
+      <div class="mt-10 grid grid-cols-1 items-center justify-items-center gap-8 md:grid-cols-3">
+        {marcas.logos.map((logo) => (
+          <Image src={img(logo.image)} alt={logo.alt} class="h-auto w-full max-w-[220px]" width={255} height={155} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion title={faqs.title} items={faqs.items} />
+
+  <ContactBand title={cierre.title} cta={cierre.cta} />
+</Layout>

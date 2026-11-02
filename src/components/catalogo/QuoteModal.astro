@@ -1,0 +1,94 @@
+---
+// Modal "Solicitar cotización" de la ficha de producto. Los campos cambian según la categoría (ver src/data/cotizacion.ts).
+// Se abre con cualquier botón [data-cotizar].
+import { estados } from '../../data/estados';
+import { cotizacionDe } from '../../data/cotizacion';
+
+interface Props {
+  categoria: string;
+  categoriaNombre: string;
+  producto: string;
+  sku: string;
+}
+
+const { categoria, categoriaNombre, producto, sku } = Astro.props;
+const { rangos, tipoPasto } = cotizacionDe(categoria);
+const ruta = Astro.url.href;
+
+const field = 'w-full rounded-xl border-0 bg-white px-4 py-3 text-base text-terza-ink placeholder:text-terza-ink/40 focus:outline focus:outline-2 focus:outline-terza-teal';
+const select = `${field} invalid:text-terza-ink/40`;
+---
+
+<dialog id="cotizacion" class="m-auto w-[calc(100%-2rem)] max-w-[640px] rounded-[28px] bg-terza-cream p-0 text-terza-ink shadow-2xl backdrop:bg-terza-teal-dark/70 backdrop:backdrop-blur-sm" aria-labelledby="cotizacion-titulo">
+  <div class="max-h-[90vh] overflow-y-auto p-6 md:p-9">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{categoriaNombre}</p>
+        <h2 id="cotizacion-titulo" class="mt-1 text-2xl font-bold text-black md:text-3xl">Solicitar cotización</h2>
+        <p class="mt-1 text-black/70">{producto} · {sku}</p>
+      </div>
+      <button type="button" data-cerrar class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-terza-ink hover:bg-terza-teal hover:text-white" aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+
+    <form class="mt-6 grid grid-cols-1 gap-3.5 sm:grid-cols-2" data-form-cotizacion>
+      <!-- Datos del producto, como los manda terza.com -->
+      <input type="hidden" name="categoria" value={categoria} />
+      <input type="hidden" name="producto" value={producto} />
+      <input type="hidden" name="sku" value={sku} />
+      <input type="hidden" name="ruta" value={ruta} />
+
+      <input type="text" name="nombre" placeholder="*Nombre" required autocomplete="given-name" class={field} />
+      <input type="text" name="apellido" placeholder="*Apellido" required autocomplete="family-name" class={field} />
+      <input type="email" name="email" placeholder="*Email" required autocomplete="email" class={field} />
+      <input type="tel" name="telefono" placeholder="*Teléfono" required autocomplete="tel" class={field} />
+      <select name="estado" required class={select}>
+        <option value="" disabled selected>*Elige un estado</option>
+        {estados.map((e) => <option value={e} class="text-terza-ink">{e}</option>)}
+      </select>
+      <input type="text" name="municipio" placeholder="*Ciudad" required autocomplete="address-level2" class={field} />
+
+      {tipoPasto && (
+        <select name="tipo_pasto" required class:list={[select, !rangos && 'sm:col-span-2']}>
+          <option value="" disabled selected>*Tipo de pasto</option>
+          <option value="Pasto Residencial" class="text-terza-ink">Pasto residencial</option>
+          <option value="Pasto Deportivo" class="text-terza-ink">Pasto deportivo</option>
+        </select>
+      )}
+      {rangos && (
+        <select name="proyecto" required class:list={[select, !tipoPasto && 'sm:col-span-2']}>
+          <option value="" disabled selected>*Tamaño del proyecto</option>
+          {rangos.map((r) => <option value={r} class="text-terza-ink">{r}</option>)}
+        </select>
+      )}
+
+      <textarea name="mensaje" placeholder="*Comentarios" rows="4" required class:list={[field, 'resize-none sm:col-span-2']}></textarea>
+
+      <label class="mt-1 flex items-center gap-3 text-sm text-terza-ink/70 sm:col-span-2">
+        <input type="checkbox" name="avisodeprivacidad" value="Acepto Aviso de privacidad" required class="h-4 w-4 shrink-0 accent-terza-teal" />
+        <span>Acepto el <a href="#" class="font-semibold text-terza-ink hover:text-terza-teal">Aviso de Privacidad</a></span>
+      </label>
+      <button type="submit" class="inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95 sm:col-span-2">
+        Enviar
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.getElementById('cotizacion') as HTMLDialogElement | null;
+  if (modal) {
+    document.querySelectorAll('[data-cotizar]').forEach((b) => b.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.showModal();
+    }));
+    modal.querySelector('[data-cerrar]')?.addEventListener('click', () => modal.close());
+    // Clic en el fondo oscuro cierra el modal
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+    // Pendiente: conectar el envío (igual que los formularios de Contacto y Distribuidor). Se evita que los datos
+    // terminen en la URL al enviar mientras no haya destino.
+    modal.querySelector('[data-form-cotizacion]')?.addEventListener('submit', (e) => e.preventDefault());
+  }
+</script>

@@ -1,4 +1,6 @@
 ---
+import { estados } from '../data/estados';
+
 interface Props {
   title: string;
   fields: string[];
@@ -7,13 +9,6 @@ interface Props {
 }
 
 const { title, consent, submit } = Astro.props;
-
-const estados = [
-  'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Ciudad de México',
-  'Coahuila', 'Colima', 'Durango', 'Estado de México', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Michoacán',
-  'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa',
-  'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas',
-];
 
 const field = 'w-full rounded-xl border-0 bg-white px-4 py-3 text-base text-terza-ink placeholder:text-terza-ink/40 focus:outline focus:outline-2 focus:outline-terza-teal';
 const [consentLead, consentLink] = consent.split(/(?=Aviso)/);

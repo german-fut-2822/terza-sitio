@@ -1,0 +1,80 @@
+{
+  "seo": {
+    "title": "Alfombras | Terza",
+    "description": "Alfombras Terza: máximo confort en tus espacios. Somos socios de Shaw Contract, el fabricante de alfombras más grande del mundo."
+  },
+  "hero": { "title": "Alfombras", "subtitle": "Máximo confort en tus espacios." },
+  "intro": {
+    "title": "Conoce nuestras Alfombras",
+    "description": "Somos socios de Shaw Contract, el fabricante de alfombras más grande del mundo.",
+    "ctas": [
+      { "label": "Solicitar Información", "href": "/contacto" },
+      { "label": "Shaw Contract", "href": "https://www.shawcontract.com/es-la" }
+    ]
+  },
+  "porQue": {
+    "title": "¿Por qué optar por alfombras Terza?",
+    "paragraphs": [
+      "En Terza fabricamos <strong>alfombras</strong> de la más alta calidad, cómodas, resistentes y sobre todo, confortables para tus espacios.",
+      "Contamos con una gran variedad de colores y diseños. Ya sean <strong>alfombras</strong> de tráfico pesado, modulares, lisas, para ambientes residenciales o comerciales; con nosotros encontrarás la <strong>alfombra</strong> ideal para crear el ambiente que más se adapte a tu estilo de vida."
+    ]
+  },
+  "conoceMas": {
+    "title": "Conoce más acerca de las alfombras",
+    "items": [
+      { "title": "Durabilidad garantizada", "description": "Las alfombras de Terza cuentan con una garantía que va de 5 a 25 años, esto depende de que si son de uso comercial o familiar." },
+      { "title": "Cualidades extraordinarias", "description": "Nuestras alfombras son resistentes y fáciles de mantener, cuentan con una amplia variedad de tamaños, materiales y diseños que garantizan un mayor atractivo visual en tu espacio." },
+      { "title": "Usos y aplicaciones", "description": "Las alfombras son utilizadas en espacios tanto residenciales o comerciales porque se adaptan a la decoración. Además que son funcionales, pues ayudan a delimitar y brindan confort." }
+    ]
+  },
+  "espacios": [
+    { "image": "img-03", "title": "Alfombra para sala", "description": "Las alfombras aportan un toque cómodo a tu sala. Funcionan como aislantes acústicos, ya que sus fibras absorben el ruido y crean un ambiente de comodidad. En Terza contamos con una gran variedad de alfombras que se adaptan a tu estilo." },
+    { "image": "img-02", "title": "Alfombras para recámaras", "description": "Las alfombras proporcionan comodidad y actúan contra el ruido. Las alfombras de Terza también mejoran la seguridad con su superficie antideslizante que reduce las caídas, algo importante en hogares con personas mayores." },
+    { "image": "img-04", "title": "Alfombras en espacios corporativos", "description": "Las alfombras son clave en los trabajo, favoreciendo la creatividad, concentración y motivación. También reducen el cansancio al trabajar de pie y facilitan el desplazamiento. En Terza ofrecemos una amplia variedad de colores y texturas que se adaptan a tu espacio." }
+  ],
+  "espaciosCta": { "label": "Solicitar Información", "href": "/contacto" },
+  "beneficios": {
+    "title": "Beneficios de las alfombras",
+    "items": [
+      { "icon": "icono-01", "label": "Aporte de calidez y confort" },
+      { "icon": "icono-02", "label": "Captura polvo y alérgenos" },
+      { "icon": "icono-03", "label": "Aislamiento acústico superior" },
+      { "icon": "icono-04", "label": "Reducción de fatiga muscular" },
+      { "icon": "icono-05", "label": "Mejora la seguridad al ser antideslizante" },
+      { "icon": "icono-06", "label": "Elemento clave para delimitar espacios" }
+    ]
+  },
+  "cuidados": {
+    "title": "Cuidados esenciales de alfombras",
+    "items": [
+      { "icon": "icono-07", "title": "Aspirado regular", "description": "Hazlo 1 o 2 veces por semana para evitar el desgaste y garantizar un buen mantenimiento." },
+      { "icon": "icono-08", "title": "Limpieza inmediata de manchas", "description": "Seca los derrames, sin frotar, con un paño limpio para que no se fijen las manchas." },
+      { "icon": "icono-09", "title": "Rotación periódica", "description": "Por cada 6 meses para que el desgaste y la exposición solar sean uniformes." }
+    ]
+  },
+  "catalogo": {
+    "title": "Catálogo de alfombras Terza",
+    "description": "Comunícate con nuestros asesores para recibir la asistencia que necesitas y elegir la alfombra perfecta para ti.",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/alfombras" }
+  },
+  "mitos": {
+    "title": "Mitos y realidades de las alfombras",
+    "description": "Lo que necesitas saber para elegir la alfombra que mejor va con tu estilo.",
+    "video": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F24702442726050243%2F&show_text=0&t=0"
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿Cómo se quitan las manchas en las alfombras?", "a": "El mejor remedio para desmanchar tus alfombras es utilizar antimanchas. Lo primero que debes hacer es eliminar los restos del líquido derramado con papel absorbente. Se deben limpiar las alfombras desde el borde hacia el centro, evitando usar una esponja húmeda para evitar expandir la mancha. Es importante que antes de utilizar cualquier quitamanchas se coloque un poco del producto en una zona no visible para ver la reacción." },
+      { "q": "¿Cómo puede darse mantenimiento a la alfombra?", "a": "Para mantener la belleza y durabilidad de la alfombra se debe evitar la acumulación de polvo o tierra. También deben aspirarse periódicamente y remover las manchas inmediatamente ocurran, o lo antes posible." },
+      { "q": "¿Con qué frecuencia debo limpiar mis alfombras?", "a": "Para mantener limpias tus alfombras, es necesario aspirarlas al menos 1 vez por semana. Deberá pasar la aspiradora 3 veces en las áreas de poco tráfico y dar de 5 a 7 pasadas en las áreas de mucho tráfico, donde tiende acumularse mayor polvo y suciedad. Se recomienda realizar un lavado profesional de las alfombras cada 12 a 18 meses, dependiendo del uso y color, pues aunque tanto los colores claros como los obscuros atrapan el polvo y la suciedad de la misma manera, esta será más evidente en los tonos claros." },
+      { "q": "¿El color de mis alfombras cambiará o se decolorará con el tiempo?", "a": "Para minimizar las probabilidades de cambios en el color de las alfombras, en Terza utilizamos fibras teñidas con tecnologías de vanguardia para su fabricación; sin embargo, al igual que otros textiles, tienden a cambiar ligeramente de color a través del tiempo, principalmente cuando se encuentran expuestas a la luz solar. Para esto se recomienda contar con algún tipo de protección para ventanas, tales como persianas o cortinas, principalmente en las áreas donde el sol pega directamente en las alfombras por periodos de tiempo prolongados." },
+      { "q": "¿Cuál es el tipo de alfombra ideal para quienes tienen mascota?", "a": "Si tienes mascotas en tu hogar, te recomendamos las alfombras de poliéster u olefina, ya que son materiales duraderos, resistentes a las manchas y fáciles de limpiar. Optar por una textura corta y apretada también facilita el mantenimiento, porque evita que los pelos y la suciedad se acumulen. Además, es útil elegir alfombras con respaldos resistentes a manchas y usar un buen aspirador para mantenerlas en óptimas condiciones." },
+      { "q": "¿Qué diferencia hay entre las alfombras de interior y exterior?", "a": "La principal diferencia entre las alfombras para exterior e interior son sus materiales. Las alfombras de exterior están hechas de materiales resistentes a las condiciones climáticas, como PVP, caucho, goma o aluminio, y deben soportar frío, rayos UV y exposición solar; en cambio, las alfombras de interior absorben la humedad, secan el calzado, son duraderas, evitan que el polvo se extienda por los espacios y previenen resbalones." }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

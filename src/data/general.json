@@ -8,6 +8,7 @@
       "groups": [
         { "label": "Pisos vinílicos", "slug": "pisos-vinilicos", "items": ["Colección Bilbao", "Colección Norwich", "Colección Sevilla", "Colección Vigo"] },
         { "label": "Pisos laminados", "slug": "pisos-laminados", "items": ["Colección Class", "Colección Imperial Plus", "Colección Mammut Plus", "Colección Trend"] },
+        { "label": "Pisos híbridos", "slug": "pisos-hibridos", "items": ["Elba Oak Black", "Petterson Oak Beige", "Opal Oak Coffee", "Ruby Oak Brown"] },
         { "label": "Pisos de madera", "slug": "pisos-de-madera", "items": ["Colección Bari", "Colección Cannes", "Colección Montpellier", "Colección Napoli 2.0"] },
         { "label": "Alfombras", "slug": "alfombras", "items": ["Colección Allegro", "Colección Gladiador", "Colección Guerrero", "Colección Terza Kids"] }
       ]
@@ -53,7 +54,7 @@
   "footer": {
     "tagline": "Transformamos espacios contigo.",
     "columns": [
-      { "title": "Productos", "links": ["Pisos", "Muros", "Persianas", "Exterior", "Accesorios"] },
+      { "title": "Productos", "links": ["Alfombras", "Deck", "Lambrín y paneles", "Follaje artificial", "Pasto sintético", "Persianas", "Pisos laminados", "Pisos de madera", "Pisos vinílicos"] },
       { "title": "Recursos", "links": ["Catálogos digitales", "Blog - Ideas", "Decorador Virtual", "Material Lab", "Shaw Contract"] },
       { "title": "Nosotros", "links": ["Quienes somos", "Quiero ser distribuidor", "Contacto"] }
     ],

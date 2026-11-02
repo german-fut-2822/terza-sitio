@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import data from '../data/buzon-transparencia.json';
+import PartnerLogos from '../components/PartnerLogos.astro';
+import heroImg from '../assets/images/buzon-transparencia-hero.webp';
+
+const { hero, intro, paragraphs, contacto, logos } = data;
+---
+
+<Layout title={data.seo.title} description={data.seo.description}>
+  <!-- Hero -->
+  <section class="relative isolate flex h-[300px] items-center overflow-hidden md:h-[360px] xl:h-[440px]">
+    <Image src={heroImg} alt="Persona escribiendo en una laptop" class="absolute inset-0 -z-10 h-full w-full object-cover" loading="eager" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+    <div class="mx-auto w-full max-w-[1728px] px-6 md:px-12 xl:px-[72px]">
+      <h1 class="max-w-3xl text-5xl font-bold leading-none text-white md:text-6xl xl:text-7xl">{hero.title}</h1>
+    </div>
+  </section>
+
+  <!-- Texto a la izquierda, tarjeta de contacto a la derecha -->
+  <section class="mx-auto grid max-w-[1728px] grid-cols-1 items-start gap-10 px-6 py-14 md:px-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16 xl:px-[72px] xl:py-20">
+    <div>
+      <p class="text-3xl font-bold leading-[1.15] text-black md:text-4xl">{intro}</p>
+      {paragraphs.map((p) => <p class="mt-6 text-lg text-black xl:text-xl">{p}</p>)}
+    </div>
+
+    <aside class="rounded-[28px] bg-terza-teal p-8 text-white shadow-[0_4px_18px_rgba(0,0,0,0.08)] md:p-10 lg:sticky lg:top-8">
+      <h2 class="text-2xl font-bold leading-tight xl:text-3xl">{contacto.title}</h2>
+
+      <div class="mt-8 border-t border-white/20 pt-6">
+        <p class="text-white/85">{contacto.telefono.text}</p>
+        <a href={contacto.telefono.href} class="mt-3 inline-flex items-center gap-3 text-3xl font-bold text-terza-lime hover:brightness-110 xl:text-4xl">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          {contacto.telefono.label}
+        </a>
+      </div>
+
+      <div class="mt-8 border-t border-white/20 pt-6">
+        <p class="text-white/85">{contacto.web.text}</p>
+        <a href={contacto.web.href} target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95">
+          {contacto.web.label}
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Logos de socios, como en terza.com -->
+  <section class="mx-auto max-w-[1728px] px-6 pb-16 md:px-12 xl:px-[72px] xl:pb-24">
+    <PartnerLogos logos={logos} />
+  </section>
+</Layout>

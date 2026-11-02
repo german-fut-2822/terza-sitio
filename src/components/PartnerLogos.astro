@@ -1,0 +1,33 @@
+---
+// Fila de logos de socios comerciales en tarjetas blancas (Quiénes somos, Buzón de Transparencia).
+import { Image } from 'astro:assets';
+import logoAlfa from '../assets/images/quienes-somos/logo-alfa.png';
+import logoShaw from '../assets/images/quienes-somos/logo-shawcontract.png';
+import logoMohawk from '../assets/images/quienes-somos/logo-mohawk.png';
+import logoGraber from '../assets/images/quienes-somos/logo-graber-terza.png';
+import logoValleDumat from '../assets/images/quienes-somos/logo-valle-dumat.png';
+
+interface Props {
+  logos: string[];
+  class?: string;
+}
+
+const { logos, class: className } = Astro.props;
+
+const allLogos: Record<string, { src: ImageMetadata; alt: string }> = {
+  alfa: { src: logoAlfa, alt: 'Alfa' },
+  shawcontract: { src: logoShaw, alt: 'ShawContract' },
+  mohawk: { src: logoMohawk, alt: 'Mohawk' },
+  graber: { src: logoGraber, alt: 'Graber by Terza' },
+  'valle-dumat': { src: logoValleDumat, alt: 'Vallée du Mât' },
+};
+const cols: Record<number, string> = { 3: 'md:grid-cols-3', 4: 'md:grid-cols-4', 5: 'md:grid-cols-5' };
+---
+
+<ul class:list={['grid grid-cols-2 gap-5 xl:gap-6', cols[logos.length] ?? 'md:grid-cols-4', className]}>
+  {logos.map((key) => (
+    <li class="flex h-28 items-center justify-center rounded-[28px] bg-white px-8 shadow-[0_4px_18px_rgba(0,0,0,0.08)]">
+      <Image src={allLogos[key].src} alt={allLogos[key].alt} class="max-h-12 max-w-full object-contain" />
+    </li>
+  ))}
+</ul>

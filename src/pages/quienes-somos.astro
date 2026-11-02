@@ -1,0 +1,86 @@
+---
+// Misma distribución y textos que terza.com/quienes-somos, con la tipografía, colores y esquinas del sitio.
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import PartnerLogos from '../components/PartnerLogos.astro';
+import data from '../data/quienes-somos.json';
+import heroImg from '../assets/images/quienes-somos/hero-quienes-somos.jpg';
+import alfaImg from '../assets/images/quienes-somos/alfa.png';
+import shawImg from '../assets/images/quienes-somos/shawcontract.png';
+import plantaPastoImg from '../assets/images/quienes-somos/planta-pasto.png';
+import persianasImg from '../assets/images/quienes-somos/linea-persianas.jpg';
+import logoAlfa from '../assets/images/quienes-somos/logo-alfa.png';
+
+const { hero, intro, alianzas, planta, lineas, cierre } = data;
+
+const images: Record<string, ImageMetadata> = {
+  alfa: alfaImg,
+  shawcontract: shawImg,
+  'planta-pasto': plantaPastoImg,
+  persianas: persianasImg,
+};
+const logos: Record<string, { src: ImageMetadata; alt: string }> = {
+  alfa: { src: logoAlfa, alt: 'Alfa' },
+};
+---
+
+<Layout title={data.seo.title} description={data.seo.description}>
+  <!-- Hero -->
+  <section class="relative isolate flex h-[300px] items-center overflow-hidden md:h-[360px] xl:h-[440px]">
+    <Image src={heroImg} alt="Oficinas Terza" class="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_50%] md:object-center" loading="eager" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent"></div>
+    <div class="mx-auto w-full max-w-[1728px] px-6 md:px-12 xl:px-[72px]">
+      <h1 class="text-5xl font-bold leading-none text-white md:text-6xl xl:text-7xl">{hero.title}</h1>
+    </div>
+  </section>
+
+  <!-- Intro centrada -->
+  <section class="mx-auto max-w-[1200px] px-6 py-14 text-center md:px-12 xl:py-20">
+    <p class="text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl">{intro.statement}</p>
+    <p class="mx-auto mt-6 max-w-[880px] text-lg text-black xl:text-xl">{intro.description}</p>
+  </section>
+
+  <!-- Alianzas en zigzag -->
+  <section class="mx-auto flex max-w-[1728px] flex-col gap-14 px-6 pb-16 md:px-12 xl:gap-20 xl:px-[72px] xl:pb-24">
+    {alianzas.map((item, i) => (
+      <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12 xl:gap-20">
+        <Image src={images[item.image]} alt="" class:list={['aspect-[3/2] w-full rounded-[28px] object-cover shadow-[0_4px_18px_rgba(0,0,0,0.08)]', i % 2 === 1 && 'md:order-2']} />
+        <div>
+          {item.logo && <Image src={logos[item.logo].src} alt={logos[item.logo].alt} class="mb-5 h-12 w-auto xl:h-14" />}
+          <h2 class="text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl" set:html={item.title} />
+          {item.paragraphs.map((p) => <p class="mt-5 text-lg text-black xl:text-xl">{p}</p>)}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- Planta: franja verde oscuro -->
+  <section class="bg-terza-teal text-white">
+    <div class="mx-auto max-w-[1200px] px-6 py-14 text-center md:px-12 xl:py-20">
+      <h2 class="text-3xl font-bold leading-[1.15] md:text-4xl xl:text-5xl">
+        {planta.title.split(' ').slice(0, -2).join(' ')} <span class="text-terza-lime">{planta.title.split(' ').slice(-2).join(' ')}</span>
+      </h2>
+      <p class="mx-auto mt-6 max-w-[900px] text-lg text-white/85 xl:text-xl">{planta.description}</p>
+    </div>
+  </section>
+
+  <!-- Líneas de producto en zigzag sobre fondo gris -->
+  <section class="bg-terza-mist">
+    <div class="mx-auto flex max-w-[1728px] flex-col gap-14 px-6 py-16 md:px-12 xl:gap-20 xl:px-[72px] xl:py-24">
+      {lineas.map((linea, i) => (
+        <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12 xl:gap-20">
+          <Image src={images[linea.image]} alt={linea.alt} class:list={['aspect-[3/2] w-full rounded-[28px] object-cover shadow-[0_4px_18px_rgba(0,0,0,0.08)]', i % 2 === 0 && 'md:order-2']} />
+          <div class="space-y-5 text-lg text-black xl:text-xl [&_strong]:font-bold [&_strong]:text-terza-teal">
+            {linea.paragraphs.map((p) => <p set:html={p} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Cierre: frase y logos de socios -->
+  <section class="mx-auto max-w-[1728px] px-6 py-16 text-center md:px-12 xl:px-[72px] xl:py-24">
+    <p class="mx-auto max-w-[1100px] text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl">{cierre.statement}</p>
+    <PartnerLogos logos={cierre.logos} class="mt-14" />
+  </section>
+</Layout>

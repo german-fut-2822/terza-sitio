@@ -1,0 +1,22 @@
+---
+// Hero de las páginas de línea de producto (Alfombras, Deck, ...).
+import { Image } from 'astro:assets';
+
+interface Props {
+  image: ImageMetadata;
+  alt: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { image, alt, title, subtitle } = Astro.props;
+---
+
+<section class="relative isolate flex h-[300px] items-center overflow-hidden md:h-[360px] xl:h-[440px]">
+  <Image src={image} alt={alt} class="absolute inset-0 -z-10 h-full w-full object-cover" loading="eager" />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent"></div>
+  <div class="mx-auto w-full max-w-[1728px] px-6 text-white md:px-12 xl:px-[72px]">
+    <h1 class="text-5xl font-bold leading-none md:text-6xl xl:text-7xl">{title}</h1>
+    {subtitle && <p class="mt-4 text-xl md:text-2xl xl:text-3xl">{subtitle}</p>}
+  </div>
+</section>

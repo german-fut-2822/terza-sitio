@@ -1,0 +1,109 @@
+{
+  "seo": {
+    "title": "Pisos Laminados | Terza",
+    "description": "Dale un toque de elegancia y distinción a tus espacios con Pisos Laminados Terza: resistentes al desgaste, fáciles de mantener y en gran variedad de estilos."
+  },
+  "hero": { "title": "Pisos Laminados", "subtitle": "Dale vida a tus espacios" },
+  "intro": {
+    "title": "Dale un toque de elegancia y distinción a tus espacios con Pisos Laminados Terza",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "/decorador-virtual" },
+      { "label": "Catálogo", "href": "/catalogo/pisos-laminados" }
+    ]
+  },
+  "porQue": {
+    "title": "¿Por qué optar por pisos laminados Terza?",
+    "paragraphs": [
+      "Nuestros pisos cuentan con una capa protectora transparente y resistente a la abrasión (desgaste y rayado), gracias a su tratamiento con óxido de aluminio.",
+      "Tienen una capa con diseño impregnada de resinas, fabricada con fibra de madera de alta densidad (HDF), sobre la cual se imprime una película de madera.",
+      "Su centro es muy resistente al impacto y a la presión.",
+      "Disponen de una parte inferior hecha de melamina impregnada con resinas para darle estabilidad dimensional al piso."
+    ]
+  },
+  "conoceMas": {
+    "title": "Conoce más acerca de los Pisos Laminados",
+    "items": [
+      {
+        "image": "img-02",
+        "alt": "Piso laminado con agua derramada",
+        "title": "Durabilidad garantizada",
+        "paragraphs": [
+          "La media considerada en cuanto a durabilidad de los pisos laminados es de 20 a 30 años con los debidos cuidados.",
+          "Son tres los pasos que se deben de tomar en cuenta para garantizar la larga vida del piso laminado: no mojar, no pulir y no utilizar ningún tipo de químico debido a que opaca el brillo natural del material. Visita nuestra sección de cuidados para conocer más al respecto.",
+          "Este tiempo estimado de vida es debido a la alta calidad y resistencia del material con el que están hechos nuestros pisos laminados."
+        ]
+      },
+      {
+        "image": "img-03",
+        "alt": "Trapeador sobre piso laminado",
+        "title": "Cualidades extraordinarias",
+        "paragraphs": [
+          "Una de las ventajas que se menciona poco de los pisos laminados es que son aislantes termo-acústicos, perfectos para las viviendas desarrolladas en condominios donde la privacidad es muy limitada.",
+          "Los pisos laminados también garantizan una gran armonía en el espacio gracias a su amplia variedad de colores, elegancia y estilo en cada paso.",
+          "Además, requiere cuidados sencillos de limpieza, soporta en gran medida las quemaduras de cigarro o cenizas, y conserva su brillo a pesar del tráfico."
+        ]
+      },
+      {
+        "image": "img-04",
+        "alt": "Instalación de piso sobre el suelo",
+        "title": "Diferencia del piso vinílico",
+        "paragraphs": [
+          "En comparativa, el piso laminado es muy diferente al vinílico sobre todo en los espacios a ser instalados.",
+          "El piso vinílico ofrece una mayor resistencia a la humedad ya que están hechos de policloruro de vinilo (PVC), mientras que los pisos laminados están hechos con materiales derivados de la madera."
+        ]
+      }
+    ]
+  },
+  "beneficios": {
+    "title": "Beneficios de los pisos laminados",
+    "items": [
+      { "icon": "icono-01", "label": "Fácil mantenimiento" },
+      { "icon": "icono-06", "label": "Resisten en gran medida las quemaduras de cigarro" },
+      { "icon": "icono-02", "label": "Conservan su brillo con el paso del tiempo" },
+      { "icon": "icono-07", "label": "Elaborados con materias primas naturales y renovables" },
+      { "icon": "icono-03", "label": "Resistentes al desgaste y rayado" },
+      { "icon": "icono-08", "label": "Inmunes a las manchas, suciedad y bacterias" },
+      { "icon": "icono-04", "label": "Pueden instalarse y reinstalarse" },
+      { "icon": "icono-10", "label": "Disponibilidad inmediata" },
+      { "icon": "icono-05", "label": "Variedad de estilos para todo tipo de tráfico" }
+    ]
+  },
+  "cuidados": {
+    "title": "Cuidados esenciales de los pisos laminados",
+    "items": [
+      { "icon": "icono-11", "title": "No mojar", "description": "Usar agua en exceso afecta a los pisos laminados puesto que guarda humedad y posiblemente hongos o algún otro tipo de plaga.<br /><br />Utilizar un trapeador o franela semihúmeda es suficiente para quitar manchas, huellas o polvo. Se debe utilizar solamente agua en pequeñas cantidades." },
+      { "icon": "icono-12", "title": "No pulir", "description": "Pese a que se quiere mantener el brillo intacto, hay desgaste que es inevitable, así que no se debe utilizar ningún tipo de abrillantador ni cera, esto afecta el brillo natural de los pisos laminados." },
+      { "icon": "icono-13", "title": "No usar químicos", "description": "Ningún tipo de jabón, detergente o limpia pisos es bueno para los pisos laminados, se debe de evitar a toda costa su uso. Como lo menciona el punto número uno, limpiar con solamente agua y en pequeña cantidad es lo mejor para mantenerlo intacto." }
+    ]
+  },
+  "catalogo": {
+    "title": "Catálogo de Pisos Laminados Terza",
+    "description": "Nuestro catálogo de pisos laminados Terza brinda una amplia variedad de colores y texturas, encuentra el ideal para tu espacio una vez que ya sabes cómo mantenerlos impecables.",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/pisos-laminados" }
+  },
+  "disena": {
+    "title": "Diseña tu espacio",
+    "description": "Los pisos laminados Terza vienen en una amplia gama de colores y diseños que puedes instalar y reinstalar. Encuentra el piso perfecto que encaje con la decoración y estilo de las habitaciones de tu hogar, tu negocio u oficina y disfruta de los beneficios de contar con un piso laminado."
+  },
+  "colecciones": [
+    { "title": "Colecciones nuevas", "images": ["colecciones", "nuevas-02", "nuevas-03"] },
+    { "title": "Naturals", "images": ["naturas", "naturas-02", "naturas-03"] },
+    { "title": "Class", "images": ["class", "class-02", "class-03"] }
+  ],
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿Qué son los pisos laminados?", "a": "Es un recubrimiento para el suelo de un espacio (casa, departamento, oficina, salones, entre otros) compuesta por fibra de madera. Algunas de sus ventajas son: facilidad de instalación y efecto de elegancia en la decoración." },
+      { "q": "¿De qué están compuestos los pisos laminados?", "a": "Los <strong>pisos laminados</strong> cuentan con propiedades que brindan resistencia a cada una de sus piezas, cuentan con una capa protectora anti desgaste y rayado gracias a su tratamiento con óxido de aluminio. Además, su parte inferior está hecha de melamina impregnada con resinas para darle estabilidad dimensional. El centro de cada pieza está fabricado con fibra de madera, haciendo que resistan al impacto y a la presión." },
+      { "q": "¿Cómo colocar pisos laminados?", "a": "La colocación de los <strong>pisos laminados</strong> se hace a través de un sistema de ensamble donde las piezas encajan solas entre sí, sin la necesidad de recurrir a herramientas pesadas o una larga espera de instalación." },
+      { "q": "¿En qué habitación puedo colocar los pisos laminados?", "a": "Los <strong>pisos laminados</strong> pueden colocarse en lugares al interior de tu hogar como: recámara, sala, comedor, estudio o cualquier otra habitación que no implique ambiente de humedad." },
+      { "q": "¿Cómo limpiar pisos laminados?", "a": "Para su limpieza solo necesitarás una escoba y quizá un trapo húmedo para retirar residuos que una barrida suave no elimine. Este fácil mantenimiento se debe a que los pisos laminados cuentan con una textura que impide la acumulación en exceso de polvo, además es inmune a las manchas, suciedad y bacterias." },
+      { "q": "¿Pueden los pisos laminados decolorarse rápidamente?", "a": "No, con su debido cuidado y limpieza, los <strong>pisos laminados</strong> pueden conservar su brillo con el paso del tiempo, además son resistentes al desgaste de su acabado." },
+      { "q": "¿Cuáles son las ventajas de instalar pisos laminados?", "a": "Las principales ventajas de colocar <strong>pisos laminados</strong> en tu hogar son la resistencia al desgaste y suciedad, facilidad de mantenimiento e instalación, la posibilidad de trasladarlo a algún otro espacio y sus propiedades naturales y renovables." }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

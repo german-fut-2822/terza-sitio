@@ -1,0 +1,67 @@
+{
+  "seo": {
+    "title": "Follaje artificial | Terza",
+    "description": "Dale vida a tus espacios con el follaje artificial de Terza. Alta calidad, realismo y durabilidad para crear un ambiente natural en interiores y exteriores."
+  },
+  "hero": { "title": "Green Walls" },
+  "intro": {
+    "title": "Terza trae para ti lo mejor<br />en Green Walls",
+    "description": "Embellece tus espacios, haciéndolos lucir espectaculares con un toque de naturaleza y sin mantenimiento.",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "/decorador-virtual" },
+      { "label": "Catálogo", "href": "/catalogo/muros-verdes" }
+    ]
+  },
+  "variedad": {
+    "title": "Conoce toda nuestra variedad de Green Walls",
+    "description": "Green Walls de Terza es un follaje artificial para interiores y exteriores. Gracias a su presentación flexible y modular de 50x50cm, podrás armar tu propio diseño de una manera sencilla, permitiendo crear un ambiente de aspecto natural en fachadas, muros, mallas, rejas, escenografías o cualquier superficie vertical.",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  },
+  "beneficios": {
+    "title": "Beneficios de las Green Walls",
+    "items": [
+      { "image": "beneficios-img-01", "alt": "Hombre tocando un muro de follaje artificial", "title": "Aislantes térmicas", "description": "El material de las Green Walls son un perfecto aislante térmico. Además, su resistencia hace que luzcan siempre verdes a pesar del tiempo o la temporada del año." },
+      { "image": "beneficios-img-02", "alt": "Llave de agua cerrada sobre un jardín", "title": "Ahorro de agua", "description": "Al no necesitar riego, las Green Walls generan un considerable ahorro en el consumo de agua potable, además, se anula la posibilidad de cualquier filtración." },
+      { "image": "beneficios-img-03", "alt": "Manos sobre follaje artificial", "title": "No requieren mantenimiento", "description": "Hablando de buenas prácticas en pro del medio ambiente, al evitar el uso excesivo de aparatos que queman combustible para su mantenimiento, las Green Walls son una excelente opción sustentable." },
+      { "image": "beneficios-img-04", "alt": "Hombre junto a un muro verde en una oficina", "title": "Libres de pesticidas", "description": "El uso de químicos y pesticidas son uno de los peores enemigos de la capa de ozono al concentrar una gran cantidad de veneno. Esto ya no será necesario después de instalar Green Walls." },
+      { "image": "beneficios-img-05", "alt": "Mujer con audífonos frente a un muro verde", "title": "Protección Anti-UV", "description": "Además de ser agradables a la vista y al tacto, las Green Walls funcionan perfecto para proteger las paredes de los rayos solares, evitando que se calienten y generen temperaturas poco agradables." }
+    ]
+  },
+  "catalogo": {
+    "title": "Catálogo de Green Walls",
+    "description": "Green Walls de Terza te brinda una amplia variedad de colores y texturas. ¡Encuentra la ideal en nuestro catálogo!",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/muros-verdes" }
+  },
+  "tips": {
+    "title": "Tips para crear<br />Green Walls en casa",
+    "description": "Te dejamos tres aspectos a considerar antes de instalar la tuya:",
+    "items": [
+      { "image": "tips-img-01", "alt": "Follaje artificial de hojas pequeñas", "title": "Tamaño de las hojas", "description": "Para elegir el tamaño adecuado te recomendamos tomar en cuenta la distancia en la que observarás tus Green Walls. Por ejemplo, las Green Walls con hojas pequeñas son ideales para espacios reducidos y viceversa." },
+      { "image": "tips-img-02", "alt": "Muro verde de follaje tupido en varios colores", "title": "Densidad", "description": "Si deseas Green Walls con apariencia realista, las de follaje tupido son la mejor opción. También te recomendamos usar malla sombra de fondo o pintura oscura." },
+      { "image": "tips-img-03", "alt": "Sala con muro de follaje artificial", "title": "Acabados", "description": "Hay Green Walls que dan más la apariencia de un follaje natural a mediana o larga distancia, lo que se busca en realidad es que a un par de metros se vean tan realistas que no puedas distinguir la diferencia." }
+    ],
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  },
+  "oficina": {
+    "title": "¿Por qué instalar Green Walls en la oficina?",
+    "items": [
+      { "image": "img-02", "alt": "Comedor de oficina con muro verde", "description": "El color verde transmite frescura, equilibrio, estabilidad y bienestar. También inspira calma y ayuda directamente a la concentración de los colaboradores de una empresa." },
+      { "image": "img-03", "alt": "Fachada de edificio con follaje artificial", "description": "Las Green Walls cuentan con una gran versatilidad, por lo que pueden ser instaladas en espacios como lobbies, recibidores, salas de espera y terrazas, adaptándose y añadiendo un toque excepcional a la decoración tanto en interiores como en exteriores de una oficina." }
+    ],
+    "cta": { "label": "Solicitar Información", "href": "/contacto" }
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿En qué espacios se recomiendan Green Walls?", "a": "Las Green Walls pueden instalarse tanto en espacios residenciales como comerciales: jardines, terrazas, salones de eventos, restaurantes, centros deportivos, escuelas y más." },
+      { "q": "¿Cuál es la durabilidad de las Green Walls?", "a": "Esta varía según los cuidados que se les dé. Con un correcto mantenimiento, las Green Walls pueden durar por varios años. Además, al no requerir de fertilizantes ni químicos, su tiempo de vida aumenta más." },
+      { "q": "¿Cómo se lleva a cabo la limpieza de las Green Walls?", "a": "Para mantener tus Green Walls en buen estado y con un color brillante por muchos años, te recomendamos seguir las siguientes recomendaciones:", "list": ["Sacude con un plumero o escoba de cerdas suaves todo el polvo acumulado en tus Green Walls. Hazlo con movimientos suaves para no dañarlas.", "Si tus Green Walls tienen capas de polvo más consistentes y difíciles de quitar, utiliza una pistola de aire a presión baja.", "En caso de ser necesario, rocía tus Green Walls con un poco de agua para una limpieza más profunda."] },
+      { "q": "¿Cuáles son los beneficios de las Green Walls vs. el follaje natural?", "list": ["Bajo mantenimiento: Las Green Walls no requieren mantenimiento al no necesitar de riego, abono, poda o protección contra plagas.", "Larga vida útil: A diferencia del follaje natural, las Green Walls pueden durar por muchos años sin desgaste ni daños.", "Versatilidad de diseño: Las Green Walls de Terza cuentan con una gran variedad de formas, colores y texturas, ideales para decoraciones tanto interiores como exteriores.", "Alergias y problemas de salud: Al no liberar polen o toxinas en el aire, las Green Walls son ideales para personas alérgicas a diversos tipos de plantas, siendo seguras tanto para personas como para mascotas."] },
+      { "q": "¿Cómo se instalan las Green Walls?", "a": "Para hacer una correcta instalación de tus Green Walls se deben seguir los siguientes pasos:", "ordered": true, "list": ["Pintar el muro donde se instalarán las Green Walls de un color verde obscuro y dejarlo secar el tiempo indicado de la pintura.", "Medir el ancho y largo de las paredes para obtener los metros cuadrados de producto que necesitarás para cubrir el área deseada.", "Fijar el follaje en una de las esquinas superiores con el clavo y la rondana (dentro del clavo). En seguida, se debe martillar hasta que el clavo quede totalmente fijo.", "Sujetar las cuatro esquinas y cerciorarse de que queden firmes.", "Unir los follajes unos con otros a través de sus puntos de ensamblaje.", "Revisar que todos los espacios se cubran por completo al unirlos.", "Verificar que no se haya creado un efecto de globo en la pared y después fijar todos los puntos de ensamblaje, martillando como en el paso 5.", "Peinar con nuestras manos todo, hasta dejarlo uniforme. ¡Listo! Tus Green Walls están listas."] }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}
