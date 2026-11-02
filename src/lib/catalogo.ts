@@ -8,6 +8,7 @@ export type Categoria = (typeof data.categorias)[number];
 const PORTADAS: Record<string, string> = {
   paneles: 't15-pvcms-063y9-mineral-gray', // Sala con Panel Marble Mineral Gray y panel Classic Walnut
   alfombras: 't02-zz226-00712', // Artifact Birchwood
+  flexiroc: 't15-fr026-pt205-2', // Flexiroc instalado
 };
 
 export const categorias: Categoria[] = data.categorias.map((c) => ({ ...c, portada: PORTADAS[c.slug] ?? c.portada }));
