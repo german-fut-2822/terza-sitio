@@ -12,14 +12,17 @@ export function getStaticPaths() {
 const { p } = Astro.props;
 const cat = categoriaDe(p.categoria);
 const familia = familiaDe(p);
-// Otras familias de la misma categoría (una tarjeta por familia)
-// Si la categoría tiene pocas familias (p. ej. Pisos híbridos solo tiene Kiwi), se completa con las demás categorías
-// de la misma sección (Pisos, Muros, Exterior…), en el orden del menú
+// Sugerencias solo de la misma línea: primero una tarjeta por cada otra familia y, si no alcanzan
+// (p. ej. Pisos híbridos solo tiene la familia Kiwi), los demás colores de la línea.
+// Solo si la línea no tiene más productos se recurre a las demás categorías de la misma sección.
 const unaPorFamilia = (lista: typeof productos) => [...new Map(lista.map((x) => [`${x.categoria}|${x.familia}`, x])).values()];
+const deLaLinea = productosDe(p.categoria).filter((x) => x.slug !== p.slug);
+const otrasFamilias = unaPorFamilia(deLaLinea.filter((x) => x.familia !== p.familia));
 const hermanas = categorias.filter((c) => c.seccion === cat.seccion && c.slug !== cat.slug).map((c) => c.slug);
 const relacionados = [
-  ...unaPorFamilia(productosDe(p.categoria).filter((x) => x.familia !== p.familia)),
-  ...unaPorFamilia(productos.filter((x) => hermanas.includes(x.categoria))),
+  ...otrasFamilias,
+  ...deLaLinea.filter((x) => !otrasFamilias.includes(x)),
+  ...(deLaLinea.length ? [] : unaPorFamilia(productos.filter((x) => hermanas.includes(x.categoria)))),
 ].slice(0, 4);
 const nombre = `${p.familia} ${p.variante}`;
 // Texto de la vista previa al compartir: categoría, producto y hasta 3 datos de la ficha técnica
