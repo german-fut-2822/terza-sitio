@@ -7,6 +7,7 @@ export type Categoria = (typeof data.categorias)[number];
 // Portadas elegidas a mano (el importador toma la primera foto de cada categoría); sobreviven a una nueva importación
 const PORTADAS: Record<string, string> = {
   paneles: 't15-pvcms-063y9-mineral-gray', // Sala con Panel Marble Mineral Gray y panel Classic Walnut
+  alfombras: 't02-zz226-00712', // Artifact Birchwood
 };
 
 export const categorias: Categoria[] = data.categorias.map((c) => ({ ...c, portada: PORTADAS[c.slug] ?? c.portada }));

@@ -15,6 +15,9 @@ const familia = familiaDe(p);
 // Otras familias de la misma categoría (una tarjeta por familia)
 const relacionados = [...new Map(productosDe(p.categoria).filter((x) => x.familia !== p.familia).map((x) => [x.familia, x])).values()].slice(0, 4);
 const nombre = `${p.familia} ${p.variante}`;
+// Texto de la vista previa al compartir: categoría, producto y hasta 3 datos de la ficha técnica
+const datos = p.specs.filter(([e]) => !['Nombre', 'SKU', 'Estilo', 'Color', 'Colección'].includes(e)).slice(0, 3).map(([e, v]) => `${e}: ${v}`);
+const descripcion = p.descripcion || [`${cat.nombre} · ${nombre}`, ...datos].join('. ') + '. Solicita tu cotización en Terza.';
 
 const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 const compartir = [
@@ -25,7 +28,7 @@ const compartir = [
 const linkSvg = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.5 11.5a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1M11.5 8.5a3.5 3.5 0 0 0-5 0L4 11a3.5 3.5 0 0 0 5 5l1-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 ---
 
-<Layout title={`${nombre} | ${cat.nombre} | Terza`} description={p.descripcion || `${nombre}: ${cat.intro}`}>
+<Layout title={`${nombre} | ${cat.nombre} | Terza`} description={descripcion} image={foto(p.fotos[0]) ?? undefined} imageAlt={nombre} type="product">
   <section class="mx-auto max-w-[1728px] px-6 pt-10 md:px-12 xl:px-[72px] xl:pt-14">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <nav class="flex flex-wrap items-center gap-y-1 text-sm text-black/60" aria-label="Ruta">
@@ -129,7 +132,7 @@ const linkSvg = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" ari
 
         <div class="mt-10">
           <h2 class="text-sm font-bold uppercase tracking-widest text-terza-teal">Compartir</h2>
-          <ul class="mt-4 flex gap-2">
+          <ul class="mt-4 flex gap-2" data-compartir-nombre={nombre} data-compartir-categoria={cat.nombre}>
             {compartir.map((c) => (
               <li><a data-share={c.id} href="#" target="_blank" rel="noopener" aria-label={c.label} class="flex h-11 w-11 items-center justify-center rounded-full bg-terza-lime text-terza-ink transition-colors hover:bg-terza-teal hover:text-white" set:html={c.svg} /></li>
             ))}
@@ -178,10 +181,12 @@ const linkSvg = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" ari
 
   // Compartir con la URL actual de la ficha
   const url = encodeURIComponent(location.href);
-  const texto = encodeURIComponent(document.title);
+  // Mensaje de WhatsApp: producto en negritas, categoría y el enlace en su propia línea
+  const datos = document.querySelector<HTMLElement>('[data-compartir-nombre]')?.dataset;
+  const texto = encodeURIComponent(datos ? `*${datos.compartirNombre}*\n${datos.compartirCategoria} | Terza\n` : `${document.title}\n`);
   const destinos: Record<string, string> = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    whatsapp: `https://wa.me/?text=${texto}%20${url}`,
+    whatsapp: `https://wa.me/?text=${texto}${url}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
   };
   document.querySelectorAll<HTMLAnchorElement>('a[data-share]').forEach((a) => { a.href = destinos[a.dataset.share!]; });
