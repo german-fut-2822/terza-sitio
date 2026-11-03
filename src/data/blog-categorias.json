@@ -9,7 +9,6 @@
     { "id": "follaje-artificial", "nombre": "Follaje artificial", "pagina": "/muros/follaje-artificial" },
     { "id": "persianas", "nombre": "Persianas", "pagina": "/persianas" },
     { "id": "deck", "nombre": "Deck", "pagina": "/exterior/deck" },
-    { "id": "pasto-sintetico", "nombre": "Pasto sintético", "pagina": "/exterior/pasto-sintetico" },
-    { "id": "categoria-nueva", "nombre": "Categoria nueva" }
+    { "id": "pasto-sintetico", "nombre": "Pasto sintético", "pagina": "/exterior/pasto-sintetico" }
   ]
 }
