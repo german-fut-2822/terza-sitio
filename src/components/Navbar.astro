@@ -104,7 +104,7 @@ const { logo, nav } = general;
     <ul class="space-y-1">
       {nav.map((cat) => (
         <li>
-          <a href={cat.slug === 'persianas' ? '/persianas' : `/catalogo#${cat.slug}`} class="block py-2 text-base font-medium text-terza-ink">{cat.label}</a>
+          <a href={`/catalogo#${cat.slug}`} class="block py-2 text-base font-medium text-terza-ink">{cat.label}</a>
         </li>
       ))}
       <li class="pt-3">
