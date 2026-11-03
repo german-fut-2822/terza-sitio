@@ -109,7 +109,7 @@
                 const cats = n.categorias.length
                   ? n.categorias.map((c) => `<button type="button" data-cat="${esc(c)}">${esc(estado.categorias.get(c) ?? c)}</button>`).join(', ')
                   : '—';
-                const foto = urlFotoBlog(estado.datos, n.imagen);
+                const foto = urlFotoBlog(n.imagen);
                 return `<tr>
                   <td>
                     <div class="con-foto">
@@ -222,10 +222,10 @@
         document.body.classList.add('guardando');
         mostrarMensaje('Borrando…');
         try {
-          await borrarArchivo(estado.datos, nota.ruta, `Blog: borrar nota "${slug}"`);
+          await borrarArchivo(nota.ruta, `Blog: borrar nota "${slug}"`);
           estado.notas = estado.notas.filter((n) => n !== nota);
           pintar();
-          mostrarMensaje(`Se borró la nota "${nota.titulo}".${estado.datos.usuario.backendName === 'proxy' ? '' : ' Se quitará del sitio en un par de minutos.'}`);
+          mostrarMensaje(`Se borró la nota "${nota.titulo}".${estado.datos.local ? '' : ' Se quitará del sitio en un par de minutos.'}`);
         } catch (error) {
           mostrarMensaje(error.message === 'sesion' ? 'La sesión expiró: vuelve a iniciar sesión en el administrador.' : `No se pudo borrar la nota (${error.message}).`, true);
         } finally {

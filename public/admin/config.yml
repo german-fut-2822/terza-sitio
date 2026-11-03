@@ -1,22 +1,18 @@
 # Administrador de notas del blog (Decap CMS) en /admin.
-# Cada cambio se guarda como un commit en GitHub y Vercel vuelve a publicar el sitio.
-# El inicio de sesión con GitHub lo atienden src/pages/api/auth.ts y src/pages/api/callback.ts (ver docs/administrador-blog.md).
+# Se entra con correo y contraseña (/admin/login.html). Decap lee y guarda con la API del sitio (/api/cms), que en línea
+# hace un commit en GitHub por cada cambio (y Vercel vuelve a publicar el sitio) y en la computadora guarda en la carpeta.
+# Ver docs/administrador-blog.md.
 
 backend:
-  name: github
-  repo: german-fut-2822/terza-sitio
-  branch: main # rama que publica Vercel; las notas se guardan aquí
-  base_url: https://terza-sitio.vercel.app # dominio donde corren /api/auth y /api/callback
-  auth_endpoint: api/auth
+  name: proxy
+  proxy_url: /api/cms
+  branch: main # rama que publica Vercel; las notas se guardan aquí (en la API: GITHUB_BRANCH)
   commit_messages:
     create: 'Blog: nueva nota "{{slug}}"'
     update: 'Blog: editar nota "{{slug}}"'
     delete: 'Blog: borrar nota "{{slug}}"'
     uploadMedia: 'Blog: subir imagen "{{path}}"'
     deleteMedia: 'Blog: borrar imagen "{{path}}"'
-
-# Para probar en la computadora sin GitHub: `npx decap-server` y abrir http://localhost:4321/admin/
-local_backend: true
 
 locale: es
 site_url: https://terza-sitio.vercel.app

@@ -42,6 +42,8 @@
   </head>
   <body>
     <!-- Decap CMS: configuración en /admin/config.yml -->
+    <!-- El editor arranca solo con sesión iniciada (ver el final del script de abajo) -->
+    <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
     <!-- Para cambiar el estado de una nota sin cambios (leer y guardar el archivo con la sesión del panel) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
@@ -145,20 +147,12 @@
         if (!slug) return;
         document.body.style.cursor = 'progress';
         try {
-          const usuario = JSON.parse(localStorage.getItem('decap-cms-user'));
-          const backend = await leerConfig();
           const ruta = `${RUTA_NOTAS}/${slug}.md`;
-          let texto;
-          if (usuario.backendName === 'proxy') {
-            texto = (await apiLocal(backend, 'getEntry', { path: ruta })).data;
-          } else {
-            const archivo = await apiGitHub(usuario.token, `/repos/${backend.repo}/contents/${ruta}?ref=${backend.branch}`);
-            texto = new TextDecoder().decode(Uint8Array.from(atob(archivo.content.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
-          }
+          const { data: texto } = await api('getEntry', { path: ruta });
           const nuevo = /^borrador:.*$/m.test(texto)
             ? texto.replace(/^borrador:.*$/m, `borrador: ${borrador}`)
             : texto.replace(/^(---\r?\n[\s\S]*?)(\r?\n---)/, `$1\nborrador: ${borrador}$2`);
-          await guardarArchivos({ usuario, backend }, [{ ruta, texto: nuevo }], `Blog: ${borrador ? 'pasar a borrador' : 'publicar'} "${slug}"`);
+          await guardarArchivos([{ ruta, texto: nuevo }], `Blog: ${borrador ? 'pasar a borrador' : 'publicar'} "${slug}"`);
           location.reload();
         } catch (error) {
           document.body.style.cursor = '';
@@ -209,24 +203,9 @@
         return null;
       }
       const vacias = new Map(); // src → ¿es el cuadro vacío?
-      const urlsImagen = new Map(); // ruta → URL que se puede mostrar
       async function esVacia(src) {
         if (!vacias.has(src)) vacias.set(src, fetch(src).then((r) => r.blob()).then((b) => b.size < 100 && b.type === 'image/svg+xml').catch(() => false));
         return vacias.get(src);
-      }
-      async function urlImagen(ruta) {
-        if (!urlsImagen.has(ruta)) {
-          urlsImagen.set(ruta, (async () => {
-            const usuario = JSON.parse(localStorage.getItem('decap-cms-user'));
-            const backend = await leerConfig();
-            const base64 = usuario.backendName === 'proxy'
-              ? (await apiLocal(backend, 'getMediaFile', { path: ruta })).content
-              : (await apiGitHub(usuario.token, `/repos/${backend.repo}/contents/${ruta}?ref=${backend.branch}`)).content.replace(/\s/g, '');
-            const tipo = /\.png$/i.test(ruta) ? 'image/png' : /\.webp$/i.test(ruta) ? 'image/webp' : /\.gif$/i.test(ruta) ? 'image/gif' : 'image/jpeg';
-            return URL.createObjectURL(new Blob([Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))], { type: tipo }));
-          })().catch(() => { urlsImagen.delete(ruta); return null; }));
-        }
-        return urlsImagen.get(ruta);
       }
       async function arreglarMiniatura() {
         const etiqueta = document.querySelector('label[for^="imagen-field-"]');
@@ -239,9 +218,8 @@
         if (img.src !== img.dataset.terza && (!img.src.startsWith('blob:') || !(await esVacia(img.src)))) return;
         // El panel reutiliza el mismo cuadro vacío al cambiar de imagen: se vuelve a poner con el valor actual
         if (!archivo) return;
-        const url = await urlImagen(`src/assets/blog/${archivo}`);
-        if (url && img.isConnected) {
-          img.src = url;
+        if (img.isConnected) {
+          img.src = urlFotoBlog(decodeURIComponent(archivo));
           img.dataset.terza = img.src;
           img.dataset.archivo = archivo;
         }
@@ -273,6 +251,24 @@
         else if (duplicar && esBorrador) agregarOpcion(duplicar, 'Publicar ahora', () => cambiarEstado(false));
         else if (duplicar) agregarOpcion(duplicar, 'Pasar a borrador', () => cambiarEstado(true), ICONO_BORRADOR);
       }).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['aria-checked', 'src'] });
+
+      // "Cerrar sesión" del menú del usuario del editor también cierra la sesión del sitio (comun.js)
+      document.addEventListener('click', (e) => {
+        const opcion = e.target.closest?.('[role="menuitem"]');
+        if (opcion && opcion.textContent.trim() === 'Cerrar sesión') {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          cerrarSesion();
+        }
+      }, true);
+
+      // Arranque: sin sesión, a la pantalla de entrada; con sesión, el editor entra directo (backend "proxy" de config.yml,
+      // que guarda con /api/cms)
+      fetch('/api/sesion').then((r) => {
+        if (!r.ok) return irAlLogin();
+        localStorage.setItem('decap-cms-user', JSON.stringify({ backendName: 'proxy' }));
+        CMS.init();
+      }, irAlLogin);
     </script>
   </body>
 </html>

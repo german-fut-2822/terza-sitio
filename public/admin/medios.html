@@ -115,19 +115,11 @@
       const kb = (b) => `${Math.round(b / 1024)} KB`;
       const fechaTexto = (f) => `${String(f.getUTCDate()).padStart(2, '0')}/${String(f.getUTCMonth() + 1).padStart(2, '0')}/${f.getUTCFullYear()}`;
       const mensaje = (accion, nombre) => `Blog: ${accion} imagen "${CARPETA}/${nombre}"`;
-      const local = () => datos.usuario.backendName === 'proxy';
-      const urlRaw = (nombre) => `https://raw.githubusercontent.com/${datos.backend.repo}/${datos.backend.branch}/${CARPETA}/${encodeURIComponent(nombre)}`;
-
-      // Lista de imágenes: en local vienen completas (base64); en GitHub, nombre, peso y sha, y la foto se ve desde raw.githubusercontent
+      // Lista de imágenes (nombre y peso) desde la API; cada foto se ve con /api/archivo
       async function leerMedios() {
-        if (local()) {
-          const lista = await apiLocal(datos.backend, 'getMedia', { mediaFolder: CARPETA });
-          return lista.map((m) => ({ nombre: m.name, peso: Math.round((m.content.length * 3) / 4), url: `data:${tipo(m.name)};base64,${m.content}` }));
-        }
-        const lista = await apiGitHub(datos.usuario.token, `/repos/${datos.backend.repo}/contents/${CARPETA}?ref=${datos.backend.branch}`);
-        return lista.filter((m) => m.type === 'file').map((m) => ({ nombre: m.name, peso: m.size, sha: m.sha, url: urlRaw(m.name) }));
+        const lista = await api('listMedia', { mediaFolder: CARPETA });
+        return lista.map((m) => ({ nombre: m.nombre, peso: m.peso, url: urlFotoBlog(m.nombre) }));
       }
-      const tipo = (nombre) => ({ png: 'image/png', webp: 'image/webp', gif: 'image/gif', svg: 'image/svg+xml' })[nombre.split('.').pop().toLowerCase()] ?? 'image/jpeg';
 
       // Qué notas usan cada imagen; la fecha de la imagen es la de la nota más reciente que la usa
       function relacionar() {
@@ -234,18 +226,9 @@
           const nombre = limpiarNombre(archivo.name);
           $('#mas').textContent = `Subiendo ${nombre}…`;
           const contenido = await base64(archivo);
-          let sha;
-          if (local()) {
-            await apiLocal(datos.backend, 'persistMedia', { asset: { path: `${CARPETA}/${nombre}`, content: contenido, encoding: 'base64' }, options: { commitMessage: mensaje('subir', nombre) } });
-          } else {
-            const r = await apiGitHub(datos.usuario.token, `/repos/${datos.backend.repo}/contents/${CARPETA}/${encodeURIComponent(nombre)}`, {
-              method: 'PUT',
-              body: JSON.stringify({ message: mensaje('subir', nombre), content: contenido, branch: datos.backend.branch }),
-            });
-            sha = r.content.sha;
-          }
-          // Se muestra con la copia local del archivo (raw.githubusercontent tarda unos minutos en tenerla)
-          estado.medios.unshift({ nombre, peso: archivo.size, sha, url: URL.createObjectURL(archivo), notas: [], mes: '' });
+          await api('persistMedia', { asset: { path: `${CARPETA}/${nombre}`, content: contenido, encoding: 'base64' }, options: { commitMessage: mensaje('subir', nombre) } });
+          // Se muestra con la copia del archivo que ya está en el navegador
+          estado.medios.unshift({ nombre, peso: archivo.size, url: URL.createObjectURL(archivo), notas: [], mes: '' });
         }
         estado.uso = estado.fecha = estado.texto = '';
         $('#f-uso').value = $('#f-fecha').value = $('#f-texto').value = '';
@@ -263,15 +246,7 @@
         if (!confirm(`Vas a borrar permanentemente ${nombres.length === 1 ? `"${nombres[0]}"` : `${nombres.length} imágenes`}. Esta acción no se puede deshacer.`)) return;
         try {
           for (const nombre of nombres) {
-            const m = estado.medios.find((x) => x.nombre === nombre);
-            if (local()) {
-              await apiLocal(datos.backend, 'deleteFile', { path: `${CARPETA}/${nombre}`, options: { commitMessage: mensaje('borrar', nombre) } });
-            } else {
-              await apiGitHub(datos.usuario.token, `/repos/${datos.backend.repo}/contents/${CARPETA}/${encodeURIComponent(nombre)}`, {
-                method: 'DELETE',
-                body: JSON.stringify({ message: mensaje('borrar', nombre), sha: m.sha, branch: datos.backend.branch }),
-              });
-            }
+            await borrarArchivo(`${CARPETA}/${nombre}`, mensaje('borrar', nombre));
             estado.medios = estado.medios.filter((x) => x.nombre !== nombre);
             estado.seleccion.delete(nombre);
           }
@@ -327,7 +302,7 @@
           $('#contenido').hidden = false;
           pintar();
         } catch (error) {
-          avisar(error.message === 'sesion' ? 'La sesión expiró. <a href="/admin/index.html">Vuelve a iniciar sesión</a>.' : `No se pudieron cargar las imágenes (${esc(error.message)}).`);
+          if (error.message !== 'sesion') avisar(`No se pudieron cargar las imágenes (${esc(error.message)}).`);
         }
       })();
     </script>

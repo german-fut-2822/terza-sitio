@@ -7,33 +7,43 @@ El blog se administra en **/admin** (por ejemplo https://terza-sitio.vercel.app/
 - El esquema que deben cumplir las notas está en `src/content.config.ts`. Si una nota no lo cumple, el sitio no compila.
 - La configuración del panel está en `public/admin/config.yml`.
 
-Al guardar, el panel hace un commit en GitHub (rama `main`) y Vercel vuelve a publicar el sitio solo; tarda un par de minutos.
+Se entra con **correo y contraseña** en `/admin/login.html` (cualquier página del panel manda ahí si no hay sesión). Los editores no necesitan cuenta de GitHub: el panel lee y guarda con la API del sitio (`/api/cms`), que en línea hace un commit en GitHub (rama `main`) con una llave del sitio, firmado con el nombre de quien guardó. Vercel vuelve a publicar el sitio solo; tarda un par de minutos.
+
+Piezas:
+- `src/lib/admin/sesion.ts`: usuarios y sesión (cookie firmada que dura 12 horas).
+- `src/lib/admin/almacen.ts`: dónde se lee y se guarda (GitHub en línea; la carpeta en la computadora). Solo puede tocar las notas, sus imágenes y las categorías.
+- `src/pages/api/sesion.ts` (entrar y salir), `src/pages/api/cms.ts` (el protocolo de Decap) y `src/pages/api/archivo.ts` (imágenes para el panel).
 
 ## Activarlo en Vercel (una sola vez)
 
-1. **Crear la app de inicio de sesión en GitHub.** Hazlo desde la cuenta dueña del repo, en GitHub → Settings → Developer settings → OAuth Apps → *New OAuth App*:
-   - Application name: `Terza – Administrador del blog`
-   - Homepage URL: `https://terza-sitio.vercel.app`
-   - Authorization callback URL: `https://terza-sitio.vercel.app/api/callback`
+1. **Crear la llave de GitHub.** Desde la cuenta dueña del repo: GitHub → Settings → Developer settings → Personal access tokens → *Fine-grained tokens* → *Generate new token*:
+   - Repository access: solo `german-fut-2822/terza-sitio`.
+   - Permissions → Repository permissions → **Contents: Read and write**.
+   - Ponle una fecha de vencimiento y anótala: cuando venza, el panel dejará de guardar hasta poner una nueva.
+2. **Crear los usuarios** en la computadora, uno por persona (pide la contraseña, de mínimo 10 caracteres):
 
-   Copia el **Client ID** y genera un **Client secret**.
-2. **Agregar las variables en Vercel.** En Project → Settings → Environment Variables, en Production, agrega `GITHUB_CLIENT_ID` y `GITHUB_CLIENT_SECRET`. Después vuelve a desplegar el sitio.
-3. **Dar acceso a los editores.** Quien vaya a editar necesita una cuenta de GitHub con permiso de escritura en `german-fut-2822/terza-sitio`, desde Settings → Collaborators.
+   ```bash
+   npm run usuario-admin -- correo@terza.com "Nombre Apellido"
+   ```
+
+   Lo guarda en `.env` y al final muestra el valor de `ADMIN_USUARIOS` con todos los usuarios para copiarlo en Vercel. Para cambiar una contraseña se corre igual con el mismo correo. Para quitar a alguien, se borra su entrada del JSON.
+3. **Agregar las variables en Vercel.** En Project → Settings → Environment Variables (Production):
+   - `GITHUB_TOKEN`: la llave del paso 1.
+   - `ADMIN_USUARIOS`: el valor que mostró el paso 2.
+   - `ADMIN_SECRETO`: un texto largo al azar (por ejemplo, el que quedó en `.env`). Si se cambia, se cierran todas las sesiones.
+   - Opcionales: `GITHUB_REPO` (por omisión `german-fut-2822/terza-sitio`) y `GITHUB_BRANCH` (por omisión `main`).
+
+   Después vuelve a desplegar el sitio.
 4. **Subir el blog a `main`.** El panel lee y guarda las notas en `main`. Por eso la rama con el blog tiene que estar unida a `main` antes de usarlo en línea.
 
-### Al cambiar de dominio (por ejemplo, a terza.com)
-
-- En `public/admin/config.yml`, cambia `base_url` y `site_url`.
-- En la app de GitHub, actualiza Homepage URL y Authorization callback URL.
-
-## Probarlo en la computadora (sin GitHub)
+## Probarlo en la computadora
 
 ```bash
-npm run dev      # sitio en http://localhost:4321
-npm run admin    # servidor local de Decap en el puerto 8081
+npm run usuario-admin -- tu@correo.com "Tu nombre"   # una vez, para tener usuario en .env
+npm run dev                                          # sitio en http://localhost:4321
 ```
 
-Abre http://localhost:4321/admin y pulsa **Iniciar sesión**. Los cambios se guardan directamente en los archivos de la carpeta, sin commit; se suben con git como cualquier otro cambio.
+Abre http://localhost:4321/admin y entra con ese correo. Sin `GITHUB_TOKEN` en `.env`, los cambios se guardan directo en los archivos de la carpeta, sin commit; se suben con git como cualquier otro cambio. (Si pones `GITHUB_TOKEN` en `.env`, la computadora también guarda en GitHub).
 
 ## Cómo se usa
 
@@ -43,7 +53,7 @@ Abre http://localhost:4321/admin y pulsa **Iniciar sesión**. Los cambios se gua
   - buscador y orden por título o fecha;
   - páginas de 20 notas.
 
-  Al entrar a "Notas del blog" o al regresar del editor, el panel te lleva ahí con los mismos filtros. La tabla lee las notas con la sesión del panel: de GitHub, o del servidor local si corre `npm run admin`.
+  Al entrar a "Notas del blog" o al regresar del editor, el panel te lleva ahí con los mismos filtros. La tabla lee las notas con la API del panel.
 - **Borrar nota:** el botón del bote de basura de cada fila borra el archivo de la nota (en línea, con un commit). Pide confirmación; su foto se queda en Medios como *Sin usar*.
 - **Nueva nota:** botón *+ Nota*. La dirección de la nota sale del título (sin acentos); una vez publicada no conviene cambiarla.
 - **Borrador:** como en WordPress, se elige en el menú del botón *Publicar*:
@@ -68,7 +78,7 @@ Abre http://localhost:4321/admin y pulsa **Iniciar sesión**. Los cambios se gua
   - **Borrar:** está en las acciones de cada fila y en la ventana de editar. Si la categoría tiene notas, se quita de ellas en el mismo guardado; las notas no se borran.
   - La tabla muestra cuántas notas tiene cada categoría, con filtros (con notas, sin notas), buscador y orden.
   - La *Página de la línea* ("Conoce nuestra línea" en las notas) no se edita desde el panel; se cambia en `src/data/blog-categorias.json`.
-- **Diseño:** los listados (Notas, Categorías y Medios) siguen la plantilla UBold con el verde de Terza: barra superior oscura (logo, botón para ocultar el menú, buscador de notas y el usuario con *Cerrar sesión*), menú lateral claro, título con ruta y cada listado en una tarjeta con barra de filtros, tabla con foto, insignias de estado, botones redondos de acción (ver, editar, borrar) y paginación numerada. En celular el menú se abre desde la barra de arriba. El editor de Decap toma los mismos colores con los estilos de `public/admin/index.html`.
+- **Diseño:** los listados (Notas, Categorías y Medios) siguen la plantilla UBold con el verde de Terza: barra superior verde (logo, botón para ocultar el menú, buscador de notas y el usuario de la sesión con *Cerrar sesión*), menú lateral claro, título con ruta y cada listado en una tarjeta con barra de filtros, tabla con foto, insignias de estado, botones redondos de acción (ver, editar, borrar) y paginación numerada. En celular el menú se abre desde la barra de arriba. El editor de Decap toma los mismos colores con los estilos de `public/admin/index.html`.
 - Los listados comparten estilos (`public/admin/listado.css`) y el menú lateral, la lectura y el guardado de datos (`public/admin/comun.js`).
 
 ## Traer notas de terza.com

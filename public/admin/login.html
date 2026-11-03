@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Entrar | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/admin/listado.css" />
+    <style>
+      /* Pantalla de entrada al estilo de UBold: tarjeta centrada con el logo en la franja verde */
+      body.entrar { display: grid; place-items: center; grid-template: none; min-height: 100vh; padding: 24px 16px; }
+      .entrar-tarjeta { grid-area: auto; padding: 0; width: min(420px, 100%); overflow: hidden; border-radius: var(--radio); background: #fff; box-shadow: var(--sombra); }
+      .entrar-cab { display: grid; place-items: center; padding: 32px 24px; background: var(--teal); }
+      .entrar-cab img { height: 40px; filter: brightness(0) invert(1); }
+      .entrar-cuerpo { padding: 32px; }
+      .entrar-cuerpo h1 { font-size: 20px; text-align: center; }
+      .entrar-cuerpo > p { margin: 8px 0 24px; text-align: center; font-size: 14px; }
+      .entrar-cuerpo label { display: block; margin-bottom: 8px; color: var(--ink); font-weight: 600; }
+      .entrar-cuerpo input { width: 100%; height: 46px; margin-bottom: 18px; padding: 0 14px; border: 1px solid var(--input); border-radius: var(--radio); background: #fff; color: var(--ink); }
+      .campo-clave { position: relative; }
+      .campo-clave input { padding-right: 48px; }
+      .campo-clave button { position: absolute; right: 4px; top: 3px; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: var(--radio); background: none; color: var(--muted); cursor: pointer; }
+      .campo-clave button:hover { color: var(--teal); }
+      .entrar-cuerpo .btn { width: 100%; margin-top: 6px; }
+      .entrar-aviso { margin: 0 0 20px; padding: 12px 14px; border-radius: var(--radio); font-size: 14px; }
+      .entrar-aviso.error { background: #fdeef0; color: var(--danger); }
+      .entrar-aviso.listo { background: rgb(26 188 156 / 0.15); color: #13967c; }
+      .entrar-pie { margin-top: 20px; text-align: center; font-size: 14px; }
+    </style>
+  </head>
+  <body class="entrar">
+    <main class="entrar-tarjeta">
+      <div class="entrar-cab"><img src="/admin/terza-logo.webp" alt="Terza" /></div>
+      <div class="entrar-cuerpo">
+        <h1>Administrador del blog</h1>
+        <p>Escribe tu correo y contraseña para entrar.</p>
+        <p class="entrar-aviso error" id="error" role="alert" hidden>El correo o la contraseña no son correctos.</p>
+        <p class="entrar-aviso listo" id="salio" role="status" hidden>Cerraste sesión.</p>
+        <!-- POST normal al servidor: funciona aunque la página no haya terminado de cargar su JavaScript -->
+        <form method="post" action="/api/sesion">
+          <input type="hidden" name="volver" id="volver" />
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" autocomplete="username" required autofocus />
+          <label for="clave">Contraseña</label>
+          <div class="campo-clave">
+            <input id="clave" name="clave" type="password" autocomplete="current-password" required />
+            <button type="button" id="ver-clave" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <button class="btn btn-primario" type="submit">Entrar</button>
+        </form>
+        <p class="entrar-pie"><a href="/">← Regresar al sitio</a></p>
+      </div>
+    </main>
+
+    <script>
+      // Avisos (?error=1 o ?salio=1), página a la que se regresa al entrar (?volver=) y mostrar u ocultar la contraseña
+      const p = new URLSearchParams(location.search);
+      document.getElementById('error').hidden = !p.has('error');
+      document.getElementById('salio').hidden = !p.has('salio');
+      document.getElementById('volver').value = p.get('volver') ?? '';
+      // El correo se conserva si la contraseña no fue correcta (en esta pestaña, nunca en la dirección)
+      const correo = document.getElementById('correo');
+      try {
+        if (p.has('error')) correo.value = sessionStorage.getItem('admin-correo') ?? '';
+        if (correo.value) document.getElementById('clave').focus();
+        document.querySelector('form').addEventListener('submit', () => sessionStorage.setItem('admin-correo', correo.value));
+      } catch { /* sin almacenamiento */ }
+      document.getElementById('ver-clave').addEventListener('click', (e) => {
+        const clave = document.getElementById('clave');
+        const ver = clave.type === 'password';
+        clave.type = ver ? 'text' : 'password';
+        e.currentTarget.setAttribute('aria-pressed', String(ver));
+        e.currentTarget.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      });
+      // Si ya hay sesión, directo al panel
+      fetch('/api/sesion').then((r) => r.ok && location.replace(/^\/admin\/[^/]/.test(p.get('volver') ?? '') ? p.get('volver') : '/admin/notas.html'));
+    </script>
+  </body>
+</html>

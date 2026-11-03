@@ -1,5 +1,6 @@
 // Código compartido del administrador: los listados (notas.html, categorias.html y medios.html) e index.html.
-// Lee las notas y las categorías con la misma sesión del panel (Decap CMS): del servidor local (npm run admin) o de GitHub.
+// Todo se lee y se guarda con la API del sitio (/api/cms, src/pages/api/cms.ts), que pide la sesión de /admin/login.html
+// y guarda en GitHub (en línea) o en la carpeta (en la computadora).
 // Necesita js-yaml (jsyaml) cargado antes.
 
 const $ = (s) => document.querySelector(s);
@@ -25,66 +26,19 @@ function avisar(html) {
   $('#aviso').hidden = false;
 }
 
-// Repo y rama salen de config.yml para no repetirlos aquí
-async function leerConfig() {
-  const texto = await fetch('/admin/config.yml', { cache: 'no-cache' }).then((r) => r.text());
-  return jsyaml.load(texto).backend;
-}
+// Sin sesión: a la pantalla de entrada, para regresar aquí después
+const irAlLogin = () => location.replace(`/admin/login.html?volver=${encodeURIComponent(location.pathname + location.search + location.hash)}`);
 
-// Llamada al servidor local de Decap (npx decap-server)
-const apiLocal = (backend, action, params) =>
-  fetch('http://localhost:8081/api/v1', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action, params: { branch: backend.branch, ...params } }),
-  }).then((r) => {
-    if (!r.ok) return r.json().catch(() => ({})).then((d) => { throw new Error(d.error ?? 'El servidor local no respondió'); });
-    return r.json();
-  });
-
-// Llamada a la API REST de GitHub con el token de la sesión del panel
-async function apiGitHub(token, ruta, opciones = {}) {
-  const r = await fetch(`https://api.github.com${ruta}`, {
-    ...opciones,
-    headers: { Authorization: `bearer ${token}`, Accept: 'application/vnd.github+json', ...(opciones.body ? { 'Content-Type': 'application/json' } : {}) },
-  });
-  if (r.status === 401) throw new Error('sesion');
-  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).message ?? `GitHub respondió ${r.status}`);
-  return r.status === 204 ? null : r.json();
-}
-
-// Notas desde el servidor local de Decap
-async function desdeLocal(backend) {
-  const api = (action, params) => apiLocal(backend, action, params);
-  const [archivos, cats] = await Promise.all([
-    api('entriesByFolder', { folder: RUTA_NOTAS, extension: 'md', depth: 1 }),
-    api('getEntry', { path: RUTA_CATEGORIAS }),
-  ]);
-  return { archivos: archivos.map((a) => ({ nombre: a.file.path.split('/').pop(), texto: a.data })), categorias: cats.data };
-}
-
-// Notas desde GitHub en una sola consulta (GraphQL) con el token de la sesión del panel
-async function desdeGitHub(backend, token) {
-  const [owner, name] = backend.repo.split('/');
-  const query = `query($owner: String!, $name: String!, $notas: String!, $cats: String!) {
-    repository(owner: $owner, name: $name) {
-      notas: object(expression: $notas) { ... on Tree { entries { name object { ... on Blob { text } } } } }
-      cats: object(expression: $cats) { ... on Blob { text } }
-    }
-  }`;
-  const r = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: { Authorization: `bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, variables: { owner, name, notas: `${backend.branch}:${RUTA_NOTAS}`, cats: `${backend.branch}:${RUTA_CATEGORIAS}` } }),
-  });
-  if (r.status === 401) throw new Error('sesion');
-  const { data, errors } = await r.json();
-  if (errors?.length) throw new Error(errors[0].message);
-  const entradas = data.repository.notas?.entries ?? [];
-  return {
-    archivos: entradas.filter((e) => e.name.endsWith('.md')).map((e) => ({ nombre: e.name, texto: e.object.text })),
-    categorias: data.repository.cats?.text ?? '{"categorias":[]}',
-  };
+// Llamada a la API del panel
+async function api(action, params = {}) {
+  const r = await fetch('/api/cms', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, params }) });
+  if (r.status === 401) {
+    irAlLogin();
+    throw new Error('sesion');
+  }
+  const datos = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(datos.error ?? `El servidor respondió ${r.status}`);
+  return datos;
 }
 
 // Encabezado de una nota (Markdown) → datos para el listado
@@ -113,24 +67,21 @@ function convertirNota({ nombre, texto }) {
   };
 }
 
-// Revisa la sesión del panel y carga notas y categorías; si algo falla muestra el aviso y regresa null
+// Carga notas y categorías (y si se guarda en la carpeta local o en GitHub); si algo falla muestra el aviso y regresa null
 async function cargarDatos() {
-  let usuario = null;
-  try { usuario = JSON.parse(localStorage.getItem('decap-cms-user')); } catch { /* sin sesión */ }
-  if (!usuario) {
-    avisar('Para ver este listado inicia sesión en el <a href="/admin/index.html">administrador</a>.');
-    return null;
-  }
   try {
-    const backend = await leerConfig();
-    const datos = usuario.backendName === 'proxy' ? await desdeLocal(backend) : await desdeGitHub(backend, usuario.token);
-    return { notas: datos.archivos.map(convertirNota), categorias: JSON.parse(datos.categorias).categorias ?? [], usuario, backend };
+    const [info, archivos, cats] = await Promise.all([
+      api('info'),
+      api('entriesByFolder', { folder: RUTA_NOTAS, extension: 'md', depth: 1 }),
+      api('getEntry', { path: RUTA_CATEGORIAS }),
+    ]);
+    return {
+      local: info.type === 'local',
+      notas: archivos.map((a) => convertirNota({ nombre: a.file.path.split('/').pop(), texto: a.data })),
+      categorias: JSON.parse(cats.data ?? '{"categorias":[]}').categorias ?? [],
+    };
   } catch (error) {
-    avisar(
-      error.message === 'sesion'
-        ? 'La sesión expiró. <a href="/admin/index.html">Vuelve a iniciar sesión</a>.'
-        : `No se pudieron cargar los datos (${esc(error.message)}). Si estás en tu computadora, revisa que esté corriendo <code>npm run admin</code>.`,
-    );
+    if (error.message !== 'sesion') avisar(`No se pudieron cargar los datos (${esc(error.message)}).`);
     return null;
   }
 }
@@ -152,46 +103,19 @@ function htmlPaginas(total, pagina, paginas, porPagina = 20, nombre = ['elemento
     </div>`;
 }
 
-// Miniatura de una imagen de src/assets/blog: en local la sirve el servidor de desarrollo; en línea, GitHub (repo público)
-const urlFotoBlog = ({ usuario, backend }, archivo) =>
-  !archivo ? '' : usuario.backendName === 'proxy'
-    ? `/src/assets/blog/${encodeURIComponent(archivo)}`
-    : `https://raw.githubusercontent.com/${backend.repo}/${backend.branch}/src/assets/blog/${encodeURIComponent(archivo)}`;
+// Imagen de src/assets/blog para mostrarla en el panel (la entrega la API, con la sesión)
+const urlFotoBlog = (archivo) => (archivo ? `/api/archivo?ruta=${encodeURIComponent(`src/assets/blog/${archivo}`)}` : '');
 
-// Guarda varios archivos de texto juntos ([{ ruta, texto }]): en la carpeta con el servidor local o en un solo commit de GitHub
-async function guardarArchivos({ usuario, backend }, archivos, mensaje) {
-  if (usuario.backendName === 'proxy') {
-    await apiLocal(backend, 'persistEntry', {
-      dataFiles: archivos.map((a) => ({ slug: a.ruta.split('/').pop(), path: a.ruta, raw: a.texto })),
-      assets: [],
-      options: { commitMessage: mensaje, useWorkflow: false, status: 'draft' }, // el servidor local exige status aunque no lo use
-    });
-    return;
-  }
-  const repo = `/repos/${backend.repo}`;
-  const rama = await apiGitHub(usuario.token, `${repo}/git/ref/heads/${backend.branch}`);
-  const padre = await apiGitHub(usuario.token, `${repo}/git/commits/${rama.object.sha}`);
-  const arbol = await apiGitHub(usuario.token, `${repo}/git/trees`, {
-    method: 'POST',
-    body: JSON.stringify({ base_tree: padre.tree.sha, tree: archivos.map((a) => ({ path: a.ruta, mode: '100644', type: 'blob', content: a.texto })) }),
+// Guarda varios archivos de texto juntos ([{ ruta, texto }]): en línea, en un solo commit
+const guardarArchivos = (archivos, mensaje) =>
+  api('persistEntry', {
+    dataFiles: archivos.map((a) => ({ slug: a.ruta.split('/').pop(), path: a.ruta, raw: a.texto })),
+    assets: [],
+    options: { commitMessage: mensaje },
   });
-  const commit = await apiGitHub(usuario.token, `${repo}/git/commits`, {
-    method: 'POST',
-    body: JSON.stringify({ message: mensaje, tree: arbol.sha, parents: [padre.sha] }),
-  });
-  await apiGitHub(usuario.token, `${repo}/git/refs/heads/${backend.branch}`, { method: 'PATCH', body: JSON.stringify({ sha: commit.sha }) });
-}
 
-// Borra un archivo: en la carpeta con el servidor local o con un commit en GitHub (la API pide su sha)
-async function borrarArchivo({ usuario, backend }, ruta, mensaje) {
-  if (usuario.backendName === 'proxy') {
-    await apiLocal(backend, 'deleteFile', { path: ruta, options: { commitMessage: mensaje } });
-    return;
-  }
-  const url = `/repos/${backend.repo}/contents/${ruta.split('/').map(encodeURIComponent).join('/')}`;
-  const { sha } = await apiGitHub(usuario.token, `${url}?ref=${backend.branch}`);
-  await apiGitHub(usuario.token, url, { method: 'DELETE', body: JSON.stringify({ message: mensaje, sha, branch: backend.branch }) });
-}
+// Borra un archivo (en línea, con un commit)
+const borrarArchivo = (ruta, mensaje) => api('deleteFile', { path: ruta, options: { commitMessage: mensaje } });
 
 // Lista de categorías → blog-categorias.json con una categoría por renglón, como está escrito a mano
 const textoCategorias = (categorias) =>
@@ -216,7 +140,7 @@ function cambiarCategoriaEnNota(texto, viejo, nuevo) {
   return resultado === texto ? null : resultado;
 }
 
-// Marco del panel, al estilo de UBold: barra superior oscura (logo, botón de menú, buscador de notas y usuario) y menú
+// Marco del panel, al estilo de UBold: barra superior verde (logo, botón de menú, buscador de notas y usuario) y menú
 // lateral claro con secciones. En celular el menú lateral se abre desde el botón de menú.
 const ICONOS = {
   notas: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',
@@ -306,32 +230,20 @@ async function pintarMenu() {
     document.body.classList.remove('menu-abierto');
     marcar();
   });
-  // Igual que "Cerrar sesión" del panel: borra la sesión guardada y regresa a la pantalla de inicio de sesión
-  caja.querySelector('[data-salir]').addEventListener('click', () => {
-    localStorage.removeItem('decap-cms-user');
-    location.href = '/admin/index.html';
-  });
+  caja.querySelector('[data-salir]').addEventListener('click', cerrarSesion);
 
-  // Usuario de la sesión: en GitHub, su foto, nombre y usuario; en local, "Modo local"
-  let usuario = null;
-  try { usuario = JSON.parse(localStorage.getItem('decap-cms-user')); } catch { /* sin sesión */ }
-  let nombre = 'Sin sesión';
-  let detalle = 'Inicia sesión en el administrador';
-  if (usuario?.backendName === 'proxy') {
-    nombre = 'Modo local';
-    detalle = 'Guardando en esta computadora';
-  } else if (usuario) {
-    try {
-      const perfil = await apiGitHub(usuario.token, '/user');
-      nombre = perfil.name || perfil.login;
-      detalle = `GitHub: @${perfil.login}`;
-      if (perfil.avatar_url) caja.querySelector('.avatar').innerHTML = `<img src="${esc(perfil.avatar_url)}" alt="" />`;
-    } catch {
-      nombre = 'GitHub';
-      detalle = 'Sesión de GitHub';
-    }
-  }
-  caja.querySelector('.nombre').textContent = nombre;
-  caja.querySelector('.detalle').textContent = detalle;
+  // Usuario de la sesión: nombre y correo (sin sesión, a la pantalla de entrada)
+  const r = await fetch('/api/sesion');
+  if (!r.ok) return irAlLogin();
+  const usuario = await r.json();
+  caja.querySelector('.nombre').textContent = usuario.nombre;
+  caja.querySelector('.detalle').textContent = usuario.correo;
+}
+
+// Cerrar sesión: borra la cookie de la sesión y la del editor de Decap, y regresa a la pantalla de entrada
+async function cerrarSesion() {
+  await fetch('/api/sesion', { method: 'DELETE' }).catch(() => {});
+  localStorage.removeItem('decap-cms-user');
+  location.href = '/admin/login.html?salio=1';
 }
 document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', pintarMenu) : pintarMenu();
