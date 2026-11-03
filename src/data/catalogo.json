@@ -125,7 +125,7 @@
     "color"
    ],
    "intro": "Deck, lambrín de exterior y fachadas que resisten sol y lluvia.",
-   "total": 8,
+   "total": 18,
    "portada": "t15-a2500-awc001"
   },
   {
@@ -147,7 +147,7 @@
     "tipo"
    ],
    "intro": "Molduras, zoclos, adhesivos y todo lo necesario para instalar y mantener tus superficies.",
-   "total": 29,
+   "total": 25,
    "portada": "molduras-zoclo-58"
   }
  ],
@@ -40279,17 +40279,26 @@
    "sku": "T15-A2500-AWC001",
    "slug": "t15-a2500-awc001",
    "categoria": "pisos-deck",
-   "familia": "Lambrin Deck",
+   "familia": "Lambrin Exterior",
    "variante": "Walnut",
    "nuevo": false,
    "descripcion": "",
    "fotos": [
-    "t15-a2500-awc001"
+    "t15-a2500-awc001",
+    "t15-a2500-awc001-2"
    ],
    "specs": [
     [
+     "Nombre",
+     "PANEL DECK WALNUT CORRUGADO"
+    ],
+    [
      "Estilo",
-     "LAMBRIN DECK"
+     "LAMBRIN EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
     ],
     [
      "Color",
@@ -40310,6 +40319,14 @@
     [
      "Espesor",
      "26 mm"
+    ],
+    [
+     "Piezas por caja",
+     "4"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
     ],
     [
      "SKU",
@@ -40317,7 +40334,7 @@
     ]
    ],
    "filtros": {
-    "estilo": "Lambrin Deck",
+    "estilo": "Lambrin Exterior",
     "color": "Walnut"
    }
   },
@@ -40325,20 +40342,26 @@
    "sku": "T15-A2500-AWC002",
    "slug": "t15-a2500-awc002",
    "categoria": "pisos-deck",
-   "familia": "Lambrin Deck",
+   "familia": "Lambrin Exterior",
    "variante": "Teak",
    "nuevo": false,
    "descripcion": "",
    "fotos": [
     "t15-a2500-awc002",
-    "t15-a2500-awc002-2",
-    "t15-a2500-awc002-3",
-    "t15-a2500-awc002-4"
+    "t15-a2500-awc002-2"
    ],
    "specs": [
     [
+     "Nombre",
+     "PANEL DECK TEAK CORRUGADO"
+    ],
+    [
      "Estilo",
-     "LAMBRIN DECK"
+     "LAMBRIN EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
     ],
     [
      "Color",
@@ -40361,59 +40384,21 @@
      "26 mm"
     ],
     [
+     "Piezas por caja",
+     "4"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
      "SKU",
      "T15-A2500-AWC002"
     ]
    ],
    "filtros": {
-    "estilo": "Lambrin Deck",
+    "estilo": "Lambrin Exterior",
     "color": "Teak"
-   }
-  },
-  {
-   "sku": "T15-AVI01-AWCO01",
-   "slug": "t15-avi01-awco01",
-   "categoria": "pisos-deck",
-   "familia": "Deck",
-   "variante": "Walnut",
-   "nuevo": false,
-   "descripcion": "",
-   "fotos": [
-    "t15-avi01-awco01"
-   ],
-   "specs": [
-    [
-     "Estilo",
-     "DECK"
-    ],
-    [
-     "Color",
-     "WALNUT"
-    ],
-    [
-     "Tono",
-     "Medio"
-    ],
-    [
-     "Ancho",
-     "13.8 cm"
-    ],
-    [
-     "Largo",
-     "220 cm"
-    ],
-    [
-     "Espesor",
-     "23 mm"
-    ],
-    [
-     "SKU",
-     "T15-AVI01-AWCO01"
-    ]
-   ],
-   "filtros": {
-    "estilo": "Deck",
-    "color": "Walnut"
    }
   },
   {
@@ -40421,24 +40406,31 @@
    "slug": "t15-avi01-awco02",
    "categoria": "pisos-deck",
    "familia": "Deck",
-   "variante": "Teak",
+   "variante": "Walnut/Teak",
    "nuevo": false,
    "descripcion": "",
    "fotos": [
-    "t15-avi01-awco02"
+    "t15-avi01-awco02",
+    "t15-avi01-awco02-2",
+    "t15-avi01-awco02-3",
+    "t15-avi01-awco02-4"
    ],
    "specs": [
+    [
+     "Nombre",
+     "DECK BICOLOR WALNUT/TEAK"
+    ],
     [
      "Estilo",
      "DECK"
     ],
     [
-     "Color",
-     "TEAK"
+     "Línea",
+     "TERZA DECK"
     ],
     [
-     "Tono",
-     "Medio"
+     "Color",
+     "WALNUT/TEAK"
     ],
     [
      "Ancho",
@@ -40451,6 +40443,14 @@
     [
      "Espesor",
      "23 mm"
+    ],
+    [
+     "Piezas por caja",
+     "4"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
     ],
     [
      "SKU",
@@ -40459,6 +40459,238 @@
    ],
    "filtros": {
     "estilo": "Deck",
+    "color": "Walnut/Teak"
+   }
+  },
+  {
+   "sku": "T15-BMWCO-AWC001",
+   "slug": "t15-bmwco-awc001",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Walnut",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwco-awc001"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK WALNUT 2900 x 100 x 53"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "WALNUT"
+    ],
+    [
+     "Ancho",
+     "10 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "53 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWCO-AWC001"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Walnut"
+   }
+  },
+  {
+   "sku": "T15-BMWCO-AWC002",
+   "slug": "t15-bmwco-awc002",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Teak",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwco-awc002"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK TEAK 2900 x 100 x 53"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "TEAK"
+    ],
+    [
+     "Ancho",
+     "10 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "53 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWCO-AWC002"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Teak"
+   }
+  },
+  {
+   "sku": "T15-BMWC2-AWC001",
+   "slug": "t15-bmwc2-awc001",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Walnut",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwc2-awc001"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK WALNUT 60X42X2900"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "WALNUT"
+    ],
+    [
+     "Ancho",
+     "6 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "42 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWC2-AWC001"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Walnut"
+   }
+  },
+  {
+   "sku": "T15-BMWC2-AWC002",
+   "slug": "t15-bmwc2-awc002",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Teak",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwc2-awc002"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK 60X42X2900 TEAK"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "TEAK"
+    ],
+    [
+     "Ancho",
+     "6 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "42 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWC2-AWC002"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
     "color": "Teak"
    }
   },
@@ -40467,20 +40699,31 @@
    "slug": "t15-avi01-awco04",
    "categoria": "pisos-deck",
    "familia": "Deck",
-   "variante": "Grey",
+   "variante": "Beige/Grey",
    "nuevo": false,
    "descripcion": "",
    "fotos": [
-    "t15-avi01-awco04"
+    "t15-avi01-awco04",
+    "t15-avi01-awco04-2",
+    "t15-avi01-awco04-3",
+    "t15-avi01-awco04-4"
    ],
    "specs": [
+    [
+     "Nombre",
+     "DECK BICOLOR BEIGE/GREY"
+    ],
     [
      "Estilo",
      "DECK"
     ],
     [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
      "Color",
-     "GREY"
+     "BEIGE/GREY"
     ],
     [
      "Ancho",
@@ -40495,33 +40738,47 @@
      "23 mm"
     ],
     [
+     "Piezas por caja",
+     "4"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
      "SKU",
      "T15-AVI01-AWCO04"
     ]
    ],
    "filtros": {
     "estilo": "Deck",
-    "color": "Grey"
+    "color": "Beige/Grey"
    }
   },
   {
    "sku": "T15-A2500-AWC003",
    "slug": "t15-a2500-awc003",
    "categoria": "pisos-deck",
-   "familia": "Lambrin Deck",
+   "familia": "Lambrin Exterior",
    "variante": "Beige",
    "nuevo": false,
    "descripcion": "",
    "fotos": [
     "t15-a2500-awc003",
-    "t15-a2500-awc003-2",
-    "t15-a2500-awc003-3",
-    "t15-a2500-awc003-4"
+    "t15-a2500-awc003-2"
    ],
    "specs": [
     [
+     "Nombre",
+     "PANEL DECK BEIGE CORRUGADO"
+    ],
+    [
      "Estilo",
-     "LAMBRIN DECK"
+     "LAMBRIN EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
     ],
     [
      "Color",
@@ -40540,12 +40797,20 @@
      "26 mm"
     ],
     [
+     "Piezas por caja",
+     "4"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
      "SKU",
      "T15-A2500-AWC003"
     ]
    ],
    "filtros": {
-    "estilo": "Lambrin Deck",
+    "estilo": "Lambrin Exterior",
     "color": "Beige"
    }
   },
@@ -40558,12 +40823,21 @@
    "nuevo": false,
    "descripcion": "",
    "fotos": [
-    "t15-aw400-awc001"
+    "t15-aw400-awc001",
+    "t15-aw400-awc001-2"
    ],
    "specs": [
     [
+     "Nombre",
+     "CLADDING DECK WALNUT"
+    ],
+    [
      "Estilo",
      "FACHADA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
     ],
     [
      "Color",
@@ -40584,6 +40858,14 @@
     [
      "Espesor",
      "21 mm"
+    ],
+    [
+     "Piezas por caja",
+     "6"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
     ],
     [
      "SKU",
@@ -40604,12 +40886,21 @@
    "nuevo": false,
    "descripcion": "",
    "fotos": [
-    "t15-aw400-awc002"
+    "t15-aw400-awc002",
+    "t15-aw400-awc002-2"
    ],
    "specs": [
     [
+     "Nombre",
+     "CLADDING DECK TEAK"
+    ],
+    [
      "Estilo",
      "FACHADA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
     ],
     [
      "Color",
@@ -40632,6 +40923,14 @@
      "21 mm"
     ],
     [
+     "Piezas por caja",
+     "6"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
      "SKU",
      "T15-AW400-AWC002"
     ]
@@ -40639,6 +40938,415 @@
    "filtros": {
     "estilo": "Fachada Exterior",
     "color": "Teak"
+   }
+  },
+  {
+   "sku": "T15-A2500-AWC004",
+   "slug": "t15-a2500-awc004",
+   "categoria": "pisos-deck",
+   "familia": "Lambrin Exterior",
+   "variante": "Grey",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-a2500-awc004",
+    "t15-a2500-awc004-2"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "PANEL DECK GREY CORRUGADO"
+    ],
+    [
+     "Estilo",
+     "LAMBRIN EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "GREY"
+    ],
+    [
+     "Ancho",
+     "21.9 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "26 mm"
+    ],
+    [
+     "Piezas por caja",
+     "4"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-A2500-AWC004"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Lambrin Exterior",
+    "color": "Grey"
+   }
+  },
+  {
+   "sku": "T15-AW400-AWC003",
+   "slug": "t15-aw400-awc003",
+   "categoria": "pisos-deck",
+   "familia": "Fachada Exterior",
+   "variante": "Beige",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-aw400-awc003",
+    "t15-aw400-awc003-2"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "CLADDING DECK BEIGE"
+    ],
+    [
+     "Estilo",
+     "FACHADA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "BEIGE"
+    ],
+    [
+     "Ancho",
+     "17.0 cm"
+    ],
+    [
+     "Largo",
+     "240 cm"
+    ],
+    [
+     "Espesor",
+     "21 mm"
+    ],
+    [
+     "Piezas por caja",
+     "6"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-AW400-AWC003"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Fachada Exterior",
+    "color": "Beige"
+   }
+  },
+  {
+   "sku": "T15-AW400-AWC004",
+   "slug": "t15-aw400-awc004",
+   "categoria": "pisos-deck",
+   "familia": "Fachada Exterior",
+   "variante": "Grey",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-aw400-awc004",
+    "t15-aw400-awc004-2"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "CLADDING DECK GRAY"
+    ],
+    [
+     "Estilo",
+     "FACHADA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "GREY"
+    ],
+    [
+     "Ancho",
+     "17.0 cm"
+    ],
+    [
+     "Largo",
+     "240 cm"
+    ],
+    [
+     "Espesor",
+     "21 mm"
+    ],
+    [
+     "Piezas por caja",
+     "6"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-AW400-AWC004"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Fachada Exterior",
+    "color": "Grey"
+   }
+  },
+  {
+   "sku": "T15-BMWCO-AWC003",
+   "slug": "t15-bmwco-awc003",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Beige",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwco-awc003"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK BEIGE 2900 x 100 x 53"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "BEIGE"
+    ],
+    [
+     "Ancho",
+     "10 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "53 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWCO-AWC003"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Beige"
+   }
+  },
+  {
+   "sku": "T15-BMWCO-AWC004",
+   "slug": "t15-bmwco-awc004",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Grey",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwco-awc004"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK GREY 2900 x 100 x 53"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "GREY"
+    ],
+    [
+     "Ancho",
+     "10 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "53 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWCO-AWC004"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Grey"
+   }
+  },
+  {
+   "sku": "T15-BMWC2-AWC003",
+   "slug": "t15-bmwc2-awc003",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Beige",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwc2-awc003"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK BEIGE 60X42X2900"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "BEIGE"
+    ],
+    [
+     "Ancho",
+     "6 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "42 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWC2-AWC003"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Beige"
+   }
+  },
+  {
+   "sku": "T15-BMWC2-AWC004",
+   "slug": "t15-bmwc2-awc004",
+   "categoria": "pisos-deck",
+   "familia": "Viga Exterior",
+   "variante": "Grey",
+   "nuevo": false,
+   "descripcion": "",
+   "fotos": [
+    "t15-bmwc2-awc004"
+   ],
+   "specs": [
+    [
+     "Nombre",
+     "VIGA DECK GREY 60X42X2900"
+    ],
+    [
+     "Estilo",
+     "VIGA EXTERIOR"
+    ],
+    [
+     "Línea",
+     "TERZA DECK"
+    ],
+    [
+     "Color",
+     "GREY"
+    ],
+    [
+     "Ancho",
+     "6 cm"
+    ],
+    [
+     "Largo",
+     "290 cm"
+    ],
+    [
+     "Espesor",
+     "42 mm"
+    ],
+    [
+     "Piezas por caja",
+     "1"
+    ],
+    [
+     "Uso",
+     "RESIDENCIAL / EXTERIOR"
+    ],
+    [
+     "SKU",
+     "T15-BMWC2-AWC004"
+    ]
+   ],
+   "filtros": {
+    "estilo": "Viga Exterior",
+    "color": "Grey"
    }
   },
   {
@@ -42204,250 +42912,6 @@
    ],
    "filtros": {
     "tipo": "Accesorios Piso Laminado"
-   }
-  },
-  {
-   "sku": "T15-BMWCO-AWC001",
-   "slug": "t15-bmwco-awc001",
-   "categoria": "accesorios",
-   "familia": "Terza Deck",
-   "variante": "Viga Deck Walnut",
-   "nuevo": false,
-   "descripcion": "",
-   "fotos": [
-    "t15-bmwco-awc001"
-   ],
-   "specs": [
-    [
-     "Nombre",
-     "VIGA DECK WALNUT"
-    ],
-    [
-     "Estilo",
-     "VIGA DECK"
-    ],
-    [
-     "Línea",
-     "TERZA DECK"
-    ],
-    [
-     "Color",
-     "WALNUT"
-    ],
-    [
-     "Clave de color",
-     "AWC001"
-    ],
-    [
-     "Tipo",
-     "Accesorios deck"
-    ],
-    [
-     "Medidas",
-     "2900x100 mm"
-    ],
-    [
-     "Espesor",
-     "53 mm"
-    ],
-    [
-     "Piezas por caja",
-     "1"
-    ],
-    [
-     "Uso",
-     "RESIDENCIAL / EXTERIOR"
-    ],
-    [
-     "SKU",
-     "T15-BMWCO-AWC001"
-    ]
-   ],
-   "filtros": {
-    "tipo": "Accesorios Deck"
-   }
-  },
-  {
-   "sku": "T15-BMWCO-AWC002",
-   "slug": "t15-bmwco-awc002",
-   "categoria": "accesorios",
-   "familia": "Terza Deck",
-   "variante": "Viga Deck Teak",
-   "nuevo": false,
-   "descripcion": "",
-   "fotos": [
-    "t15-bmwco-awc002"
-   ],
-   "specs": [
-    [
-     "Nombre",
-     "VIGA DECK TEAK"
-    ],
-    [
-     "Estilo",
-     "VIGA DECK"
-    ],
-    [
-     "Línea",
-     "TERZA DECK"
-    ],
-    [
-     "Color",
-     "TEAK"
-    ],
-    [
-     "Clave de color",
-     "AWC002"
-    ],
-    [
-     "Tipo",
-     "Accesorios deck"
-    ],
-    [
-     "Medidas",
-     "2900x100 mm"
-    ],
-    [
-     "Espesor",
-     "53 mm"
-    ],
-    [
-     "Piezas por caja",
-     "1"
-    ],
-    [
-     "Uso",
-     "RESIDENCIAL / EXTERIOR"
-    ],
-    [
-     "SKU",
-     "T15-BMWCO-AWC002"
-    ]
-   ],
-   "filtros": {
-    "tipo": "Accesorios Deck"
-   }
-  },
-  {
-   "sku": "T15-BMWC2-AWC001",
-   "slug": "t15-bmwc2-awc001",
-   "categoria": "accesorios",
-   "familia": "Terza Deck",
-   "variante": "Viga Deck Walnut 2",
-   "nuevo": false,
-   "descripcion": "",
-   "fotos": [
-    "t15-bmwc2-awc001"
-   ],
-   "specs": [
-    [
-     "Nombre",
-     "VIGA DECK WALNUT 2"
-    ],
-    [
-     "Estilo",
-     "VIGA DECK"
-    ],
-    [
-     "Línea",
-     "TERZA DECK"
-    ],
-    [
-     "Color",
-     "WALNUT"
-    ],
-    [
-     "Clave de color",
-     "AWC001"
-    ],
-    [
-     "Tipo",
-     "Accesorios deck"
-    ],
-    [
-     "Medidas",
-     "2900x60 mm"
-    ],
-    [
-     "Espesor",
-     "40 mm"
-    ],
-    [
-     "Piezas por caja",
-     "1"
-    ],
-    [
-     "Uso",
-     "RESIDENCIAL / EXTERIOR"
-    ],
-    [
-     "SKU",
-     "T15-BMWC2-AWC001"
-    ]
-   ],
-   "filtros": {
-    "tipo": "Accesorios Deck"
-   }
-  },
-  {
-   "sku": "T15-BMWC2-AWC002",
-   "slug": "t15-bmwc2-awc002",
-   "categoria": "accesorios",
-   "familia": "Terza Deck",
-   "variante": "Viga Deck Teak 2",
-   "nuevo": false,
-   "descripcion": "",
-   "fotos": [
-    "t15-bmwc2-awc002"
-   ],
-   "specs": [
-    [
-     "Nombre",
-     "VIGA DECK TEAK 2"
-    ],
-    [
-     "Estilo",
-     "VIGA DECK"
-    ],
-    [
-     "Línea",
-     "TERZA DECK"
-    ],
-    [
-     "Color",
-     "TEAK"
-    ],
-    [
-     "Clave de color",
-     "AWC002"
-    ],
-    [
-     "Tipo",
-     "Accesorios deck"
-    ],
-    [
-     "Medidas",
-     "2900x60 mm"
-    ],
-    [
-     "Espesor",
-     "40 mm"
-    ],
-    [
-     "Piezas por caja",
-     "1"
-    ],
-    [
-     "Uso",
-     "RESIDENCIAL / EXTERIOR"
-    ],
-    [
-     "SKU",
-     "T15-BMWC2-AWC002"
-    ]
-   ],
-   "filtros": {
-    "tipo": "Accesorios Deck"
    }
   },
   {
