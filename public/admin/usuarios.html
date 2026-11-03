@@ -89,6 +89,7 @@
         </div>
         <div class="modal-pie">
           <button type="button" class="enlace borrar" id="u-borrar" hidden>Borrar usuario</button>
+          <button type="button" class="enlace" id="u-enlace" hidden>Enviar enlace de contraseña</button>
           <button type="button" class="btn" data-cerrar>Cancelar</button>
           <button type="submit" class="btn btn-primario">Guardar</button>
         </div>
@@ -98,7 +99,7 @@
     <script>
       // Usuarios del panel (solo administradores): lista, añadir, editar (nombre, rol y contraseña) y borrar.
       // Todo pasa por /api/usuarios, que guarda los usuarios cifrados.
-      const estado = { usuarios: [], yo: null, texto: '', rol: '', editando: null };
+      const estado = { usuarios: [], yo: null, texto: '', rol: '', editando: null, correoActivo: false };
       const esMismo = (a, b) => a.toLowerCase() === b.toLowerCase();
 
       function mostrarMensaje(texto, error = false) {
@@ -134,7 +135,7 @@
                       </div>
                     </div>
                   </td>
-                  <td><span class="insignia ${u.rol}">${u.rol === 'admin' ? 'Administrador' : 'Editor'}</span>${u.fijo ? '<span class="insignia fijo" title="En la variable ADMIN_USUARIOS de Vercel">Vercel</span>' : ''}</td>
+                  <td><span class="insignia ${u.rol}">${u.rol === 'admin' ? 'Administrador' : 'Editor'}</span>${u.fijo ? '<span class="insignia fijo" title="En la variable ADMIN_USUARIOS de Vercel">Vercel</span>' : ''}${u.pendiente ? '<span class="insignia borrador" style="margin-left:6px" title="Todavía no crea su contraseña con el enlace del correo">Sin contraseña</span>' : ''}</td>
                   <td class="col-acciones">
                     <div class="acciones">
                       ${u.fijo
@@ -169,9 +170,15 @@
         $('#u-rol').value = usuario?.rol ?? 'editor';
         // No te puedes quitar a ti el rol de administrador
         $('#u-rol').disabled = Boolean(usuario && esMismo(usuario.correo, estado.yo.correo));
-        $('#u-clave').required = !usuario;
-        $('#u-clave-etiqueta').textContent = usuario ? 'Nueva contraseña (opcional)' : 'Contraseña';
-        $('#u-clave-ayuda').textContent = usuario ? 'Déjala vacía para no cambiarla. Mínimo 10 caracteres.' : 'Mínimo 10 caracteres. Compártela con la persona por un medio seguro.';
+        // Con servicio de correo, la persona nueva puede crear su contraseña con el enlace de bienvenida
+        $('#u-clave').required = !usuario && !estado.correoActivo;
+        $('#u-enlace').hidden = !usuario;
+        $('#u-clave-etiqueta').textContent = usuario ? 'Nueva contraseña (opcional)' : estado.correoActivo ? 'Contraseña (opcional)' : 'Contraseña';
+        $('#u-clave-ayuda').textContent = usuario
+          ? 'Déjala vacía para no cambiarla. Mínimo 10 caracteres.'
+          : estado.correoActivo
+            ? 'Déjala vacía y le llegará un correo para crear la suya. Si la escribes, mínimo 10 caracteres.'
+            : 'Mínimo 10 caracteres. Compártela con la persona por un medio seguro (le llegará un correo de bienvenida cuando haya servicio de correo).';
         $('#u-borrar').hidden = !usuario || esMismo(usuario.correo, estado.yo.correo);
         $('#ventana').showModal();
         $('#u-nombre').focus();
@@ -184,10 +191,11 @@
       async function guardar(cambio, listo) {
         document.body.classList.add('guardando');
         try {
-          estado.usuarios = await pedir({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cambio) });
+          const respuesta = await pedir({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cambio) });
+          estado.usuarios = respuesta.usuarios;
           pintar();
           if ($('#ventana').open) $('#ventana').close();
-          mostrarMensaje(listo);
+          mostrarMensaje([listo, respuesta.aviso].filter(Boolean).join(' '));
           return true;
         } catch (error) {
           if (error.message === 'sesion') return false;
@@ -205,7 +213,7 @@
         const correo = $('#u-correo').value.trim();
         await guardar(
           { accion: estado.editando ? 'editar' : 'crear', nombre, correo, rol: $('#u-rol').value, clave: $('#u-clave').value },
-          estado.editando ? `Se actualizó a ${nombre}.` : `Se añadió a ${nombre}. Ya puede entrar con su correo y contraseña.`,
+          estado.editando ? `Se actualizó a ${nombre}.` : `Se añadió a ${nombre}.`,
         );
       });
 
@@ -215,6 +223,8 @@
         await guardar({ accion: 'borrar', correo }, `Se borró a ${u.nombre}.`);
       }
       $('#u-borrar').addEventListener('click', () => borrar(estado.editando));
+      // Manda (otra vez) a la persona el enlace para crear o cambiar su contraseña
+      $('#u-enlace').addEventListener('click', () => guardar({ accion: 'enlace', correo: estado.editando }, ''));
 
       document.addEventListener('click', (e) => {
         const b = e.target.closest('button');
@@ -234,7 +244,7 @@
           return;
         }
         try {
-          estado.usuarios = await pedir();
+          ({ usuarios: estado.usuarios, correoActivo: estado.correoActivo } = await pedir());
           $('#contenido').hidden = false;
           pintar();
         } catch (error) {
