@@ -48,6 +48,26 @@ const NOMBRES = {
   accesorios: (p) => [p.linea || p.tipo || 'Accesorios', p.nombre],
 };
 
+// Tono puesto a mano a las alfombras que terza.com publica sin tono, por nombre de color (se eligió viendo la foto; el mismo
+// color se ve igual en todas sus líneas). Solo se usa si terza.com no trae tono.
+const TONOS = {
+  // Nombres que ya tienen tono en otras líneas
+  'Winter Wheat': 'Blanco', 'Natural Gray': 'Gris Claro', Granite: 'Gris', 'Amber Brown': 'Café', 'Midnight Blue': 'Azul',
+  'Dark Purple': 'Morado', Shadow: 'Negro', Green: 'Verde',
+  // Allegro, Oxford II, Supreme, Origins, Serene, Kingdom y Elite
+  'Silver Gray': 'Gris', Platinum: 'Gris Claro', Powder: 'Beige', Ivory: 'Beige', Oyster: 'Café Claro', Toffee: 'Café',
+  // Loop De Loop, Modern Rocks, Modern Cities y Fusion Tile
+  Canvas: 'Blanco', Industrial: 'Gris', Lapis: 'Azul', 'River Rock': 'Gris', Garnet: 'Rojo', Sapphire: 'Azul',
+  Seoul: 'Gris', Helsinki: 'Café', Tokio: 'Negro', Tallinn: 'Gris', Inventive: 'Gris', Ingenious: 'Café', Vigor: 'Gris',
+  // Batique, Evoke, Artifact, Trace y Stonebrook
+  'Fine Linen': 'Beige', 'Ocean Breeze': 'Celeste', 'Wrought Iron': 'Gris', Palace: 'Beige', 'Washed Navy': 'Azul',
+  Pewter: 'Gris', 'Dark Roast': 'Negro', 'Cherry Blossom': 'Rojo', Birchwood: 'Beige', Stratus: 'Celeste', Canyon: 'Beige',
+  'Black Jack': 'Negro', Basketry: 'Beige', 'Crescent Moon': 'Beige', Denim: 'Gris', 'Sand Fossil': 'Beige',
+  'Walnut Grove': 'Café',
+  // Terza Kids
+  'Soft Purple': 'Morado', Pink: 'Rosa', Blue: 'Azul', 'Light Blue': 'Celeste', Yellow: 'Amarillo', Orange: 'Naranja',
+};
+
 // Etiquetas de la ficha técnica, en el orden en que se muestran
 const ETIQUETAS = {
   nombre: 'Nombre', estilo: 'Estilo', coleccion: 'Colección', linea: 'Línea', color: 'Color', clave_color: 'Clave de color',
@@ -132,7 +152,7 @@ for (const cat of CATEGORIAS) {
       descripcion: limpiar(p.descripcion),
       fotos,
       specs,
-      filtros: Object.fromEntries(cat.filtros.map((f) => [f, titulo(p[f])]).filter(([, v]) => v)),
+      filtros: Object.fromEntries(cat.filtros.map((f) => [f, titulo(f === 'tono' && !limpiar(p.tono) ? TONOS[titulo(variante)] : p[f])]).filter(([, v]) => v)),
     });
   }
 }

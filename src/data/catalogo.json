@@ -10375,6 +10375,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -10426,6 +10427,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -10477,6 +10479,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -10528,6 +10531,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -10579,6 +10583,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -10630,6 +10635,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -10681,6 +10687,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -10732,6 +10739,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -10783,6 +10791,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Café",
     "uso": "Residencial"
    }
   },
@@ -10834,6 +10843,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Café",
     "uso": "Residencial"
    }
   },
@@ -10885,6 +10895,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Azul",
     "uso": "Residencial"
    }
   },
@@ -10936,6 +10947,7 @@
    ],
    "filtros": {
     "estilo": "Allegro",
+    "tono": "Morado",
     "uso": "Residencial"
    }
   },
@@ -10987,6 +10999,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -11038,6 +11051,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -11089,6 +11103,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -11140,6 +11155,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -11191,6 +11207,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -11242,6 +11259,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -11293,6 +11311,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -11344,6 +11363,7 @@
    ],
    "filtros": {
     "estilo": "Oxford II",
+    "tono": "Negro",
     "uso": "Residencial"
    }
   },
@@ -11395,6 +11415,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -11446,6 +11467,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -11497,6 +11519,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -11548,6 +11571,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -11599,6 +11623,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -11650,6 +11675,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -11701,6 +11727,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Café",
     "uso": "Residencial"
    }
   },
@@ -11752,6 +11779,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Café",
     "uso": "Residencial"
    }
   },
@@ -11803,6 +11831,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Azul",
     "uso": "Residencial"
    }
   },
@@ -11854,6 +11883,7 @@
    ],
    "filtros": {
     "estilo": "Supreme",
+    "tono": "Morado",
     "uso": "Residencial"
    }
   },
@@ -11905,6 +11935,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -11952,6 +11983,7 @@
    ],
    "filtros": {
     "estilo": "Loop De Loop",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -11999,6 +12031,7 @@
    ],
    "filtros": {
     "estilo": "Loop De Loop",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -12046,6 +12079,7 @@
    ],
    "filtros": {
     "estilo": "Modern Rocks",
+    "tono": "Gris",
     "uso": "Institucional"
    }
   },
@@ -12093,6 +12127,7 @@
    ],
    "filtros": {
     "estilo": "Modern Rocks",
+    "tono": "Azul",
     "uso": "Institucional"
    }
   },
@@ -12140,6 +12175,7 @@
    ],
    "filtros": {
     "estilo": "Modern Rocks",
+    "tono": "Gris",
     "uso": "Institucional"
    }
   },
@@ -12187,6 +12223,7 @@
    ],
    "filtros": {
     "estilo": "Modern Rocks",
+    "tono": "Rojo",
     "uso": "Institucional"
    }
   },
@@ -12234,6 +12271,7 @@
    ],
    "filtros": {
     "estilo": "Modern Rocks",
+    "tono": "Azul",
     "uso": "Institucional"
    }
   },
@@ -12281,6 +12319,7 @@
    ],
    "filtros": {
     "estilo": "Modern Cities",
+    "tono": "Gris",
     "uso": "Institucional"
    }
   },
@@ -12328,6 +12367,7 @@
    ],
    "filtros": {
     "estilo": "Modern Cities",
+    "tono": "Café",
     "uso": "Institucional"
    }
   },
@@ -12375,6 +12415,7 @@
    ],
    "filtros": {
     "estilo": "Modern Cities",
+    "tono": "Negro",
     "uso": "Institucional"
    }
   },
@@ -12422,6 +12463,7 @@
    ],
    "filtros": {
     "estilo": "Modern Cities",
+    "tono": "Gris",
     "uso": "Institucional"
    }
   },
@@ -12697,6 +12739,7 @@
    ],
    "filtros": {
     "estilo": "Fusion Tile",
+    "tono": "Gris",
     "uso": "Institucional"
    }
   },
@@ -12748,6 +12791,7 @@
    ],
    "filtros": {
     "estilo": "Fusion Tile",
+    "tono": "Café",
     "uso": "Institucional"
    }
   },
@@ -12799,6 +12843,7 @@
    ],
    "filtros": {
     "estilo": "Fusion Tile",
+    "tono": "Gris",
     "uso": "Institucional"
    }
   },
@@ -12850,6 +12895,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -12901,6 +12947,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -12952,6 +12999,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -13003,6 +13051,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -13054,6 +13103,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -13105,6 +13155,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -13156,6 +13207,7 @@
    ],
    "filtros": {
     "estilo": "Origins",
+    "tono": "Negro",
     "uso": "Residencial"
    }
   },
@@ -13207,6 +13259,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -13258,6 +13311,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -13309,6 +13363,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -13360,6 +13415,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -13411,6 +13467,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -13462,6 +13519,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -13513,6 +13571,7 @@
    ],
    "filtros": {
     "estilo": "Serene",
+    "tono": "Morado",
     "uso": "Residencial"
    }
   },
@@ -13564,6 +13623,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -13615,6 +13675,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -13666,6 +13727,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -13717,6 +13779,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -13768,6 +13831,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -13819,6 +13883,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -13870,6 +13935,7 @@
    ],
    "filtros": {
     "estilo": "Kingdom",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -13921,6 +13987,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Blanco",
     "uso": "Residencial"
    }
   },
@@ -13972,6 +14039,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -14023,6 +14091,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Gris Claro",
     "uso": "Residencial"
    }
   },
@@ -14074,6 +14143,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -14125,6 +14195,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -14176,6 +14247,7 @@
    ],
    "filtros": {
     "estilo": "Elite",
+    "tono": "Café Claro",
     "uso": "Residencial"
    }
   },
@@ -18098,6 +18170,7 @@
    ],
    "filtros": {
     "estilo": "Batique",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -18154,6 +18227,7 @@
    ],
    "filtros": {
     "estilo": "Batique",
+    "tono": "Celeste",
     "uso": "Residencial"
    }
   },
@@ -18210,6 +18284,7 @@
    ],
    "filtros": {
     "estilo": "Batique",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -18266,6 +18341,7 @@
    ],
    "filtros": {
     "estilo": "Batique",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -18323,6 +18399,7 @@
    ],
    "filtros": {
     "estilo": "Evoke",
+    "tono": "Azul",
     "uso": "Residencial"
    }
   },
@@ -18379,6 +18456,7 @@
    ],
    "filtros": {
     "estilo": "Evoke",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -18435,6 +18513,7 @@
    ],
    "filtros": {
     "estilo": "Evoke",
+    "tono": "Negro",
     "uso": "Residencial"
    }
   },
@@ -18491,6 +18570,7 @@
    ],
    "filtros": {
     "estilo": "Artifact",
+    "tono": "Rojo",
     "uso": "Residencial"
    }
   },
@@ -18549,6 +18629,7 @@
    ],
    "filtros": {
     "estilo": "Artifact",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -18605,6 +18686,7 @@
    ],
    "filtros": {
     "estilo": "Trace",
+    "tono": "Celeste",
     "uso": "Residencial"
    }
   },
@@ -18660,6 +18742,7 @@
    ],
    "filtros": {
     "estilo": "Trace",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -18713,6 +18796,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Morado",
     "uso": "Residencial"
    }
   },
@@ -18766,6 +18850,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Rosa",
     "uso": "Residencial"
    }
   },
@@ -18819,6 +18904,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Azul",
     "uso": "Residencial"
    }
   },
@@ -18871,6 +18957,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Celeste",
     "uso": "Residencial"
    }
   },
@@ -18924,6 +19011,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Amarillo",
     "uso": "Residencial"
    }
   },
@@ -18976,6 +19064,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Naranja",
     "uso": "Residencial"
    }
   },
@@ -19029,6 +19118,7 @@
    ],
    "filtros": {
     "estilo": "Terza Kids",
+    "tono": "Verde",
     "uso": "Residencial"
    }
   },
@@ -19083,6 +19173,7 @@
    ],
    "filtros": {
     "estilo": "Pasto Amazonas",
+    "tono": "Verde",
     "uso": "Residencial"
    }
   },
@@ -19136,6 +19227,7 @@
    ],
    "filtros": {
     "estilo": "Pasto Riviera",
+    "tono": "Verde",
     "uso": "Residencial"
    }
   },
@@ -19190,6 +19282,7 @@
    ],
    "filtros": {
     "estilo": "Pasto Caribe",
+    "tono": "Verde",
     "uso": "Residencial"
    }
   },
@@ -19242,6 +19335,7 @@
    ],
    "filtros": {
     "estilo": "Artifact",
+    "tono": "Negro",
     "uso": "Residencial"
    }
   },
@@ -19289,6 +19383,7 @@
    ],
    "filtros": {
     "estilo": "Stonebrook",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -19336,6 +19431,7 @@
    ],
    "filtros": {
     "estilo": "Stonebrook",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -19384,6 +19480,7 @@
    ],
    "filtros": {
     "estilo": "Stonebrook",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -19431,6 +19528,7 @@
    ],
    "filtros": {
     "estilo": "Stonebrook",
+    "tono": "Gris",
     "uso": "Residencial"
    }
   },
@@ -19478,6 +19576,7 @@
    ],
    "filtros": {
     "estilo": "Stonebrook",
+    "tono": "Beige",
     "uso": "Residencial"
    }
   },
@@ -19525,6 +19624,7 @@
    ],
    "filtros": {
     "estilo": "Stonebrook",
+    "tono": "Café",
     "uso": "Residencial"
    }
   },
