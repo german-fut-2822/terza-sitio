@@ -1,18 +1,18 @@
 {
   "hero": {
     "slides": [
-      { "image": "maderas", "title": ["Pisos", "de madera"], "cta": { "label": "Descubre la nueva colección", "href": "/pisos/pisos-de-madera" } },
-      { "image": "flexiroc", "logo": "Flexiroc", "subtitle": "Recubrimiento de piedra flexible", "cta": { "label": "Descubre la nueva colección", "href": "/muros/flexiroc" } },
-      { "image": "pasto", "title": ["Pasto", "sintético"], "cta": { "label": "Descubre tu pasto ideal", "href": "/exterior/pasto-sintetico" } },
-      { "image": "vinilico", "title": ["Piso vinílico", "Norwich"], "cta": { "label": "Explora los nuevos colores", "href": "/pisos/pisos-vinilicos" } }
+      { "image": "maderas", "title": ["Pisos", "de madera"], "cta": { "label": "Descubre la nueva colección", "href": "/catalogo/pisos-de-madera" } },
+      { "image": "flexiroc", "logo": "Flexiroc", "subtitle": "Recubrimiento de piedra flexible", "cta": { "label": "Descubre la nueva colección", "href": "/catalogo/flexiroc" } },
+      { "image": "pasto", "title": ["Pasto", "sintético"], "cta": { "label": "Descubre tu pasto ideal", "href": "/catalogo/pasto-sintetico" } },
+      { "image": "vinilico", "title": ["Piso vinílico", "Norwich"], "cta": { "label": "Explora los nuevos colores", "href": "/catalogo/piso-vinilico?estilo=Norwich" } }
     ]
   },
   "nuevosProductos": {
     "title": "Nuevos Productos",
-    "featured": { "title": "flexiROC", "subtitle": "Recubrimiento de piedra flexible.", "href": "/muros/flexiroc" },
+    "featured": { "title": "flexiROC", "subtitle": "Recubrimiento de piedra flexible.", "href": "/catalogo/flexiroc" },
     "categoria": "flexiroc",
     "cuantos": 10,
-    "cta": { "label": "Ver todo", "href": "/muros/flexiroc" }
+    "cta": { "label": "Ver todo", "href": "/catalogo/flexiroc" }
   },
   "transformarEspacios": {
     "title": "Todo para transformar tus espacios",
