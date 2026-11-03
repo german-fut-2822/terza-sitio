@@ -155,14 +155,23 @@ const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, sha
   <!-- Todo para transformar tus espacios -->
   <section class="relative isolate flex flex-col overflow-hidden xl:min-h-[660px]">
     <!-- Capa 1: fondo (mobile/tablet: imagen estática arriba; desktop: fondo absoluto) -->
-    <Image src={transformarEspacios} alt="Sala con vista a la montaña, piso de madera Terza" class="h-[260px] w-full object-cover sm:h-[320px] md:h-[400px] xl:absolute xl:inset-y-0 xl:left-0 xl:z-0 xl:h-full xl:w-[122%] xl:max-w-none" width={2000} height={1200} />
+    <!-- En xl el contenedor desaparece (contents) y la imagen queda como fondo de la sección -->
+    <div class="relative xl:contents">
+      <Image src={transformarEspacios} alt="Sala con vista a la montaña, piso de madera Terza" class="h-[260px] w-full object-cover sm:h-[320px] md:h-[400px] xl:absolute xl:inset-y-0 xl:left-0 xl:z-0 xl:h-full xl:w-[122%] xl:max-w-none" width={2000} height={1200} />
+      <!-- Celular: el círculo de años va sobre la imagen, en la esquina inferior derecha -->
+      <div class="absolute bottom-4 right-4 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal md:hidden">
+        <span class="text-xl font-extrabold leading-[0.95]">{transformar.stat.value.split(' ')[0]}</span>
+        <span class="text-xl font-extrabold leading-[0.95]">{transformar.stat.value.split(' ')[1]}</span>
+        <span class="mt-1 text-[10px] font-medium">{transformar.stat.label}</span>
+      </div>
+    </div>
 
     <!-- Capa 2: difuminado blanco + texto (solo desktop) -->
     <div class="pointer-events-none hidden bg-gradient-to-r from-white via-white/80 to-transparent xl:absolute xl:inset-y-0 xl:left-0 xl:z-10 xl:block xl:w-[55%]"></div>
 
     <div class="relative z-10 flex flex-col gap-5 px-6 py-10 sm:px-12 sm:pt-12 xl:w-[44%] xl:pl-16 xl:pr-8 xl:pt-14">
-      <h2 class="max-w-[210px] text-3xl font-bold leading-[1.15] text-black md:max-w-[240px] md:text-4xl xl:max-w-[300px] xl:text-[48px]">{transformar.title}</h2>
-      <p class="max-w-[220px] text-black xl:max-w-[240px] xl:text-xl">{transformar.description}</p>
+      <h2 class="max-w-md text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:max-w-[300px] xl:text-[48px]">{transformar.title}</h2>
+      <p class="max-w-xl text-black xl:max-w-[240px] xl:text-xl">{transformar.description}</p>
       <a href={transformar.cta.href} class="inline-flex w-fit items-center justify-center rounded-full bg-terza-lime px-8 py-1.5 text-base font-semibold text-black hover:brightness-95 xl:px-12 xl:text-lg">
         {transformar.cta.label} →
       </a>
@@ -170,7 +179,8 @@ const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, sha
 
     <!-- Capa 3: tarjeta verde + badge -->
     <div class="relative z-20 flex flex-col gap-10 bg-[#0e483f] px-6 py-7 text-white sm:px-10 xl:absolute xl:inset-x-0 xl:bottom-0 xl:left-[27%] xl:flex-row xl:items-center xl:gap-10 xl:rounded-tl-[40px] xl:bg-[#0e483f]/50 xl:px-12 xl:py-6">
-      <div class="relative h-10 w-24 shrink-0 xl:w-[170px]">
+      <!-- Tablet: el círculo ocupa su propio renglón; en xl sobresale hacia arriba de la franja (en celular va sobre la imagen) -->
+      <div class="relative hidden h-24 w-24 shrink-0 md:block xl:h-10 xl:w-[170px]">
         <div class="absolute left-0 top-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-terza-lime text-center text-terza-teal xl:-top-[52px] xl:h-[170px] xl:w-[170px]">
           <span class="text-xl font-extrabold leading-[0.95] xl:text-[40px]">{transformar.stat.value.split(' ')[0]}</span>
           <span class="text-xl font-extrabold leading-[0.95] xl:text-[40px]">{transformar.stat.value.split(' ')[1]}</span>
@@ -178,7 +188,7 @@ const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, sha
         </div>
       </div>
       {transformar.highlights.map((h: { title: string; description: string }, i: number) => (
-        <div class:list={['max-w-[220px] border-t border-white/20 pt-4 xl:max-w-none xl:border-t-0 xl:pt-0', i > 0 && 'xl:border-l xl:pl-10']}>
+        <div class:list={['max-w-md border-white/20 xl:max-w-none xl:border-t-0 xl:pt-0', i > 0 ? 'border-t pt-4 xl:border-l xl:pl-10' : 'md:border-t md:pt-4']}>
           <p class="text-xl font-bold text-white xl:whitespace-nowrap xl:text-2xl">{h.title}</p>
           <p class="mt-1 text-white/75 xl:max-w-[270px]">{h.description}</p>
         </div>
@@ -286,11 +296,12 @@ const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, sha
 
   <!-- Contacto + Ubicaciones teaser -->
   <section class="grid grid-cols-1 border-t-2 border-terza-teal md:grid-cols-2">
-    <div class="relative isolate flex min-h-[420px] items-stretch overflow-hidden bg-[linear-gradient(to_right,#f7fbe2_0%,#f7fbe2_35%,#e3f38f_55%,#c9ea2c_75%,#c2e812_100%)] xl:min-h-[480px]">
-      <!-- La foto se desvanece solo en su borde derecho para no tapar a la persona -->
-      <Image src={contactoPortrait} alt="Equipo Terza" class="absolute inset-y-0 left-0 -z-10 hidden h-full w-[55%] object-cover object-[35%_bottom] [mask-image:linear-gradient(to_right,black_0%,black_55%,transparent_100%)] sm:block" width={1200} height={900} />
+    <div class="relative isolate flex min-h-[560px] items-stretch overflow-hidden sm:min-h-[420px] bg-[linear-gradient(to_right,#f7fbe2_0%,#f7fbe2_35%,#e3f38f_55%,#c9ea2c_75%,#c2e812_100%)] xl:min-h-[480px]">
+      <!-- Celular: la foto va abajo y se desvanece hacia arriba, debajo del texto. Desde sm: a la izquierda, desvanecida solo en
+           su borde derecho para no tapar a la persona -->
+      <Image src={contactoPortrait} alt="Equipo Terza" class="absolute inset-x-0 bottom-0 -z-10 h-[58%] w-full object-cover object-[30%_30%] [mask-image:linear-gradient(to_top,black_0%,black_60%,transparent_100%)] sm:inset-y-0 sm:left-0 sm:right-auto sm:h-full sm:w-[55%] sm:object-[35%_bottom] sm:[mask-image:linear-gradient(to_right,black_0%,black_55%,transparent_100%)]" width={1200} height={900} />
       <div class="hidden w-[38%] shrink-0 sm:block xl:w-[42%]"></div>
-      <div class="flex flex-1 flex-col items-end p-8 text-right md:p-12 xl:px-14">
+      <div class="flex flex-1 flex-col items-start p-8 text-left sm:items-end sm:text-right md:p-12 xl:px-14">
         <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{contactoTeaser.eyebrow}</p>
         <h2 class="mt-2 max-w-xs text-3xl font-bold leading-[1.15] text-terza-teal md:text-4xl xl:text-6xl">{contactoTeaser.title}</h2>
         <p class="mt-3 max-w-xs text-sm text-terza-teal">{contactoTeaser.description}</p>

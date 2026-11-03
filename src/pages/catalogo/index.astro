@@ -3,7 +3,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { secciones, productos, foto, urlCategoria } from '../../lib/catalogo';
 
-const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+const arrow = '<svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 ---
 
 <Layout title="Catálogo de productos | Terza" description="Pisos, alfombras, muros, persianas, exterior y accesorios: explora todo el catálogo de Terza.">
@@ -32,19 +32,20 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
           <h2 class="text-3xl font-bold text-black md:text-4xl xl:text-5xl">{sec.nombre}</h2>
           <p class="shrink-0 text-sm font-medium text-terza-teal xl:text-base">{sec.categorias.reduce((n, c) => n + c.total, 0)} productos</p>
         </div>
+        <!-- Mismo estilo que las tarjetas de producto (src/components/catalogo/ProductCard.astro) -->
         <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
           {sec.categorias.map((cat) => (
-            <a href={urlCategoria(cat.slug)} class="group flex flex-col overflow-hidden rounded-[28px] bg-white shadow-[0_4px_18px_rgba(0,0,0,0.08)]">
-              <div class="relative aspect-[4/3] overflow-hidden bg-terza-mist">
-                {cat.portada && <img src={foto(cat.portada)} alt={cat.nombre} loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
-                <span class="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-terza-teal">{cat.total} productos</span>
+            <a href={urlCategoria(cat.slug)} class="group flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_4px_18px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.14)]">
+              <div class="relative aspect-square overflow-hidden bg-terza-mist">
+                {cat.portada && <img src={foto(cat.portada)} alt={cat.nombre} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
               </div>
-              <div class="flex flex-1 items-start justify-between gap-6 p-6 xl:p-7">
-                <div>
-                  <h3 class="text-2xl font-bold text-terza-teal">{cat.nombre}</h3>
-                  <p class="mt-2 text-black/80">{cat.intro}</p>
+              <div class="flex flex-1 items-end justify-between gap-3 p-4 md:p-5">
+                <div class="min-w-0 self-start">
+                  <p class="truncate text-xs font-bold uppercase tracking-widest text-terza-teal">{cat.total} productos</p>
+                  <h3 class="mt-1 text-base font-medium leading-snug text-black md:text-lg">{cat.nombre}</h3>
+                  <p class="mt-1 text-sm text-black/70">{cat.intro}</p>
                 </div>
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-terza-lime text-terza-ink transition-colors group-hover:bg-terza-teal group-hover:text-white" set:html={arrow} />
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-terza-mist text-terza-teal transition-colors group-hover:bg-terza-lime group-hover:text-terza-ink" aria-hidden="true" set:html={arrow} />
               </div>
             </a>
           ))}

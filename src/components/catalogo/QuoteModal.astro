@@ -3,6 +3,7 @@
 // Se abre con cualquier botón [data-cotizar].
 import { estados } from '../../data/estados';
 import { cotizacionDe } from '../../data/cotizacion';
+import { avisoPrivacidad } from '../../data/general.json';
 
 interface Props {
   categoria: string;
@@ -67,7 +68,7 @@ const select = `${field} invalid:text-terza-ink/40`;
 
       <label class="mt-1 flex items-center gap-3 text-sm text-terza-ink/70 sm:col-span-2">
         <input type="checkbox" name="avisodeprivacidad" value="Acepto Aviso de privacidad" required class="h-4 w-4 shrink-0 accent-terza-teal" />
-        <span>Acepto el <a href="#" class="font-semibold text-terza-ink hover:text-terza-teal">Aviso de Privacidad</a></span>
+        <span>Acepto el <a href={avisoPrivacidad} target="_blank" rel="noopener" class="font-semibold text-terza-ink hover:text-terza-teal">Aviso de Privacidad</a></span>
       </label>
       <button type="submit" class="inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95 sm:col-span-2">
         Enviar

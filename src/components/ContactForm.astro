@@ -1,5 +1,6 @@
 ---
 import { estados } from '../data/estados';
+import { avisoPrivacidad } from '../data/general.json';
 
 interface Props {
   title: string;
@@ -30,7 +31,7 @@ const [consentLead, consentLink] = consent.split(/(?=Aviso)/);
 
     <label class="mt-2 flex items-center gap-3 text-sm text-terza-ink/70 sm:col-span-2">
       <input type="checkbox" name="aviso" required class="h-4 w-4 shrink-0 rounded-none border-terza-ink/40 accent-terza-teal" />
-      <span>{consentLead}<a href="#" class="font-semibold text-terza-ink hover:text-terza-teal">{consentLink}</a></span>
+      <span>{consentLead}<a href={avisoPrivacidad} target="_blank" rel="noopener" class="font-semibold text-terza-ink hover:text-terza-teal">{consentLink}</a></span>
     </label>
     <button type="submit" class="inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95 sm:col-span-2">
       {submit}
