@@ -11,6 +11,8 @@ const site = process.env.SITE_URL ?? (dominioVercel ? `https://${dominioVercel}`
 export default defineConfig({
   site,
   output: 'static',
+  // Administrador del blog (Decap CMS en public/admin)
+  redirects: { '/admin': '/admin/index.html' },
   adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],

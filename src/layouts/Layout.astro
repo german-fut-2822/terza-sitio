@@ -9,7 +9,7 @@ interface Props {
   /** Ruta de la imagen para compartir (WhatsApp, Facebook, LinkedIn); por defecto /og-terza.jpg */
   image?: string;
   imageAlt?: string;
-  type?: 'website' | 'product';
+  type?: 'website' | 'product' | 'article';
 }
 
 const { title, description = 'Terza - Transformamos espacios contigo.', image = '/og-terza.jpg', imageAlt, type = 'website' } = Astro.props;

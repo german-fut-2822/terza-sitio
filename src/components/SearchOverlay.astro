@@ -1,7 +1,8 @@
 ---
 // Buscador de pantalla completa (se abre con cualquier botón .search-open de la navbar).
-// Índice: categorías y familias del catálogo, páginas de línea y páginas del sitio.
+// Índice: categorías y familias del catálogo, páginas de línea, páginas del sitio y notas del blog.
 import { categorias, productos, urlCategoria, urlProducto, paginasLinea } from '../lib/catalogo';
+import { notasPublicadas, categoriasBlog, urlNota } from '../lib/blog';
 
 type Entrada = { title: string; cat: string; href: string };
 
@@ -15,6 +16,8 @@ for (const p of productos) {
 }
 const nombreCategoria = (slug: string) => categorias.find((c) => c.slug === slug)!.nombre;
 const lineas = [...new Map(Object.values(paginasLinea).map((l) => [l.href, l])).values()];
+
+const nombresBlog = new Map((await categoriasBlog()).map((c) => [c.id, c.data.nombre]));
 
 const indice: Entrada[] = [
   ...categorias.map((c) => ({ title: c.nombre, cat: `Catálogo · ${c.total} productos`, href: urlCategoria(c.slug) })),
@@ -30,6 +33,13 @@ const indice: Entrada[] = [
   { title: 'Ubicaciones', cat: 'Showrooms y oficinas', href: '/ubicaciones' },
   { title: 'Quiero ser distribuidor', cat: 'Distribuidores', href: '/quiero-ser-distribuidor' },
   { title: 'Contacto', cat: 'Atención a clientes', href: '/contacto' },
+  { title: 'Blog', cat: 'Ideas y consejos', href: '/blog' },
+  // Las notas van al final para que primero aparezcan productos y páginas
+  ...(await notasPublicadas()).map((n) => ({
+    title: n.data.titulo,
+    cat: ['Blog', nombresBlog.get(n.data.categorias[0]?.id)].filter(Boolean).join(' · '),
+    href: urlNota(n),
+  })),
 ];
 
 const populares = ['Pasto sintético', 'Flexiroc', 'Pisos vinílicos', 'Persianas', 'Deck', 'Alfombras'];

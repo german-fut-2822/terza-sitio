@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "admin": "npx --yes decap-server@3.11.5",
+    "importar-blog": "node scripts/importar-blog.mjs"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.16",

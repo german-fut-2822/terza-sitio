@@ -26,3 +26,80 @@ body {
   color: var(--color-terza-ink);
   background-color: #ffffff;
 }
+
+/* Texto de las notas del blog (Markdown de src/content/blog) */
+.nota {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--color-terza-ink) 85%, transparent);
+}
+@media (min-width: 1280px) {
+  .nota { font-size: 1.125rem; }
+}
+.nota > * + * { margin-top: 1.25em; }
+.nota h2 {
+  margin-top: 2.2em;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #000;
+}
+.nota h3 {
+  margin-top: 1.8em;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--color-terza-teal);
+}
+.nota h2 + *, .nota h3 + * { margin-top: 0.6em; }
+.nota strong { font-weight: 700; color: var(--color-terza-ink); }
+.nota a {
+  font-weight: 600;
+  color: var(--color-terza-teal);
+  text-decoration: underline;
+  text-decoration-color: var(--color-terza-lime);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.nota a:hover { text-decoration-color: var(--color-terza-teal); }
+.nota ul, .nota ol { padding-left: 1.4em; }
+.nota ul { list-style: none; }
+.nota ul > li { position: relative; }
+.nota ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.1em;
+  top: 0.7em;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 9999px;
+  background: var(--color-terza-lime);
+}
+.nota ol { list-style: decimal; }
+.nota ol > li::marker { font-weight: 700; color: var(--color-terza-teal); }
+.nota li + li { margin-top: 0.5em; }
+.nota li > ul, .nota li > ol { margin-top: 0.5em; }
+.nota img { width: 100%; height: auto; border-radius: 24px; }
+.nota blockquote {
+  border-left: 4px solid var(--color-terza-lime);
+  padding-left: 1.25em;
+  font-style: italic;
+}
+.nota table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgb(0 0 0 / 0.08);
+  font-size: 0.95em;
+}
+.nota th, .nota td { padding: 0.8em 1em; text-align: left; vertical-align: top; }
+.nota thead th { background: var(--color-terza-teal); color: #fff; }
+.nota thead th strong { color: #fff; }
+.nota tbody tr:nth-child(even) td { background: var(--color-terza-mist); }
+.nota iframe { width: 100%; aspect-ratio: 16 / 9; border-radius: 24px; }
+.nota hr { border-color: rgb(0 0 0 / 0.1); }
+@media (max-width: 639px) {
+  .nota table { display: block; overflow-x: auto; }
+}

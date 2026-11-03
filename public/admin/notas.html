@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Notas del blog | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="/admin/comun.js"></script>
+    <link rel="stylesheet" href="/admin/listado.css" />
+  </head>
+  <body>
+    <!-- Menú lateral del panel (lo arma comun.js) -->
+    <aside class="lateral" id="lateral" data-actual="notas"></aside>
+
+    <main>
+      <div class="titulo">
+        <h1>Notas del blog</h1>
+        <ol class="migas"><li><a href="/admin/notas.html">Terza</a></li><li>Blog</li><li aria-current="page">Notas</li></ol>
+      </div>
+
+      <div id="aviso" class="aviso" hidden></div>
+      <div id="mensaje" class="mensaje" role="status" hidden></div>
+
+      <section class="tarjeta" id="contenido" hidden>
+        <div class="filtros">
+          <form class="campo-buscar" id="f-buscar" role="search">
+            <span data-icono="buscar"></span>
+            <input type="search" id="f-texto" placeholder="Buscar por título o descripción…" aria-label="Buscar notas" />
+          </form>
+          <span class="etiqueta-filtro">Filtrar por:</span>
+          <label class="selector"><span data-icono="estado"></span><span class="solo-lector">Estado</span>
+            <select id="f-estado">
+              <option value="">Todos los estados</option>
+              <option value="publicada">Publicadas</option>
+              <option value="borrador">Borradores</option>
+              <option value="destacada">Destacadas</option>
+            </select>
+          </label>
+          <label class="selector"><span data-icono="categorias"></span><span class="solo-lector">Categoría</span><select id="f-categoria"><option value="">Todas las categorías</option></select></label>
+          <label class="selector"><span data-icono="calendario"></span><span class="solo-lector">Fecha</span><select id="f-fecha"><option value="">Todas las fechas</option></select></label>
+          <label class="selector sin-icono"><span class="solo-lector">Notas por página</span>
+            <select id="f-por-pagina"><option>10</option><option selected>20</option><option>50</option></select>
+          </label>
+          <button type="button" class="btn-enlace" id="limpiar" hidden>Quitar filtros</button>
+          <div class="fin"><a class="btn btn-primario" href="/admin/index.html#/collections/blog/new"><span data-icono="mas"></span>Añadir nota</a></div>
+        </div>
+
+        <div class="tabla">
+          <table>
+            <thead>
+              <tr>
+                <th><button type="button" data-orden="titulo">Nota</button></th>
+                <th class="col-cats">Categorías</th>
+                <th class="col-autor">Estado</th>
+                <th class="col-fecha"><button type="button" data-orden="fecha" data-dir="desc">Fecha</button></th>
+                <th class="col-acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="filas"></tbody>
+          </table>
+        </div>
+        <div class="pie" data-paginas></div>
+      </section>
+    </main>
+
+    <script>
+      // Listado de notas para el administrador (Decap CMS en /admin), con el diseño de UBold. Lectura de datos en comun.js.
+      const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      const estado = { datos: null, notas: [], categorias: new Map(), filtro: '', fecha: '', categoria: '', texto: '', orden: 'fecha', dir: 'desc', pagina: 1, porPagina: 20 };
+      const ESTADOS = { '': 'Todos los estados', publicada: 'Publicadas', borrador: 'Borradores', destacada: 'Destacadas' };
+
+      // "18 sep, 2026"
+      const fechaTexto = (f) => (isNaN(f) ? '—' : `${f.getUTCDate()} ${MESES[f.getUTCMonth()].slice(0, 3)}, ${f.getUTCFullYear()}`);
+      const cumpleEstado = (n, e) => !e || (e === 'publicada' && !n.borrador) || (e === 'borrador' && n.borrador) || (e === 'destacada' && n.destacada);
+
+      function filtradas() {
+        const palabras = normalizar(estado.texto).split(/\s+/).filter(Boolean);
+        const lista = estado.notas.filter(
+          (n) =>
+            cumpleEstado(n, estado.filtro) &&
+            (!estado.fecha || n.mes === estado.fecha) &&
+            (!estado.categoria || (estado.categoria === '-' ? !n.categorias.length : n.categorias.includes(estado.categoria))) &&
+            palabras.every((p) => normalizar(`${n.titulo} ${n.descripcion} ${n.slug}`).includes(p)),
+        );
+        const signo = estado.dir === 'asc' ? 1 : -1;
+        return lista.sort((a, b) => signo * (estado.orden === 'titulo' ? sinSignos(a.titulo).localeCompare(sinSignos(b.titulo), 'es') : a.fecha - b.fecha));
+      }
+
+      function pintar() {
+        const lista = filtradas();
+        const paginas = Math.max(1, Math.ceil(lista.length / estado.porPagina));
+        estado.pagina = Math.min(Math.max(1, estado.pagina), paginas);
+        const pagina = lista.slice((estado.pagina - 1) * estado.porPagina, estado.pagina * estado.porPagina);
+
+        // Cuántas notas hay en cada estado (sobre todas las notas)
+        for (const opcion of $('#f-estado').options) {
+          opcion.textContent = `${ESTADOS[opcion.value]} (${estado.notas.filter((n) => cumpleEstado(n, opcion.value)).length})`;
+        }
+        $('#f-estado').value = estado.filtro;
+        document.querySelectorAll('[data-orden]').forEach((b) => (b.dataset.orden === estado.orden ? (b.dataset.dir = estado.dir) : delete b.dataset.dir));
+        $('#limpiar').hidden = !(estado.fecha || estado.categoria || estado.texto || estado.filtro);
+
+        $('#filas').innerHTML = pagina.length
+          ? pagina
+              .map((n) => {
+                const editar = EDITOR.nota(n.slug);
+                const cats = n.categorias.length
+                  ? n.categorias.map((c) => `<button type="button" data-cat="${esc(c)}">${esc(estado.categorias.get(c) ?? c)}</button>`).join(', ')
+                  : '—';
+                const foto = urlFotoBlog(estado.datos, n.imagen);
+                return `<tr>
+                  <td>
+                    <div class="con-foto">
+                      ${foto ? `<img src="${esc(foto)}" alt="" loading="lazy" />` : '<span class="sin-foto"></span>'}
+                      <div>
+                        <a class="nota-titulo" href="${editar}">${esc(n.titulo)}</a>${n.destacada ? '<span class="etiqueta">Destacada</span>' : ''}
+                        <span class="por">por: ${esc(n.autor)}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="col-cats cats">${cats}</td>
+                  <td class="col-autor"><span class="insignia ${n.borrador ? 'borrador' : 'publicada'}">${n.borrador ? 'Borrador' : 'Publicada'}</span></td>
+                  <td class="fecha col-fecha">${fechaTexto(n.fecha)}</td>
+                  <td class="col-acciones">
+                    <div class="acciones">
+                      ${n.borrador
+                        ? `<span class="accion" aria-disabled="true" title="Borrador: no está en el sitio">${icono('ver')}</span>`
+                        : `<a class="accion" href="/blog/${encodeURIComponent(n.slug)}" target="_blank" rel="noopener" title="Ver en el blog" aria-label="Ver en el blog">${icono('ver')}</a>`}
+                      <a class="accion" href="${editar}" title="Editar" aria-label="Editar">${icono('editar')}</a>
+                      <button type="button" class="accion borrar" data-borrar="${esc(n.slug)}" title="Borrar" aria-label="Borrar">${icono('borrar')}</button>
+                    </div>
+                  </td>
+                </tr>`;
+              })
+              .join('')
+          : '<tr><td colspan="5" class="vacio">No se encontraron notas.</td></tr>';
+
+        document.querySelectorAll('[data-paginas]').forEach((c) => {
+          c.innerHTML = htmlPaginas(lista.length, estado.pagina, paginas, estado.porPagina, ['nota', 'notas']);
+        });
+        guardarUrl();
+      }
+
+      // Los filtros quedan en la URL para regresar al mismo listado desde el editor
+      function guardarUrl() {
+        const p = new URLSearchParams();
+        if (estado.filtro) p.set('estado', estado.filtro);
+        if (estado.fecha) p.set('fecha', estado.fecha);
+        if (estado.categoria) p.set('categoria', estado.categoria);
+        if (estado.texto) p.set('q', estado.texto);
+        if (estado.orden !== 'fecha' || estado.dir !== 'desc') p.set('orden', `${estado.orden}-${estado.dir}`);
+        if (estado.porPagina !== 20) p.set('por', estado.porPagina);
+        if (estado.pagina > 1) p.set('pagina', estado.pagina);
+        history.replaceState(null, '', `${location.pathname}${p.size ? `?${p}` : ''}`);
+        sessionStorage.setItem('listado-notas', location.search);
+      }
+
+      function leerUrl() {
+        const p = new URLSearchParams(location.search);
+        estado.filtro = p.get('estado') ?? '';
+        estado.fecha = p.get('fecha') ?? '';
+        estado.categoria = p.get('categoria') ?? '';
+        estado.texto = p.get('q') ?? '';
+        const [orden, dir] = (p.get('orden') ?? 'fecha-desc').split('-');
+        Object.assign(estado, { orden, dir, pagina: Number(p.get('pagina')) || 1, porPagina: [10, 20, 50].includes(Number(p.get('por'))) ? Number(p.get('por')) : 20 });
+      }
+
+      function llenarFiltros() {
+        const meses = [...new Set(estado.notas.map((n) => n.mes).filter(Boolean))].sort().reverse();
+        $('#f-fecha').innerHTML =
+          '<option value="">Todas las fechas</option>' +
+          meses.map((m) => `<option value="${m}">${MESES[Number(m.slice(5)) - 1]} ${m.slice(0, 4)}</option>`).join('');
+        $('#f-categoria').innerHTML =
+          '<option value="">Todas las categorías</option>' +
+          [...estado.categorias].map(([id, nombre]) => `<option value="${esc(id)}">${esc(nombre)}</option>`).join('') +
+          '<option value="-">Sin categoría</option>';
+        $('#f-fecha').value = estado.fecha;
+        $('#f-categoria').value = estado.categoria;
+        $('#f-texto').value = estado.texto;
+        $('#f-por-pagina').value = String(estado.porPagina);
+      }
+
+      // Eventos
+      $('#f-estado').addEventListener('change', (e) => { estado.filtro = e.target.value; estado.pagina = 1; pintar(); });
+      $('#f-por-pagina').addEventListener('change', (e) => { estado.porPagina = Number(e.target.value); estado.pagina = 1; pintar(); });
+      $('#f-fecha').addEventListener('change', (e) => { estado.fecha = e.target.value; estado.pagina = 1; pintar(); });
+      $('#f-categoria').addEventListener('change', (e) => { estado.categoria = e.target.value; estado.pagina = 1; pintar(); });
+      $('#f-buscar').addEventListener('submit', (e) => { e.preventDefault(); estado.texto = $('#f-texto').value.trim(); estado.pagina = 1; pintar(); });
+      $('#f-texto').addEventListener('search', () => { if (!$('#f-texto').value) { estado.texto = ''; pintar(); } });
+      $('#limpiar').addEventListener('click', () => {
+        Object.assign(estado, { filtro: '', fecha: '', categoria: '', texto: '', pagina: 1 });
+        llenarFiltros();
+        pintar();
+      });
+      document.addEventListener('click', (e) => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        if (b.dataset.borrar) borrarNota(b.dataset.borrar);
+        else if (b.dataset.cat) { estado.categoria = b.dataset.cat; $('#f-categoria').value = b.dataset.cat; estado.pagina = 1; pintar(); }
+        else if (b.dataset.ir) { estado.pagina = Number(b.dataset.ir); pintar(); }
+        else if (b.dataset.orden) {
+          estado.dir = estado.orden === b.dataset.orden && estado.dir === 'desc' ? 'asc' : estado.orden === b.dataset.orden ? 'desc' : b.dataset.orden === 'titulo' ? 'asc' : 'desc';
+          estado.orden = b.dataset.orden;
+          estado.pagina = 1;
+          pintar();
+        }
+      });
+
+      function mostrarMensaje(texto, error = false) {
+        $('#mensaje').textContent = texto;
+        $('#mensaje').classList.toggle('error', error);
+        $('#mensaje').hidden = false;
+      }
+
+      // Borrar una nota: se borra su archivo (src/content/blog/<slug>.md). Su foto se queda en Medios, como "Sin usar".
+      async function borrarNota(slug) {
+        const nota = estado.notas.find((n) => n.slug === slug);
+        if (!nota || document.body.classList.contains('guardando')) return;
+        if (!confirm(`¿Borrar la nota "${nota.titulo}"?\n\nSe quita del blog y no se puede deshacer desde el panel.`)) return;
+        document.body.classList.add('guardando');
+        mostrarMensaje('Borrando…');
+        try {
+          await borrarArchivo(estado.datos, nota.ruta, `Blog: borrar nota "${slug}"`);
+          estado.notas = estado.notas.filter((n) => n !== nota);
+          pintar();
+          mostrarMensaje(`Se borró la nota "${nota.titulo}".${estado.datos.usuario.backendName === 'proxy' ? '' : ' Se quitará del sitio en un par de minutos.'}`);
+        } catch (error) {
+          mostrarMensaje(error.message === 'sesion' ? 'La sesión expiró: vuelve a iniciar sesión en el administrador.' : `No se pudo borrar la nota (${error.message}).`, true);
+        } finally {
+          document.body.classList.remove('guardando');
+        }
+      }
+
+      async function iniciar() {
+        const datos = await cargarDatos();
+        if (!datos) return;
+        estado.datos = datos;
+        estado.categorias = new Map(datos.categorias.map((c) => [c.id, c.nombre]));
+        estado.notas = datos.notas;
+        leerUrl();
+        llenarFiltros();
+        $('#contenido').hidden = false;
+        pintar();
+      }
+      iniciar();
+    </script>
+  </body>
+</html>

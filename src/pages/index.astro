@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image, getImage } from 'astro:assets';
 import home from '../data/homepage.json';
+import { notasPublicadas, categoriasBlog, urlNota } from '../lib/blog';
 
 import heroMaderas from '../assets/images/hero/banner-hero-maderas.webp';
 import heroMaderasMobile from '../assets/images/hero/banner-hero-maderas-mobile.webp';
@@ -27,9 +28,6 @@ import swatchArenisca from '../assets/images/swatch-arenisca.webp';
 import swatchCaliza from '../assets/images/swatch-caliza.webp';
 import swatchTravertino from '../assets/images/swatch-travertino.webp';
 import swatchTerra from '../assets/images/swatch-terra.webp';
-import blogPisos from '../assets/images/blog-pisos.webp';
-import blogTips from '../assets/images/blog-tips.webp';
-import blogMuros from '../assets/images/blog-muros.webp';
 import distribuidorMateriales from '../assets/images/distribuidor-materiales.webp';
 
 const swatchImages = [swatchArenisca, swatchCaliza, swatchTravertino, swatchTerra];
@@ -38,11 +36,6 @@ const shawSegmentImages: Record<string, ImageMetadata> = {
   Hospitality: shawHospitality,
   Education: shawEducation,
   Healthcare: shawHealthcare,
-};
-const blogImages: Record<string, ImageMetadata> = {
-  PISOS: blogPisos,
-  TIPS: blogTips,
-  MUROS: blogMuros,
 };
 
 // Banners del hero de terza.com: versión ancha (2000x750) y cuadrada para celular (900x900)
@@ -62,6 +55,10 @@ const heroSlides = await Promise.all(
     };
   }),
 );
+
+// Blog: las 3 notas más recientes (las destacadas primero)
+const notasHome = (await notasPublicadas()).slice(0, 3);
+const nombresBlog = new Map((await categoriasBlog()).map((c) => [c.id, c.data.nombre]));
 
 const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, shawContract, blog, ctaDistribuidor, contactoTeaser, ubicacionesTeaser } = home;
 ---
@@ -242,17 +239,19 @@ const { nuevosProductos, transformarEspacios: transformar, decoradorVirtual, sha
         </a>
       </div>
       <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {blog.posts.map((post: { category: string; title: string }) => (
-          <div class="overflow-hidden rounded-3xl bg-white">
-            <Image src={blogImages[post.category]} alt={post.title} class="h-56 w-full object-cover" width={700} height={450} />
+        {notasHome.map((nota) => (
+          <a href={urlNota(nota)} class="group overflow-hidden rounded-3xl bg-white">
+            <div class="h-56 overflow-hidden">
+              <Image src={nota.data.imagen} alt={nota.data.imagenAlt} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" width={700} height={450} />
+            </div>
             <div class="p-5">
               <div class="flex items-center justify-between gap-3">
-                <p class="text-xs font-bold uppercase tracking-wider text-terza-teal xl:text-sm">{post.category}</p>
-                <span class="shrink-0 text-xl text-black">→</span>
+                <p class="text-xs font-bold uppercase tracking-wider text-terza-teal xl:text-sm">{nombresBlog.get(nota.data.categorias[0]?.id) ?? 'Ideas'}</p>
+                <span class="shrink-0 text-xl text-black transition-transform group-hover:translate-x-1">→</span>
               </div>
-              <p class="mt-2 text-sm font-bold leading-snug text-black xl:text-lg">{post.title}</p>
+              <p class="mt-2 text-sm font-bold leading-snug text-black xl:text-lg">{nota.data.titulo}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

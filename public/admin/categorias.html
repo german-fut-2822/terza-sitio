@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Categorías del blog | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="/admin/comun.js"></script>
+    <link rel="stylesheet" href="/admin/listado.css" />
+  </head>
+  <body>
+    <!-- Menú lateral del panel (lo arma comun.js) -->
+    <aside class="lateral" id="lateral" data-actual="categorias"></aside>
+
+    <main>
+      <div class="titulo">
+        <h1>Categorías del blog</h1>
+        <ol class="migas"><li><a href="/admin/notas.html">Terza</a></li><li>Blog</li><li aria-current="page">Categorías</li></ol>
+      </div>
+
+      <div id="aviso" class="aviso" hidden></div>
+      <div id="mensaje" class="mensaje" role="status" hidden></div>
+
+      <div id="contenido" hidden>
+        <section class="tarjeta">
+          <div class="filtros">
+            <form class="campo-buscar" id="f-buscar" role="search">
+              <span data-icono="buscar"></span>
+              <input type="search" id="f-texto" placeholder="Buscar por nombre o slug…" aria-label="Buscar categorías" />
+            </form>
+            <span class="etiqueta-filtro">Filtrar por:</span>
+            <label class="selector"><span data-icono="estado"></span><span class="solo-lector">Notas</span>
+              <select id="f-estado">
+                <option value="">Todas</option>
+                <option value="con-notas">Con notas</option>
+                <option value="sin-notas">Sin notas</option>
+              </select>
+            </label>
+            <button type="button" class="btn-enlace" id="limpiar" hidden>Quitar filtros</button>
+            <div class="fin"><button type="button" class="btn btn-primario" id="btn-nueva"><span data-icono="mas"></span>Añadir categoría</button></div>
+          </div>
+
+          <div class="tabla">
+            <table>
+              <thead>
+                <tr>
+                  <th><button type="button" data-orden="nombre" data-dir="asc">Nombre</button></th>
+                  <th class="col-autor">Slug</th>
+                  <th class="col-cats">Página de la línea</th>
+                  <th class="num"><button type="button" data-orden="notas">Notas</button></th>
+                  <th class="col-acciones">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="filas"></tbody>
+            </table>
+          </div>
+          <div class="pie" data-paginas></div>
+          <p class="nota-pie">Si cambias el slug de una categoría, también se cambia en las notas que la usan. Al borrar una categoría, se quita de sus notas; las notas no se borran.</p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Ventana para editar una categoría: nombre y slug (al cambiar el slug también se cambia en sus notas) -->
+    <dialog id="editar" class="modal" aria-labelledby="editar-titulo">
+      <form id="f-editar">
+        <div class="modal-cab">
+          <h2 id="editar-titulo">Editar categoría</h2>
+          <button type="button" class="modal-cerrar" data-cerrar aria-label="Cerrar">×</button>
+        </div>
+        <div class="modal-cuerpo">
+          <label for="e-nombre">Nombre</label>
+          <input id="e-nombre" type="text" required maxlength="60" autocomplete="off" />
+          <p class="ayuda">Así se verá en el blog.</p>
+          <label for="e-slug">Slug</label>
+          <input id="e-slug" type="text" required maxlength="60" autocomplete="off" spellcheck="false" />
+          <p class="ayuda" id="e-aviso" hidden></p>
+          <p class="modal-error" id="e-error" role="alert" hidden></p>
+        </div>
+        <div class="modal-pie">
+          <button type="button" class="enlace borrar" id="e-borrar">Borrar categoría</button>
+          <button type="button" class="btn" data-cerrar>Cancelar</button>
+          <button type="submit" class="btn btn-primario">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Ventana para añadir una categoría: solo el nombre; el slug sale de él -->
+    <dialog id="nueva" class="modal" aria-labelledby="nueva-titulo">
+      <form id="f-nueva">
+        <div class="modal-cab">
+          <h2 id="nueva-titulo">Añadir categoría</h2>
+          <button type="button" class="modal-cerrar" data-cerrar aria-label="Cerrar">×</button>
+        </div>
+        <div class="modal-cuerpo">
+          <label for="n-nombre">Nombre</label>
+          <input id="n-nombre" type="text" required maxlength="60" autocomplete="off" />
+          <p class="ayuda">Así se verá en el blog.</p>
+          <p class="ayuda">Slug: <code id="n-slug">—</code><br />Se crea solo con el nombre y se usa en la dirección del filtro (/blog?categoria=…).</p>
+          <p class="modal-error" id="n-error" role="alert" hidden></p>
+        </div>
+        <div class="modal-pie">
+          <button type="button" class="btn" data-cerrar>Cancelar</button>
+          <button type="submit" class="btn btn-primario">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script>
+      // Categorías del blog con el diseño de UBold: añadir (solo el nombre; el slug sale de él), editar nombre y slug
+      // (las dos en una ventana), y borrar (quitándola de sus notas). Lectura y guardado en comun.js.
+      const POR_PAGINA = 20;
+      const estado = { datos: null, categorias: [], filtro: '', texto: '', orden: 'nombre', dir: 'asc', pagina: 1, guardando: false };
+
+      const notasDe = (id) => estado.datos.notas.filter((n) => n.categorias.includes(id));
+      const cumpleEstado = (c, e) => !e || (e === 'con-notas' && c.notas > 0) || (e === 'sin-notas' && c.notas === 0);
+
+      // Slug libre a partir de un texto: "deck", "deck-2", "deck-3"… (sin contar la categoría que se está editando)
+      function slugLibre(texto, excepto) {
+        const base = slugificar(texto) || 'categoria';
+        const ocupado = (s) => estado.categorias.some((c) => c.id === s && c.id !== excepto);
+        let slug = base;
+        for (let i = 2; ocupado(slug); i++) slug = `${base}-${i}`;
+        return slug;
+      }
+
+      function filtradas() {
+        const palabras = normalizar(estado.texto).split(/\s+/).filter(Boolean);
+        const lista = estado.categorias.filter((c) => cumpleEstado(c, estado.filtro) && palabras.every((p) => normalizar(`${c.nombre} ${c.id}`).includes(p)));
+        const signo = estado.dir === 'asc' ? 1 : -1;
+        return lista.sort((a, b) => signo * (estado.orden === 'notas' ? a.notas - b.notas || a.nombre.localeCompare(b.nombre, 'es') : a.nombre.localeCompare(b.nombre, 'es')));
+      }
+
+      const filaNormal = (c) => `<tr>
+          <td><button type="button" class="nota-titulo enlace" data-editar="${esc(c.id)}">${esc(c.nombre)}</button></td>
+          <td class="col-autor"><code>${esc(c.id)}</code></td>
+          <td class="col-cats">${c.pagina ? `<a href="${esc(c.pagina)}" target="_blank" rel="noopener">${esc(c.pagina)}</a>` : '—'}</td>
+          <td class="num"><a href="/admin/notas.html?categoria=${encodeURIComponent(c.id)}">${c.notas}</a></td>
+          <td class="col-acciones">
+            <div class="acciones">
+              ${c.notas
+                ? `<a class="accion" href="/blog?categoria=${encodeURIComponent(c.id)}" target="_blank" rel="noopener" title="Ver en el blog" aria-label="Ver en el blog">${icono('ver')}</a>`
+                : `<span class="accion" aria-disabled="true" title="Sin notas en el blog">${icono('ver')}</span>`}
+              <a class="accion" href="/admin/notas.html?categoria=${encodeURIComponent(c.id)}" title="Ver sus notas" aria-label="Ver sus notas">${icono('lista')}</a>
+              <button type="button" class="accion" data-editar="${esc(c.id)}" title="Editar" aria-label="Editar">${icono('editar')}</button>
+              <button type="button" class="accion borrar" data-borrar="${esc(c.id)}" title="Borrar" aria-label="Borrar">${icono('borrar')}</button>
+            </div>
+          </td>
+        </tr>`;
+
+
+      function pintar() {
+        const lista = filtradas();
+        const paginas = Math.max(1, Math.ceil(lista.length / POR_PAGINA));
+        estado.pagina = Math.min(Math.max(1, estado.pagina), paginas);
+        const pagina = lista.slice((estado.pagina - 1) * POR_PAGINA, estado.pagina * POR_PAGINA);
+
+        // Cuántas categorías hay en cada filtro
+        for (const opcion of $('#f-estado').options) {
+          opcion.textContent = `${opcion.textContent.replace(/ \(\d+\)$/, '')} (${estado.categorias.filter((c) => cumpleEstado(c, opcion.value)).length})`;
+        }
+        $('#f-estado').value = estado.filtro;
+        document.querySelectorAll('[data-orden]').forEach((b) => (b.dataset.orden === estado.orden ? (b.dataset.dir = estado.dir) : delete b.dataset.dir));
+        $('#limpiar').hidden = !(estado.texto || estado.filtro);
+
+        $('#filas').innerHTML = pagina.length
+          ? pagina.map(filaNormal).join('')
+          : '<tr><td colspan="5" class="vacio">No se encontraron categorías.</td></tr>';
+
+        document.querySelectorAll('[data-paginas]').forEach((c) => (c.innerHTML = htmlPaginas(lista.length, estado.pagina, paginas, POR_PAGINA, ['categoría', 'categorías'])));
+      }
+
+      function mostrarMensaje(texto, error = false) {
+        $('#mensaje').textContent = texto;
+        $('#mensaje').classList.toggle('error', error);
+        $('#mensaje').hidden = false;
+      }
+
+      // Guarda la lista de categorías (y las notas que cambien) y actualiza la tabla
+      async function guardar(categorias, notasCambiadas, mensaje, listo) {
+        if (estado.guardando) return;
+        estado.guardando = true;
+        document.body.classList.add('guardando');
+        mostrarMensaje('Guardando…');
+        try {
+          const archivos = [
+            { ruta: RUTA_CATEGORIAS, texto: textoCategorias(categorias.map(({ notas, ...c }) => c)) },
+            ...notasCambiadas.map((n) => ({ ruta: n.ruta, texto: n.texto })),
+          ];
+          await guardarArchivos(estado.datos, archivos, mensaje);
+          for (const cambio of notasCambiadas) Object.assign(estado.datos.notas.find((n) => n.ruta === cambio.ruta), cambio);
+          estado.categorias = categorias.map((c) => ({ ...c, notas: notasDe(c.id).length }));
+          pintar();
+          mostrarMensaje(`${listo}${estado.datos.usuario.backendName === 'proxy' ? '' : ' Se verá en el sitio en un par de minutos.'}`);
+        } catch (error) {
+          mostrarMensaje(error.message === 'sesion' ? 'La sesión expiró: vuelve a iniciar sesión en el administrador.' : `No se pudo guardar (${error.message}).`, true);
+        } finally {
+          estado.guardando = false;
+          document.body.classList.remove('guardando');
+        }
+      }
+
+      // Añadir (en la ventana): solo el nombre; el slug sale de él
+      const errorNueva = (texto) => { $('#n-error').textContent = texto; $('#n-error').hidden = !texto; };
+      $('#btn-nueva').addEventListener('click', () => {
+        $('#f-nueva').reset();
+        $('#n-slug').textContent = '—';
+        errorNueva('');
+        $('#nueva').showModal();
+        $('#n-nombre').focus();
+      });
+      $('#nueva').querySelectorAll('[data-cerrar]').forEach((b) => b.addEventListener('click', () => $('#nueva').close()));
+      $('#nueva').addEventListener('click', (e) => e.target === $('#nueva') && $('#nueva').close()); // clic fuera de la ventana
+      $('#n-nombre').addEventListener('input', (e) => {
+        $('#n-slug').textContent = e.target.value.trim() ? slugLibre(e.target.value) : '—';
+        errorNueva('');
+      });
+      $('#f-nueva').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nombre = $('#n-nombre').value.trim().replace(/\s+/g, ' ');
+        if (!nombre) return;
+        if (estado.categorias.some((c) => normalizar(c.nombre) === normalizar(nombre))) {
+          errorNueva(`Ya existe una categoría llamada "${nombre}".`);
+          return;
+        }
+        const id = slugLibre(nombre);
+        await guardar([...estado.categorias, { id, nombre, notas: 0 }], [], `Blog: añadir categoría "${nombre}"`, `Se añadió la categoría "${nombre}".`);
+        // Si se guardó, se cierra la ventana; si no, el error se ve dentro de ella
+        if ($('#mensaje').classList.contains('error')) errorNueva($('#mensaje').textContent);
+        else $('#nueva').close();
+      });
+
+      // Editar (en la ventana): nombre y slug
+      const errorEditar = (texto) => { $('#e-error').textContent = texto; $('#e-error').hidden = !texto; };
+      function abrirEditar(id) {
+        const c = estado.categorias.find((x) => x.id === id);
+        if (!c) return;
+        $('#f-editar').dataset.guardar = c.id;
+        $('#e-nombre').value = c.nombre;
+        $('#e-slug').value = c.id;
+        $('#e-aviso').hidden = true;
+        $('#e-borrar').dataset.borrar = c.id;
+        errorEditar('');
+        $('#mensaje').hidden = true;
+        $('#editar').showModal();
+        $('#e-nombre').focus();
+      }
+      $('#editar').querySelectorAll('[data-cerrar]').forEach((b) => b.addEventListener('click', () => $('#editar').close()));
+      $('#editar').addEventListener('click', (e) => e.target === $('#editar') && $('#editar').close()); // clic fuera de la ventana
+      $('#e-nombre').addEventListener('input', () => errorEditar(''));
+      $('#e-slug').addEventListener('input', (e) => {
+        errorEditar('');
+        const viejo = $('#f-editar').dataset.guardar;
+        const nuevo = slugificar(e.target.value);
+        const notas = notasDe(viejo).length;
+        const aviso = $('#e-aviso');
+        aviso.hidden = !nuevo || nuevo === viejo;
+        aviso.textContent = estado.categorias.some((c) => c.id === nuevo && c.id !== viejo)
+          ? `Ya hay otra categoría con el slug "${nuevo}".`
+          : `Quedará como "${nuevo}".${notas ? ` También se cambiará en ${notas === 1 ? 'la nota que la usa' : `las ${notas} notas que la usan`}.` : ''}`;
+      });
+      $('#f-editar').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const viejo = $('#f-editar').dataset.guardar;
+        const nombre = $('#e-nombre').value.trim().replace(/\s+/g, ' ');
+        const slug = slugificar($('#e-slug').value);
+        if (!nombre || !slug) return;
+        if (estado.categorias.some((c) => c.id === slug && c.id !== viejo)) {
+          errorEditar(`Ya hay otra categoría con el slug "${slug}".`);
+          return;
+        }
+        if (estado.categorias.some((c) => c.id !== viejo && normalizar(c.nombre) === normalizar(nombre))) {
+          errorEditar(`Ya existe una categoría llamada "${nombre}".`);
+          return;
+        }
+        const actual = estado.categorias.find((c) => c.id === viejo);
+        if (nombre === actual.nombre && slug === viejo) {
+          $('#editar').close();
+          return;
+        }
+        const categorias = estado.categorias.map((c) => (c.id === viejo ? { ...c, id: slug, nombre } : c));
+        const notas = slug === viejo ? [] : notasDe(viejo).map((n) => ({ ...n, texto: cambiarCategoriaEnNota(n.texto, viejo, slug) })).filter((n) => n.texto);
+        for (const n of notas) n.categorias = n.categorias.map((c) => (c === viejo ? slug : c));
+        await guardar(categorias, notas, `Blog: editar categoría "${nombre}"`, `Se actualizó la categoría "${nombre}"${notas.length ? ` y ${notas.length === 1 ? 'la nota que la usa' : `las ${notas.length} notas que la usan`}` : ''}.`);
+        // Si se guardó, se cierra la ventana; si no, el error se ve dentro de ella
+        if ($('#mensaje').classList.contains('error')) errorEditar($('#mensaje').textContent);
+        else $('#editar').close();
+      });
+
+      $('#f-buscar').addEventListener('submit', (e) => { e.preventDefault(); estado.texto = $('#f-texto').value.trim(); estado.pagina = 1; pintar(); });
+      $('#f-texto').addEventListener('search', () => { if (!$('#f-texto').value) { estado.texto = ''; pintar(); } });
+      $('#limpiar').addEventListener('click', () => { Object.assign(estado, { filtro: '', texto: '', pagina: 1 }); $('#f-texto').value = ''; pintar(); });
+      $('#f-estado').addEventListener('change', (e) => { estado.filtro = e.target.value; estado.pagina = 1; pintar(); });
+      document.addEventListener('click', async (e) => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        if (b.dataset.editar) abrirEditar(b.dataset.editar);
+        else if (b.dataset.borrar) {
+          const c = estado.categorias.find((x) => x.id === b.dataset.borrar);
+          const enNotas = c ? (c.notas === 1 ? 'la nota que la usa' : `las ${c.notas} notas que la usan`) : '';
+          if (!c || !confirm(`¿Borrar la categoría "${c.nombre}"?${c.notas ? `\n\nSe quitará de ${enNotas}; las notas no se borran.` : ''}`)) return;
+          // Se quita de las notas en el mismo guardado, para que ninguna apunte a una categoría que ya no existe
+          const notas = notasDe(c.id).map((n) => ({ ...n, texto: cambiarCategoriaEnNota(n.texto, c.id, null) })).filter((n) => n.texto);
+          for (const n of notas) n.categorias = n.categorias.filter((x) => x !== c.id);
+          await guardar(estado.categorias.filter((x) => x !== c), notas, `Blog: borrar categoría "${c.nombre}"`, `Se borró la categoría "${c.nombre}"${notas.length ? ` y se quitó de ${enNotas}` : ''}.`);
+          if ($('#editar').open) {
+            if ($('#mensaje').classList.contains('error')) errorEditar($('#mensaje').textContent);
+            else $('#editar').close();
+          }
+        }
+        else if (b.dataset.ir) { estado.pagina = Number(b.dataset.ir); pintar(); }
+        else if (b.dataset.orden) {
+          const misma = estado.orden === b.dataset.orden;
+          estado.dir = misma ? (estado.dir === 'asc' ? 'desc' : 'asc') : b.dataset.orden === 'notas' ? 'desc' : 'asc';
+          estado.orden = b.dataset.orden;
+          estado.pagina = 1;
+          pintar();
+        }
+      });
+
+      (async () => {
+        estado.datos = await cargarDatos();
+        if (!estado.datos) return;
+        estado.categorias = estado.datos.categorias.map((c) => ({ ...c, notas: notasDe(c.id).length }));
+        $('#contenido').hidden = false;
+        pintar();
+      })();
+    </script>
+  </body>
+</html>

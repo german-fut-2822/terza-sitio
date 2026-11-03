@@ -1,0 +1,125 @@
+# Administrador de notas del blog (Decap CMS) en /admin.
+# Cada cambio se guarda como un commit en GitHub y Vercel vuelve a publicar el sitio.
+# El inicio de sesión con GitHub lo atienden src/pages/api/auth.ts y src/pages/api/callback.ts (ver docs/administrador-blog.md).
+
+backend:
+  name: github
+  repo: german-fut-2822/terza-sitio
+  branch: main # rama que publica Vercel; las notas se guardan aquí
+  base_url: https://terza-sitio.vercel.app # dominio donde corren /api/auth y /api/callback
+  auth_endpoint: api/auth
+  commit_messages:
+    create: 'Blog: nueva nota "{{slug}}"'
+    update: 'Blog: editar nota "{{slug}}"'
+    delete: 'Blog: borrar nota "{{slug}}"'
+    uploadMedia: 'Blog: subir imagen "{{path}}"'
+    deleteMedia: 'Blog: borrar imagen "{{path}}"'
+
+# Para probar en la computadora sin GitHub: `npx decap-server` y abrir http://localhost:4321/admin/
+local_backend: true
+
+locale: es
+site_url: https://terza-sitio.vercel.app
+logo_url: /admin/terza-logo.webp
+
+# Imágenes del blog: se guardan en src/assets/blog y la nota las referencia con ruta relativa (Astro las optimiza)
+media_folder: src/assets/blog
+public_folder: ../../assets/blog
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+collections:
+  - name: blog
+    label: Notas del blog
+    label_singular: Nota
+    description: Las notas se publican en /blog. Marca "Borrador" para guardarla sin publicarla.
+    folder: src/content/blog
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    identifier_field: titulo
+    slug: '{{titulo}}'
+    preview_path: blog/{{slug}}
+    media_folder: ../../assets/blog
+    public_folder: ../../assets/blog
+    summary: "{{titulo}} · {{fecha | date('DD/MM/YYYY')}}"
+    sortable_fields: [fecha, titulo]
+    view_filters:
+      - { label: Borradores, field: borrador, pattern: true }
+      - { label: Destacadas, field: destacada, pattern: true }
+    fields:
+      - { name: titulo, label: Título, widget: string }
+      - name: descripcion
+        label: Descripción
+        widget: text
+        required: false
+        hint: Opcional. Resumen de 1 o 2 frases. Aparece en la tarjeta del listado, en Google y al compartir la nota.
+      - name: fecha
+        label: Fecha de publicación
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: DD/MM/YYYY
+        time_format: false
+        picker_utc: true
+      - { name: autor, label: Autor, widget: string, default: Terza }
+      - name: imagen
+        label: Imagen principal
+        widget: image
+        choose_url: false
+        media_library: { config: { max_file_size: 512000 } } # 500 KB
+        hint: Foto horizontal de al menos 1200 px de ancho, en JPG o WebP, de máximo 500 KB.
+      - name: imagenAlt
+        label: Descripción de la imagen
+        widget: string
+        hint: Qué se ve en la foto (para Google y lectores de pantalla).
+      - name: categorias
+        label: Categorías
+        widget: relation
+        collection: configuracion
+        file: categorias
+        search_fields: ['categorias.*.nombre']
+        display_fields: ['categorias.*.nombre']
+        value_field: 'categorias.*.id'
+        multiple: true
+        required: false
+        options_length: 50
+      - { name: destacada, label: Destacada, widget: boolean, default: false, required: false, hint: Aparece primero en el blog y en el home. }
+      - { name: borrador, label: Borrador, widget: boolean, default: false, required: false, hint: Oculto en el editor; se cambia con "Guardar como borrador" en el menú de Publicar (index.html). }
+      - name: body
+        label: Texto
+        widget: markdown
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+        media_library: { config: { max_file_size: 512000 } } # 500 KB
+        hint: Usa "Encabezado 2" para las secciones y "Encabezado 3" para los subtemas.
+
+  - name: configuracion
+    label: Categorías del blog
+    editor:
+      preview: false
+    files:
+      - name: categorias
+        label: Categorías
+        file: src/data/blog-categorias.json
+        fields:
+          - name: categorias
+            label: Categorías
+            label_singular: Categoría
+            widget: list
+            summary: '{{fields.nombre}}'
+            fields:
+              - name: id
+                label: Identificador
+                widget: string
+                pattern: ['^[a-z0-9-]+$', 'Solo minúsculas, números y guiones (por ejemplo: pisos-vinilicos)']
+                hint: Se usa en la dirección del filtro (/blog?categoria=...). No lo cambies si ya hay notas con esta categoría.
+              - { name: nombre, label: Nombre, widget: string }
+              - name: pagina
+                label: Página de la línea
+                widget: string
+                required: false
+                hint: Opcional. Por ejemplo /pisos/alfombras; aparece como "Conoce nuestra línea" en las notas.

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Administrador del blog | Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      /* Botón de arriba de una nota borrador sin cambios: "Borrador" en vez de "Publicado" (ver el script de abajo) */
+      [data-borrador] { font-size: 0 !important; }
+      [data-borrador]::before { content: "Borrador"; font-size: 14px; }
+
+      /* Colores del administrador (verde Terza, esquinas de 6 px como en los listados) sobre el editor de Decap (sus clases llevan el nombre del componente:
+         se eligen con [class*="…"]). Verde #00514a, fondo #f4f6f2, bordes #e2e8df. */
+      @font-face { font-family: Roobert; src: url('/fonts/Roobert-Variable.ttf') format('truetype'); font-weight: 300 900; font-display: swap; }
+      body, #nc-root, #nc-root button, #nc-root input, #nc-root textarea, #nc-root select { font-family: Roobert, ui-sans-serif, system-ui, sans-serif !important; font-feature-settings: 'calt' 0; }
+      body, [class*="EditorContainer"], [class*="AppMainContainer"] { background-color: #f4f6f2 !important; }
+      [class*="ToolbarContainer"] { box-shadow: 0 1px 2px rgb(0 81 74 / 0.06), 0 4px 12px rgb(0 81 74 / 0.06) !important; }
+      /* Publicar / Publicado / Borrador y Eliminar entrada */
+      [class*="PublishButton"], [class*="PublishedToolbarButton"] { border-radius: 6px !important; background-color: #00514a !important; color: #fff !important; font-weight: 600 !important; }
+      [class*="PublishButton"]:hover, [class*="PublishedToolbarButton"]:hover { background-color: #00413b !important; }
+      [class*="PublishButton"]::after, [class*="PublishedToolbarButton"]::after { color: #fff !important; border-top-color: #fff !important; }
+      [class*="DeleteButton"] { border-radius: 6px !important; background-color: #fdecea !important; color: #b42318 !important; }
+      [class*="PreviewLink"] { color: #00514a !important; font-weight: 600; }
+      [role="menu"] { border-radius: 12px !important; overflow: hidden; box-shadow: 0 4px 16px rgb(0 0 0 / 0.12) !important; }
+      [role="menuitem"]:hover { background-color: #f0fae5 !important; color: #00514a !important; }
+      /* Campos: etiqueta y borde en gris verdoso; al escribir, en verde */
+      [class*="FieldLabel"] { background-color: #e2e8df !important; color: #555 !important; }
+      [class*="ControlContainer"] input:not([type="checkbox"]):not([type="file"]), [class*="ControlContainer"] textarea, [class*="ControlContainer"] [class*="ToggleContainer"] ~ *, [class*="ControlContainer"] > div > [class*="Editor"] { border-color: #e2e8df !important; }
+      [class*="ControlContainer"]:focus-within > [class*="ControlTopbar"] [class*="FieldLabel"], [class*="ControlContainer"]:focus-within > [class*="FieldLabel"] { background-color: #00514a !important; color: #fff !important; }
+      [class*="ControlContainer"]:focus-within input:not([type="checkbox"]):not([type="file"]), [class*="ControlContainer"]:focus-within textarea { border-color: #00514a !important; }
+      /* Botones de la imagen y de los campos */
+      [class*="FileWidgetButton"] { border-radius: 6px !important; padding-inline: 16px !important; }
+      [class*="FileWidgetButton"]:not([class*="Remove"]) { background-color: #f0fae5 !important; color: #00514a !important; }
+      [class*="FileWidgetButtonRemove"] { background-color: #fdecea !important; color: #b42318 !important; }
+      [class*="ButtonRound"], [class*="EditorToggle"] { color: #00514a !important; }
+      [class*="BooleanBackground"][class*="active"], [aria-checked="true"] > [class*="ToggleBackground"] { background-color: #00514a !important; }
+      /* Pantalla de inicio de sesión */
+      [class*="LoginButton"] { border-radius: 6px !important; background-color: #00514a !important; color: #fff !important; }
+    </style>
+  </head>
+  <body>
+    <!-- Decap CMS: configuración en /admin/config.yml -->
+    <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+    <!-- Para cambiar el estado de una nota sin cambios (leer y guardar el archivo con la sesión del panel) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="/admin/comun.js"></script>
+    <script>
+      // Vista previa con los estilos del texto de las notas del sitio
+      CMS.registerPreviewStyle('/admin/vista-previa.css');
+
+      // Los listados se ven en /admin/notas.html y /admin/categorias.html (tablas con filtros); al entrar a una colección
+      // o regresar del editor se va ahí (las notas, con los filtros que tenía). Las categorías se editan solo en su listado.
+      const irAlListado = () => {
+        if (/^#\/collections\/blog\/?$/.test(location.hash)) {
+          location.replace(`/admin/notas.html${sessionStorage.getItem('listado-notas') ?? ''}`);
+        } else if (/^#\/collections\/configuracion(\/entries\/categorias)?\/?$/.test(location.hash)) {
+          location.replace('/admin/categorias.html');
+        }
+      };
+      window.addEventListener('hashchange', irAlListado);
+      irAlListado();
+
+      // Imágenes de máximo 500 KB en cualquier lugar donde se suban (campo de imagen, texto o biblioteca de medios)
+      const MAX_IMAGEN = 500 * 1024;
+      const revisarPeso = (e) => {
+        const archivos = [...(e.target.files ?? e.dataTransfer?.files ?? [])];
+        const pesado = archivos.find((a) => a.size > MAX_IMAGEN);
+        if (!pesado) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (e.target.value) e.target.value = '';
+        alert(`"${pesado.name}" pesa ${Math.round(pesado.size / 1024)} KB. Las imágenes deben pesar menos de 500 KB: redúcela (por ejemplo en squoosh.app) y vuelve a subirla.`);
+      };
+      document.addEventListener('change', (e) => e.target.matches?.('input[type="file"]') && revisarPeso(e), true);
+      document.addEventListener('drop', revisarPeso, true);
+
+      // El botón "Medios" de la barra del panel lleva a la biblioteca en cuadrícula (/admin/medios.html); el selector de
+      // imágenes de los campos sigue usando la ventana de Decap
+      document.addEventListener('click', (e) => {
+        const boton = e.target.closest('header button, header a');
+        if (boton && boton.textContent.trim() === 'Medios') {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          location.href = '/admin/medios.html';
+        }
+      }, true);
+
+      // Borrador como en WordPress: el campo "Borrador" no se ve y el menú de Publicar trae las opciones.
+      // - Con cambios sin guardar: "Guardar como borrador" junto a "Publicar ahora"; preSave fija el valor según la opción.
+      // - Sin cambios: "Pasar a borrador" o "Publicar ahora" cambian solo la línea "borrador" del archivo (comun.js).
+      // Después de guardar se recarga la nota, para que el botón y el campo oculto queden como está el archivo.
+      let guardarComoBorrador = false;
+      let recargarAlGuardar = false;
+      CMS.registerEventListener({
+        name: 'preSave',
+        handler: ({ entry }) => {
+          const data = entry.get('data');
+          if (entry.get('collection') !== 'blog') return data;
+          const borrador = guardarComoBorrador;
+          guardarComoBorrador = false;
+          return data.set('borrador', borrador);
+        },
+      });
+      CMS.registerEventListener({
+        name: 'postSave',
+        handler: ({ entry }) => {
+          if (entry.get('collection') !== 'blog' || !recargarAlGuardar) return;
+          recargarAlGuardar = false;
+          setTimeout(() => location.reload(), 300);
+        },
+      });
+
+      // Las opciones nativas: "Publicar ahora" se queda en la nota (se recarga); crear nuevo y duplicar cambian de página.
+      // Si el guardado no pasa la validación, preSave no corre; el siguiente clic vuelve a decidir.
+      document.addEventListener('click', (e) => {
+        const item = e.isTrusted && e.target.closest?.('[role="menuitem"]:not([data-terza])');
+        if (!item) return;
+        guardarComoBorrador = false;
+        recargarAlGuardar = item.textContent.trim() === 'Publicar ahora';
+      }, true);
+
+      const interruptorBorrador = () => document.querySelector('button[role="switch"][id^="borrador-field-"]');
+      const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
+      const botonPublicar = () => document.querySelector('[aria-haspopup="true"][class*="DropdownButton-noOverflow"]'); // "Publicar" o "Publicado"
+      const opcion = (texto) => [...document.querySelectorAll('[role="menuitem"]')].find((m) => m.querySelector('span')?.textContent === texto);
+
+      // Con cambios sin guardar: guarda todo con "Publicar ahora" marcando la nota como borrador
+      async function guardarBorradorConCambios() {
+        if (!opcion('Publicar ahora')) {
+          botonPublicar()?.click();
+          await esperar(150);
+        }
+        const publicar = opcion('Publicar ahora');
+        if (!publicar) return;
+        guardarComoBorrador = true;
+        recargarAlGuardar = true;
+        publicar.click();
+      }
+
+      // Sin cambios: reescribe solo "borrador: true/false" en el archivo de la nota y recarga
+      async function cambiarEstado(borrador) {
+        const slug = decodeURIComponent(location.hash.match(/\/collections\/blog\/entries\/([^/?]+)/)?.[1] ?? '');
+        if (!slug) return;
+        document.body.style.cursor = 'progress';
+        try {
+          const usuario = JSON.parse(localStorage.getItem('decap-cms-user'));
+          const backend = await leerConfig();
+          const ruta = `${RUTA_NOTAS}/${slug}.md`;
+          let texto;
+          if (usuario.backendName === 'proxy') {
+            texto = (await apiLocal(backend, 'getEntry', { path: ruta })).data;
+          } else {
+            const archivo = await apiGitHub(usuario.token, `/repos/${backend.repo}/contents/${ruta}?ref=${backend.branch}`);
+            texto = new TextDecoder().decode(Uint8Array.from(atob(archivo.content.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+          }
+          const nuevo = /^borrador:.*$/m.test(texto)
+            ? texto.replace(/^borrador:.*$/m, `borrador: ${borrador}`)
+            : texto.replace(/^(---\r?\n[\s\S]*?)(\r?\n---)/, `$1\nborrador: ${borrador}$2`);
+          await guardarArchivos({ usuario, backend }, [{ ruta, texto: nuevo }], `Blog: ${borrador ? 'pasar a borrador' : 'publicar'} "${slug}"`);
+          location.reload();
+        } catch (error) {
+          document.body.style.cursor = '';
+          alert(`No se pudo cambiar el estado de la nota (${error.message === 'sesion' ? 'la sesión expiró; vuelve a iniciar sesión' : error.message}).`);
+        }
+      }
+
+      // Copia una opción del menú con otro texto (y otro ícono si se da)
+      const ICONO_BORRADOR = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 13h6M9 17h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      function agregarOpcion(modelo, texto, alHacerClic, icono) {
+        const nueva = modelo.cloneNode(true);
+        nueva.dataset.terza = '';
+        nueva.querySelector('span').textContent = texto;
+        if (icono) nueva.querySelector('svg').outerHTML = icono;
+        nueva.addEventListener('click', (e) => {
+          e.stopPropagation();
+          document.body.click(); // cierra el menú
+          alHacerClic();
+        });
+        modelo.before(nueva);
+      }
+
+      // "Ver publicación" abre la nota en el mismo sitio donde está abierto el panel (en local, localhost; en línea, el
+      // dominio actual) en vez de site_url, que apunta al dominio de producción
+      document.addEventListener('click', (e) => {
+        const ver = e.target.closest?.('a[class*="PreviewLink"]');
+        if (!ver) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const url = new URL(ver.href);
+        window.open(`${location.origin}${url.pathname}`, '_blank', 'noopener');
+      }, true);
+
+      // Miniatura de "Imagen principal": con la ruta relativa de Astro (../../assets/blog/…) el panel carga la imagen pero la
+      // miniatura se queda en el cuadro vacío que pone mientras carga. Si pasa eso, se lee el archivo y se pone en la miniatura.
+      let almacen = null; // estado interno del panel (Redux), para saber qué imagen tiene el campo aunque no se haya guardado
+      function estadoPanel() {
+        if (almacen) return almacen.getState();
+        const raiz = document.getElementById('nc-root');
+        const clave = raiz && Object.keys(raiz).find((k) => k.startsWith('__reactContainer'));
+        const pendientes = clave ? [raiz[clave]] : [];
+        for (let n = 0; pendientes.length && n < 20000; n++) {
+          const nodo = pendientes.pop();
+          if (!nodo) continue;
+          if (nodo.memoizedProps?.store?.getState) { almacen = nodo.memoizedProps.store; return almacen.getState(); }
+          pendientes.push(nodo.child, nodo.sibling);
+        }
+        return null;
+      }
+      const vacias = new Map(); // src → ¿es el cuadro vacío?
+      const urlsImagen = new Map(); // ruta → URL que se puede mostrar
+      async function esVacia(src) {
+        if (!vacias.has(src)) vacias.set(src, fetch(src).then((r) => r.blob()).then((b) => b.size < 100 && b.type === 'image/svg+xml').catch(() => false));
+        return vacias.get(src);
+      }
+      async function urlImagen(ruta) {
+        if (!urlsImagen.has(ruta)) {
+          urlsImagen.set(ruta, (async () => {
+            const usuario = JSON.parse(localStorage.getItem('decap-cms-user'));
+            const backend = await leerConfig();
+            const base64 = usuario.backendName === 'proxy'
+              ? (await apiLocal(backend, 'getMediaFile', { path: ruta })).content
+              : (await apiGitHub(usuario.token, `/repos/${backend.repo}/contents/${ruta}?ref=${backend.branch}`)).content.replace(/\s/g, '');
+            const tipo = /\.png$/i.test(ruta) ? 'image/png' : /\.webp$/i.test(ruta) ? 'image/webp' : /\.gif$/i.test(ruta) ? 'image/gif' : 'image/jpeg';
+            return URL.createObjectURL(new Blob([Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))], { type: tipo }));
+          })().catch(() => { urlsImagen.delete(ruta); return null; }));
+        }
+        return urlsImagen.get(ruta);
+      }
+      async function arreglarMiniatura() {
+        const etiqueta = document.querySelector('label[for^="imagen-field-"]');
+        const img = etiqueta?.closest('[class*="ControlContainer"]')?.querySelector('img');
+        if (!img) return;
+        const valor = estadoPanel()?.entryDraft?.getIn?.(['entry', 'data', 'imagen']);
+        const archivo = typeof valor === 'string' ? valor.match(/assets\/blog\/([^?#]+)$/)?.[1] : null;
+        // Ya puesta para este valor; o es una miniatura propia del panel (por ejemplo, una imagen recién subida)
+        if (img.src === img.dataset.terza && img.dataset.archivo === archivo) return;
+        if (img.src !== img.dataset.terza && (!img.src.startsWith('blob:') || !(await esVacia(img.src)))) return;
+        // El panel reutiliza el mismo cuadro vacío al cambiar de imagen: se vuelve a poner con el valor actual
+        if (!archivo) return;
+        const url = await urlImagen(`src/assets/blog/${archivo}`);
+        if (url && img.isConnected) {
+          img.src = url;
+          img.dataset.terza = img.src;
+          img.dataset.archivo = archivo;
+        }
+      }
+
+      new MutationObserver(() => {
+        arreglarMiniatura();
+        const interruptor = interruptorBorrador();
+        if (!interruptor) return;
+        // Oculta el campo "Borrador" del formulario
+        const campo = interruptor.closest('[class*="ControlContainer"]');
+        if (campo && campo.style.display !== 'none') campo.style.display = 'none';
+        const esBorrador = interruptor.getAttribute('aria-checked') === 'true';
+
+        // "Ver publicación": un borrador no tiene página en el sitio, así que en un borrador no se muestra
+        const ver = document.querySelector('a[class*="PreviewLink"]');
+        if (ver && ver.style.display !== (esBorrador ? 'none' : '')) ver.style.display = esBorrador ? 'none' : '';
+
+        // Botón de arriba: en una nota borrador sin cambios dice "Borrador" en vez de "Publicado"
+        // (con un atributo y CSS, para no tocar el texto que maneja el panel)
+        const boton = botonPublicar();
+        if (boton) boton.toggleAttribute('data-borrador', boton.textContent === 'Publicado' && esBorrador);
+
+        const menu = document.querySelector('[role="menu"]');
+        if (!menu || menu.querySelector('[data-terza]')) return;
+        const publicarAhora = opcion('Publicar ahora');
+        const duplicar = opcion('Duplicar');
+        if (publicarAhora) agregarOpcion(publicarAhora, 'Guardar como borrador', guardarBorradorConCambios, ICONO_BORRADOR);
+        else if (duplicar && esBorrador) agregarOpcion(duplicar, 'Publicar ahora', () => cambiarEstado(false));
+        else if (duplicar) agregarOpcion(duplicar, 'Pasar a borrador', () => cambiarEstado(true), ICONO_BORRADOR);
+      }).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['aria-checked', 'src'] });
+    </script>
+  </body>
+</html>
