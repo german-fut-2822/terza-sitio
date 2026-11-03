@@ -60,6 +60,10 @@ export const urlProducto = (p: Pick<Producto, 'categoria' | 'slug'>) => `/catalo
 export const categoriaDe = (slug: string) => categorias.find((c) => c.slug === slug)!;
 export const productosDe = (slug: string) => productos.filter((p) => p.categoria === slug);
 
+// Los últimos productos que se dieron de alta en terza.com de una categoría (el id más alto es el más reciente)
+export const ultimosDe = (slug: string, cuantos: number) =>
+  productosDe(slug).sort((a, b) => b.id - a.id).slice(0, cuantos);
+
 // Los demás colores de la misma familia (para las muestras de la ficha)
 export const familiaDe = (p: Producto) =>
   productos.filter((x) => x.categoria === p.categoria && x.familia === p.familia);

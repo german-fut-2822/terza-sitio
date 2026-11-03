@@ -122,6 +122,7 @@ for (const cat of CATEGORIAS) {
       .map(([campo, etiqueta]) => [etiqueta, limpiar(p[campo])])
       .filter(([, valor]) => valor);
     productos.push({
+      id: p.id, // crece con cada producto que se da de alta en terza.com (sirve para saber cuáles son los últimos)
       sku: limpiar(p.sku),
       slug: slug(p.sku),
       categoria: cat.slug,

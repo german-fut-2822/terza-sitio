@@ -10,12 +10,8 @@
   "nuevosProductos": {
     "title": "Nuevos Productos",
     "featured": { "title": "flexiROC", "subtitle": "Recubrimiento de piedra flexible.", "href": "/muros/flexiroc" },
-    "items": [
-      { "name": "Flexiroc Arenisca", "sku": "T15-FR026-SL106" },
-      { "name": "Flexiroc Caliza Española", "sku": "T15-FR026-SL107" },
-      { "name": "Flexiroc Travertino Greige", "sku": "T15-FR026-GT101" },
-      { "name": "Flexiroc Terra", "sku": "T15-FR026-TL102" }
-    ],
+    "categoria": "flexiroc",
+    "cuantos": 10,
     "cta": { "label": "Ver todo", "href": "/muros/flexiroc" }
   },
   "transformarEspacios": {
