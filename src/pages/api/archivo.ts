@@ -9,7 +9,7 @@ export const prerender = false;
 const TIPOS: Record<string, string> = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif' };
 
 export const GET: APIRoute = async ({ url, cookies }) => {
-  if (!usuarioDeSesion(cookies)) return new Response('Sin sesión', { status: 401 });
+  if (!(await usuarioDeSesion(cookies))) return new Response('Sin sesión', { status: 401 });
   let ruta: string;
   try {
     ruta = revisarRuta(url.searchParams.get('ruta'));

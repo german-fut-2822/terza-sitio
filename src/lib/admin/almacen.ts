@@ -6,7 +6,9 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, stat, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { variable, type Usuario } from './sesion';
+import { variable } from './entorno';
+
+type Autor = { nombre: string };
 
 export type Archivo = { ruta: string; nombre: string; peso: number; id: string };
 export type Cambio = { ruta: string; contenido: Buffer | null }; // null = borrar
@@ -16,7 +18,7 @@ export interface Almacen {
   leer(ruta: string): Promise<Buffer | null>;
   listar(carpeta: string): Promise<Archivo[]>;
   textos(carpeta: string, extension: string): Promise<{ ruta: string; texto: string; id: string }[]>;
-  guardar(cambios: Cambio[], mensaje: string, autor: Usuario): Promise<void>;
+  guardar(cambios: Cambio[], mensaje: string, autor: Autor): Promise<void>;
 }
 
 const PERMITIDAS = [/^src\/content\/blog\/[^/]+\.md$/, /^src\/assets\/blog\/[^/]+\.(jpe?g|png|webp|gif)$/i, /^src\/data\/blog-categorias\.json$/];
@@ -107,7 +109,7 @@ function github(token: string): Almacen {
         .filter((e) => e.name.endsWith(`.${extension}`) && e.object)
         .map((e) => ({ ruta: `${carpeta}/${e.name}`, texto: e.object!.text, id: e.object!.oid }));
     },
-    // Todos los cambios en un solo commit, firmado con el nombre de quien está en el panel
+    // Todos los cambios en un solo commit, firmado con el nombre de quien está en el panel (el correo no se publica: el repo es público)
     async guardar(cambios, mensaje, autor) {
       const base = `/repos/${repo}/git`;
       const arbol = await Promise.all(
@@ -125,7 +127,7 @@ function github(token: string): Almacen {
         const commit = await (
           await pedir(`${base}/commits`, {
             method: 'POST',
-            body: JSON.stringify({ message: mensaje, tree: tree.sha, parents: [padre.sha], author: { name: autor.nombre, email: autor.correo } }),
+            body: JSON.stringify({ message: mensaje, tree: tree.sha, parents: [padre.sha], author: { name: autor.nombre, email: 'administrador-blog@noreply.terza.com' } }),
           })
         ).json();
         const r = await fetch(`https://api.github.com${base}/refs/heads/${encodeURIComponent(rama)}`, {

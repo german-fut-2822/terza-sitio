@@ -159,6 +159,7 @@ const ICONOS = {
   calendario: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
   lista: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
   usuario: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  usuarios: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
 };
 const icono = (nombre, clase = '') => `<svg class="icono ${clase}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONOS[nombre]}</svg>`;
 const SECCIONES = [
@@ -237,7 +238,16 @@ async function pintarMenu() {
   if (!r.ok) return irAlLogin();
   const usuario = await r.json();
   caja.querySelector('.nombre').textContent = usuario.nombre;
-  caja.querySelector('.detalle').textContent = usuario.correo;
+  caja.querySelector('.detalle').textContent = `${usuario.rol === 'admin' ? 'Administrador' : 'Editor'} · ${usuario.correo}`;
+  // La sección Usuarios solo la ven los administradores
+  if (usuario.rol === 'admin') {
+    lateral.insertAdjacentHTML(
+      'beforeend',
+      `<p class="lateral-seccion">Administración</p>
+      <ul><li><a href="/admin/usuarios.html"${actual === 'usuarios' ? ' aria-current="page"' : ''}>${icono('usuarios')}Usuarios</a></li></ul>`,
+    );
+  }
+  document.dispatchEvent(new CustomEvent('sesion', { detail: usuario }));
 }
 
 // Cerrar sesión: borra la cookie de la sesión y la del editor de Decap, y regresa a la pantalla de entrada
@@ -247,3 +257,14 @@ async function cerrarSesion() {
   location.href = '/admin/login.html?salio=1';
 }
 document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', pintarMenu) : pintarMenu();
+
+// Botón del ojo en los campos de contraseña (.campo-clave): muestra u oculta lo escrito
+document.addEventListener('click', (e) => {
+  const boton = e.target.closest?.('[data-ver-clave]');
+  if (!boton) return;
+  const campo = boton.parentElement.querySelector('input');
+  const ver = campo.type === 'password';
+  campo.type = ver ? 'text' : 'password';
+  boton.setAttribute('aria-pressed', String(ver));
+  boton.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+});

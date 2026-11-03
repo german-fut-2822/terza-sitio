@@ -44,7 +44,7 @@ async function enTandas<T, R>(lista: T[], tarea: (x: T) => Promise<R>, limite = 
 }
 
 export const POST: APIRoute = async ({ request, cookies }) => {
-  const usuario = usuarioDeSesion(cookies);
+  const usuario = await usuarioDeSesion(cookies);
   if (!usuario) return json({ error: 'La sesión expiró; vuelve a entrar.' }, 401);
 
   const { action, params = {} } = await request.json().catch(() => ({}));

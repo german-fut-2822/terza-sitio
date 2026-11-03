@@ -9,3 +9,4 @@ dist/
 # kept locally for reference, never committed. Optimized copies
 # used in the site live under src/assets or public/.
 _source-design/
+.usuarios-admin.local.enc

@@ -152,6 +152,9 @@ th.col-acciones { text-align: right; }
 .insignia { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 13px; font-weight: 600; white-space: nowrap; }
 .insignia.publicada { background: rgb(26 188 156 / 0.15); color: #13967c; }
 .insignia.borrador { background: rgb(247 184 75 / 0.18); color: #b47a12; }
+.insignia.admin { background: var(--teal-suave); color: var(--teal); }
+.insignia.editor { background: var(--bg); color: var(--text); }
+.insignia.fijo { margin-left: 6px; background: #eef1ff; color: #4a5bd4; }
 
 /* Botones redondos de acción (ver, editar, borrar) */
 .acciones { display: inline-flex; gap: 8px; }
@@ -181,6 +184,16 @@ code { padding: 2px 8px; border-radius: 4px; background: var(--bg); color: var(-
 .num { text-align: right; }
 .nota-pie { margin: 0; padding: 0 32px 24px; color: var(--muted); font-size: 13px; }
 
+/* Inicial del usuario en un círculo, junto a su nombre */
+.inicial { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--teal-suave); color: var(--teal); font-weight: 700; }
+.con-foto .por { word-break: break-all; }
+
+/* Campo de contraseña con el botón del ojo para verla (data-ver-clave) */
+.campo-clave { position: relative; }
+.campo-clave input { padding-right: 48px !important; }
+.campo-clave [data-ver-clave] { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: var(--radio); background: none; color: var(--muted); cursor: pointer; }
+.campo-clave [data-ver-clave]:hover, .campo-clave [data-ver-clave][aria-pressed="true"] { color: var(--teal); }
+
 /* Ventana (modal), como la de añadir categoría */
 .modal { width: min(480px, calc(100vw - 32px)); padding: 0; border: 0; border-radius: var(--radio); box-shadow: 0 12px 40px rgb(0 0 0 / 0.2); color: var(--text); }
 .modal::backdrop { background: rgb(49 58 70 / 0.5); }
@@ -190,7 +203,7 @@ code { padding: 2px 8px; border-radius: 4px; background: var(--bg); color: var(-
 .modal-cerrar:hover { background: var(--bg); color: var(--ink); }
 .modal-cuerpo { padding: 24px; }
 .modal-cuerpo label { display: block; margin-bottom: 8px; color: var(--ink); font-weight: 600; }
-.modal-cuerpo input { width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--input); border-radius: var(--radio); background: #fff; color: var(--ink); }
+.modal-cuerpo input, .modal-cuerpo select { width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--input); border-radius: var(--radio); background: #fff; color: var(--ink); }
 .modal-error { margin: 16px 0 0; padding: 10px 14px; border-radius: var(--radio); background: #fdeef0; color: var(--danger); font-size: 14px; }
 .modal-pie { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--border); }
 .modal-pie .borrar { margin-right: auto; }

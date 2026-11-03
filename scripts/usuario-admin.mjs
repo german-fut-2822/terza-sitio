@@ -1,4 +1,6 @@
-// Crea o cambia un usuario del administrador del blog (/admin).
+// Crea o cambia un usuario "de recuperación" del administrador del blog (/admin), en la variable ADMIN_USUARIOS.
+// Los usuarios de todos los días se manejan en la sección Usuarios del panel; este comando es para la computadora o para
+// recuperar el acceso si se olvida la contraseña del único administrador. Estos usuarios siempre son administradores.
 //
 // Uso:
 //   npm run usuario-admin -- correo@terza.com "Nombre Apellido"

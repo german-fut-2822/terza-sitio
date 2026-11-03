@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Usuarios | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="/admin/comun.js"></script>
+    <link rel="stylesheet" href="/admin/listado.css" />
+  </head>
+  <body>
+    <!-- Menú lateral del panel (lo arma comun.js) -->
+    <aside class="lateral" id="lateral" data-actual="usuarios"></aside>
+
+    <main>
+      <div class="titulo">
+        <h1>Usuarios</h1>
+        <ol class="migas"><li><a href="/admin/notas.html">Terza</a></li><li>Administración</li><li aria-current="page">Usuarios</li></ol>
+      </div>
+
+      <div id="aviso" class="aviso" hidden></div>
+      <div id="mensaje" class="mensaje" role="status" hidden></div>
+
+      <section class="tarjeta" id="contenido" hidden>
+        <div class="filtros">
+          <form class="campo-buscar" id="f-buscar" role="search">
+            <span data-icono="buscar"></span>
+            <input type="search" id="f-texto" placeholder="Buscar por nombre o correo…" aria-label="Buscar usuarios" />
+          </form>
+          <span class="etiqueta-filtro">Filtrar por:</span>
+          <label class="selector"><span data-icono="usuario"></span><span class="solo-lector">Rol</span>
+            <select id="f-rol">
+              <option value="">Todos los roles</option>
+              <option value="admin">Administradores</option>
+              <option value="editor">Editores</option>
+            </select>
+          </label>
+          <div class="fin"><button type="button" class="btn btn-primario" id="btn-nuevo"><span data-icono="mas"></span>Añadir usuario</button></div>
+        </div>
+
+        <div class="tabla">
+          <table>
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th class="col-acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="filas"></tbody>
+          </table>
+        </div>
+        <p class="nota-pie" style="padding-top: 20px">
+          <b>Administrador:</b> puede todo, incluida esta sección. <b>Editor:</b> notas, categorías y medios.
+          Los usuarios marcados como <i>Vercel</i> están en la variable ADMIN_USUARIOS y solo se cambian ahí.
+        </p>
+      </section>
+    </main>
+
+    <!-- Ventana para añadir o editar un usuario -->
+    <dialog id="ventana" class="modal" aria-labelledby="ventana-titulo">
+      <form id="f-usuario">
+        <div class="modal-cab">
+          <h2 id="ventana-titulo">Añadir usuario</h2>
+          <button type="button" class="modal-cerrar" data-cerrar aria-label="Cerrar">×</button>
+        </div>
+        <div class="modal-cuerpo">
+          <label for="u-nombre">Nombre</label>
+          <input id="u-nombre" type="text" required maxlength="80" autocomplete="off" />
+          <p class="ayuda"></p>
+          <label for="u-correo">Correo</label>
+          <input id="u-correo" type="email" required maxlength="120" autocomplete="off" />
+          <p class="ayuda" id="u-correo-ayuda">Con este correo entra al panel.</p>
+          <label for="u-rol">Rol</label>
+          <select id="u-rol">
+            <option value="editor">Editor: notas, categorías y medios</option>
+            <option value="admin">Administrador: todo, incluidos los usuarios</option>
+          </select>
+          <p class="ayuda"></p>
+          <label for="u-clave" id="u-clave-etiqueta">Contraseña</label>
+          <div class="campo-clave">
+            <input id="u-clave" type="password" minlength="10" maxlength="200" autocomplete="new-password" />
+            <button type="button" data-ver-clave aria-label="Mostrar contraseña" aria-pressed="false"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+          <p class="ayuda" id="u-clave-ayuda">Mínimo 10 caracteres. Compártela con la persona por un medio seguro.</p>
+          <p class="modal-error" id="u-error" role="alert" hidden></p>
+        </div>
+        <div class="modal-pie">
+          <button type="button" class="enlace borrar" id="u-borrar" hidden>Borrar usuario</button>
+          <button type="button" class="btn" data-cerrar>Cancelar</button>
+          <button type="submit" class="btn btn-primario">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script>
+      // Usuarios del panel (solo administradores): lista, añadir, editar (nombre, rol y contraseña) y borrar.
+      // Todo pasa por /api/usuarios, que guarda los usuarios cifrados.
+      const estado = { usuarios: [], yo: null, texto: '', rol: '', editando: null };
+      const esMismo = (a, b) => a.toLowerCase() === b.toLowerCase();
+
+      function mostrarMensaje(texto, error = false) {
+        $('#mensaje').textContent = texto;
+        $('#mensaje').classList.toggle('error', error);
+        $('#mensaje').hidden = false;
+      }
+
+      async function pedir(opciones) {
+        const r = await fetch('/api/usuarios', opciones);
+        if (r.status === 401) { irAlLogin(); throw new Error('sesion'); }
+        const datos = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(datos.error ?? `El servidor respondió ${r.status}`);
+        return datos;
+      }
+
+      function pintar() {
+        const palabras = normalizar(estado.texto).split(/\s+/).filter(Boolean);
+        const lista = estado.usuarios
+          .filter((u) => (!estado.rol || u.rol === estado.rol) && palabras.every((p) => normalizar(`${u.nombre} ${u.correo}`).includes(p)))
+          .sort((a, b) => (a.rol === b.rol ? a.nombre.localeCompare(b.nombre, 'es') : a.rol === 'admin' ? -1 : 1));
+        $('#filas').innerHTML = lista.length
+          ? lista
+              .map((u) => {
+                const yo = esMismo(u.correo, estado.yo.correo);
+                return `<tr>
+                  <td>
+                    <div class="con-foto">
+                      <span class="inicial" aria-hidden="true">${esc(u.nombre.trim()[0]?.toUpperCase() ?? '?')}</span>
+                      <div>
+                        <span class="nota-titulo">${esc(u.nombre)}${yo ? ' <span class="etiqueta">Tú</span>' : ''}</span>
+                        <span class="por">${esc(u.correo)}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="insignia ${u.rol}">${u.rol === 'admin' ? 'Administrador' : 'Editor'}</span>${u.fijo ? '<span class="insignia fijo" title="En la variable ADMIN_USUARIOS de Vercel">Vercel</span>' : ''}</td>
+                  <td class="col-acciones">
+                    <div class="acciones">
+                      ${u.fijo
+                        ? `<span class="accion" aria-disabled="true" title="Se cambia en Vercel">${icono('editar')}</span>`
+                        : `<button type="button" class="accion" data-editar="${esc(u.correo)}" title="Editar" aria-label="Editar">${icono('editar')}</button>`}
+                      ${u.fijo || yo
+                        ? `<span class="accion" aria-disabled="true" title="${yo ? 'No puedes borrar tu propio usuario' : 'Se cambia en Vercel'}">${icono('borrar')}</span>`
+                        : `<button type="button" class="accion borrar" data-borrar="${esc(u.correo)}" title="Borrar" aria-label="Borrar">${icono('borrar')}</button>`}
+                    </div>
+                  </td>
+                </tr>`;
+              })
+              .join('')
+          : '<tr><td colspan="3" class="vacio">No se encontraron usuarios.</td></tr>';
+      }
+
+      // ---------- Ventana para añadir o editar ----------
+      const errorVentana = (texto) => { $('#u-error').textContent = texto; $('#u-error').hidden = !texto; };
+      function abrirVentana(usuario) {
+        estado.editando = usuario?.correo ?? null;
+        $('#f-usuario').reset();
+        // La contraseña empieza oculta
+        $('#u-clave').type = 'password';
+        $('#ventana [data-ver-clave]').setAttribute('aria-pressed', 'false');
+        $('#ventana [data-ver-clave]').setAttribute('aria-label', 'Mostrar contraseña');
+        errorVentana('');
+        $('#ventana-titulo').textContent = usuario ? 'Editar usuario' : 'Añadir usuario';
+        $('#u-nombre').value = usuario?.nombre ?? '';
+        $('#u-correo').value = usuario?.correo ?? '';
+        $('#u-correo').readOnly = Boolean(usuario);
+        $('#u-correo-ayuda').textContent = usuario ? 'El correo no se cambia; para otro correo, añade un usuario nuevo.' : 'Con este correo entra al panel.';
+        $('#u-rol').value = usuario?.rol ?? 'editor';
+        // No te puedes quitar a ti el rol de administrador
+        $('#u-rol').disabled = Boolean(usuario && esMismo(usuario.correo, estado.yo.correo));
+        $('#u-clave').required = !usuario;
+        $('#u-clave-etiqueta').textContent = usuario ? 'Nueva contraseña (opcional)' : 'Contraseña';
+        $('#u-clave-ayuda').textContent = usuario ? 'Déjala vacía para no cambiarla. Mínimo 10 caracteres.' : 'Mínimo 10 caracteres. Compártela con la persona por un medio seguro.';
+        $('#u-borrar').hidden = !usuario || esMismo(usuario.correo, estado.yo.correo);
+        $('#ventana').showModal();
+        $('#u-nombre').focus();
+      }
+      $('#btn-nuevo').addEventListener('click', () => abrirVentana(null));
+      $('#ventana').querySelectorAll('[data-cerrar]').forEach((b) => b.addEventListener('click', () => $('#ventana').close()));
+      $('#ventana').addEventListener('click', (e) => e.target === $('#ventana') && $('#ventana').close()); // clic fuera
+      $('#f-usuario').addEventListener('input', () => errorVentana(''));
+
+      async function guardar(cambio, listo) {
+        document.body.classList.add('guardando');
+        try {
+          estado.usuarios = await pedir({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cambio) });
+          pintar();
+          if ($('#ventana').open) $('#ventana').close();
+          mostrarMensaje(listo);
+          return true;
+        } catch (error) {
+          if (error.message === 'sesion') return false;
+          if ($('#ventana').open) errorVentana(error.message);
+          else mostrarMensaje(`No se pudo guardar (${error.message}).`, true);
+          return false;
+        } finally {
+          document.body.classList.remove('guardando');
+        }
+      }
+
+      $('#f-usuario').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nombre = $('#u-nombre').value.trim();
+        const correo = $('#u-correo').value.trim();
+        await guardar(
+          { accion: estado.editando ? 'editar' : 'crear', nombre, correo, rol: $('#u-rol').value, clave: $('#u-clave').value },
+          estado.editando ? `Se actualizó a ${nombre}.` : `Se añadió a ${nombre}. Ya puede entrar con su correo y contraseña.`,
+        );
+      });
+
+      async function borrar(correo) {
+        const u = estado.usuarios.find((x) => esMismo(x.correo, correo));
+        if (!u || !confirm(`¿Borrar a ${u.nombre} (${u.correo})?\n\nYa no podrá entrar al panel.`)) return;
+        await guardar({ accion: 'borrar', correo }, `Se borró a ${u.nombre}.`);
+      }
+      $('#u-borrar').addEventListener('click', () => borrar(estado.editando));
+
+      document.addEventListener('click', (e) => {
+        const b = e.target.closest('button');
+        if (!b) return;
+        if (b.dataset.editar) abrirVentana(estado.usuarios.find((u) => esMismo(u.correo, b.dataset.editar)));
+        else if (b.dataset.borrar) borrar(b.dataset.borrar);
+      });
+      $('#f-buscar').addEventListener('submit', (e) => { e.preventDefault(); estado.texto = $('#f-texto').value.trim(); pintar(); });
+      $('#f-texto').addEventListener('input', () => { estado.texto = $('#f-texto').value.trim(); pintar(); });
+      $('#f-rol').addEventListener('change', (e) => { estado.rol = e.target.value; pintar(); });
+
+      // Arranque: la sesión la trae comun.js (evento "sesion"); solo los administradores ven la lista
+      document.addEventListener('sesion', async ({ detail: yo }) => {
+        estado.yo = yo;
+        if (yo.rol !== 'admin') {
+          avisar('Esta sección es solo para administradores. <a href="/admin/notas.html">Ir a las notas</a>.');
+          return;
+        }
+        try {
+          estado.usuarios = await pedir();
+          $('#contenido').hidden = false;
+          pintar();
+        } catch (error) {
+          if (error.message !== 'sesion') avisar(`No se pudieron cargar los usuarios (${esc(error.message)}).`);
+        }
+      });
+    </script>
+  </body>
+</html>

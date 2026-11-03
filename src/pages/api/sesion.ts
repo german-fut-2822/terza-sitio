@@ -8,8 +8,8 @@ export const prerender = false;
 const json = (datos: unknown, status = 200) => new Response(JSON.stringify(datos), { status, headers: { 'Content-Type': 'application/json' } });
 const esperar = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export const GET: APIRoute = ({ cookies }) => {
-  const usuario = usuarioDeSesion(cookies);
+export const GET: APIRoute = async ({ cookies }) => {
+  const usuario = await usuarioDeSesion(cookies);
   return usuario ? json(usuario) : json({ error: 'Sin sesión' }, 401);
 };
 
@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request, cookies, url, redirect }) => {
   // Solo se regresa a páginas del administrador
   const volver = /^\/admin\/[^/]/.test(String(datos.volver ?? '')) ? String(datos.volver) : '/admin/notas.html';
 
-  const usuario = correo && clave ? verificarUsuario(correo, clave) : null;
+  const usuario = correo && clave ? await verificarUsuario(correo, clave) : null;
   if (!usuario) {
     await esperar(600); // frena los intentos repetidos
     return esFormulario

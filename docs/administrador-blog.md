@@ -9,10 +9,17 @@ El blog se administra en **/admin** (por ejemplo https://terza-sitio.vercel.app/
 
 Se entra con **correo y contraseña** en `/admin/login.html` (cualquier página del panel manda ahí si no hay sesión). Los editores no necesitan cuenta de GitHub: el panel lee y guarda con la API del sitio (`/api/cms`), que en línea hace un commit en GitHub (rama `main`) con una llave del sitio, firmado con el nombre de quien guardó. Vercel vuelve a publicar el sitio solo; tarda un par de minutos.
 
+**Usuarios y roles.** Se manejan en la sección **Usuarios** del panel, que solo ven los administradores:
+- *Administrador*: puede todo, incluida la sección Usuarios.
+- *Editor*: notas, categorías y medios.
+
+Ahí se añaden, editan (nombre, rol y contraseña) y borran. Siempre queda al menos un administrador, y nadie se puede borrar ni quitar el rol de administrador a sí mismo. Los usuarios se guardan **cifrados** con `ADMIN_SECRETO` en el archivo `usuarios-admin.enc` del repo (en la computadora, en `.usuarios-admin.local.enc`, que no se sube), así que en GitHub solo se ve texto cifrado. Si se cambia `ADMIN_SECRETO`, ese archivo ya no se puede leer y hay que volver a crear el primer administrador.
+
 Piezas:
-- `src/lib/admin/sesion.ts`: usuarios y sesión (cookie firmada que dura 12 horas).
-- `src/lib/admin/almacen.ts`: dónde se lee y se guarda (GitHub en línea; la carpeta en la computadora). Solo puede tocar las notas, sus imágenes y las categorías.
-- `src/pages/api/sesion.ts` (entrar y salir), `src/pages/api/cms.ts` (el protocolo de Decap) y `src/pages/api/archivo.ts` (imágenes para el panel).
+- `src/lib/admin/sesion.ts`: inicio de sesión, roles y sesión (cookie firmada que dura 12 horas).
+- `src/lib/admin/usuarios.ts`: el archivo cifrado de usuarios.
+- `src/lib/admin/almacen.ts`: dónde se lee y se guarda (GitHub en línea; la carpeta en la computadora). Las notas, sus imágenes y las categorías son lo único que el panel puede tocar.
+- `src/pages/api/`: `sesion.ts` (entrar y salir), `instalar.ts` (primer administrador), `usuarios.ts` (sección Usuarios), `cms.ts` (el protocolo de Decap) y `archivo.ts` (imágenes para el panel).
 
 ## Activarlo en Vercel (una sola vez)
 
@@ -20,30 +27,24 @@ Piezas:
    - Repository access: solo `german-fut-2822/terza-sitio`.
    - Permissions → Repository permissions → **Contents: Read and write**.
    - Ponle una fecha de vencimiento y anótala: cuando venza, el panel dejará de guardar hasta poner una nueva.
-2. **Crear los usuarios** en la computadora, uno por persona (pide la contraseña, de mínimo 10 caracteres):
-
-   ```bash
-   npm run usuario-admin -- correo@terza.com "Nombre Apellido"
-   ```
-
-   Lo guarda en `.env` y al final muestra el valor de `ADMIN_USUARIOS` con todos los usuarios para copiarlo en Vercel. Para cambiar una contraseña se corre igual con el mismo correo. Para quitar a alguien, se borra su entrada del JSON.
-3. **Agregar las variables en Vercel.** En Project → Settings → Environment Variables (Production):
+2. **Agregar las variables en Vercel.** En Project → Settings → Environment Variables (Production):
    - `GITHUB_TOKEN`: la llave del paso 1.
-   - `ADMIN_USUARIOS`: el valor que mostró el paso 2.
-   - `ADMIN_SECRETO`: un texto largo al azar (por ejemplo, el que quedó en `.env`). Si se cambia, se cierran todas las sesiones.
+   - `ADMIN_SECRETO`: una frase larga al azar (por ejemplo, 40 letras y números). Firma las sesiones, cifra los usuarios y es el **código de instalación** del paso 4. Guárdala en un lugar seguro y no la cambies después.
    - Opcionales: `GITHUB_REPO` (por omisión `german-fut-2822/terza-sitio`) y `GITHUB_BRANCH` (por omisión `main`).
 
    Después vuelve a desplegar el sitio.
-4. **Subir el blog a `main`.** El panel lee y guarda las notas en `main`. Por eso la rama con el blog tiene que estar unida a `main` antes de usarlo en línea.
+3. **Subir el blog a `main`.** El panel lee y guarda las notas en `main`. Por eso la rama con el blog tiene que estar unida a `main` antes de usarlo en línea.
+4. **Crear el primer administrador.** Abre `/admin`: mientras no haya usuarios, la pantalla de entrada muestra *Crear el primer administrador*. Escribe el código de instalación (el valor de `ADMIN_SECRETO`), tu nombre, correo y contraseña. Desde ahí, los demás usuarios se dan de alta en **Usuarios**.
+
+**Recuperar el acceso** (si se olvida la contraseña del único administrador): en la computadora, `npm run usuario-admin -- correo@terza.com "Nombre"` da el valor para la variable `ADMIN_USUARIOS` de Vercel. Los usuarios de esa variable siempre son administradores, aparecen en Usuarios con la etiqueta *Vercel* y solo se cambian ahí.
 
 ## Probarlo en la computadora
 
 ```bash
-npm run usuario-admin -- tu@correo.com "Tu nombre"   # una vez, para tener usuario en .env
-npm run dev                                          # sitio en http://localhost:4321
+npm run dev      # sitio en http://localhost:4321
 ```
 
-Abre http://localhost:4321/admin y entra con ese correo. Sin `GITHUB_TOKEN` en `.env`, los cambios se guardan directo en los archivos de la carpeta, sin commit; se suben con git como cualquier otro cambio. (Si pones `GITHUB_TOKEN` en `.env`, la computadora también guarda en GitHub).
+Abre http://localhost:4321/admin. Si no hay usuarios, crea el primer administrador con el código de instalación (el `ADMIN_SECRETO` de tu `.env`), o usa `npm run usuario-admin` para tener un usuario en `.env`. Sin `GITHUB_TOKEN` en `.env`, los cambios se guardan directo en los archivos de la carpeta, sin commit; se suben con git como cualquier otro cambio.
 
 ## Cómo se usa
 
