@@ -8,7 +8,7 @@
     "title": "Terza trae para ti lo mejor<br />en Green Walls",
     "description": "Embellece tus espacios, haciéndolos lucir espectaculares con un toque de naturaleza y sin mantenimiento.",
     "ctas": [
-      { "label": "Decorador virtual", "href": "/decorador-virtual" },
+      { "label": "Decorador virtual", "href": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true" },
       { "label": "Catálogo", "href": "/catalogo/muros-verdes" }
     ]
   },

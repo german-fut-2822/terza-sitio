@@ -5,6 +5,7 @@ import ProductCard from '../../../components/catalogo/ProductCard.astro';
 import Compartir from '../../../components/Compartir.astro';
 import QuoteModal from '../../../components/catalogo/QuoteModal.astro';
 import { productos, categorias, categoriaDe, familiaDe, productosDe, foto, fotoOg, urlCategoria, urlProducto } from '../../../lib/catalogo';
+import { decoradorVirtual } from '../../../data/general.json';
 
 export function getStaticPaths() {
   return productos.map((p) => ({ params: { categoria: p.categoria, producto: p.slug }, props: { p } }));
@@ -124,7 +125,7 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
         <!-- Decorador virtual (como en las fichas de terza.com) -->
         <div class="mt-10 rounded-[28px] bg-terza-lime-pale p-6 md:p-8">
           <h2 class="text-xl font-bold text-black md:text-2xl">Visualiza este producto en tu espacio</h2>
-          <a href="/decorador-virtual" class="mt-5 inline-flex items-center gap-3 rounded-full bg-terza-lime-light px-8 py-2.5 text-base font-bold text-terza-ink transition-colors hover:bg-terza-teal hover:text-white">
+          <a href={decoradorVirtual} target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-3 rounded-full bg-terza-lime-light px-8 py-2.5 text-base font-bold text-terza-ink transition-colors hover:bg-terza-teal hover:text-white">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="2"></rect><path d="M12 16V20M8 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
             Ver decorador
           </a>

@@ -28,7 +28,7 @@
     "eyebrow": "DECORADOR VIRTUAL",
     "title": "Visualiza tu espacio antes de decidir",
     "description": "Prueba nuestros productos en tus propios espacios con el Decorador Virtual de Terza.",
-    "cta": { "label": "Prueba el decorador", "href": "/decorador-virtual" }
+    "cta": { "label": "Prueba el decorador", "href": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true" }
   },
   "shawContract": {
     "title": "ShawContract®",

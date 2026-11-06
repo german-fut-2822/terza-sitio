@@ -1,7 +1,7 @@
 ---
 // Tarjeta de producto del catálogo: foto, etiqueta "Nuevo", familia y variante.
 // Los data-f-* permiten filtrar las tarjetas en el listado sin recargar.
-import { foto, urlProducto, type Producto } from '../../lib/catalogo';
+import { foto, textoTarjeta, urlProducto, type Producto } from '../../lib/catalogo';
 
 interface Props {
   producto: Producto;
@@ -10,6 +10,7 @@ interface Props {
 const { producto: p } = Astro.props;
 const img = foto(p.fotos[0], 'sm');
 const filtros = Object.entries(p.filtros as Record<string, string>);
+const texto = textoTarjeta(p); // en el título se puede partir después de una diagonal (Walnut/Teak)
 ---
 
 <article class="product-card" {...Object.fromEntries(filtros.map(([campo, valor]) => [`data-f-${campo}`, valor]))}>
@@ -24,8 +25,8 @@ const filtros = Object.entries(p.filtros as Record<string, string>);
     </div>
     <div class="flex flex-1 items-end justify-between gap-3 p-4 md:p-5">
       <div class="min-w-0">
-        <p class="truncate text-xs font-bold uppercase tracking-widest text-terza-teal">{p.familia}</p>
-        <h3 class="mt-1 text-base font-medium leading-snug text-black md:text-lg">{p.variante}</h3>
+        <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{texto.arriba}</p>
+        <h3 class="mt-1 text-base font-medium leading-snug text-black [overflow-wrap:anywhere] md:text-lg">{texto.titulo.replaceAll('/', '/\u200b')}</h3>
       </div>
       <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-terza-mist text-terza-teal transition-colors group-hover:bg-terza-lime group-hover:text-terza-ink" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
