@@ -13,11 +13,13 @@ interface Props {
   description: string;
   cta?: { label: string; href: string };
   form: { title: string; fields: string[]; consent: string; submit: string };
+  endpoint: string;
+  privacyUrl?: string;
   /** false cuando la foto ya viene oscurecida */
   overlay?: boolean;
 }
 
-const { image, alt, imageClass = 'object-cover', title, description, cta, form, overlay = true } = Astro.props;
+const { image, alt, imageClass = 'object-cover', title, description, cta, form, endpoint, privacyUrl, overlay = true } = Astro.props;
 ---
 
 <section class="relative isolate overflow-hidden">
@@ -35,6 +37,6 @@ const { image, alt, imageClass = 'object-cover', title, description, cta, form, 
         </a>
       )}
     </div>
-    <ContactForm title={form.title} fields={form.fields} consent={form.consent} submit={form.submit} />
+    <ContactForm title={form.title} fields={form.fields} consent={form.consent} submit={form.submit} endpoint={endpoint} privacyUrl={privacyUrl} />
   </div>
 </section>

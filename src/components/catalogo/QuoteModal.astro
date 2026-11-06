@@ -67,17 +67,20 @@ const select = `${field} invalid:text-terza-ink/40`;
 
       <label class="mt-1 flex items-center gap-3 text-sm text-terza-ink/70 sm:col-span-2">
         <input type="checkbox" name="avisodeprivacidad" value="Acepto Aviso de privacidad" required class="h-4 w-4 shrink-0 accent-terza-teal" />
-        <span>Acepto el <a href="#" class="font-semibold text-terza-ink hover:text-terza-teal">Aviso de Privacidad</a></span>
+        <span>Acepto el <a href="https://terza-sitio.vercel.app/documentos/aviso-de-privacidad.pdf" target="_blank" rel="noopener noreferrer" class="font-semibold text-terza-ink hover:text-terza-teal">Aviso de Privacidad</a></span>
       </label>
       <button type="submit" class="inline-flex w-fit items-center gap-2 justify-self-end rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95 sm:col-span-2">
         Enviar
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </button>
+      <p hidden data-estado-formulario role="status" aria-live="polite" class="text-right text-sm text-terza-ink sm:col-span-2"></p>
     </form>
   </div>
 </dialog>
 
 <script>
+  import { conectarFormulario } from '../../scripts/conectarFormulario';
+
   const modal = document.getElementById('cotizacion') as HTMLDialogElement | null;
   if (modal) {
     document.querySelectorAll('[data-cotizar]').forEach((b) => b.addEventListener('click', (e) => {
@@ -87,8 +90,7 @@ const select = `${field} invalid:text-terza-ink/40`;
     modal.querySelector('[data-cerrar]')?.addEventListener('click', () => modal.close());
     // Clic en el fondo oscuro cierra el modal
     modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
-    // Pendiente: conectar el envío (igual que los formularios de Contacto y Distribuidor). Se evita que los datos
-    // terminen en la URL al enviar mientras no haya destino.
-    modal.querySelector('[data-form-cotizacion]')?.addEventListener('submit', (e) => e.preventDefault());
+    const formulario = modal.querySelector<HTMLFormElement>('[data-form-cotizacion]');
+    if (formulario) conectarFormulario(formulario, '/api/leads/cotizacion');
   }
 </script>
