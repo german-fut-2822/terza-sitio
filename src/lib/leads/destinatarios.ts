@@ -12,19 +12,13 @@ interface Destinatarios {
   cc: string[];
 }
 
-const comunes = {
+// El original ruteaba esto por línea de producto ("ruta"), pero el form de /contacto que ya
+// está construido en Astro no recolecta esa categoría — siempre cae en lo que el controlador
+// original llamaba "default" (switch($ruta) sin match). Por eso aquí es un solo set fijo, no
+// un Record por categoría: nada en el código nuevo puede rutear por categoría todavía.
+export const destinatariosGeneral: Destinatarios = {
   to: ['coordinacion@terza.com'],
-};
-
-export const destinatariosGeneral: Record<string, Destinatarios> = {
-  Alfombras: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  Tapetes: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  Laminados: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  Pastos: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'acastillo@terza.com', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  Madera: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  Persianas: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  Viniles: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
-  default: { ...comunes, cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'] },
+  cc: ['jggaribay@terza.com', 'vguerrero@terza.com', 'mimorato@terza.com', 'jagarza@terza.com', 'leads@futurite.net', 'mspuente@terza.com', 'mfrodriguez@terza.com', 'lrodriguezp@terza.com'],
 };
 
 // Empresa no tiene su propia entrada: confirmado que /contacto-empresa ya quedó fusionado en

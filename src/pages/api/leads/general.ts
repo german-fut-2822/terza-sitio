@@ -61,7 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
       city: datos.municipio ?? '',
       message: datos.mensaje ?? '',
     }),
-    enviarCorreo({ ...correoContacto(datos), destinatarios: destinatariosGeneral.default.to, copia: destinatariosGeneral.default.cc }),
+    enviarCorreo({ ...correoContacto(datos), destinatarios: destinatariosGeneral.to, copia: destinatariosGeneral.cc }),
   ]);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[leads/general]', r.reason));
 
