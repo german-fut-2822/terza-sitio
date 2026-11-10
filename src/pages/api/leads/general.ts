@@ -1,15 +1,15 @@
 // Réplica de ContactController@sendContactoGeneral (contacto.blade.php), verificada línea por
-// línea contra ~/Documents/terzaweb. Dispara Omnia(41) + Ongoing + correo.
+// línea contra ~/Documents/terzaweb. Dispara Omnia(41) + Ongoing.
 // n8n se quitó a propósito: según confirmó el jefe de Germán, n8n solo se usaba para respaldar
 // leads hacia Ongoing — en esta versión se va directo a la API de Ongoing (enviarOngoing).
+// El correo de aviso a staff también se quitó: el jefe confirmó que con que el lead llegue a
+// Ongoing basta — ahí ya tienen su propio sistema que lo distribuye al distribuidor que
+// corresponde, así que la lógica de destinatarios por categoría ya no hace falta aquí.
 import type { APIRoute } from 'astro';
 import type { DatosContactoGeneral } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
 import { enviarOngoing } from '../../../lib/leads/ongoing';
-import { destinatariosGeneral } from '../../../lib/leads/destinatarios';
-import { enviarCorreo } from '../../../lib/leads/correo';
-import { correoContacto } from '../../../lib/leads/plantillasCorreo';
 
 export const prerender = false;
 
@@ -45,7 +45,6 @@ export const POST: APIRoute = async ({ request }) => {
       city: datos.municipio ?? '',
       message: datos.mensaje ?? '',
     }),
-    enviarCorreo({ ...correoContacto(datos), destinatarios: destinatariosGeneral.to, copia: destinatariosGeneral.cc }),
   ]);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[leads/general]', r.reason));
 

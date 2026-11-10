@@ -1,17 +1,15 @@
 // Réplica de ContactController@sendContacto (quote-form.blade.php, cotización por SKU),
-// verificada contra ~/Documents/terzaweb. Dispara Omnia(41) + Ongoing + correo.
+// verificada contra ~/Documents/terzaweb. Dispara Omnia(41) + Ongoing.
 // n8n se quitó a propósito: según confirmó el jefe de Germán, n8n solo se usaba para respaldar
 // leads hacia Ongoing — en esta versión se va directo a la API de Ongoing (enviarOngoing).
-// El destinatario real sale de la tabla contactos_cotizaciones (categoria -> to/cc) en la DB
-// de Laravel — se usa el seeder como mejor fuente disponible, ver destinatarios.ts.
+// El correo de aviso a staff y el ruteo por contactos_cotizaciones también se quitaron: el jefe
+// confirmó que con que el lead llegue a Ongoing basta, ahí ya distribuyen al distribuidor que
+// corresponde — ya no hace falta exportar esa tabla ni mandar ningún correo desde aquí.
 import type { APIRoute } from 'astro';
 import type { DatosCotizacion } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
 import { enviarOngoing } from '../../../lib/leads/ongoing';
-import { destinatariosCotizacion } from '../../../lib/leads/destinatarios';
-import { enviarCorreo } from '../../../lib/leads/correo';
-import { correoCotizacion } from '../../../lib/leads/plantillasCorreo';
 
 export const prerender = false;
 
@@ -37,16 +35,6 @@ const MAPA_CATEGORIAS: Record<string, string> = {
   'pisos-laminados': 'Pisos Laminados',
 };
 
-const DESTINO_POR_CATEGORIA: Record<string, string> = {
-  'pisos-de-madera': 'Pisos Madera y Deck',
-  'pisos-deck': 'Pisos Madera y Deck',
-  'pisos-laminados': 'Pisos Laminados',
-  'piso-vinilico': 'Pisos Vinilicos',
-  'persianas-de-madera': 'Persianas',
-  'persianas-enrollables': 'Persianas',
-  'pasto-sintetico': 'Terza Pastos',
-};
-
 export const POST: APIRoute = async ({ request }) => {
   const esFormulario = !request.headers.get('content-type')?.includes('application/json');
   const datos = (esFormulario
@@ -58,7 +46,6 @@ export const POST: APIRoute = async ({ request }) => {
   if (!datos.categoria || !datos.sku) return json({ error: 'Falta categoría o SKU' }, 422);
 
   const categoriaProducto = MAPA_CATEGORIAS[datos.categoria] ?? datos.categoria;
-  const destinatarios = destinatariosCotizacion[DESTINO_POR_CATEGORIA[datos.categoria] ?? 'General'];
   let producto = `Producto: ${datos.producto ?? ''} SKU: ${datos.sku ?? ''}`;
   if (datos.proyecto) producto += ` Tamaño: ${datos.proyecto}`;
   if (datos.tipo_pasto) producto += ` Tipo de pasto: ${datos.tipo_pasto}`;
@@ -89,7 +76,6 @@ export const POST: APIRoute = async ({ request }) => {
       tipo_pasto: datos.tipo_pasto ?? '',
       proyecto: datos.proyecto ?? '',
     }),
-    enviarCorreo({ ...correoCotizacion(datos), destinatarios: destinatarios.to, copia: destinatarios.cc }),
   ]);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[leads/cotizacion]', r.reason));
 

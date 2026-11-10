@@ -1,14 +1,14 @@
-// Réplica de ContactController@sendGreenwall (greenwall.blade.php), verificada contra
-// ~/Documents/terzaweb. Dispara Omnia(42) + Marketing Cloud + correo a un destinatario fijo
-// (no rutea por categoría, a diferencia de general/empresa).
+// Réplica de ContactController@sendGreenwall (greenwall.blade.php): Omnia(42) + Marketing Cloud.
+// El Laravel original nunca mandaba este form a Ongoing (solo general/cotización lo hacían) y
+// solo avisaba por correo — pero Germán confirmó que ahora TODOS los formularios van a Ongoing,
+// y el correo de aviso a staff ya no hace falta (Ongoing ya distribuye al distribuidor que
+// corresponde). Por eso aquí se agregó enviarOngoing, que no es una réplica del original.
 import type { APIRoute } from 'astro';
 import type { DatosGreenwall } from '../../../lib/leads/tipos';
 import { validarContacto } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
+import { enviarOngoing } from '../../../lib/leads/ongoing';
 import { dispararEventoMarketingCloud } from '../../../lib/leads/marketingCloud';
-import { destinatariosGreenwall } from '../../../lib/leads/destinatarios';
-import { enviarCorreo } from '../../../lib/leads/correo';
-import { correoGreenwall } from '../../../lib/leads/plantillasCorreo';
 
 export const prerender = false;
 
@@ -49,7 +49,15 @@ export const POST: APIRoute = async ({ request }) => {
       Tipo_Deporte: '-',
       Origen_del_lead: 'Contacto Terza Web',
     }),
-    enviarCorreo({ ...correoGreenwall(datos), destinatarios: destinatariosGreenwall.to, copia: destinatariosGreenwall.cc }),
+    enviarOngoing({
+      first_name: datos.nombre ?? '',
+      email: datos.correo ?? '',
+      phone: datos.telefono ?? '',
+      state: datos.estado ?? '',
+      city: datos.ciudad ?? '',
+      message: datos.mensaje ?? '',
+      origen: 'Greenwall Terza Web',
+    }),
   ]);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[leads/greenwall]', r.reason));
 

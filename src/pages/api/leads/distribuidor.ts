@@ -1,12 +1,13 @@
-// Réplica de ContactController@sendDistribuidor (distribuidor.blade.php), verificada contra
-// ~/Documents/terzaweb: es el más simple de los 5 — SOLO manda un correo a un destinatario fijo,
-// sin Omnia, sin n8n, sin Ongoing, sin Marketing Cloud.
+// Réplica de ContactController@sendDistribuidor (distribuidor.blade.php). El original SOLO
+// mandaba un correo a prospectos@terza.com, sin Omnia/n8n/Ongoing/Marketing Cloud.
+// Eso ya no aplica: Germán confirmó que TODOS los formularios van a Ongoing ahora, y que el
+// correo de aviso a staff ya no hace falta (Ongoing ya distribuye al distribuidor que
+// corresponde). Por eso este formulario, que en el original no tenía ninguna integración más
+// que el correo, ahora solo manda a Ongoing.
 import type { APIRoute } from 'astro';
 import type { DatosDistribuidor } from '../../../lib/leads/tipos';
 import { esSpam, validarContacto } from '../../../lib/leads/validar';
-import { destinatarioDistribuidor } from '../../../lib/leads/destinatarios';
-import { enviarCorreo } from '../../../lib/leads/correo';
-import { correoDistribuidor } from '../../../lib/leads/plantillasCorreo';
+import { enviarOngoing } from '../../../lib/leads/ongoing';
 
 export const prerender = false;
 
@@ -19,16 +20,26 @@ export const POST: APIRoute = async ({ request }) => {
     ? Object.fromEntries(await request.formData())
     : await request.json().catch(() => ({}))) as Partial<DatosDistribuidor>;
 
-  if (esSpam(datos.dataspam)) return json({ ok: true });
+  if (esSpam(datos.dataspam as string | undefined)) return json({ ok: true });
 
-  const error = validarContacto(datos.nombre, datos.email, datos.telefono);
+  const error = validarContacto(datos.nombre as string | undefined, datos.email as string | undefined, datos.telefono as string | undefined);
   if (error) return json({ error }, 422);
 
-  try {
-    await enviarCorreo({ ...correoDistribuidor(datos), destinatarios: [destinatarioDistribuidor] });
-    return json({ ok: true });
-  } catch (error) {
-    console.error('[leads/distribuidor]', error);
-    return json({ error: 'Por el momento no podemos enviar este formulario. Intenta más tarde.' }, 503);
-  }
+  const entregado = await enviarOngoing({
+    first_name: datos.nombre ?? '',
+    last_name: datos.apellido ?? '',
+    email: datos.email ?? '',
+    phone: datos.telefono ?? '',
+    state: datos.estado ?? '',
+    city: datos.municipio ?? '',
+    message: datos.mensaje ?? '',
+    origen: 'Distribuidor Terza Web',
+  }).catch((e) => {
+    console.error('[leads/distribuidor]', e);
+    return false;
+  });
+
+  if (!entregado) return json({ error: 'Por el momento no podemos enviar tu información. Intenta más tarde.' }, 503);
+
+  return json({ ok: true });
 };
