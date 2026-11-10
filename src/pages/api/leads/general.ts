@@ -1,10 +1,11 @@
 // Réplica de ContactController@sendContactoGeneral (contacto.blade.php), verificada línea por
-// línea contra ~/Documents/terzaweb. Dispara Omnia(41) + n8n + Ongoing + correo.
+// línea contra ~/Documents/terzaweb. Dispara Omnia(41) + Ongoing + correo.
+// n8n se quitó a propósito: según confirmó el jefe de Germán, n8n solo se usaba para respaldar
+// leads hacia Ongoing — en esta versión se va directo a la API de Ongoing (enviarOngoing).
 import type { APIRoute } from 'astro';
 import type { DatosContactoGeneral } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
-import { enviarN8n } from '../../../lib/leads/n8n';
 import { enviarOngoing } from '../../../lib/leads/ongoing';
 import { destinatariosGeneral } from '../../../lib/leads/destinatarios';
 import { enviarCorreo } from '../../../lib/leads/correo';
@@ -34,23 +35,6 @@ export const POST: APIRoute = async ({ request }) => {
       estado: datos.estado,
       ciudad: datos.municipio,
       comentarios: datos.mensaje,
-    }),
-    enviarN8n({
-      nombre: datos.nombre ?? '',
-      apellido: datos.apellido ?? '',
-      email: datos.email ?? '',
-      telefono: datos.telefono ?? '',
-      estado: datos.estado ?? '',
-      municipio: datos.municipio ?? '',
-      categoria: '',
-      proyecto: '',
-      tipo_pasto: '',
-      tipo_deporte: '',
-      mensaje: datos.mensaje ?? '',
-      aviso_privacidad: datos.avisodeprivacidad ?? '',
-      tipo_cliente: '',
-      origen: 'Terza Web',
-      fecha: new Date().toISOString(),
     }),
     enviarOngoing({
       first_name: datos.nombre ?? '',

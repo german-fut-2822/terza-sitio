@@ -1,12 +1,13 @@
 // Réplica de ContactController@sendContacto (quote-form.blade.php, cotización por SKU),
-// verificada contra ~/Documents/terzaweb. Dispara Omnia(41) + n8n + Ongoing + correo.
+// verificada contra ~/Documents/terzaweb. Dispara Omnia(41) + Ongoing + correo.
+// n8n se quitó a propósito: según confirmó el jefe de Germán, n8n solo se usaba para respaldar
+// leads hacia Ongoing — en esta versión se va directo a la API de Ongoing (enviarOngoing).
 // El destinatario real sale de la tabla contactos_cotizaciones (categoria -> to/cc) en la DB
 // de Laravel — se usa el seeder como mejor fuente disponible, ver destinatarios.ts.
 import type { APIRoute } from 'astro';
 import type { DatosCotizacion } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
-import { enviarN8n } from '../../../lib/leads/n8n';
 import { enviarOngoing } from '../../../lib/leads/ongoing';
 import { destinatariosCotizacion } from '../../../lib/leads/destinatarios';
 import { enviarCorreo } from '../../../lib/leads/correo';
@@ -18,7 +19,7 @@ const json = (datos: unknown, status = 200) =>
   new Response(JSON.stringify(datos), { status, headers: { 'Content-Type': 'application/json' } });
 
 // Igual que $mapCategorias en el controlador original: normaliza el slug de categoría a un
-// nombre legible para Omnia/n8n. Las claves que faltan (p. ej. una categoría nueva) se mandan
+// nombre legible para Omnia. Las claves que faltan (p. ej. una categoría nueva) se mandan
 // tal cual, como hacía el original con el `?? $request->categoria`.
 const MAPA_CATEGORIAS: Record<string, string> = {
   accesorios: 'Accesorios',
@@ -72,24 +73,6 @@ export const POST: APIRoute = async ({ request }) => {
       interes: `${categoriaProducto} - ${producto}`,
       ruta: datos.ruta,
       comentarios: datos.mensaje,
-    }),
-    enviarN8n({
-      nombre: datos.nombre ?? '',
-      apellido: datos.apellido ?? '',
-      email: datos.email ?? '',
-      telefono: datos.telefono ?? '',
-      estado: datos.estado ?? '',
-      municipio: datos.municipio ?? '',
-      categoria: datos.categoria, // slug original, no el nombre mapeado
-      producto: datos.producto ?? '',
-      sku: datos.sku,
-      proyecto: datos.proyecto ?? '',
-      tipo_pasto: datos.tipo_pasto ?? '',
-      mensaje: datos.mensaje ?? '',
-      aviso_privacidad: datos.avisodeprivacidad ?? '',
-      ruta: datos.ruta ?? '',
-      origen: 'Terza Web',
-      fecha: new Date().toISOString(),
     }),
     enviarOngoing({
       first_name: datos.nombre ?? '',
