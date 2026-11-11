@@ -7,7 +7,7 @@
 import type { APIRoute } from 'astro';
 import type { DatosDistribuidor } from '../../../lib/leads/tipos';
 import { esSpam, validarContacto } from '../../../lib/leads/validar';
-import { enviarOngoing, metadataOngoing, nombreCompleto } from '../../../lib/leads/ongoing';
+import { enviarOngoing, nombreCompleto } from '../../../lib/leads/ongoing';
 
 export const prerender = false;
 
@@ -32,7 +32,8 @@ export const POST: APIRoute = async ({ request }) => {
     phone: datos.telefono,
     company_name: nombreCompleto(datos.nombre ?? '', datos.apellido),
     opportunity_title: 'Quiero ser distribuidor - Terza Web',
-    metadata: metadataOngoing({ Estado: datos.estado, Municipio: datos.municipio }),
+    state: datos.estado,
+    city: datos.municipio,
     message: datos.mensaje,
   }).catch((e) => {
     console.error('[leads/distribuidor]', e);

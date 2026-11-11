@@ -14,7 +14,19 @@ export interface LeadOngoing {
   amount?: number;
   campaign_id?: number;
   message?: string;
-  metadata?: string[];
+  // Réplica de los campos que ContactController@sendToOngoing (terzaweb, el Laravel original)
+  // mandaba sueltos al nivel raíz del payload — así es como Ongoing arma "Datos complementarios"
+  // con el título correcto (CIUDAD, ESTADO, PRODUCTO, PROYECTO), confirmado contra un lead real
+  // existente. El array "metadata" del nuevo endpoint no logra eso (sale con el índice como
+  // título) — no usarlo para esto.
+  state?: string;
+  city?: string;
+  product?: string;
+  proyecto?: string;
+  sku?: string;
+  ruta?: string;
+  tipo_pasto?: string;
+  categoria?: string;
 }
 
 // Ongoing exige company_name (sin él su API truena con "Column 'company_id' cannot be null" en
@@ -24,17 +36,6 @@ export function nombreCompleto(nombre: string, apellido?: string): string {
   return apellido ? `${nombre} ${apellido}` : nombre;
 }
 
-// Los datos que el formulario captura pero que no tienen campo propio en el schema de Ongoing
-// (estado, ciudad, sku, etc.) van en "metadata" — separado de "message", que es la nota libre del
-// lead. Ongoing muestra cada elemento como un campo de "Datos complementarios" con el índice del
-// array (0, 1...) como título — no hay forma documentada de ponerle el título real (p. ej.
-// "CIUDAD") sin confirmar con Ongoing el formato exacto que esperan; no adivinar más formatos aquí.
-export function metadataOngoing(partes: Record<string, string | undefined>): string[] {
-  return Object.entries(partes)
-    .filter(([, v]) => v)
-    .map(([clave, valor]) => `${clave}: ${valor}`);
-}
-
 export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
   const host = variable('ONGOING_BASE_URL');
   const apiKey = variable('ONGOING_API_KEY');
@@ -42,9 +43,7 @@ export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
     console.warn('[leads/ongoing] ONGOING_BASE_URL/ONGOING_API_KEY no configurados, se omite el envío');
     return false;
   }
-  const datos = Object.fromEntries(
-    Object.entries(lead).filter(([, v]) => v !== null && v !== undefined && v !== '' && !(Array.isArray(v) && v.length === 0)),
-  );
+  const datos = Object.fromEntries(Object.entries(lead).filter(([, v]) => v !== null && v !== undefined && v !== ''));
   const respuesta = await fetch(host, {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
