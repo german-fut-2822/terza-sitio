@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Suavidad, elegancia y comodidad son las principales características de las bellas [**alfombras**](/pisos/alfombras), sin embargo, existe una solución poco conocida pero muy benéfica de este producto: la mejora de la acústica. Sigue leyendo para descubrir cómo las alfombras, más allá de ser un gran elemento decorativo, actúan como aislantes acústicos eficientes en tus entornos favoritos.
+Suavidad, elegancia y comodidad son las principales características de las bellas [**alfombras**](/alfombras), sin embargo, existe una solución poco conocida pero muy benéfica de este producto: la mejora de la acústica. Sigue leyendo para descubrir cómo las alfombras, más allá de ser un gran elemento decorativo, actúan como aislantes acústicos eficientes en tus entornos favoritos.
 
 ## Alfombras y su rol en la acústica de espacios
 
@@ -32,4 +32,4 @@ El tamaño de la alfombra en la habitación también juega un papel crucial para
 
 En espacios modernos, una alfombra bien elegida puede equilibrar la simplicidad y la sofisticación, aportando carácter y estilo. Además, su funcionalidad y su atractiva estética las vuelve el punto más llamativo de una habitación, o bien, pueden complementar otros elementos del diseño interior para resultar en un espacio increíble.
 
-Sin duda, las alfombras son excelentes tanto como elementos decorativos como aislantes acústicos que mejoran significativamente la calidad del sonido en una variedad de entornos. Explora nuestra amplia gama de opciones de alfombras para transformar tu espacio en nuestra página ingresando aquí: [**https://www.terza.com/alfombras**](/pisos/alfombras).
+Sin duda, las alfombras son excelentes tanto como elementos decorativos como aislantes acústicos que mejoran significativamente la calidad del sonido en una variedad de entornos. Explora nuestra amplia gama de opciones de alfombras para transformar tu espacio en nuestra página ingresando aquí: [**https://www.terza.com/alfombras**](/alfombras).

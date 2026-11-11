@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-La recámara es un espacio personal donde buscamos descansar y relajarnos, por lo que cada detalle cuenta, desde la elección de los muebles hasta la decoración. Uno de los elementos más impactantes y a menudo subestimados son las [alfombras](/pisos/alfombras). Una buena **alfombra para recámara** no solo aporta calidez y confort, sino que también puede ser el punto focal que realce la estética de la habitación. Sin embargo, elegir la adecuada puede resultar abrumador debido a la variedad de estilos, tamaños y materiales disponibles. Aquí tenemos una guía práctica para que encuentres la alfombra perfecta que se ajuste a tu estilo y necesidades:
+La recámara es un espacio personal donde buscamos descansar y relajarnos, por lo que cada detalle cuenta, desde la elección de los muebles hasta la decoración. Uno de los elementos más impactantes y a menudo subestimados son las [alfombras](/alfombras). Una buena **alfombra para recámara** no solo aporta calidez y confort, sino que también puede ser el punto focal que realce la estética de la habitación. Sin embargo, elegir la adecuada puede resultar abrumador debido a la variedad de estilos, tamaños y materiales disponibles. Aquí tenemos una guía práctica para que encuentres la alfombra perfecta que se ajuste a tu estilo y necesidades:
 
 ### 1. Define tu estilo
 

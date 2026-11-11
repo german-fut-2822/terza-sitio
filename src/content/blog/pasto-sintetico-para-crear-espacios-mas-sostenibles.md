@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-En los últimos años, cada vez más personas buscan la manera de reducir su impacto ambiental mientras disfrutan de soluciones prácticas y modernas para sus hogares. Una de estas soluciones es el uso de [pasto sintético](/exterior/pasto-sintetico), que ofrece una amplia gama de ventajas frente al césped natural. Además, es una opción sostenible que combina estética, funcionalidad y ahorro de recursos naturales. Para renovar los espacios exteriores o interiores este 2025, el **pasto sintético** es una excelente idea, a continuación se enlistarán sus principales beneficios:
+En los últimos años, cada vez más personas buscan la manera de reducir su impacto ambiental mientras disfrutan de soluciones prácticas y modernas para sus hogares. Una de estas soluciones es el uso de [pasto sintético](/pasto-sintetico), que ofrece una amplia gama de ventajas frente al césped natural. Además, es una opción sostenible que combina estética, funcionalidad y ahorro de recursos naturales. Para renovar los espacios exteriores o interiores este 2025, el **pasto sintético** es una excelente idea, a continuación se enlistarán sus principales beneficios:
 
 - **Ahorro de agua**
 

@@ -34,4 +34,4 @@ También es preciso que revises las uniones, narices y fijaciones de forma const
 
 Las escaleras con piso laminado pueden ser una excelente opción cuando se considera el tipo de material, la correcta instalación y el uso diario del espacio. Más allá del diseño, priorizar estos aspectos permite lograr un acabado estético, funcional y duradero.
 
-En TERZA, contamos con una amplia variedad de [pisos laminados](/pisos/pisos-laminados) ideales para integrar tus escaleras al diseño de tu hogar con seguridad y estilo.
+En TERZA, contamos con una amplia variedad de [pisos laminados](/pisos-laminados) ideales para integrar tus escaleras al diseño de tu hogar con seguridad y estilo.

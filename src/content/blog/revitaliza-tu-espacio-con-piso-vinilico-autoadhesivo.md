@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Las tendencias de decoración y los productos que instalas en tu hogar influyen en la belleza del mismo, y si bien hay estilos que nunca pasan de moda, de vez en cuando es necesario revitalizar tus espacios con elementos de gran estética como el [**piso vinílico**](/pisos/pisos-vinilicos) autoadhesivo.
+Las tendencias de decoración y los productos que instalas en tu hogar influyen en la belleza del mismo, y si bien hay estilos que nunca pasan de moda, de vez en cuando es necesario revitalizar tus espacios con elementos de gran estética como el [**piso vinílico**](/pisos-vinilicos) autoadhesivo.
 
 El piso vinílico cuenta con una versatilidad y variedad de diseños que lo hacen la opción perfecta para complementar y realzar la belleza de tu hogar, además, cuenta con increíbles beneficios que te sorprenderán, ¡descúbrelos!
 
@@ -29,4 +29,4 @@ Las ventajas que ofrece este producto son incomparables, pues no sólo le da una
 
 Por ejemplo, el piso vinílico queda excelente con un estilo de decoración basado en el uso de muebles clásicos o la representación de un ambiente cálido y acogedor, sin embargo, nuestro amplio catálogo de pisos puede adaptarse a diferentes estilos y preferencias para que logres la decoración revitalizada que necesitas.
 
-Visita [**https://www.terza.com/piso-vinilico**](/pisos/pisos-vinilicos) y navega por nuestro catálogo para comenzar la nueva transformación de tu hogar con piso vinílico autoadhesivo.
+Visita [**https://www.terza.com/piso-vinilico**](/pisos-vinilicos) y navega por nuestro catálogo para comenzar la nueva transformación de tu hogar con piso vinílico autoadhesivo.

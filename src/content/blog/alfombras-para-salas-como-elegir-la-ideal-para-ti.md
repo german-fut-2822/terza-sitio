@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Elegir **alfombras para salas** es una decisión clave que puede definir el estilo, la comodidad y la funcionalidad del espacio. Más allá de ser un elemento decorativo, las [alfombras](/pisos/alfombras) pueden delimitar áreas, aportar calidez y mejorar la acústica del ambiente. Para ello, te compartiremos los tips más importantes para su elección:
+Elegir **alfombras para salas** es una decisión clave que puede definir el estilo, la comodidad y la funcionalidad del espacio. Más allá de ser un elemento decorativo, las [alfombras](/alfombras) pueden delimitar áreas, aportar calidez y mejorar la acústica del ambiente. Para ello, te compartiremos los tips más importantes para su elección:
 
 ### 1. Materiales: confort y durabilidad
 

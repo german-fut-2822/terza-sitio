@@ -33,7 +33,7 @@ El **lambrin en plafón** es un sistema de revestimiento arquitectónico modular
 
 ## Especificación sin complicaciones en tus próximos proyectos
 
-El éxito de una obra comercial radica en equilibrar la visión del diseñador con la viabilidad financiera y técnica del constructor. El [**lambrín PVC**](/muros/lambrin-y-paneles) de Terza elimina la incertidumbre de la instalación en alturas, ofreciendo un producto de calidad premium que reduce costos de mantenimiento y tiempos de entrega. Si estás desarrollando un proyecto corporativo, hotelero o residencial de alta gama, integra soluciones que sumen valor estructural a tu propuesta.
+El éxito de una obra comercial radica en equilibrar la visión del diseñador con la viabilidad financiera y técnica del constructor. El [**lambrín PVC**](/lambrin-y-paneles) de Terza elimina la incertidumbre de la instalación en alturas, ofreciendo un producto de calidad premium que reduce costos de mantenimiento y tiempos de entrega. Si estás desarrollando un proyecto corporativo, hotelero o residencial de alta gama, integra soluciones que sumen valor estructural a tu propuesta.
 
 ## Preguntas Frecuentes
 

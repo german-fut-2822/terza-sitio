@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Si pensamos en una opción moderna para transformar nuestros espacios exteriores, los [pisos deck](/exterior/deck) son una de las alternativas más populares y versátiles. Aparte, a diferencia de los pisos de madera natural, sus ventajas adicionales van desde la amplia variedad de modelos, diseños y acabados, hasta su bajo mantenimiento a largo plazo.
+Si pensamos en una opción moderna para transformar nuestros espacios exteriores, los [pisos deck](/pisos-deck) son una de las alternativas más populares y versátiles. Aparte, a diferencia de los pisos de madera natural, sus ventajas adicionales van desde la amplia variedad de modelos, diseños y acabados, hasta su bajo mantenimiento a largo plazo.
 
 El **piso deck para exteriores** no sólo ofrece elegancia y calidez a tus áreas ubicadas al aire libre; sino también, resistencia a cambios climáticos y sinergia con la naturaleza. Sumado a esto, son considerados una mejor alternativa que la madera porque gracias a sus compuestos y material, lo convierten en una elección sostenible. A continuación, te compartiremos un listado de sus beneficios:
 

@@ -31,4 +31,4 @@ A diferencia del follaje natural, son pocos los requisitos para cuidar el **foll
 
 Por lo tanto, el **follaje artificial para pared** es una excelente opción para decoración tanto en interiores como exteriores, permita disfrutar de un toque natural sin tener que preocuparse por los cuidados que requieren las plantas naturales.
 
-Es por ello que es importante adquirir materiales de calidad para disfrutar de todos sus beneficios, por lo que en Terza contamos con la más amplia variedad de estilos, así permitimos a nuestros clientes colocar follaje artificial para pared y disfrutar de su belleza por un **largo** periodo de tiempo. Conoce nuestros estilos en: [https://www.terza.com/muros-verdes](/muros/follaje-artificial)
+Es por ello que es importante adquirir materiales de calidad para disfrutar de todos sus beneficios, por lo que en Terza contamos con la más amplia variedad de estilos, así permitimos a nuestros clientes colocar follaje artificial para pared y disfrutar de su belleza por un **largo** periodo de tiempo. Conoce nuestros estilos en: [https://www.terza.com/muros-verdes](/muros-verdes)

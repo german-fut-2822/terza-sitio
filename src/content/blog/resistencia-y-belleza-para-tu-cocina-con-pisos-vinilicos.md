@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-La decoración de interiores es un reto cuando se trata de dar vida a cada habitación del hogar, en especial cuando se habla de las cocinas, ya que estas áreas cuentan con necesidades específicas que requieren elementos, como los [**pisos vinílicos**](/pisos/pisos-vinilicos), para embellecerlas y acondicionarlas adecuadamente.
+La decoración de interiores es un reto cuando se trata de dar vida a cada habitación del hogar, en especial cuando se habla de las cocinas, ya que estas áreas cuentan con necesidades específicas que requieren elementos, como los [**pisos vinílicos**](/pisos-vinilicos), para embellecerlas y acondicionarlas adecuadamente.
 
 La cocina se caracteriza por diversos motivos; es la cómplice de la creación de los más ricos platillos; es ese espacio acogedor que reúne a todos en las comidas familiares; es incluso el lugar que resguarda divertidos momentos de aprendizaje culinario con mamá.
 
@@ -36,4 +36,4 @@ El alto tráfico en la cocina y la presencia de humedad son de los peores enemig
 
 El ensamble por clic del suelo vinílico facilita ampliamente la remodelación de los **pisos para cocina**, ya que únicamente se necesita tener una superficie limpia y firme para colocar los pisos rápidamente al acomodarlos entre ellos como una especie de rompecabezas.
 
-¡Ahora ya conoces la opción ideal en pisos para decorar tu cocina! Visita nuestro catálogo de pisos vinílicos para encontrar el modelo que transformará tu hogar: [**https://www.terza.com/piso-vinilico**](/pisos/pisos-vinilicos)
+¡Ahora ya conoces la opción ideal en pisos para decorar tu cocina! Visita nuestro catálogo de pisos vinílicos para encontrar el modelo que transformará tu hogar: [**https://www.terza.com/piso-vinilico**](/pisos-vinilicos)

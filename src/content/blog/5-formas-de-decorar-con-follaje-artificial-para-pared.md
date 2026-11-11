@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Embellecer los espacios dentro del hogar con elementos naturales puede convertirse en una tarea complicada; sin embargo, lograrlo con [follaje artificial](/muros/follaje-artificial) es una opción en tendencia gracias a su fácil instalación, larga vida útil y bajo mantenimiento. Así mismo, el **follaje artificial para pared** también le da vida a todo tipo de áreas gracias a su aspecto fresco y auténtico, a sus aplicaciones creativas y a su flexibilidad.
+Embellecer los espacios dentro del hogar con elementos naturales puede convertirse en una tarea complicada; sin embargo, lograrlo con [follaje artificial](/muros-verdes) es una opción en tendencia gracias a su fácil instalación, larga vida útil y bajo mantenimiento. Así mismo, el **follaje artificial para pared** también le da vida a todo tipo de áreas gracias a su aspecto fresco y auténtico, a sus aplicaciones creativas y a su flexibilidad.
 
 Como el [artículo](https://follajeartificial.org/5-ideas-de-follaje-artificial/) del Blog de Sugarden menciona, las grandes ventajas del follaje artificial van desde su rentabilidad hasta su material sintético, el cual es sencillo de incorporar en cualquier superficie sin atraer insectos o crear hongos y microorganismos que pueden ser dañinos. Por otra parte, también se debe saber que debido a la diversidad de estilos y modelos del **follaje artificial para pared**, se pueden crear ambientes cómodos, modernos y de ensueño sin sacrificar el bienestar general del hogar. Por ello, a continuación se han reunido 5 ideas para decorar con follaje artificial, usándolo como un pieza decorativa o hasta siendo el elemento protagonista para un jardín vertical en diferentes áreas de una vivienda.
 

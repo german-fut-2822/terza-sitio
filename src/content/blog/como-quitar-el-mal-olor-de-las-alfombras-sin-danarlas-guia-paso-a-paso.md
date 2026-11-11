@@ -54,4 +54,4 @@ Ahora que sabes **cómo quitar el mal olor de las alfombras**, puedes aplicar es
 
 Mantener tu alfombra como [nueva](/blog/cuidados-para-mantener-tu-alfombra-como-nueva) y libre de malos olores es clave para conservar la frescura y armonía de cualquier espacio. Con una limpieza adecuada y cuidados constantes, no solo eliminas aromas desagradables, también proteges las fibras y prolongas su durabilidad.
 
-En Terza encontrarás una amplia variedad de [alfombras](/pisos/alfombras) diseñadas para aportar estilo, confort y resistencia a tu hogar. Descubre los modelos disponibles e ingresa a su página para elegir la opción que mejor se adapte a tu espacio y forma de vida.
+En Terza encontrarás una amplia variedad de [alfombras](/alfombras) diseñadas para aportar estilo, confort y resistencia a tu hogar. Descubre los modelos disponibles e ingresa a su página para elegir la opción que mejor se adapte a tu espacio y forma de vida.

@@ -32,4 +32,4 @@ Estas son algunas de las razones para elegir el **pasto sintético para jardín*
 
 Gracias a todos estos beneficios, el pasto sintético te permitirá disfrutar del verano en una quinta con toda tu familia y amigos, además, si la quinta es tu negocio, podrás dejar de preocuparte por los gastos excesivos.
 
-En Terza, como expertos en fabricación de **pasto sintético para jardín**, nos aseguramos de mantener la calidad y durabilidad de nuestro materiales, brindando a todos nuestros clientes gran variedad de diseños para todo tipo de jardines. Encuentra en nuestro catálogo el pasto sintético ideal para tus exteriores: [https://www.terza.com/pasto-sintetico](/exterior/pasto-sintetico)
+En Terza, como expertos en fabricación de **pasto sintético para jardín**, nos aseguramos de mantener la calidad y durabilidad de nuestro materiales, brindando a todos nuestros clientes gran variedad de diseños para todo tipo de jardines. Encuentra en nuestro catálogo el pasto sintético ideal para tus exteriores: [https://www.terza.com/pasto-sintetico](/pasto-sintetico)

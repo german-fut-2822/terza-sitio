@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Los [pisos laminados](/pisos/pisos-laminados) son una de las alternativas más elegidas por quienes buscan renovar sus espacios con estilo, practicidad y sin un gasto excesivo. Su aspecto elegante que imita la madera, sumado a su resistencia y fácil mantenimiento, los convierte en una excelente opción tanto para hogares como para negocios. Su estructura suele estar conformada cuatro capas que combinan estética, durabilidad y fácil instalación:
+Los [pisos laminados](/pisos-laminados) son una de las alternativas más elegidas por quienes buscan renovar sus espacios con estilo, practicidad y sin un gasto excesivo. Su aspecto elegante que imita la madera, sumado a su resistencia y fácil mantenimiento, los convierte en una excelente opción tanto para hogares como para negocios. Su estructura suele estar conformada cuatro capas que combinan estética, durabilidad y fácil instalación:
 
 1. Capa superior o “wear layer”: una película transparente altamente resistente al desgaste, que protege el diseño.
 2. Capa decorativa: una impresión fotográfica en alta resolución que simula el acabado de la madera natural (roble, nogal, encino, etc.).

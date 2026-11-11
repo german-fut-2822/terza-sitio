@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-La limpieza regular del [pasto sintético](/exterior/pasto-sintetico) no solo mejora su apariencia y prolonga su vida útil, sino también contribuye significativamente a mantener espacios limpios, seguros y saludables. Para ello, te invitamos a descubrir el por qué es importante la **limpieza del pasto sintético** y algunas formas adecuadas de hacerlo. A continuación te presentaremos las ventajas más importantes de mantener limpio tu pasto sintético.
+La limpieza regular del [pasto sintético](/pasto-sintetico) no solo mejora su apariencia y prolonga su vida útil, sino también contribuye significativamente a mantener espacios limpios, seguros y saludables. Para ello, te invitamos a descubrir el por qué es importante la **limpieza del pasto sintético** y algunas formas adecuadas de hacerlo. A continuación te presentaremos las ventajas más importantes de mantener limpio tu pasto sintético.
 
 ## Estética
 

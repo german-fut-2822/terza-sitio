@@ -43,7 +43,7 @@ Ambos utilizan generalmente el **sistema "Click"**, lo que permite una instalaci
 | **Resistencia al Agua** | Media (superficial) | Alta (100% impermeable) |
 | **Acústica** | Requiere bajo alfombra | Naturalmente silencioso |
 
-¡Es momento de renovar tus espacios con la mejor calidad! Te invitamos a conocer nuestra amplia variedad de [pisos vinílicos](/pisos/pisos-vinilicos) de alta resistencia y nuestra exclusiva colección de [pisos laminados](/pisos/pisos-laminados) para dar ese toque acogedor a tu hogar.
+¡Es momento de renovar tus espacios con la mejor calidad! Te invitamos a conocer nuestra amplia variedad de [pisos vinílicos](/pisos-vinilicos) de alta resistencia y nuestra exclusiva colección de [pisos laminados](/pisos-laminados) para dar ese toque acogedor a tu hogar.
 
 Sigue explorando y realiza tu compra en el sitio oficial de Terza para transformar tu entorno hoy mismo.
 

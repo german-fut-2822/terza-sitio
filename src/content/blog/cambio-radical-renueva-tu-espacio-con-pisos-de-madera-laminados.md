@@ -12,7 +12,7 @@ borrador: false
 
 ## Transforma tu hogar con pisos de madera laminados
 
-Cuando se trata de renovar un espacio, los [**pisos laminados**](/pisos/pisos-laminados) son una opción ideal. Su instalación rápida y sencilla permite transformar cualquier habitación en un corto periodo de tiempo, brindando un cambio instantáneo y notable en la estética del lugar. Los **pisos de madera laminados** son una solución práctica y efectiva para aquellos que buscan un cambio significativo sin invertir demasiado tiempo o recursos.
+Cuando se trata de renovar un espacio, los [**pisos laminados**](/pisos-laminados) son una opción ideal. Su instalación rápida y sencilla permite transformar cualquier habitación en un corto periodo de tiempo, brindando un cambio instantáneo y notable en la estética del lugar. Los **pisos de madera laminados** son una solución práctica y efectiva para aquellos que buscan un cambio significativo sin invertir demasiado tiempo o recursos.
 
 ## Ventajas de los pisos de madera laminados
 
@@ -24,4 +24,4 @@ Otra ventaja de los **pisos de madera laminados** es la amplia variedad de estil
 
 En resumen, los **pisos de madera laminados** son una opción rápida y efectiva para renovar cualquier espacio. Su resistencia, durabilidad, fácil mantenimiento y variedad de estilos los hacen una opción ideal para aquellos que buscan transformar su hogar o lugar de trabajo.
 
-Si estás interesado en explorar las opciones de **pisos de madera laminados**, te invitamos a visitar nuestro sitio web en [**https://www.terza.com/pisos-laminados**](/pisos/pisos-laminados). En Terza, ofrecemos una amplia variedad de pisos laminados de alta calidad que pueden ser personalizados para satisfacer las necesidades específicas de tu espacio.
+Si estás interesado en explorar las opciones de **pisos de madera laminados**, te invitamos a visitar nuestro sitio web en [**https://www.terza.com/pisos-laminados**](/pisos-laminados). En Terza, ofrecemos una amplia variedad de pisos laminados de alta calidad que pueden ser personalizados para satisfacer las necesidades específicas de tu espacio.

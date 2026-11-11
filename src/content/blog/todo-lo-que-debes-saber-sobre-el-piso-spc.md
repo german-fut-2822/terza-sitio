@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-El **piso SPC** (Stone Plastic Composite), o también conocido como piso rígido de vinilo, es un tipo de piso resistente al agua y muy duradero que imita materiales como la madera o la piedra. Gracias a su resistencia, estética y facilidad de mantenimiento está revolucionando el mercado de los [pisos vinílicos](/pisos/pisos-vinilicos). Este tipo de piso es ideal para hogares y espacios comerciales, pues combina funcionalidad con diseños atractivos y lo convierte en una opción cada vez más popular.
+El **piso SPC** (Stone Plastic Composite), o también conocido como piso rígido de vinilo, es un tipo de piso resistente al agua y muy duradero que imita materiales como la madera o la piedra. Gracias a su resistencia, estética y facilidad de mantenimiento está revolucionando el mercado de los [pisos vinílicos](/pisos-vinilicos). Este tipo de piso es ideal para hogares y espacios comerciales, pues combina funcionalidad con diseños atractivos y lo convierte en una opción cada vez más popular.
 
 ### ¿Qué son los pisos SPC?
 

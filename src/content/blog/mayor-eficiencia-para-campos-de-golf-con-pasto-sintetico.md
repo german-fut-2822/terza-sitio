@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-En el mundo deportivo, el golf se considera una práctica apasionante donde cada swing marca la diferencia para ganar, y para tener una destreza perfecta, es necesario mantener en buen estado el **pasto para campo de golf**, que si bien el mantenimiento exhaustivo era la única solución, hoy se puede mencionar al [**pasto sintético**](/exterior/pasto-sintetico) como la nueva alternativa para este objetivo.
+En el mundo deportivo, el golf se considera una práctica apasionante donde cada swing marca la diferencia para ganar, y para tener una destreza perfecta, es necesario mantener en buen estado el **pasto para campo de golf**, que si bien el mantenimiento exhaustivo era la única solución, hoy se puede mencionar al [**pasto sintético**](/pasto-sintetico) como la nueva alternativa para este objetivo.
 
 El campo deportivo es un área sumamente delicada, y al hablar del golf, esta se enfrenta a diversos factores que la desgastan con el paso del tiempo, como los golpes con los palos de swing, los efectos del clima o el uso constante de los carritos sobre el **pasto para campo de golf**.
 

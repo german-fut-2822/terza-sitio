@@ -22,7 +22,7 @@ La base de plástico ayuda a proteger el suelo de la humedad y aporta una sensac
 
 ## Instala tu piso laminado
 
-Una de las ventajas de los [pisos laminados](/pisos/pisos-laminados) es que se colocan mediante un sistema de ensamblaje, en el que las piezas encajan fácilmente entre sí. Para comenzar, inclina la lámina en un ligero ángulo para que las pestañas tengan contacto, después pégale en un extremo hasta que encaje con otra pieza y daremos un pequeño golpe para que haga clic toda la lámina.
+Una de las ventajas de los [pisos laminados](/pisos-laminados) es que se colocan mediante un sistema de ensamblaje, en el que las piezas encajan fácilmente entre sí. Para comenzar, inclina la lámina en un ligero ángulo para que las pestañas tengan contacto, después pégale en un extremo hasta que encaje con otra pieza y daremos un pequeño golpe para que haga clic toda la lámina.
 
 ## Toma en cuenta los siguientes consejos:
 

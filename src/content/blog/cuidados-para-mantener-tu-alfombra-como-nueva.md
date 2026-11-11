@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Las [**alfombras**](/pisos/alfombras) son una parte importante de la decoración del hogar y pueden agregar calidez y comodidad a cualquier habitación, sin embargo, con el tiempo y si no se les da un cuidado adecuado, las alfombras pueden comenzar a desgastarse y deteriorarse.
+Las [**alfombras**](/alfombras) son una parte importante de la decoración del hogar y pueden agregar calidez y comodidad a cualquier habitación, sin embargo, con el tiempo y si no se les da un cuidado adecuado, las alfombras pueden comenzar a desgastarse y deteriorarse.
 
 Existen múltiples ventajas que traen consigo las alfombras, pues además de los beneficios que brindan a la decoración del hogar, contribuyen en la comodidad y ergonomía de las personas, al proporcionar una sensación agradable al caminar sobre ellas, ayudando a reducir la tensión del cuerpo, como puede suceder con superficies planas como el suelo.
 
@@ -22,4 +22,4 @@ Las alfombras pueden llegar a deteriorarse a falta de limpieza regular, por lo q
 
 En resumen, el cuidado adecuado es esencial para prolongar la vida útil de las alfombras. Con una limpieza regular y medidas preventivas simples, se puede evitar el deterioro de las alfombras, logrando mantenerlas en buenas condiciones durante muchos años.
 
-Sigue estos tips y mantén la alfombra de tu hogar siempre radiante y en buen estado, y si deseas cambiar la tuya o colocar alfombra en otros espacios de tu casa visita nuestro catálogo, donde encontrarás gran variedad de diseños y texturas, las cuales te permitirán adecuarlas a la decoración de tu casa. Conócelas en: [https://www.terza.com/alfombras](/pisos/alfombras)
+Sigue estos tips y mantén la alfombra de tu hogar siempre radiante y en buen estado, y si deseas cambiar la tuya o colocar alfombra en otros espacios de tu casa visita nuestro catálogo, donde encontrarás gran variedad de diseños y texturas, las cuales te permitirán adecuarlas a la decoración de tu casa. Conócelas en: [https://www.terza.com/alfombras](/alfombras)

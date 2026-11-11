@@ -26,4 +26,4 @@ Así como estos, existen muchos otros beneficios del **pasto sintético**, por l
 
 En Terza nos comprometemos a colaborar en buscar alternativas para colaborar con la reducción de esta problemática, así que si estás buscando una opción de pasto para tu hogar, te invitamos a considerar nuestro **pasto sintético**.
 
-El **pasto sintético** Terza viene en una amplia variedad de estilos para decorar tu patio, jardín o terraza. No esperes más y elige el pasto sintético ideal para decorar tu hogar y ayudar al medio ambiente. Conoce más en: [https://www.terza.com/pasto-sintetico/mantenimiento](/exterior/pasto-sintetico)
+El **pasto sintético** Terza viene en una amplia variedad de estilos para decorar tu patio, jardín o terraza. No esperes más y elige el pasto sintético ideal para decorar tu hogar y ayudar al medio ambiente. Conoce más en: [https://www.terza.com/pasto-sintetico/mantenimiento](/pasto-sintetico)

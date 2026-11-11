@@ -14,7 +14,7 @@ Durante los meses fríos, queremos que nuestra casa se sienta más cálida y aco
 
 ## La madera como aislante térmico natural
 
-A diferencia de otros pisos que suelen sentirse fríos, la madera proporciona una sensación de calidez física y visual. Gracias a sus pequeñas bolsas de aire, que actúan como una barrera que frena la transferencia de calor, mantienen el interior de tu habitación más fresco en verano y más cálido en invierno. Además, los [pisos de madera](/pisos/pisos-de-madera) también ayudan a retener el calor dentro de las habitaciones, lo que contribuye a mantener una temperatura interior más cómoda durante los días fríos.
+A diferencia de otros pisos que suelen sentirse fríos, la madera proporciona una sensación de calidez física y visual. Gracias a sus pequeñas bolsas de aire, que actúan como una barrera que frena la transferencia de calor, mantienen el interior de tu habitación más fresco en verano y más cálido en invierno. Además, los [pisos de madera](/pisos-de-madera) también ayudan a retener el calor dentro de las habitaciones, lo que contribuye a mantener una temperatura interior más cómoda durante los días fríos.
 
 ## Conservan mejorar la temperatura del interior
 

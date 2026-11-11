@@ -24,4 +24,4 @@ Colocar follaje artificial en tus proyectos de remodelación trae consigo múlti
 
 El follaje artificial es una opción versátil, pues se puede personalizar para adaptarse a diferentes estilos y diseños de interiores en diferentes tipos de espacios del hogar como salas, comedores, cocinas, dormitorios y baños, creando ambientes únicos y especiales.
 
-En Terza podrás encontrar gran variedad de follaje artificial, con diversos colores y texturas para que elijas el que mejor vaya con la decoración de tu proyecto. Da clic en el siguiente enlace y conoce nuestro catálogo: [https://www.terza.com/muros-verdes](/muros/follaje-artificial)
+En Terza podrás encontrar gran variedad de follaje artificial, con diversos colores y texturas para que elijas el que mejor vaya con la decoración de tu proyecto. Da clic en el siguiente enlace y conoce nuestro catálogo: [https://www.terza.com/muros-verdes](/muros-verdes)

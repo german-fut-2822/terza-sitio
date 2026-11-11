@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-La decoración del suelo es de los procesos más importantes al momento de transformar un espacio, ya que este es la base de la superficies y será la raíz del estilo que tendrá una habitación, además, elegir el material correcto brindará beneficios de calidad y utilidad para el hogar. Entre las opciones más populares se encuentran los [**pisos laminados**](/pisos/pisos-laminados) y de madera, pero, ¿cuál de ellos es la mejor opción?
+La decoración del suelo es de los procesos más importantes al momento de transformar un espacio, ya que este es la base de la superficies y será la raíz del estilo que tendrá una habitación, además, elegir el material correcto brindará beneficios de calidad y utilidad para el hogar. Entre las opciones más populares se encuentran los [**pisos laminados**](/pisos-laminados) y de madera, pero, ¿cuál de ellos es la mejor opción?
 
 Cuando se busca remodelar un hogar, lo primero en que se comienza a pensar es en aspectos como ampliar las habitaciones, los tonos y colores para pintar las paredes, qué tipo de muebles nuevos se deberán comprar, entre otros.
 

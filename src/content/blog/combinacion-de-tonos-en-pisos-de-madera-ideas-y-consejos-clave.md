@@ -18,7 +18,7 @@ Las tendencias actuales demuestran que no solo es posible, sino que es una técn
 
 Para lograr este impacto visual, la combinación ideal consiste en utilizar un tono de madera oscuro, como nogal o wengué, junto a un tono claro, como arce, pino o roble claro. De esta forma se consigue un efecto llamativo y de gran profundidad, ya que la madera clara refleja la luz, mientras que la madera oscura aporta calidez y solidez.
 
-Al implementar estos tonos en [pisos de madera](/pisos/pisos-de-madera), asegúrate de usar la madera oscura como dominante o base, y la clara como un complemento estratégico. Puedes colocar el tono claro en una franja perimetral o crear un diseño geométrico sutil para delimitar áreas y [renovar](/blog/como-elegir-pisos-de-madera-para-renovar-tus-espacios) tu espacio con un toque moderno.
+Al implementar estos tonos en [pisos de madera](/pisos-de-madera), asegúrate de usar la madera oscura como dominante o base, y la clara como un complemento estratégico. Puedes colocar el tono claro en una franja perimetral o crear un diseño geométrico sutil para delimitar áreas y [renovar](/blog/como-elegir-pisos-de-madera-para-renovar-tus-espacios) tu espacio con un toque moderno.
 
 ## Tonos similares con vetas distintas
 

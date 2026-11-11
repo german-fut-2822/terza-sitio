@@ -48,4 +48,4 @@ El equilibrio entre diseño y funcionalidad es lo que define las tendencias actu
 
 La **decoración con lambrín** es una forma práctica y elegante de [transformar](/blog/transforma-tus-espacios-con-lambrin-decorativo-para-un-estilo-unico) cualquier espacio, aportando textura, estilo y protección a tus muros. Ya sea en tonos naturales, con acabados tipo madera o en diseños contemporáneos, esta tendencia permite renovar tu hogar sin llevar a cabo cambios estructurales complejos.
 
-En Terza encontrarás opciones de [lambrín PVC](/muros/lambrin-y-paneles) que combinan diseño, resistencia y fácil mantenimiento. Descubre su catálogo e inspira tus espacios con materiales que se adaptan a tu estilo y necesidades.
+En Terza encontrarás opciones de [lambrín PVC](/lambrin-y-paneles) que combinan diseño, resistencia y fácil mantenimiento. Descubre su catálogo e inspira tus espacios con materiales que se adaptan a tu estilo y necesidades.

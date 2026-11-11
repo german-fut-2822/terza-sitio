@@ -37,7 +37,7 @@ En [oficinas](/blog/pisos-vinilicos-en-oficinas-la-mejor-opcion-para-espacios-de
 - **Qué buscar:** Texturas de corte (cut pile) que brindan una sensación de exclusividad y calidez superior al caminar.
 - **Recomendación:** Es el lugar perfecto para experimentar con colores institucionales o patrones más atrevidos que refuercen el branding de la empresa.
 
-Elegir el recubrimiento textil adecuado es el primer paso para crear un entorno laboral productivo y elegante. Te invitamos a explorar nuestro catálogo completo y descubrir la amplia variedad de texturas, colores y tecnologías que tenemos en Terza para tu proyecto. Ya sea que busques renovar un despacho privado o un edificio corporativo completo, en nuestro sitio encontrarás las mejores [alfombras](/pisos/alfombras) para elevar el estándar de tu oficina. ¡Sigue navegando y encuentra el estilo perfecto para ti!
+Elegir el recubrimiento textil adecuado es el primer paso para crear un entorno laboral productivo y elegante. Te invitamos a explorar nuestro catálogo completo y descubrir la amplia variedad de texturas, colores y tecnologías que tenemos en Terza para tu proyecto. Ya sea que busques renovar un despacho privado o un edificio corporativo completo, en nuestro sitio encontrarás las mejores [alfombras](/alfombras) para elevar el estándar de tu oficina. ¡Sigue navegando y encuentra el estilo perfecto para ti!
 
 ## Preguntas Frecuentes (FAQ)
 

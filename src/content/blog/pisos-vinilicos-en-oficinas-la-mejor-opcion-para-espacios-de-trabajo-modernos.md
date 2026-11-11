@@ -12,7 +12,7 @@ borrador: false
 
 En el diseño de oficinas, cada detalle cuenta para crear ambientes funcionales, estéticos y cómodos. Uno de los elementos más importantes es el tipo de piso que se elige. En los últimos años, los **pisos vinílicos para oficinas** han ganado protagonismo como una de las mejores opciones para espacios modernos, gracias a su versatilidad, durabilidad y atractivo visual.
 
-Los [pisos vinílicos](/pisos/pisos-vinilicos) se presentan en diferentes formatos como rollos, losetas o tablones. Pueden imitar materiales como la piedra, el mármol o la madera, sin los inconvenientes de mantenimiento y costos que estos implican. Además, su estructura multicapa brinda una superficie resistente, confortable y fácil de instalar.
+Los [pisos vinílicos](/pisos-vinilicos) se presentan en diferentes formatos como rollos, losetas o tablones. Pueden imitar materiales como la piedra, el mármol o la madera, sin los inconvenientes de mantenimiento y costos que estos implican. Además, su estructura multicapa brinda una superficie resistente, confortable y fácil de instalar.
 
 ## Ventajas de los pisos vinílicos para oficinas
 

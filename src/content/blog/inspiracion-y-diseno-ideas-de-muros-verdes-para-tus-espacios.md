@@ -26,4 +26,4 @@ Estos muros son ideales para áreas sociales, como salas de juntas, restaurantes
 
 Más allá de lo decorativo, los muros verdes sintéticos funcionan como aislantes térmicos, resistiendo frente a cambios climáticos y condiciones de interiores. Además, son de fácil instalación y mantenimiento, mejorando la estética y aportando elegancia y sofisticación.
 
-En su portal de [green walls](/muros/follaje-artificial), Terza te presenta diversas **ideas de muros verdes** adaptadas a distintos entornos, desde residencias hasta oficinas corporativas, demostrando que transformar cualquier espacio en un entorno verde y funcional es posible.
+En su portal de [green walls](/muros-verdes), Terza te presenta diversas **ideas de muros verdes** adaptadas a distintos entornos, desde residencias hasta oficinas corporativas, demostrando que transformar cualquier espacio en un entorno verde y funcional es posible.

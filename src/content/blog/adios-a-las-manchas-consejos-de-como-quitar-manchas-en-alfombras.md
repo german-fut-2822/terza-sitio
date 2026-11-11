@@ -14,7 +14,7 @@ Las **alfombras** son parte esencial del hogar, aportan calidez, estilo y confor
 
 ## Cómo quitar las manchas de tu alfombra
 
-El mejor remedio para quitar las manchas de tus [**alfombras**](/pisos/alfombras) es utilizar un producto antimanchas adecuado. Toma en cuenta que, antes de aplicarlo, elimina los restos del líquido derramado con papel absorbente, presionando suavemente sin frotar. Esto ayuda a evitar que la mancha se extienda. Después, limpia siempre desde el borde hacia el centro de la mancha y evita usar una esponja húmeda, ya que el exceso de agua puede expandirse.
+El mejor remedio para quitar las manchas de tus [**alfombras**](/alfombras) es utilizar un producto antimanchas adecuado. Toma en cuenta que, antes de aplicarlo, elimina los restos del líquido derramado con papel absorbente, presionando suavemente sin frotar. Esto ayuda a evitar que la mancha se extienda. Después, limpia siempre desde el borde hacia el centro de la mancha y evita usar una esponja húmeda, ya que el exceso de agua puede expandirse.
 
 Para accidentes comunes como manchas de café, vino o pisadas sucias de mascotas actúa de inmediato con un papel absorbente o toalla seca. Puedes utilizar el quitamanchas siguiendo las instrucciones del producto, limpiando la mancha sin frotar para no dañar la textura de la alfombra.
 

@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Elegir **pisos para interiores** puede ser una tarea abrumadora, dada la amplia variedad de opciones disponibles en el mercado. Sumado a que cada tipo de piso tiene sus propias características, ventajas y desventajas. En esta guía, te presentamos las alternativas más populares, incluyendo los [pisos laminados](/pisos/pisos-laminados):
+Elegir **pisos para interiores** puede ser una tarea abrumadora, dada la amplia variedad de opciones disponibles en el mercado. Sumado a que cada tipo de piso tiene sus propias características, ventajas y desventajas. En esta guía, te presentamos las alternativas más populares, incluyendo los [pisos laminados](/pisos-laminados):
 
 ## Pisos laminados para interiores
 

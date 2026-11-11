@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-En Terza te ofrecemos la mejor calidad en [**pasto sintético**](/exterior/pasto-sintetico) junto a sus grandes beneficios tales como su mantenimiento de bajo costo y su color verde natural todas las estaciones del año. Pero para ello también es necesaria su correcta instalación y aquí te diremos paso a paso **cómo se instala el pasto sintético** de la mejor manera. Nos hemos dado la tarea de recopilar los mejores tips e instrucciones y queremos compartirlo contigo, ¡continúa leyendo!
+En Terza te ofrecemos la mejor calidad en [**pasto sintético**](/pasto-sintetico) junto a sus grandes beneficios tales como su mantenimiento de bajo costo y su color verde natural todas las estaciones del año. Pero para ello también es necesaria su correcta instalación y aquí te diremos paso a paso **cómo se instala el pasto sintético** de la mejor manera. Nos hemos dado la tarea de recopilar los mejores tips e instrucciones y queremos compartirlo contigo, ¡continúa leyendo!
 
 ### ¿Qué necesitas para instalar tu pasto sintético?
 
@@ -63,4 +63,4 @@ Presiona tus rollos para que el pegamento cumpla con su función correctamente, 
 
 Para asegurar la instalación de tu **pasto sintético** puedes agregar clavos o grapas para fijar los rollos al perímetro de tu área y listo, ¡terminaste!
 
-De esta forma podrás disfrutar de todos los beneficios que el **pasto sintético** tiene para ti, esto aparte de lograr una apariencia hermosa y natural en tus espacios favoritos. Recuerda que en Terza contamos con pasto sintético especial para canchas, jardines o áreas verdes. Si te sirvieron nuestros pasos sobre **cómo se instala el pasto sintétic**o, no olvides visitarnos en nuestra página web [**https://www.terza.com/pasto-sintetico**](/exterior/pasto-sintetico) para conocer más sobre nuestros productos, ¿qué esperas para embellecer ese lugar que tanto te gusta?
+De esta forma podrás disfrutar de todos los beneficios que el **pasto sintético** tiene para ti, esto aparte de lograr una apariencia hermosa y natural en tus espacios favoritos. Recuerda que en Terza contamos con pasto sintético especial para canchas, jardines o áreas verdes. Si te sirvieron nuestros pasos sobre **cómo se instala el pasto sintétic**o, no olvides visitarnos en nuestra página web [**https://www.terza.com/pasto-sintetico**](/pasto-sintetico) para conocer más sobre nuestros productos, ¿qué esperas para embellecer ese lugar que tanto te gusta?

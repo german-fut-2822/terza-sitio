@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-El [pasto sintético](/exterior/pasto-sintetico) se ha convertido en una alternativa cada vez más popular frente al césped natural, especialmente en espacios donde se busca funcionalidad, estética y bajo mantenimiento. Ya sea para jardines residenciales, terrazas, áreas deportivas o proyectos comerciales, existe una gran variedad de opciones disponibles que se adaptan a distintas necesidades. Pero, ¿cómo saber cuál es el tipo de **pasto sintético** ideal para cada espacio? A continuación, se exploran los principales tipos y sus características para facilitar una elección informada.
+El [pasto sintético](/pasto-sintetico) se ha convertido en una alternativa cada vez más popular frente al césped natural, especialmente en espacios donde se busca funcionalidad, estética y bajo mantenimiento. Ya sea para jardines residenciales, terrazas, áreas deportivas o proyectos comerciales, existe una gran variedad de opciones disponibles que se adaptan a distintas necesidades. Pero, ¿cómo saber cuál es el tipo de **pasto sintético** ideal para cada espacio? A continuación, se exploran los principales tipos y sus características para facilitar una elección informada.
 
 ### 1. Pasto sintético deportivo
 

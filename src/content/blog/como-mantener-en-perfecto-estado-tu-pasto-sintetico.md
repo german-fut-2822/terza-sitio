@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Ya sea en jardines, terrazas o espacios deportivos, el [pasto sintético](/exterior/pasto-sintetico) se destaca por su durabilidad y bajo mantenimiento, pues no requiere agua ni fertilizantes o podas, lo cual contribuye a ahorrar agua, costos y tiempo. Sin embargo, para garantizar su buen estado y apariencia siempre verde, es fundamental seguir los cuidados y recomendaciones que se enumeran a continuación:
+Ya sea en jardines, terrazas o espacios deportivos, el [pasto sintético](/pasto-sintetico) se destaca por su durabilidad y bajo mantenimiento, pues no requiere agua ni fertilizantes o podas, lo cual contribuye a ahorrar agua, costos y tiempo. Sin embargo, para garantizar su buen estado y apariencia siempre verde, es fundamental seguir los cuidados y recomendaciones que se enumeran a continuación:
 
 ### Limpieza regular
 

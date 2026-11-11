@@ -40,7 +40,7 @@ Para paredes con mucho contraste (Negro o Gris):
 - **El secreto:** Atrévete con follajes que tengan acentos de color (lavanda, blanco o rojo).
 - **Por qué:** Saber **como elegir follaje artificial** para fondos oscuros implica buscar un "pop" de color que rompa la monotonía y convierta el muro en una pieza de arte viva.
 
-Integrar la naturaleza en tus proyectos nunca había sido tan sencillo y estético. En Terza, contamos con una exclusiva selección de texturas y tonalidades diseñadas para resistir el paso del tiempo y transformar cualquier ambiente. Te invitamos a explorar nuestra gama de [muros verdes](/muros/follaje-artificial) y descubrir cómo el follaje adecuado puede renovar por completo tu hogar u oficina. ¡Sigue navegando y elige el diseño que mejor vaya con tu estilo!
+Integrar la naturaleza en tus proyectos nunca había sido tan sencillo y estético. En Terza, contamos con una exclusiva selección de texturas y tonalidades diseñadas para resistir el paso del tiempo y transformar cualquier ambiente. Te invitamos a explorar nuestra gama de [muros verdes](/muros-verdes) y descubrir cómo el follaje adecuado puede renovar por completo tu hogar u oficina. ¡Sigue navegando y elige el diseño que mejor vaya con tu estilo!
 
 ## Preguntas Frecuentes (FAQ)
 

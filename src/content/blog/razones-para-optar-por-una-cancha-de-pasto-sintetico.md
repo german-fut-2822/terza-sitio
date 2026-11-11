@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Muchos de los deportes mundialmente reconocidos requieren de una superficie de pasto, como el golf, fútbol y béisbol, y tanto pasto natural como pasto sintético puede servir para que los atletas ejecuten sus actividades deportivas. Sin embargo, entre estos deportes hay uno que ha optado por jugar casi exclusivamente en **canchas de** [**pasto sintético**](/exterior/pasto-sintetico) , y ese es el fútbol americano.
+Muchos de los deportes mundialmente reconocidos requieren de una superficie de pasto, como el golf, fútbol y béisbol, y tanto pasto natural como pasto sintético puede servir para que los atletas ejecuten sus actividades deportivas. Sin embargo, entre estos deportes hay uno que ha optado por jugar casi exclusivamente en **canchas de** [**pasto sintético**](/pasto-sintetico) , y ese es el fútbol americano.
 
 Su popularidad creció en los años 60, cuando el primer estadio techado del mundo, el *Astrodome* situado en Houston, Texas, decidió tener una **cancha de pasto sintético** al no poder mantener un césped natural en buenas condiciones por la falta de luz. Desde entonces, el pasto sintético demostró sus otras ventajas al mundo del deporte y se ha vuelto lo habitual en cuanto a canchas de fútbol americano.
 

@@ -26,4 +26,4 @@ Existe una larga lista de beneficios del pasto sintético en canchas deportivas 
 
 Sin duda, el **pasto sintético para canchas** ha demostrado ser una alternativa altamente beneficiosa, por lo que cada vez más instalaciones deportivas adoptan esta opción innovadora y sostenible.
 
-En Terza ofrecemos en catálogo gran variedad de **pasto sintético para canchas** con estilos que se adaptarán a canchas de fútbol soccer, fútbol americano, béisbol, tenis, pádel, entre otros, brindando diversas texturas, diseños y colores distintivos de cada tipo de cancha deportiva. Visita nuestro catálogo en: [https://www.terza.com/pasto-sintético/canchas](/exterior/pasto-sintetico)
+En Terza ofrecemos en catálogo gran variedad de **pasto sintético para canchas** con estilos que se adaptarán a canchas de fútbol soccer, fútbol americano, béisbol, tenis, pádel, entre otros, brindando diversas texturas, diseños y colores distintivos de cada tipo de cancha deportiva. Visita nuestro catálogo en: [https://www.terza.com/pasto-sintético/canchas](/pasto-sintetico)

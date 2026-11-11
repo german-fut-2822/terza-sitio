@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Cuando se trata de transformar un espacio tan importante como la sala, las [alfombras](/pisos/alfombras) son un elemento de decoración con la capacidad de añadir color, textura y calidez. Incluso, una **alfombra para sala** es una pieza que puede definir y delimitar espacios si se elige correctamente. Especialmente si se trata de suelos fríos, esta proporciona una sensación de calidez y confort al área; por otro lado, también ayuda a reducir el ruido absorbiendo el sonido por su material, logrando un ambiente más tranquilo y relajante en la sala. A continuación te presentamos las características que debes tomar en cuenta al momento de elegir la alfombra ideal.
+Cuando se trata de transformar un espacio tan importante como la sala, las [alfombras](/alfombras) son un elemento de decoración con la capacidad de añadir color, textura y calidez. Incluso, una **alfombra para sala** es una pieza que puede definir y delimitar espacios si se elige correctamente. Especialmente si se trata de suelos fríos, esta proporciona una sensación de calidez y confort al área; por otro lado, también ayuda a reducir el ruido absorbiendo el sonido por su material, logrando un ambiente más tranquilo y relajante en la sala. A continuación te presentamos las características que debes tomar en cuenta al momento de elegir la alfombra ideal.
 
 ## Tamaño y distribución
 

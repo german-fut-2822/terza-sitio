@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-El diseño de interiores evoluciona constantemente y una de las tendencias más destacadas en la actualidad es el uso de [lambrin PVC](/muros/lambrin-y-paneles). Este revestimiento, además de ser decorativo, permite renovar espacios de manera sencilla y elegante. Su versatilidad y facilidad de instalación lo convierten en una opción ideal para quienes buscan darle un toque único y sofisticado a sus hogares.
+El diseño de interiores evoluciona constantemente y una de las tendencias más destacadas en la actualidad es el uso de [lambrin PVC](/lambrin-y-paneles). Este revestimiento, además de ser decorativo, permite renovar espacios de manera sencilla y elegante. Su versatilidad y facilidad de instalación lo convierten en una opción ideal para quienes buscan darle un toque único y sofisticado a sus hogares.
 
 El **lambrin para interiores** se instala en paredes y techos con el objetivo de mejorar la estética y funcionalidad de los espacios. Existen diferentes materiales en los que se fabrica, como la madera, el MDF y el PVC, siendo este último uno de los más populares por su resistencia y fácil mantenimiento. Gracias a su variedad de texturas y colores, el lambrin se adapta a distintos estilos decorativos, desde los más clásicos hasta los más modernos.
 

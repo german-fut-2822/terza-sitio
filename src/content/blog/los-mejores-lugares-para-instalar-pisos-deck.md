@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Los [pisos deck](/exterior/deck) son una solución versátil para quienes buscan transformar sus espacios interiores o exteriores con un toque natural y moderno. Su estética, con un diseño tipo madera y materiales que aportan resistencia, los hacen perfectos para zonas con alto tránsito o exposición a climas diversos. A continuación, te compartimos las áreas ideales para **instalar pisos deck** y así aprovechar al máximo sus beneficios.
+Los [pisos deck](/pisos-deck) son una solución versátil para quienes buscan transformar sus espacios interiores o exteriores con un toque natural y moderno. Su estética, con un diseño tipo madera y materiales que aportan resistencia, los hacen perfectos para zonas con alto tránsito o exposición a climas diversos. A continuación, te compartimos las áreas ideales para **instalar pisos deck** y así aprovechar al máximo sus beneficios.
 
 ## Terrazas y patios
 

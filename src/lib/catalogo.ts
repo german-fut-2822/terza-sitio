@@ -46,16 +46,16 @@ export const urlCategoria = (slug: string) => `/catalogo/${slug}`;
 
 // Páginas con la información de cada línea de producto (como terza.com/alfombras); se agregan aquí conforme existan
 export const paginasLinea: Record<string, { href: string; etiqueta: string }> = {
-  'piso-vinilico': { href: '/pisos/pisos-vinilicos', etiqueta: 'Conoce más sobre pisos vinílicos' },
-  'pisos-laminados': { href: '/pisos/pisos-laminados', etiqueta: 'Conoce más sobre pisos laminados' },
-  'pisos-de-madera': { href: '/pisos/pisos-de-madera', etiqueta: 'Conoce más sobre pisos de madera' },
-  alfombras: { href: '/pisos/alfombras', etiqueta: 'Conoce más sobre alfombras' },
-  paneles: { href: '/muros/lambrin-y-paneles', etiqueta: 'Conoce más sobre lambrín y paneles' },
-  'muros-verdes': { href: '/muros/follaje-artificial', etiqueta: 'Conoce más sobre follaje artificial' },
+  'piso-vinilico': { href: '/pisos-vinilicos', etiqueta: 'Conoce más sobre pisos vinílicos' },
+  'pisos-laminados': { href: '/pisos-laminados', etiqueta: 'Conoce más sobre pisos laminados' },
+  'pisos-de-madera': { href: '/pisos-de-madera', etiqueta: 'Conoce más sobre pisos de madera' },
+  alfombras: { href: '/alfombras', etiqueta: 'Conoce más sobre alfombras' },
+  paneles: { href: '/lambrin-y-paneles', etiqueta: 'Conoce más sobre lambrín y paneles' },
+  'muros-verdes': { href: '/muros-verdes', etiqueta: 'Conoce más sobre follaje artificial' },
   'persianas-enrollables': { href: '/persianas', etiqueta: 'Conoce más sobre persianas' },
   'persianas-de-madera': { href: '/persianas', etiqueta: 'Conoce más sobre persianas' },
-  'pisos-deck': { href: '/exterior/deck', etiqueta: 'Conoce más sobre pisos deck' },
-  'pasto-sintetico': { href: '/exterior/pasto-sintetico', etiqueta: 'Conoce más sobre pasto sintético' },
+  'pisos-deck': { href: '/pisos-deck', etiqueta: 'Conoce más sobre pisos deck' },
+  'pasto-sintetico': { href: '/pasto-sintetico', etiqueta: 'Conoce más sobre pasto sintético' },
 };
 
 export const urlProducto = (p: Pick<Producto, 'categoria' | 'slug'>) => `/catalogo/${p.categoria}/${p.slug}`;

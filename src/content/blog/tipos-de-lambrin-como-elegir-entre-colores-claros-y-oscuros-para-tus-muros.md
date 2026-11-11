@@ -31,13 +31,13 @@ Para que no queden dudas, aquí tienes la guía rápida para elegir según la vi
 - **Apuesta por la luminosidad:** Si tu meta es "abrir" espacios reducidos, aprovechar cada rayo de luz natural o lograr ese look minimalista y fresco que nunca pasa de moda.
 - **Añade calidez y textura:** Ideales cuando buscas un punto medio; tonos que aportan personalidad y una sensación acogedora sin oscurecer por completo la habitación.
 - **Crea un impacto visual:** La elección definitiva para muros de acento en espacios amplios. Úsalos si buscas un diseño de alta gama, contrastes profundos y una elegancia que se note desde que entras.
-- **Resistencia y practicidad:** Sin importar el color, todos los [lambrines](/muros/lambrin-y-paneles) son tu solución contra la humedad, permitiéndote renovar desde tu sala hasta tu baño con una instalación limpia y sin obra pesada.
+- **Resistencia y practicidad:** Sin importar el color, todos los [lambrines](/lambrin-y-paneles) son tu solución contra la humedad, permitiéndote renovar desde tu sala hasta tu baño con una instalación limpia y sin obra pesada.
 
 ### Conclusión
 
 Elegir entre los distintos **tipos de lambrin** claros u oscuros es el paso final para personalizar tu hogar. Mientras los tonos claros invitan a la tranquilidad y la luz, los oscuros proyectan fuerza y distinción. La clave está en encontrar el equilibrio que mejor se adapte a tu estilo de vida.
 
-En Terza contamos con un catálogo completo de soluciones para tus muros. Te invitamos a explorar nuestra variedad de [lambrín PVC](/muros/lambrin-y-paneles), para encontrar la textura y el color que transformarán tu espacio hoy mismo.
+En Terza contamos con un catálogo completo de soluciones para tus muros. Te invitamos a explorar nuestra variedad de [lambrín PVC](/lambrin-y-paneles), para encontrar la textura y el color que transformarán tu espacio hoy mismo.
 
 ## Preguntas frecuentes
 

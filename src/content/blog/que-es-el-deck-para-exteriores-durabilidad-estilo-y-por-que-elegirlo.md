@@ -38,7 +38,7 @@ Gracias a su resistencia a la humedad y a los insectos, es una inversión segura
 
 Ahora que conoces las ventajas del deck para exteriores, puedes considerar esta alternativa como la solución definitiva para transformar tus espacios al aire libre en lugares cómodos, resistentes y llenos de estilo. Su equilibrio entre belleza natural y [durabilidad](/blog/renueva-tu-terraza-este-verano-con-pisos-deck-estilo-confort-y-durabilidad-al-aire-libre) tecnológica lo convierte en una de las mejores decisiones para tu hogar.
 
-En Terza encontrarás una exclusiva selección de [pisos deck](/exterior/deck) con acabados realistas y alta resistencia, diseñados para elevar el nivel de tu arquitectura exterior. Descubre su catálogo en miterza.com y comienza a proyectar la terraza de tus sueños.
+En Terza encontrarás una exclusiva selección de [pisos deck](/pisos-deck) con acabados realistas y alta resistencia, diseñados para elevar el nivel de tu arquitectura exterior. Descubre su catálogo en miterza.com y comienza a proyectar la terraza de tus sueños.
 
 ## Preguntas frecuentes
 

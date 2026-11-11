@@ -16,7 +16,7 @@ A continuación, te compartimos ideas creativas para incorporar follaje artifici
 
 ## Un panel verde pequeño como pieza focal
 
-Al implementar esta idea, no necesitarás cubrir toda tu pared o una gran área de ella, sino que solo requieres un panel de [follaje artificial](/muros/follaje-artificial) de tamaño moderado, enmarcado y bien delimitado que puede funcionar como obra de arte. Ideal para sala, recibidor o pasillo.
+Al implementar esta idea, no necesitarás cubrir toda tu pared o una gran área de ella, sino que solo requieres un panel de [follaje artificial](/muros-verdes) de tamaño moderado, enmarcado y bien delimitado que puede funcionar como obra de arte. Ideal para sala, recibidor o pasillo.
 
 ## Green wall en el comedor o barra
 

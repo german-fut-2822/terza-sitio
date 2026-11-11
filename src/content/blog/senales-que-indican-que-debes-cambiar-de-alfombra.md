@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Las [alfombras](/pisos/alfombras) brindan calidez y confort a cualquier espacio. No solo mejoran la acústica y protegen los pisos interiores, también definen ambientes y aportan personalidad a la decoración de cada sala. Sin embargo, el paso del tiempo y el uso constante con exposición directa a la luz, así como otros factores, pueden deteriorarlas. Por eso, es importante que sepas cuándo conviene **cambiar de alfombra** para mantener tus espacios limpios y agradables. En esta nota, te presentamos algunas señales que indican que es momento de renovar tu alfombra.
+Las [alfombras](/alfombras) brindan calidez y confort a cualquier espacio. No solo mejoran la acústica y protegen los pisos interiores, también definen ambientes y aportan personalidad a la decoración de cada sala. Sin embargo, el paso del tiempo y el uso constante con exposición directa a la luz, así como otros factores, pueden deteriorarlas. Por eso, es importante que sepas cuándo conviene **cambiar de alfombra** para mantener tus espacios limpios y agradables. En esta nota, te presentamos algunas señales que indican que es momento de renovar tu alfombra.
 
 ## Desgaste visible o pérdida de forma
 

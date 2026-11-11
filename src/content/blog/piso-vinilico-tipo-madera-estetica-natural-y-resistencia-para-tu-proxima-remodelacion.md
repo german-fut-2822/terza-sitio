@@ -30,7 +30,7 @@ Si buscas renovar sin el caos de una obra tradicional, el piso vinílico tipo ma
 
 A diferencia de la madera natural o el laminado tradicional, el piso vinílico tipo madera destaca por su alta resistencia a la humedad. Esto permite llevar la estética amaderada a zonas donde antes era impensable, como cocinas o áreas comerciales con limpieza frecuente, sin riesgo de que las tablas se inflen o deformen.
 
-En términos de diseño, la variedad es infinita y está pensada para adaptarse a cualquier visión arquitectónica. Si buscas un estilo industrial o contemporáneo, los [tonos cenizos y grises](/catalogo/piso-vinilico) como el [Granite](/catalogo/piso-vinilico/t15-spc21-81076) o el [Silver](/catalogo/piso-vinilico/t08-tesd1-11601) aportan una sobriedad elegante que combina perfecto con metal y concreto. Por otro lado, si tu objetivo es un ambiente rústico, clásico o lleno de calidez familiar, opciones como el [Blonde](/pisos/pisos-vinilicos) o el [Honey](/pisos/pisos-vinilicos) recrean fielmente la textura y las vetas orgánicas de la madera real, logrando que cada habitación se sienta acogedora al instante. Esta diversidad de acabados asegura que tu nuevo piso vinílico no solo sea una solución práctica, sino una pieza clave de interiorismo que se integre perfectamente con tus muebles y decoración, elevando el valor estético de tu hogar con la durabilidad que solo el PVC de alta tecnología puede ofrecer.
+En términos de diseño, la variedad es infinita y está pensada para adaptarse a cualquier visión arquitectónica. Si buscas un estilo industrial o contemporáneo, los [tonos cenizos y grises](/catalogo/piso-vinilico) como el [Granite](/catalogo/piso-vinilico/t15-spc21-81076) o el [Silver](/catalogo/piso-vinilico/t08-tesd1-11601) aportan una sobriedad elegante que combina perfecto con metal y concreto. Por otro lado, si tu objetivo es un ambiente rústico, clásico o lleno de calidez familiar, opciones como el [Blonde](/pisos-vinilicos) o el [Honey](/pisos-vinilicos) recrean fielmente la textura y las vetas orgánicas de la madera real, logrando que cada habitación se sienta acogedora al instante. Esta diversidad de acabados asegura que tu nuevo piso vinílico no solo sea una solución práctica, sino una pieza clave de interiorismo que se integre perfectamente con tus muebles y decoración, elevando el valor estético de tu hogar con la durabilidad que solo el PVC de alta tecnología puede ofrecer.
 
 ### Mantenimiento y confort en el día a día
 
@@ -40,7 +40,7 @@ Otro punto a favor es la comodidad acústica y térmica. Los pisos vinílicos so
 
 Elegir un **piso vinílico tipo madera** para tu próxima remodelación es una inversión inteligente que prioriza tu tiempo y tu presupuesto sin sacrificar el estilo. Es la prueba de que se puede lograr una transformación de lujo con un proceso práctico y sin estrés.
 
-En Terza contamos con una amplia gama de soluciones en [pisos vinílicos](/pisos/pisos-vinilicos) con acabados realistas que elevarán el diseño de tu hogar. Te invitamos a explorar nuestro catálogo y descubre lo fácil que es renovar tus espacios con la calidad que nos distingue.
+En Terza contamos con una amplia gama de soluciones en [pisos vinílicos](/pisos-vinilicos) con acabados realistas que elevarán el diseño de tu hogar. Te invitamos a explorar nuestro catálogo y descubre lo fácil que es renovar tus espacios con la calidad que nos distingue.
 
 ## Preguntas frecuentes
 

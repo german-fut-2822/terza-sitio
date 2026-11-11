@@ -27,11 +27,11 @@ const CATEGORIAS = {
 
 // Páginas de terza.com que ya existen en este sitio (las demás ligas se quedan apuntando a terza.com)
 const RUTAS = {
-  '/': '/', '/alfombras': '/pisos/alfombras', '/pisos-deck': '/exterior/deck', '/lambrin-pvc': '/muros/lambrin-y-paneles',
-  '/muros-verdes': '/muros/follaje-artificial', '/pasto-sintetico': '/exterior/pasto-sintetico', '/persianas': '/persianas',
-  '/pisos-laminados': '/pisos/pisos-laminados', '/pisos-de-madera': '/pisos/pisos-de-madera', '/piso-vinilico': '/pisos/pisos-vinilicos',
+  '/': '/', '/alfombras': '/alfombras', '/pisos-deck': '/pisos-deck', '/lambrin-pvc': '/lambrin-y-paneles',
+  '/muros-verdes': '/muros-verdes', '/pasto-sintetico': '/pasto-sintetico', '/persianas': '/persianas',
+  '/pisos-laminados': '/pisos-laminados', '/pisos-de-madera': '/pisos-de-madera', '/piso-vinilico': '/pisos-vinilicos',
   '/contacto': '/contacto', '/distribuidor': '/quiero-ser-distribuidor', '/quienes-somos': '/quienes-somos',
-  '/catalogos': '/catalogos-digitales', '/blog': '/blog', '/panel-pvc': '/muros/lambrin-y-paneles',
+  '/catalogos': '/catalogos-digitales', '/blog': '/blog', '/panel-pvc': '/lambrin-y-paneles',
 };
 
 // Catálogo ya importado (scripts/importar-catalogo.mjs) para llevar las ligas de producto a este sitio

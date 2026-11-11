@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Los [pisos vinílicos](/pisos/pisos-vinilicos) aparte de ser resistentes y fáciles de limpiar, su instalación es muy sencilla. Esto lo convierte en una excelente opción para renovar tus espacios interiores, sumado a que puedes encontrar una gran variedad de diseños, colores y acabados perfectos para tu estilo de decoración. Sigue leyendo para descubrir **cómo instalar pisos vinílicos** de manera rápida y efectiva.
+Los [pisos vinílicos](/pisos-vinilicos) aparte de ser resistentes y fáciles de limpiar, su instalación es muy sencilla. Esto lo convierte en una excelente opción para renovar tus espacios interiores, sumado a que puedes encontrar una gran variedad de diseños, colores y acabados perfectos para tu estilo de decoración. Sigue leyendo para descubrir **cómo instalar pisos vinílicos** de manera rápida y efectiva.
 
 Antes de comenzar con la instalación, será necesario que cuentes con algunas herramientas a tu alcance como: escoba, espaciadores, cutter industrial, cinta de medir, regla, escuadra y nivelador. Por otra parte, para esta tarea será muy valiosa la planeación del proyecto y previamente la preparación del suelo; este debe tratarse de un área limpia, firme y lisa. Te recomendamos, en caso de ser necesario, pulir tu suelo para lograr una superficie sin bordes o desniveles que pueden no ser favorecedores al momento de colocar tu piso nuevo. A continuación te enlistamos los pasos adecuados sobre **cómo instalar pisos vinílicos** tú mismo**.**
 

@@ -22,4 +22,4 @@ La **decoración con pisos de madera** se ha convertido en una inversión inteli
 
 Además de todos estos beneficios, los pisos de madera son adecuados para casi cualquier estilo de decoración y pueden complementar una amplia gama de estilos, desde rústico hasta moderno. La madera tiene una textura única y una gran variedad de tonos que pueden dar a una habitación un aspecto cálido y acogedor.
 
-En Terza contamos con gran variedad de estilos, nuestros modelos Napoli, Milan, Unika y Premium classic, son el claro ejemplo de versatilidad, pues cada uno cuenta con colores y texturas diferentes que se pueden adecuar fácilmente a cualquier decoración. Conoce más sobre los tipos de pisos de madera en: [https://www.terza.com/pisos-de-madera](/pisos/pisos-de-madera)
+En Terza contamos con gran variedad de estilos, nuestros modelos Napoli, Milan, Unika y Premium classic, son el claro ejemplo de versatilidad, pues cada uno cuenta con colores y texturas diferentes que se pueden adecuar fácilmente a cualquier decoración. Conoce más sobre los tipos de pisos de madera en: [https://www.terza.com/pisos-de-madera](/pisos-de-madera)

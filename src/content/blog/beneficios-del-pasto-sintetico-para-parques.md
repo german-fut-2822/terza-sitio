@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Un área de juegos infantil es un espacio donde surge la diversión y convivencia de los más pequeños. Estas se pueden encontrar en sitios públicos, como parques, y para construirlas, es necesario usar elementos seguros que mantengan a los niños libres de daño, y qué mejor opción que el [**pasto sintético**](/exterior/pasto-sintetico).
+Un área de juegos infantil es un espacio donde surge la diversión y convivencia de los más pequeños. Estas se pueden encontrar en sitios públicos, como parques, y para construirlas, es necesario usar elementos seguros que mantengan a los niños libres de daño, y qué mejor opción que el [**pasto sintético**](/pasto-sintetico).
 
 El pasto sintético para parques es un producto decorativo cuyos beneficios van más allá de embellecer las áreas públicas, y es que el césped artificial cuenta con diversos beneficios para hacer de un lugar de juego un espacio seguro para los niños.
 

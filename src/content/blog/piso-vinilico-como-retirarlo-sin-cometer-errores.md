@@ -62,4 +62,4 @@ Una vez que has quitado el piso vinílico, elimina cualquier residuo del adhesiv
 
 Retirar correctamente un piso mal colocado requiere conocer el material, el tipo de fijación y el estado de la superficie. Al seguir estos pasos, podrás retirar tus pisos vinílicos sin dañar la base y preparar el espacio para una [instalación](/blog/guia-para-instalar-pisos-vinilicos-tu-mismo) más duradera.
 
-En Terza encontrarás soluciones de [pisos vinílicos](/pisos/pisos-vinilicos) versátiles que logran acabados funcionales y bien pensados para tu hogar.
+En Terza encontrarás soluciones de [pisos vinílicos](/pisos-vinilicos) versátiles que logran acabados funcionales y bien pensados para tu hogar.

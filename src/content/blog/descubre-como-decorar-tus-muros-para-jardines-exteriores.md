@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Los [muros verdes](/muros/follaje-artificial) artificiales, también conocidos como jardines verticales, son una excelente opción para jardines exteriores porque optimizan el espacio y añaden un toque natural. Entre sus beneficios destacan el aislamiento térmico y acústico y la promoción de la naturaleza. Además, los **muros para jardines exteriores** mejoran la estética y el espacio de varias maneras:
+Los [muros verdes](/muros-verdes) artificiales, también conocidos como jardines verticales, son una excelente opción para jardines exteriores porque optimizan el espacio y añaden un toque natural. Entre sus beneficios destacan el aislamiento térmico y acústico y la promoción de la naturaleza. Además, los **muros para jardines exteriores** mejoran la estética y el espacio de varias maneras:
 
 1. **Aislamiento acústico:** Los muros verdes son efectivos para el aislamiento acústico, ya que el follaje absorbe y dispersa las ondas sonoras, reduciendo la intensidad del ruido.
 2. **Color:** La variedad de tonalidades, desde verdes vibrantes o los verdes más sobrios, no solo crea un atractivo visual, sino que también influye en la percepción del entorno y el estado de ánimo. Los colores deben complementar el paisaje y la arquitectura, aportando tanto belleza como un efecto visual positivo.

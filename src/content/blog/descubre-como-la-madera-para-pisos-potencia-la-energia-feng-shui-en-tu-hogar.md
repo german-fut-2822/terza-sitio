@@ -12,7 +12,7 @@ borrador: false
 
 La armonía y el equilibrio son esenciales para el bienestar general, y según Feng Shui, una antigua práctica china, la manera en que organizamos y decoramos nuestro hogar puede influir significativamente en nuestra energía y estado de ánimo.
 
-Para ello, los [**pisos de madera**](/pisos/pisos-de-madera) juegan un papel crucial, ya que no sólo ofrecen una gran belleza natural, sino que también cuentan con la capacidad para influir positivamente en un espacio gracias a sus características y beneficios decorativos.
+Para ello, los [**pisos de madera**](/pisos-de-madera) juegan un papel crucial, ya que no sólo ofrecen una gran belleza natural, sino que también cuentan con la capacidad para influir positivamente en un espacio gracias a sus características y beneficios decorativos.
 
 ## La importancia de la madera para pisos en el Feng Shui
 
@@ -30,4 +30,4 @@ La colocación y orientación de los pisos de madera también son importantes en
 
 Por ejemplo, las tablas que se colocan de manera que dirijan la energía hacia una ventana o puerta pueden ayudar a crear un flujo de energía más dinámico y positivo.
 
-No esperes más para hacer de tu hogar un espacio de calma, paz y armonía con ayuda de la madera para pisos. Visita [**https://www.terza.com/pisos-de-madera**](/pisos/pisos-de-madera) para encontrar una amplia gama de opciones de pisos de madera que transformarán tu espacio en un santuario de armonía y equilibrio.
+No esperes más para hacer de tu hogar un espacio de calma, paz y armonía con ayuda de la madera para pisos. Visita [**https://www.terza.com/pisos-de-madera**](/pisos-de-madera) para encontrar una amplia gama de opciones de pisos de madera que transformarán tu espacio en un santuario de armonía y equilibrio.

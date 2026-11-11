@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Nuestros grandes proyectos de decoración no pueden estar terminados sin una elección de piso, ya que es una parte crucial para la estética de cualquier espacio y al ser una parte importante, existen muchas opciones de materiales, colores y texturas que nos ayudan a asegurarnos de poder elegir el piso ideal. Una de estas opciones, por ejemplo, son los [pisos laminados](/pisos/pisos-laminados).
+Nuestros grandes proyectos de decoración no pueden estar terminados sin una elección de piso, ya que es una parte crucial para la estética de cualquier espacio y al ser una parte importante, existen muchas opciones de materiales, colores y texturas que nos ayudan a asegurarnos de poder elegir el piso ideal. Una de estas opciones, por ejemplo, son los [pisos laminados](/pisos-laminados).
 
 Pero, luego de completar la ardua instalación del suelo, ¿qué pasaría si posteriormente queremos cambiarlo? ¿Debemos de pasar de nuevo por todas las acciones para volver a sentirnos bien con nuestro piso? Posiblemente sí, dependiendo del tipo del piso que se haya escogido.
 
@@ -43,4 +43,4 @@ Los pisos laminados son una herramienta idónea si te gusta probar diferentes di
 
 En Terza contamos con disponibilidad inmediata de nuestros pisos laminados, que cuentan con capa protectora transparente y resistente a la abrasión. Además, cuentan con una gran variedad de estilos y colores, entonces siempre encontrarás opciones que se adecúen a tu espacio y el diseño que estás buscando.
 
-No dejes que el suelo límite la elegancia de tus espacios, ni que tu indecisión vuelva una tarea imposible la elección de piso aprendiendo **cómo instalar piso laminado**. Da clic en el siguiente enlace para conocer los diferentes estilos disponibles para ti: [https://www.terza.com/pisos-laminados](/pisos/pisos-laminados)
+No dejes que el suelo límite la elegancia de tus espacios, ni que tu indecisión vuelva una tarea imposible la elección de piso aprendiendo **cómo instalar piso laminado**. Da clic en el siguiente enlace para conocer los diferentes estilos disponibles para ti: [https://www.terza.com/pisos-laminados](/pisos-laminados)

@@ -1,20 +1,20 @@
 ---
 // Misma estructura y textos que terza.com/pisos-de-madera, con el diseño de las páginas de línea (ver Deck y Lambrín).
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import LineaHero from '../../components/linea/LineaHero.astro';
-import BleedSplit from '../../components/linea/BleedSplit.astro';
-import ContactBand from '../../components/linea/ContactBand.astro';
-import FaqAccordion from '../../components/linea/FaqAccordion.astro';
-import data from '../../data/pisos-de-madera.json';
-import heroImg from '../../assets/images/pisos-de-madera/header.jpg';
-import catalogoImg from '../../assets/images/cat-pisos-madera.webp';
+import LineaHero from '../components/linea/LineaHero.astro';
+import BleedSplit from '../components/linea/BleedSplit.astro';
+import ContactBand from '../components/linea/ContactBand.astro';
+import FaqAccordion from '../components/linea/FaqAccordion.astro';
+import data from '../data/pisos-de-madera.json';
+import heroImg from '../assets/images/pisos-de-madera/header.jpg';
+import catalogoImg from '../assets/images/cat-pisos-madera.webp';
 
 const { hero, intro, porQue, colecciones, catalogo, marcas, faqs, cierre } = data;
 
 // Fotos y logos de terza.com/pisos-de-madera
-const assets = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/pisos-de-madera/*.png', { eager: true });
-const img = (name: string) => assets[`../../assets/images/pisos-de-madera/${name}.png`].default;
+const assets = import.meta.glob<{ default: ImageMetadata }>('../assets/images/pisos-de-madera/*.png', { eager: true });
+const img = (name: string) => assets[`../assets/images/pisos-de-madera/${name}.png`].default;
 
 const isExternal = (href: string) => href.startsWith('http');
 const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';

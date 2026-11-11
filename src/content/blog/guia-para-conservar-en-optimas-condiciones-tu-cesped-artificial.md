@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-El **césped artificial** es una increíble opción por su bajo mantenimiento, durabilidad y ahorro de agua. Aparte, no requiere riego frecuente, ser podado o tratamientos químicos para mantener una apariencia verde y saludable durante todo el año; sumando que su instalación es versátil para diversas aplicaciones y espacios. Gracias a todos sus beneficios, el [pasto sintético](/exterior/pasto-sintetico) se ha convertido en una alternativa muy popular. Aquí tienes algunos consejos para que tu **césped artificial** luzca impecable:
+El **césped artificial** es una increíble opción por su bajo mantenimiento, durabilidad y ahorro de agua. Aparte, no requiere riego frecuente, ser podado o tratamientos químicos para mantener una apariencia verde y saludable durante todo el año; sumando que su instalación es versátil para diversas aplicaciones y espacios. Gracias a todos sus beneficios, el [pasto sintético](/pasto-sintetico) se ha convertido en una alternativa muy popular. Aquí tienes algunos consejos para que tu **césped artificial** luzca impecable:
 
 - **Límpialo con regularidad**: Barre o aspira el césped para eliminar hojas, suciedad y otros escombros. Usa una aspiradora de cerdas suaves y evita las aspiradoras con ruedas duras para no dañar tu pasto sintético.
 - **Elimina manchas**: Si encuentras derrames o manchas recientes, límpialas de inmediato con agua tibia y detergente.

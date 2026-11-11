@@ -42,6 +42,6 @@ El pasto sintético es un material que te brinda grandes beneficios como: bajo [
 
 Al no requerir riego, poda ni fertilización, el pasto sintético te permite gozar de un área verde ordenada y sin necesidad de invertir más tiempo a su cuidado. Asimismo, el pasto sintético está diseñado para resistir el uso diario, las condiciones climáticas y el tránsito constante, por eso es una solución práctica para áreas exteriores de uso frecuente. Por último, es fácil de combinar para conseguir diseños increíbles durante todo el año.
 
-Los espacios exteriores pequeños pueden convertirse en grandes aliados del diseño cuando se aprovechan correctamente. El [pasto sintético](/exterior/pasto-sintetico) ofrece una base práctica y duradera para crear jardines funcionales, sin complicaciones de mantenimiento.
+Los espacios exteriores pequeños pueden convertirse en grandes aliados del diseño cuando se aprovechan correctamente. El [pasto sintético](/pasto-sintetico) ofrece una base práctica y duradera para crear jardines funcionales, sin complicaciones de mantenimiento.
 
 Con las decisiones adecuadas, tu jardín puede reflejar tu estilo y acompañarte durante todo el año. Descubre en TERZA alternativas que se adaptan a tu espacio y forma de vivirlo.

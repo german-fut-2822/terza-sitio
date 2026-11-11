@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-El diseño y la decoración han evolucionado, y cada vez más personas buscan soluciones prácticas y estéticas para mejorar sus espacios. Una de las tendencias más destacadas es el uso de **lambrín decorativo**, un material versátil que aporta estilo y funcionalidad. Gracias a su variedad de diseños, facilidad de instalación y resistencia, el [lambrín PVC](/muros/lambrin-y-paneles) se ha convertido en una excelente opción para transformar cualquier ambiente.
+El diseño y la decoración han evolucionado, y cada vez más personas buscan soluciones prácticas y estéticas para mejorar sus espacios. Una de las tendencias más destacadas es el uso de **lambrín decorativo**, un material versátil que aporta estilo y funcionalidad. Gracias a su variedad de diseños, facilidad de instalación y resistencia, el [lambrín PVC](/lambrin-y-paneles) se ha convertido en una excelente opción para transformar cualquier ambiente.
 
 ### Ventajas del lambrín decorativo
 

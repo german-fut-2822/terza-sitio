@@ -1,6 +1,6 @@
 {
   "logo": { "text": "terza" },
-  "avisoPrivacidad": "/documentos/aviso-de-privacidad.pdf",
+  "avisoPrivacidad": "/aviso-de-privacidad.pdf",
   "decoradorVirtual": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true",
   "nav": [
     {

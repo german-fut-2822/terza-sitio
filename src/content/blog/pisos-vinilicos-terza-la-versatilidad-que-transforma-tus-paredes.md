@@ -26,4 +26,4 @@ Así como estos, existen muchos otros beneficios que puedes disfrutar con los pi
 
 Nuestros pisos vinílicos cuentan con fácil y rápida instalación directamente sobre la superficie existente, por lo que podrás ahorrar tiempo, dinero y esfuerzo en comparación con otros materiales de recubrimiento de paredes.
 
-Encuentra en Terza el piso vinílico que necesitas para **recubrimiento de pared**, disfrutando de su gran durabilidad y resistencia soportando el desgaste diario y manteniendo su aspecto estético durante mucho tiempo. Conoce nuestra variedad de estilos en el siguiente enlace: [https://www.terza.com/piso-vinilico](/pisos/pisos-vinilicos)
+Encuentra en Terza el piso vinílico que necesitas para **recubrimiento de pared**, disfrutando de su gran durabilidad y resistencia soportando el desgaste diario y manteniendo su aspecto estético durante mucho tiempo. Conoce nuestra variedad de estilos en el siguiente enlace: [https://www.terza.com/piso-vinilico](/pisos-vinilicos)

@@ -1,21 +1,21 @@
 ---
 // Misma estructura y textos que terza.com/alfombras, con la línea de diseño del sitio.
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import LineaHero from '../../components/linea/LineaHero.astro';
-import BleedSplit from '../../components/linea/BleedSplit.astro';
-import IconCards from '../../components/linea/IconCards.astro';
-import FaqAccordion from '../../components/linea/FaqAccordion.astro';
-import ContactBand from '../../components/linea/ContactBand.astro';
-import data from '../../data/alfombras.json';
-import heroImg from '../../assets/images/alfombras/header.jpg';
-import catalogoImg from '../../assets/images/cat-alfombras.webp';
+import LineaHero from '../components/linea/LineaHero.astro';
+import BleedSplit from '../components/linea/BleedSplit.astro';
+import IconCards from '../components/linea/IconCards.astro';
+import FaqAccordion from '../components/linea/FaqAccordion.astro';
+import ContactBand from '../components/linea/ContactBand.astro';
+import data from '../data/alfombras.json';
+import heroImg from '../assets/images/alfombras/header.jpg';
+import catalogoImg from '../assets/images/cat-alfombras.webp';
 
 const { hero, intro, porQue, conoceMas, espacios, espaciosCta, beneficios, cuidados, catalogo, mitos, faqs, cierre } = data;
 
 // Fotos e íconos de terza.com/alfombras
-const assets = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/alfombras/*.png', { eager: true });
-const img = (name: string) => assets[`../../assets/images/alfombras/${name}.png`].default;
+const assets = import.meta.glob<{ default: ImageMetadata }>('../assets/images/alfombras/*.png', { eager: true });
+const img = (name: string) => assets[`../assets/images/alfombras/${name}.png`].default;
 
 const isExternal = (href: string) => href.startsWith('http');
 const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';

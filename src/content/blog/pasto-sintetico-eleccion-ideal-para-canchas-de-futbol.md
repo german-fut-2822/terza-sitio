@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-En el fútbol, cada detalle cuenta, como la preparación del equipo, el recinto de juego y los elementos que conforman la cancha. Estos factores influyen en el rendimiento de los deportistas, siendo el [**pasto sintético**](/exterior/pasto-sintetico) uno de los más importantes al brindar grandes beneficios a los espacios deportivos para garantizar un juego de victoria.
+En el fútbol, cada detalle cuenta, como la preparación del equipo, el recinto de juego y los elementos que conforman la cancha. Estos factores influyen en el rendimiento de los deportistas, siendo el [**pasto sintético**](/pasto-sintetico) uno de los más importantes al brindar grandes beneficios a los espacios deportivos para garantizar un juego de victoria.
 
 El pasto para canchas de fútbol se convierte en uno de los protagonistas a la hora de comenzar un partido, pues es la base donde los jugadores se desenvuelven y demuestran sus habilidades en el deporte.
 
@@ -36,4 +36,4 @@ La resistencia a climas adversos hace que nuestro pasto sintético sea tu mejor 
 
 Sin duda alguna, el rendimiento excepcional del césped sintético no sólo destaca como una excelente opción de pasto para canchas de fútbol, sino que también redefine las expectativas en el ámbito deportivo al ofrecer grandes beneficios.
 
-En Terza puedes encontrar el pasto sintético a tu medida y personalizarlo con los colores que van de acuerdo a tu equipo. Conoce nuestros modelos aquí: [**https://www.terza.com/pasto-sintetico**](/exterior/pasto-sintetico).
+En Terza puedes encontrar el pasto sintético a tu medida y personalizarlo con los colores que van de acuerdo a tu equipo. Conoce nuestros modelos aquí: [**https://www.terza.com/pasto-sintetico**](/pasto-sintetico).

@@ -14,7 +14,7 @@ Cuando buscas renovar tus paredes sin grandes obras ni complicaciones, conocer l
 
 ## Fácil instalación
 
-La principal ventaja del [lambrín PVC](/muros/lambrin-y-paneles) es lo sencillo que es colocarlo. No necesitas demoler paredes ni hacer trabajos pesados: solo se fija la estructura y las piezas encajan una tras otra. Esto lo convierte en una opción ideal si quieres renovar sin lidiar con polvo o ruido.
+La principal ventaja del [lambrín PVC](/lambrin-y-paneles) es lo sencillo que es colocarlo. No necesitas demoler paredes ni hacer trabajos pesados: solo se fija la estructura y las piezas encajan una tras otra. Esto lo convierte en una opción ideal si quieres renovar sin lidiar con polvo o ruido.
 
 ## Resistente a la humedad
 

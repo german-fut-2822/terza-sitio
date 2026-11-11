@@ -14,7 +14,7 @@ Al momento de elegir el revestimiento ideal para espacios exteriores, es importa
 
 ### Pisos deck
 
-Los [pisos deck](/exterior/deck) han sido una opción tradicional para terrazas, patios y jardines debido a su apariencia cálida y natural que simula la madera natural. Algunas de sus características principales son:
+Los [pisos deck](/pisos-deck) han sido una opción tradicional para terrazas, patios y jardines debido a su apariencia cálida y natural que simula la madera natural. Algunas de sus características principales son:
 
 - **Resistencia a la intemperie:** Soportan condiciones climáticas extremas como sol, lluvia y humedad sin deteriorarse rápidamente.
 - **Durabilidad:** Su fabricación con materiales de alta calidad permite una vida útil prolongada.

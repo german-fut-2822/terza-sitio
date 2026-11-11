@@ -14,7 +14,7 @@ Renovar los pisos de tu hogar es una decisión importante que puede transformar 
 
 ### Características de los pisos vinílicos
 
-Los [pisos vinílicos](/pisos/pisos-vinilicos) han ganado popularidad en los últimos años gracias a su versatilidad y tecnología avanzada. Están hechos de varias capas de materiales sintéticos que los hacen altamente resistentes a la humedad y el desgaste. Esto los convierte en una opción ideal para áreas como cocinas, baños y lavaderos. Sus principales ventajas son:
+Los [pisos vinílicos](/pisos-vinilicos) han ganado popularidad en los últimos años gracias a su versatilidad y tecnología avanzada. Están hechos de varias capas de materiales sintéticos que los hacen altamente resistentes a la humedad y el desgaste. Esto los convierte en una opción ideal para áreas como cocinas, baños y lavaderos. Sus principales ventajas son:
 
 - **Resistencia al agua:** Son completamente impermeables, lo que los hace perfectos para espacios con humedad frecuente o uso de agua.
 - **Durabilidad:** Están diseñados para soportar alto tráfico, arañazos y manchas.

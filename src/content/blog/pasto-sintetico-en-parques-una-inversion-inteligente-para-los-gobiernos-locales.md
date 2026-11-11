@@ -25,4 +25,4 @@ Por ello, las dependencias de gobierno han optado por instalarlo en la renovaci�
 
 Sin duda, el pasto sintético para exteriores aporta muchos beneficios en comparación con el césped natural, por lo que tanto las dependencias de gobierno e instituciones privadas han optado por el uso de este material.
 
-En Terza, contamos con un amplio catálogo de estilos de **pasto sintético para exterior** , lo que nos ha permitido colaborar en proyectos de renovación de parques públicos, ofreciendo así mismo a todos nuestros clientes superficies duraderas. Conoce nuestros estilos en el siguiente enlace: [https://www.terza.com/pasto-sintético](/exterior/pasto-sintetico)
+En Terza, contamos con un amplio catálogo de estilos de **pasto sintético para exterior** , lo que nos ha permitido colaborar en proyectos de renovación de parques públicos, ofreciendo así mismo a todos nuestros clientes superficies duraderas. Conoce nuestros estilos en el siguiente enlace: [https://www.terza.com/pasto-sintético](/pasto-sintetico)

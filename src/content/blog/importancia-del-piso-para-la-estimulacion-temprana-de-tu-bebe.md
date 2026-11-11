@@ -34,4 +34,4 @@ Al elegir pisos vinílicos para un espacio de estimulación temprana, los padres
 
 En resumen, los pisos vinílicos son una excelente opción para crear un espacio seguro y cómodo para la estimulación temprana de los bebés
 
-En Terza podrás encontrar gran variedad de estilos de pisos vinílicos para adecuar el espacio de tu bebé con la más alta calidad. Para conocer más da clic en: [https://www.terza.com/piso-vinilico](/pisos/pisos-vinilicos)
+En Terza podrás encontrar gran variedad de estilos de pisos vinílicos para adecuar el espacio de tu bebé con la más alta calidad. Para conocer más da clic en: [https://www.terza.com/piso-vinilico](/pisos-vinilicos)

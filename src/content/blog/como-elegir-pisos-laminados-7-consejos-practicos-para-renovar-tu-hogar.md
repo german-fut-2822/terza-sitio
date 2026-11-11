@@ -16,7 +16,7 @@ Para ayudarte a tomar una mejor decisión, te compartimos 7 consejos prácticos 
 
 ### 1. Define el nivel de tráfico
 
-El primer paso para elegir [pisos laminados](/pisos/pisos-laminados) es determinar si el espacio donde se instalará es de bajo, medio o alto tránsito, ya que las zonas de alto tránsito, como pasillos y salas, necesitan laminados más resistentes; en cambio, los dormitorios o espacios poco usados pueden utilizar laminados de resistencia media o baja.
+El primer paso para elegir [pisos laminados](/pisos-laminados) es determinar si el espacio donde se instalará es de bajo, medio o alto tránsito, ya que las zonas de alto tránsito, como pasillos y salas, necesitan laminados más resistentes; en cambio, los dormitorios o espacios poco usados pueden utilizar laminados de resistencia media o baja.
 
 ### 2. Verifica la resistencia al desgaste
 

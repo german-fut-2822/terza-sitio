@@ -25,4 +25,4 @@ Gracias a todos estos beneficios, el piso vinílico permitirá ofrecer entrenami
 
 También es importante mencionar que el **piso para gimnasio** con piso vinílico impacta de manera positiva en los gimnasios que apenas van a comenzar, ya que es un material bastante fácil de instalar lo que permite colocarlo en cualquier espacio implicando poco tiempo y esfuerzo.
 
-En Terza, como expertos en fabricación de pisos vinílicos **,** nos aseguramos de mantener la calidad y durabilidad de nuestros materiales como en el **piso para gimnasio**. Brindando a todos nuestros clientes gran variedad de diseños para todo tipo de espacios. Encuentra en nuestro catálogo el piso vinílico que necesitas: [https://www.terza.com/piso-vinilico](/pisos/pisos-vinilicos)
+En Terza, como expertos en fabricación de pisos vinílicos **,** nos aseguramos de mantener la calidad y durabilidad de nuestros materiales como en el **piso para gimnasio**. Brindando a todos nuestros clientes gran variedad de diseños para todo tipo de espacios. Encuentra en nuestro catálogo el piso vinílico que necesitas: [https://www.terza.com/piso-vinilico](/pisos-vinilicos)

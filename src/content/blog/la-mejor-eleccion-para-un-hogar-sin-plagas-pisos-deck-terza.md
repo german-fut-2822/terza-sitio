@@ -30,4 +30,4 @@ Al contar con pisos deck en nuestros exteriores podremos reducir la presencia de
 
 En Terza, nuestros pisos deck además de reducir la propagación de plagas cuentan con gran durabilidad y una estética hermosa, aportando a cualquier jardín un toque especial. Gracias a su variedad de estilos es fácil encontrar el que vaya perfecto con la decoración de tus espacios.
 
-Elige nuestros pisos deck como tu **piso para exterior** y aprovecha su fácil instalación para comenzar a disfrutar en tu jardín de juegos con toda la familia. Da clic en el siguiente enlace para conocer nuestra variedad de colores, diseños y texturas: [https://www.terza.com/pisos-deck](/exterior/deck)
+Elige nuestros pisos deck como tu **piso para exterior** y aprovecha su fácil instalación para comenzar a disfrutar en tu jardín de juegos con toda la familia. Da clic en el siguiente enlace para conocer nuestra variedad de colores, diseños y texturas: [https://www.terza.com/pisos-deck](/pisos-deck)

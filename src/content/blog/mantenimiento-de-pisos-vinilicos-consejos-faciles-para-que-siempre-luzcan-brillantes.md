@@ -18,7 +18,7 @@ La clave para el **mantenimiento de pisos vinílicos** es la limpieza constante.
 
 ## Mantén tus pisos libres de rayones
 
-Para mantener tus [pisos vinílicos](/pisos/pisos-vinilicos), evita arrastrar muebles, sillas u objetos pesados directamente sobre la superficie. Si necesitas mover algo, levanta el mueble con ayuda de alguien o coloca protectores de fieltro. De esta forma, conservarás el acabado original y evitarás raspaduras o rayones que afecten la apariencia de tu piso.
+Para mantener tus [pisos vinílicos](/pisos-vinilicos), evita arrastrar muebles, sillas u objetos pesados directamente sobre la superficie. Si necesitas mover algo, levanta el mueble con ayuda de alguien o coloca protectores de fieltro. De esta forma, conservarás el acabado original y evitarás raspaduras o rayones que afecten la apariencia de tu piso.
 
 ## Evita químicos fuertes
 

@@ -40,4 +40,4 @@ Gracias a su estabilidad estructural, mantiene su forma incluso ante cambios de 
 
 Ahora que sabes **qué es el piso SPC** y cuáles son sus principales ventajas, puedes considerar esta alternativa como una solución práctica, resistente y estética para renovar tus espacios. Su combinación de durabilidad, fácil instalación y bajo mantenimiento lo convierte en una inversión inteligente a largo plazo.
 
-En Terza encontrarás una amplia variedad de [pisos vinílicos](/pisos/pisos-vinilicos) con diseños modernos y alta resistencia, ideales para transformar tu hogar con estilo y funcionalidad. Descubre su catálogo y elige la opción que mejor se adapte a tus necesidades.
+En Terza encontrarás una amplia variedad de [pisos vinílicos](/pisos-vinilicos) con diseños modernos y alta resistencia, ideales para transformar tu hogar con estilo y funcionalidad. Descubre su catálogo y elige la opción que mejor se adapte a tus necesidades.

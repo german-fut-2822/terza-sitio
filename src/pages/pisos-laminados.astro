@@ -1,20 +1,20 @@
 ---
 // Misma estructura y textos que terza.com/pisos-laminados, con el diseño de las páginas de línea (ver Deck y Lambrín).
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import LineaHero from '../../components/linea/LineaHero.astro';
-import BleedSplit from '../../components/linea/BleedSplit.astro';
-import IconCards from '../../components/linea/IconCards.astro';
-import ContactBand from '../../components/linea/ContactBand.astro';
-import FaqAccordion from '../../components/linea/FaqAccordion.astro';
-import data from '../../data/pisos-laminados.json';
-import heroImg from '../../assets/images/pisos-laminados/header.jpg';
-import catalogoImg from '../../assets/images/cat-pisos-laminados.webp';
+import LineaHero from '../components/linea/LineaHero.astro';
+import BleedSplit from '../components/linea/BleedSplit.astro';
+import IconCards from '../components/linea/IconCards.astro';
+import ContactBand from '../components/linea/ContactBand.astro';
+import FaqAccordion from '../components/linea/FaqAccordion.astro';
+import data from '../data/pisos-laminados.json';
+import heroImg from '../assets/images/pisos-laminados/header.jpg';
+import catalogoImg from '../assets/images/cat-pisos-laminados.webp';
 
 const { hero, intro, porQue, conoceMas, beneficios, cuidados, catalogo, disena, colecciones, faqs, cierre } = data;
 
 // Fotos, íconos y muestras de terza.com/pisos-laminados
-const assets = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/pisos-laminados/*.{png,jpg}', { eager: true });
+const assets = import.meta.glob<{ default: ImageMetadata }>('../assets/images/pisos-laminados/*.{png,jpg}', { eager: true });
 const img = (name: string) => {
   const key = Object.keys(assets).find((k) => k.endsWith(`/pisos-laminados/${name}.png`) || k.endsWith(`/pisos-laminados/${name}.jpg`));
   return assets[key!].default;

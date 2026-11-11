@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-Las **canchas de** [**pasto sintético**](/exterior/pasto-sintetico) tienen muchos beneficios tanto estéticos como funcionales, ya que no requieren de poda constante, riego o fertilizantes, además de tener una larga vida útil y verse siempre verde.
+Las **canchas de** [**pasto sintético**](/pasto-sintetico) tienen muchos beneficios tanto estéticos como funcionales, ya que no requieren de poda constante, riego o fertilizantes, además de tener una larga vida útil y verse siempre verde.
 
 No obstante, hay ciertos factores que pueden provocar que se convierta en una fuente de accidentes para los jugadores que juegan en **canchas de pasto sintético**, como la mala instalación o la mala calidad de los materiales empleados.
 

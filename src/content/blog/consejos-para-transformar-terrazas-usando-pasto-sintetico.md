@@ -12,7 +12,7 @@ borrador: false
 
 La terraza es un lugar muy dinámico donde las personas pueden pasar tiempo al aire libre. Cuando hace buen tiempo es común que se utilice la terraza para tomar una taza de café en el desayuno, cenar bajo la luz de la luna, pasar tiempo con amigos o hacer una reunión familiar. Ya que esta área es muy utilizada para diversas actividades, es importante contar con una buena **decoración para terraza**.
 
-El [**pasto sintético**](/exterior/pasto-sintetico) es un gran elemento de **decoración para terraza**, ya que ayuda a que esta área se vea más elegante y moderna, además de ser ideal para personas que buscan agregarle un toque verde a su terraza sin el mantenimiento de un césped natural.
+El [**pasto sintético**](/pasto-sintetico) es un gran elemento de **decoración para terraza**, ya que ayuda a que esta área se vea más elegante y moderna, además de ser ideal para personas que buscan agregarle un toque verde a su terraza sin el mantenimiento de un césped natural.
 
 Para asegurar que el pasto sintético se está usando de la mejor manera como **decoración para terraz**a, es recomendable seguir algunos consejos.
 
@@ -34,4 +34,4 @@ Para complementar la **decoración para terraza** donde se usa pasto sintético,
 
 El pasto sintético acompañado de luces cálidas y suaves agrega un toque acogedor a la **decoración para terraza**, volviéndola el espacio ideal para pasar tiempo con la familia o pareja.
 
-Sin duda, el pasto sintético es un gran elemento para utilizar como decoración para oficina, y siguiendo estas recomendaciones se logrará tener una terraza elegante y moderna con el toque natural. Terza, el fabricante número uno de pasto sintético en Latinoamérica, cuenta con una gran variedad de estilos y colores de pasto sintético de gran calidad y durabilidad, ideal para usar como **decoración para terraza**. Visita nuestro catálogo y encuentra tu modelo ideal: [**https://www.terza.com/pasto-sintetico**](/exterior/pasto-sintetico).
+Sin duda, el pasto sintético es un gran elemento para utilizar como decoración para oficina, y siguiendo estas recomendaciones se logrará tener una terraza elegante y moderna con el toque natural. Terza, el fabricante número uno de pasto sintético en Latinoamérica, cuenta con una gran variedad de estilos y colores de pasto sintético de gran calidad y durabilidad, ideal para usar como **decoración para terraza**. Visita nuestro catálogo y encuentra tu modelo ideal: [**https://www.terza.com/pasto-sintetico**](/pasto-sintetico).

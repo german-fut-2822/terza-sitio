@@ -12,7 +12,7 @@ borrador: false
 
 El verano es la temporada ideal para renovar y disfrutar al máximo de tus espacios al aire libre. Si estás planeando una remodelación, considera instalar **pisos deck para terrazas**. No solo embellecerán el entorno, sino que también ofrecen funcionalidad y durabilidad, convirtiendo tu terraza en un lugar acogedor y resistente para cualquier reunión.
 
-Los [pisos deck](/exterior/deck) son superficies diseñadas específicamente para áreas exteriores como terrazas, jardines y alrededores de piscinas. Están fabricados con materiales resistentes al clima, como la lluvia, el sol y los cambios de temperatura. Gracias a su apariencia natural y su practicidad, se han vuelto la opción favorita en proyectos de renovación exterior.
+Los [pisos deck](/pisos-deck) son superficies diseñadas específicamente para áreas exteriores como terrazas, jardines y alrededores de piscinas. Están fabricados con materiales resistentes al clima, como la lluvia, el sol y los cambios de temperatura. Gracias a su apariencia natural y su practicidad, se han vuelto la opción favorita en proyectos de renovación exterior.
 
 ## Tipos de materiales para pisos deck
 

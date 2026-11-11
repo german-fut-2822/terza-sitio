@@ -10,7 +10,7 @@ destacada: false
 borrador: false
 ---
 
-El follaje en paredes es un tipo de decoración que ofrece una estética natural, innovadora y elegante sin necesidad de recurrir al uso y daño de plantas vivas. Al colocar [**follaje artificial**](/muros/follaje-artificial) en el hogar, es importante darle el cuidado adecuado para mantener su belleza a lo largo del tiempo.
+El follaje en paredes es un tipo de decoración que ofrece una estética natural, innovadora y elegante sin necesidad de recurrir al uso y daño de plantas vivas. Al colocar [**follaje artificial**](/muros-verdes) en el hogar, es importante darle el cuidado adecuado para mantener su belleza a lo largo del tiempo.
 
 ## Limpieza regular del follaje en paredes
 
@@ -34,4 +34,4 @@ Los golpes frecuentes o el roce de objetos filosos puede dañar el follaje en pa
 
 El follaje en paredes tiende a presentar un gran peso, especialmente si es largo y frondoso, por ello, es importante asegurarse de que el soporte y la superficie que se elija para colocarlo sea lo suficientemente fuerte para soportarlo, ya que si el follaje sintético se cae, este puede dañarse y arruinar la estética del lugar.
 
-No cabe duda de que al seguir los cuidados correspondientes podrás mantener impecable el follaje artificial, manteniendo esa esencia natural en tu espacio por un largo tiempo. Explora nuestros diversos diseños de follaje en paredes visitando [**https://www.terza.com/muros-verdes**](/muros/follaje-artificial) y bríndale a tu hogar la transformación verde que necesita.
+No cabe duda de que al seguir los cuidados correspondientes podrás mantener impecable el follaje artificial, manteniendo esa esencia natural en tu espacio por un largo tiempo. Explora nuestros diversos diseños de follaje en paredes visitando [**https://www.terza.com/muros-verdes**](/muros-verdes) y bríndale a tu hogar la transformación verde que necesita.
