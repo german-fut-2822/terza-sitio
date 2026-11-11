@@ -14,12 +14,15 @@ const PORTADAS: Record<string, string> = {
 export const categorias: Categoria[] = data.categorias.map((c) => ({ ...c, portada: PORTADAS[c.slug] ?? c.portada }));
 export const productos: Producto[] = data.productos;
 
-// Secciones del catálogo en el mismo orden que el menú
-export const secciones = [...new Set(categorias.map((c) => c.seccion))].map((nombre) => ({
-  nombre,
-  id: nombre.toLowerCase(),
-  categorias: categorias.filter((c) => c.seccion === nombre),
-}));
+// Secciones del catálogo en el mismo orden que el menú. Las que tienen varias categorías (Pisos, Muros, Persianas) tienen su
+// propio listado con todos sus productos en /catalogo/<id>; las de una sola llevan directo a su categoría.
+export const secciones = [...new Set(categorias.map((c) => c.seccion))].map((nombre) => {
+  // "Pasto Sintético" → "pasto-sintetico" (el ancla de /catalogo y la dirección del listado)
+  const id = nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '-');
+  const lista = categorias.filter((c) => c.seccion === nombre);
+  return { nombre, id, categorias: lista, url: lista.length > 1 ? `/catalogo/${id}` : `/catalogo/${lista[0].slug}` };
+});
+export const seccionDe = (id: string) => secciones.find((s) => s.id === id);
 
 export const ETIQUETAS_FILTRO: Record<string, string> = {
   estilo: 'Estilo',
@@ -59,6 +62,23 @@ export const urlProducto = (p: Pick<Producto, 'categoria' | 'slug'>) => `/catalo
 
 export const categoriaDe = (slug: string) => categorias.find((c) => c.slug === slug)!;
 export const productosDe = (slug: string) => productos.filter((p) => p.categoria === slug);
+
+// Los últimos productos que se dieron de alta en terza.com de una categoría (el id más alto es el más reciente)
+export const ultimosDe = (slug: string, cuantos: number) =>
+  productosDe(slug).sort((a, b) => b.id - a.id).slice(0, cuantos);
+
+// Texto de la tarjeta de producto: arriba la familia y como título la variante (el color). En las categorías de
+// NOMBRE_COMPLETO el título lleva el nombre completo, y si dos productos se llaman igual (las vigas de 10 y 6 cm) se agrega
+// el ancho arriba para distinguirlos.
+const NOMBRE_COMPLETO = new Set(['pisos-deck']);
+const spec = (p: Producto, etiqueta: string) => (p.specs as [string, string][]).find(([e]) => e === etiqueta)?.[1];
+
+export const textoTarjeta = (p: Producto) => {
+  if (!NOMBRE_COMPLETO.has(p.categoria)) return { arriba: p.familia, titulo: p.variante };
+  const repetido = productos.some((x) => x !== p && x.categoria === p.categoria && x.familia === p.familia && x.variante === p.variante);
+  const ancho = repetido ? spec(p, 'Ancho') : undefined;
+  return { arriba: ancho ? `${p.familia} · ${ancho}` : p.familia, titulo: `${p.familia} ${p.variante}` };
+};
 
 // Los demás colores de la misma familia (para las muestras de la ficha)
 export const familiaDe = (p: Producto) =>

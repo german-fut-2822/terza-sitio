@@ -5,11 +5,15 @@ import data from '../data/catalogos.json';
 import heroImg from '../assets/images/transformar-espacios.webp';
 import pisosMaderaImg from '../assets/images/coleccion-bari.webp';
 import flexirocImg from '../assets/images/catalogo-flexiroc.webp';
+import norwichImg from '../assets/images/hero/banner-hero-piso-vinilico-v2-mobile.webp';
+import pastoImg from '../assets/images/hero/banner-hero-pasto-sintetico-v2-mobile.webp';
 
 const { hero, catalogos, cta } = data;
 const catalogoImages: Record<string, ImageMetadata> = {
   'pisos-madera': pisosMaderaImg,
   flexiroc: flexirocImg,
+  'piso-vinilico-norwich': norwichImg,
+  'pasto-sintetico': pastoImg,
 };
 ---
 
@@ -34,7 +38,7 @@ const catalogoImages: Record<string, ImageMetadata> = {
             <p class="mt-1 text-lg">{cat.subtitle}</p>
           </div>
         </div>
-        <!-- pdf: "#" mientras no tengamos el archivo -->
+        <!-- Los PDF están en public/documentos; pdf: "#" mientras no tengamos el archivo -->
         <a href={cat.pdf} target={cat.pdf !== '#' ? '_blank' : undefined} rel="noopener" class="mt-5 inline-flex items-center justify-between rounded-full bg-terza-lime px-8 py-2.5 text-lg font-bold text-terza-ink hover:brightness-95 xl:text-xl">
           {cta}
           <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>

@@ -5,8 +5,10 @@
     "description": "Explora nuestras colecciones y encuentra inspiración, especificaciones y soluciones para cada espacio."
   },
   "catalogos": [
-    { "image": "pisos-madera", "title": "Pisos de madera", "subtitle": "Catálogo 2026", "pdf": "#" },
-    { "image": "flexiroc", "title": "Flexiroc", "subtitle": "Catálogo 2026", "pdf": "#" }
+    { "image": "pisos-madera", "title": "Pisos de madera", "subtitle": "Catálogo 2026", "pdf": "/documentos/catalogo-pisos-de-madera.pdf" },
+    { "image": "flexiroc", "title": "Flexiroc", "subtitle": "Catálogo 2026", "pdf": "/documentos/catalogo-flexiroc.pdf" },
+    { "image": "piso-vinilico-norwich", "title": "Piso vinílico Norwich", "subtitle": "Catálogo 2026", "pdf": "/documentos/catalogo-piso-vinilico-norwich.pdf" },
+    { "image": "pasto-sintetico", "title": "Pasto sintético", "subtitle": "Catálogo residencial", "pdf": "/documentos/catalogo-pasto-sintetico.pdf" }
   ],
   "cta": "Descargar PDF"
 }

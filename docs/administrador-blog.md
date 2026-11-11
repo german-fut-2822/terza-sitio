@@ -19,7 +19,8 @@ Piezas:
 - `src/lib/admin/sesion.ts`: inicio de sesión, roles y sesión (cookie firmada que dura 12 horas).
 - `src/lib/admin/usuarios.ts`: el archivo cifrado de usuarios.
 - `src/lib/admin/almacen.ts`: dónde se lee y se guarda (GitHub en línea; la carpeta en la computadora). Las notas, sus imágenes y las categorías son lo único que el panel puede tocar.
-- `src/pages/api/`: `sesion.ts` (entrar y salir), `instalar.ts` (primer administrador), `usuarios.ts` (sección Usuarios), `cms.ts` (el protocolo de Decap) y `archivo.ts` (imágenes para el panel).
+- `src/lib/admin/correo.ts`: envío de correos y sus plantillas.
+- `src/pages/api/`: `sesion.ts` (entrar y salir), `instalar.ts` (primer administrador), `recuperar.ts` y `restablecer.ts` (contraseña olvidada), `usuarios.ts` (sección Usuarios), `cms.ts` (el protocolo de Decap) y `archivo.ts` (imágenes para el panel).
 
 ## Activarlo en Vercel (una sola vez)
 
@@ -37,6 +38,19 @@ Piezas:
 4. **Crear el primer administrador.** Abre `/admin`: mientras no haya usuarios, la pantalla de entrada muestra *Crear el primer administrador*. Escribe el código de instalación (el valor de `ADMIN_SECRETO`), tu nombre, correo y contraseña. Desde ahí, los demás usuarios se dan de alta en **Usuarios**.
 
 **Recuperar el acceso** (si se olvida la contraseña del único administrador): en la computadora, `npm run usuario-admin -- correo@terza.com "Nombre"` da el valor para la variable `ADMIN_USUARIOS` de Vercel. Los usuarios de esa variable siempre son administradores, aparecen en Usuarios con la etiqueta *Vercel* y solo se cambian ahí.
+
+## Correos (¿Olvidaste tu contraseña? y bienvenida)
+
+El panel ya manda dos correos; solo falta conectar un servicio de envío:
+- **¿Olvidaste tu contraseña?** (pantalla de entrada): llega un enlace para crear una contraseña nueva. Sirve 1 hora y una sola vez. Si el correo no es de un usuario, no se manda nada, pero el aviso es el mismo para no revelar quién tiene cuenta. Los usuarios de la variable `ADMIN_USUARIOS` no lo usan: su contraseña se cambia en Vercel.
+- **Bienvenida** al dar de alta a alguien en Usuarios: le llega su enlace para entrar y otro para crear su propia contraseña (sirve 7 días). Con el servicio activo, la contraseña al darlo de alta es opcional: si se deja vacía, la persona crea la suya y en la tabla aparece *Sin contraseña* hasta que lo haga. En *Editar* está **Enviar enlace de contraseña** para mandárselo otra vez.
+
+**Activarlo**: crea una cuenta en [Resend](https://resend.com) o [Brevo](https://www.brevo.com), verifica el dominio que va a enviar (por ejemplo `terza.com`, con los registros DNS que da el servicio) y agrega en Vercel:
+- `CORREO_SERVICIO`: `resend` o `brevo`.
+- `CORREO_LLAVE`: la llave de la API del servicio.
+- `CORREO_REMITENTE`: quién envía, por ejemplo `Blog Terza <blog@terza.com>`.
+
+Mientras no estén, no se envía nada. En la computadora cada correo se muestra en el registro de `npm run dev` (también en `.astro/dev.log`), con sus enlaces, para probarlo. Para otro servicio se agrega una función en `src/lib/admin/correo.ts`.
 
 ## Probarlo en la computadora
 

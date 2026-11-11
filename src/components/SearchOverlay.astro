@@ -1,6 +1,7 @@
 ---
 // Buscador de pantalla completa (se abre con cualquier botón .search-open de la navbar).
-// Índice: categorías y familias del catálogo, páginas de línea, páginas del sitio y notas del blog.
+// Índice: categorías y familias del catálogo, páginas de línea, páginas del sitio y notas del blog. Los productos uno por uno
+// (nombre y SKU) llegan aparte desde /buscador-productos.json al abrir el buscador.
 import { categorias, productos, urlCategoria, urlProducto, paginasLinea } from '../lib/catalogo';
 import { notasPublicadas, categoriasBlog, urlNota } from '../lib/blog';
 
@@ -34,7 +35,9 @@ const indice: Entrada[] = [
   { title: 'Quiero ser distribuidor', cat: 'Distribuidores', href: '/quiero-ser-distribuidor' },
   { title: 'Contacto', cat: 'Atención a clientes', href: '/contacto' },
   { title: 'Blog', cat: 'Ideas y consejos', href: '/blog' },
-  // Las notas van al final para que primero aparezcan productos y páginas
+];
+// Las notas van al final (después de los productos) para que primero aparezcan productos y páginas
+const notas: Entrada[] = [
   ...(await notasPublicadas()).map((n) => ({
     title: n.data.titulo,
     cat: ['Blog', nombresBlog.get(n.data.categorias[0]?.id)].filter(Boolean).join(' · '),
@@ -81,7 +84,7 @@ const populares = ['Pasto sintético', 'Flexiroc', 'Pisos vinílicos', 'Persiana
     <ul class="search-results mt-6 divide-y divide-white/10" aria-live="polite"></ul>
     <p class="search-empty mt-8 hidden text-white/70">Sin resultados para esa búsqueda. Prueba con otra palabra o <a href="/contacto" class="search-link font-bold text-terza-lime hover:underline">escríbenos</a>.</p>
   </div>
-  <script type="application/json" id="search-index" set:html={JSON.stringify(indice)}></script>
+  <script type="application/json" id="search-index" set:html={JSON.stringify({ indice, notas })}></script>
 </div>
 
 <script>
@@ -91,7 +94,20 @@ const populares = ['Pasto sintético', 'Flexiroc', 'Pisos vinílicos', 'Persiana
   const lista = capa.querySelector<HTMLElement>('.search-results')!;
   const vacio = capa.querySelector('.search-empty')!;
   const populares = capa.querySelector('.search-popular')!;
-  const indice: Entrada[] = JSON.parse(document.getElementById('search-index')!.textContent!);
+  const datos: { indice: Entrada[]; notas: Entrada[] } = JSON.parse(document.getElementById('search-index')!.textContent!);
+  let indice: Entrada[] = [...datos.indice, ...datos.notas];
+  // Productos uno por uno: se bajan la primera vez que se abre el buscador y van antes de las notas del blog
+  let productos: Promise<void> | null = null;
+  const cargarProductos = () =>
+    (productos ??= fetch('/buscador-productos.json')
+      .then((r) => r.json())
+      .then((lista: Entrada[]) => {
+        indice = [...datos.indice, ...lista, ...datos.notas];
+        if (!capa.hidden) pintar();
+      })
+      .catch(() => {
+        productos = null;
+      }));
   const disparadores = document.querySelectorAll<HTMLElement>('.search-open');
   let origen: HTMLElement | null = null;
   const normalizar = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -118,6 +134,7 @@ const populares = ['Pasto sintético', 'Flexiroc', 'Pisos vinílicos', 'Persiana
 
   const abrir = (disparador: HTMLElement) => {
     origen = disparador;
+    cargarProductos();
     campo.value = '';
     pintar();
     capa.hidden = false;

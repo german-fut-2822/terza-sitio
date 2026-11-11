@@ -7,26 +7,6 @@
     <title>Entrar | Administrador Terza</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/admin/listado.css" />
-    <style>
-      /* Pantalla de entrada al estilo de UBold: tarjeta centrada con el logo en la franja verde */
-      body.entrar { display: grid; place-items: center; grid-template: none; min-height: 100vh; padding: 24px 16px; }
-      .entrar-tarjeta { grid-area: auto; padding: 0; width: min(420px, 100%); overflow: hidden; border-radius: var(--radio); background: #fff; box-shadow: var(--sombra); }
-      .entrar-cab { display: grid; place-items: center; padding: 32px 24px; background: var(--teal); }
-      .entrar-cab img { height: 40px; filter: brightness(0) invert(1); }
-      .entrar-cuerpo { padding: 32px; }
-      .entrar-cuerpo h1 { font-size: 20px; text-align: center; }
-      .entrar-cuerpo > p { margin: 8px 0 24px; text-align: center; font-size: 14px; }
-      .entrar-cuerpo label { display: block; margin-bottom: 8px; color: var(--ink); font-weight: 600; }
-      .entrar-cuerpo input { width: 100%; height: 46px; margin-bottom: 18px; padding: 0 14px; border: 1px solid var(--input); border-radius: var(--radio); background: #fff; color: var(--ink); }
-      /* El espacio de abajo va en el contenedor, para que el ojo quede centrado en el campo */
-      .entrar-cuerpo .campo-clave { margin-bottom: 18px; }
-      .entrar-cuerpo .campo-clave input { margin-bottom: 0; }
-      .entrar-cuerpo .btn { width: 100%; margin-top: 6px; }
-      .entrar-aviso { margin: 0 0 20px; padding: 12px 14px; border-radius: var(--radio); font-size: 14px; }
-      .entrar-aviso.error { background: #fdeef0; color: var(--danger); }
-      .entrar-aviso.listo { background: rgb(26 188 156 / 0.15); color: #13967c; }
-      .entrar-pie { margin-top: 20px; text-align: center; font-size: 14px; }
-    </style>
   </head>
   <body class="entrar">
     <main class="entrar-tarjeta">
@@ -37,6 +17,8 @@
         <p>Escribe tu correo y contraseña para entrar.</p>
         <p class="entrar-aviso error" id="error" role="alert" hidden>El correo o la contraseña no son correctos.</p>
         <p class="entrar-aviso listo" id="salio" role="status" hidden>Cerraste sesión.</p>
+        <p class="entrar-aviso listo" id="enviado" role="status" hidden>Si el correo es de un usuario del panel, le enviamos un enlace para crear una contraseña nueva. Revisa tu bandeja (y la de spam); el enlace sirve durante 1 hora.</p>
+        <p class="entrar-aviso listo" id="restablecida" role="status" hidden>Tu contraseña se guardó. Ya puedes entrar con ella.</p>
         <!-- POST normal al servidor: funciona aunque la página no haya terminado de cargar su JavaScript -->
         <form method="post" action="/api/sesion" id="f-entrar">
           <input type="hidden" name="volver" id="volver" />
@@ -49,6 +31,19 @@
           </div>
           <button class="btn btn-primario" type="submit">Entrar</button>
         </form>
+        <p class="entrar-pie"><button type="button" class="btn-enlace" id="abrir-olvido">¿Olvidaste tu contraseña?</button></p>
+        </div>
+
+        <!-- ¿Olvidaste tu contraseña?: manda un enlace al correo para crear una nueva (src/pages/api/recuperar.ts) -->
+        <div id="olvido" hidden>
+          <h1>¿Olvidaste tu contraseña?</h1>
+          <p>Escribe tu correo y te enviaremos un enlace para crear una contraseña nueva.</p>
+          <form method="post" action="/api/recuperar">
+            <label for="o-correo">Correo</label>
+            <input id="o-correo" name="correo" type="email" autocomplete="username" required />
+            <button class="btn btn-primario" type="submit">Enviar enlace</button>
+          </form>
+          <p class="entrar-pie"><button type="button" class="btn-enlace" id="cerrar-olvido">← Regresar a entrar</button></p>
         </div>
 
         <!-- Primera vez (todavía no hay usuarios): crear el primer administrador con el código de instalación -->
@@ -83,6 +78,20 @@
       const p = new URLSearchParams(location.search);
       document.getElementById('error').hidden = !p.has('error');
       document.getElementById('salio').hidden = !p.has('salio');
+      document.getElementById('enviado').hidden = !p.has('enviado');
+      document.getElementById('restablecida').hidden = !p.has('restablecida');
+      // ¿Olvidaste tu contraseña?: cambia el formulario de entrar por el de pedir el enlace
+      const verOlvido = (si) => {
+        document.getElementById('entrar').hidden = si;
+        document.getElementById('olvido').hidden = !si;
+        if (si) {
+          document.getElementById('o-correo').value = document.getElementById('correo').value;
+          document.getElementById('o-correo').focus();
+        }
+      };
+      document.getElementById('abrir-olvido').addEventListener('click', () => verOlvido(true));
+      document.getElementById('cerrar-olvido').addEventListener('click', () => verOlvido(false));
+      if (p.has('olvido')) verOlvido(true);
       document.getElementById('volver').value = p.get('volver') ?? '';
       // El correo se conserva si la contraseña no fue correcta (en esta pestaña, nunca en la dirección)
       const correo = document.getElementById('correo');

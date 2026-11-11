@@ -5,7 +5,7 @@
 // - Roles: "admin" puede todo, incluida la sección Usuarios; "editor", notas, categorías y medios.
 // - Sesión: cookie firmada con ADMIN_SECRETO (HMAC), solo para el servidor (httpOnly), que dura 12 horas. En cada petición
 //   se vuelve a buscar al usuario, así que si se borra o cambia de rol, se aplica de inmediato.
-import { createHmac, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 import type { AstroCookies } from 'astro';
 import { secreto, variable } from './entorno';
 import { leerUsuariosArchivo, type Rol, type UsuarioGuardado } from './usuarios';
@@ -98,4 +98,31 @@ export function codigoCorrecto(codigo: string) {
   const a = createHmac('sha256', 'instalacion').update(codigo).digest();
   const b = createHmac('sha256', 'instalacion').update(secreto()).digest();
   return timingSafeEqual(a, b);
+}
+
+// ---------- Enlaces para crear o cambiar la contraseña (¿Olvidaste tu contraseña? y bienvenida) ----------
+// El enlace lleva el correo, cuándo vence y una huella de la contraseña actual, firmados con ADMIN_SECRETO. En cuanto la
+// contraseña cambia, la huella ya no coincide: cada enlace sirve una sola vez. Solo para usuarios de la sección Usuarios.
+const huellaClave = (clave: string) => createHash('sha256').update(`clave:${clave}`).digest('base64url').slice(0, 16);
+const firmaEnlace = (datos: string) => createHmac('sha256', `enlace:${secreto()}`).update(datos).digest('base64url');
+
+export function crearEnlaceClave(usuario: UsuarioGuardado, horas: number) {
+  const datos = Buffer.from(JSON.stringify({ correo: usuario.correo, vence: Math.floor(Date.now() / 1000) + horas * 3600, huella: huellaClave(usuario.clave) })).toString('base64url');
+  return `${datos}.${firmaEnlace(datos)}`;
+}
+
+// El usuario del enlace, o null si la firma no coincide, ya venció, ya se usó o no es un usuario de la sección Usuarios
+export async function usuarioDeEnlace(token: string): Promise<UsuarioCompleto | null> {
+  const [datos, recibida] = String(token ?? '').split('.');
+  if (!datos || !recibida) return null;
+  const esperada = firmaEnlace(datos);
+  if (recibida.length !== esperada.length || !timingSafeEqual(Buffer.from(recibida), Buffer.from(esperada))) return null;
+  try {
+    const { correo, vence, huella } = JSON.parse(Buffer.from(datos, 'base64url').toString());
+    if (typeof vence !== 'number' || vence < Date.now() / 1000) return null;
+    const usuario = (await todosLosUsuarios()).find((u) => !u.fijo && mismoCorreo(u.correo, String(correo)));
+    return usuario && huellaClave(usuario.clave) === huella ? usuario : null;
+  } catch {
+    return null;
+  }
 }

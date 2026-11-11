@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- El enlace lleva el código en la dirección: que no se mande a otros sitios -->
+    <meta name="referrer" content="no-referrer" />
+    <title>Crear contraseña | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/admin/listado.css" />
+  </head>
+  <body class="entrar">
+    <main class="entrar-tarjeta">
+      <div class="entrar-cab"><img src="/admin/terza-logo.webp" alt="Terza" /></div>
+      <div class="entrar-cuerpo">
+        <h1>Crear contraseña</h1>
+        <p id="saludo">Revisando el enlace…</p>
+        <p class="entrar-aviso error" id="error" role="alert" hidden></p>
+
+        <!-- POST normal al servidor (src/pages/api/restablecer.ts) -->
+        <form method="post" action="/api/restablecer" id="f-clave" hidden>
+          <input type="hidden" name="t" id="token" />
+          <label for="clave">Contraseña nueva (mínimo 10 caracteres)</label>
+          <div class="campo-clave">
+            <input id="clave" name="clave" type="password" autocomplete="new-password" minlength="10" required />
+            <button type="button" data-ver-clave aria-label="Mostrar contraseña" aria-pressed="false"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+          <label for="clave2">Repite la contraseña</label>
+          <div class="campo-clave">
+            <input id="clave2" name="clave2" type="password" autocomplete="new-password" minlength="10" required />
+            <button type="button" data-ver-clave aria-label="Mostrar contraseña" aria-pressed="false"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+          <button class="btn btn-primario" type="submit">Guardar contraseña</button>
+        </form>
+        <p class="entrar-pie"><a href="/admin/login.html">← Ir a la pantalla de entrada</a></p>
+      </div>
+    </main>
+
+    <script>
+      // Revisa el enlace del correo y, si sirve, muestra el formulario para la contraseña nueva
+      const p = new URLSearchParams(location.search);
+      const token = p.get('t') ?? '';
+      const ERRORES = {
+        clave: 'La contraseña debe tener al menos 10 caracteres.',
+        distintas: 'Las dos contraseñas no coinciden.',
+      };
+      const error = (texto) => {
+        document.getElementById('error').textContent = texto;
+        document.getElementById('error').hidden = !texto;
+      };
+      document.getElementById('token').value = token;
+      fetch(`/api/restablecer?t=${encodeURIComponent(token)}`)
+        .then((r) => r.json())
+        .then(({ valido, nombre, correo }) => {
+          if (!valido) {
+            document.getElementById('saludo').innerHTML = 'Este enlace ya no sirve: venció o ya se usó. Pide uno nuevo con <a href="/admin/login.html?olvido=1">¿Olvidaste tu contraseña?</a>';
+            return;
+          }
+          document.getElementById('saludo').textContent = `Hola, ${nombre}. Escribe la contraseña con la que vas a entrar como ${correo}.`;
+          document.getElementById('f-clave').hidden = false;
+          error(ERRORES[p.get('error')] ?? '');
+          document.getElementById('clave').focus();
+        })
+        .catch(() => error('No se pudo revisar el enlace. Vuelve a intentarlo.'));
+      document.getElementById('f-clave').addEventListener('submit', (e) => {
+        if (document.getElementById('clave').value !== document.getElementById('clave2').value) {
+          e.preventDefault();
+          error(ERRORES.distintas);
+        }
+      });
+      // Botón del ojo
+      document.addEventListener('click', (e) => {
+        const boton = e.target.closest('[data-ver-clave]');
+        if (!boton) return;
+        const campo = boton.parentElement.querySelector('input');
+        const ver = campo.type === 'password';
+        campo.type = ver ? 'text' : 'password';
+        boton.setAttribute('aria-pressed', String(ver));
+        boton.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      });
+    </script>
+  </body>
+</html>

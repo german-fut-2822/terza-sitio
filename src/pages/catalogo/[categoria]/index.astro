@@ -1,26 +1,38 @@
 ---
-// Listado de una categoría: barra lateral con categorías y filtros, y cuadrícula de productos.
+// Listado de una categoría (/catalogo/piso-vinilico) o de una sección con varias categorías (/catalogo/pisos, con todos sus
+// productos): barra lateral con el selector de sección, sus categorías y los filtros, y cuadrícula de productos.
 // Los filtros se aplican en el navegador y se guardan en la URL (?estilo=Bilbao) para compartirla.
 import Layout from '../../../layouts/Layout.astro';
 import ProductCard from '../../../components/catalogo/ProductCard.astro';
-import { categorias, secciones, categoriaDe, productosDe, opcionesDe, urlCategoria, foto, fotoOg, paginasLinea } from '../../../lib/catalogo';
+import { categorias, secciones, seccionDe, categoriaDe, productosDe, opcionesDe, urlCategoria, foto, fotoOg, paginasLinea } from '../../../lib/catalogo';
+import { nav } from '../../../data/general.json';
 
 export function getStaticPaths() {
-  return categorias.map((c) => ({ params: { categoria: c.slug } }));
+  return [
+    ...categorias.map((c) => ({ params: { categoria: c.slug } })),
+    ...secciones.filter((s) => s.categorias.length > 1).map((s) => ({ params: { categoria: s.id } })),
+  ];
 }
 
 const { categoria } = Astro.params;
-const cat = categoriaDe(categoria!);
-const lista = productosDe(cat.slug);
-const filtros = opcionesDe(cat.slug);
-const linea = paginasLinea[cat.slug];
+// Sección completa (Pisos, Muros, Persianas) o una sola categoría
+const seccion = categorias.some((c) => c.slug === categoria) ? undefined : seccionDe(categoria!);
+const cat = seccion ? undefined : categoriaDe(categoria!);
+const nombre = seccion?.nombre ?? cat!.nombre;
+const nombreSeccion = seccion?.nombre ?? cat!.seccion;
+const intro = seccion ? (nav.find((n) => n.slug === seccion.id)?.description ?? '') : cat!.intro;
+const portada = seccion ? seccion.categorias[0].portada : cat!.portada;
+const lista = seccion ? seccion.categorias.flatMap((c) => productosDe(c.slug)) : productosDe(cat!.slug);
+// En una sección los filtros cambian de una categoría a otra: se elige primero la categoría en la barra lateral
+const filtros = cat ? opcionesDe(cat.slug) : [];
+const linea = cat ? paginasLinea[cat.slug] : undefined;
 
 const chevron = '<svg width="14" height="14" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M5 8L11 14L17 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 const cross = '<svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>';
 const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 ---
 
-<Layout title={`${cat.nombre} | Catálogo Terza`} description={cat.intro} image={fotoOg(cat.portada)} imageAlt={cat.nombre}>
+<Layout title={`${nombre} | Catálogo Terza`} description={intro} image={fotoOg(portada)} imageAlt={nombre}>
   <!-- Encabezado de la categoría -->
   <!-- Texto a la izquierda; la portada se pega al borde derecho a toda la altura (como ShawContract en el home) -->
   <section class="grid bg-terza-teal text-white lg:grid-cols-[minmax(0,1fr)_minmax(0,40%)]">
@@ -28,20 +40,20 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
         <nav class="text-sm text-white/70" aria-label="Ruta">
           <a href="/" class="hover:text-white">Inicio</a><span class="mx-2">/</span>
           <a href="/catalogo" class="hover:text-white">Catálogo</a><span class="mx-2">/</span>
-          <span class="text-white">{cat.nombre}</span>
+          <span class="text-white">{nombre}</span>
         </nav>
-        <p class="mt-6 text-sm font-bold uppercase tracking-widest text-terza-lime">{cat.seccion}</p>
-        <h1 class="mt-2 text-5xl font-bold leading-none md:text-6xl">{cat.nombre}</h1>
-        <p class="mt-5 max-w-2xl text-lg text-white/85 xl:text-xl">{cat.intro}</p>
+        <p class="mt-6 text-sm font-bold uppercase tracking-widest text-terza-lime">{seccion ? 'Catálogo' : nombreSeccion}</p>
+        <h1 class="mt-2 text-5xl font-bold leading-none md:text-6xl">{nombre}</h1>
+        <p class="mt-5 max-w-2xl text-lg text-white/85 xl:text-xl">{intro}</p>
         {linea && (
           <a href={linea.href} class="mt-7 inline-flex items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink hover:brightness-95">
             {linea.etiqueta} <Fragment set:html={arrow} />
           </a>
         )}
     </div>
-    {cat.portada && (
+    {portada && (
       <div class="relative hidden overflow-hidden rounded-l-[32px] lg:block xl:rounded-l-[56px]">
-        <img src={foto(cat.portada)} alt="" class="absolute inset-0 h-full w-full object-cover" />
+        <img src={foto(portada)} alt="" class="absolute inset-0 h-full w-full object-cover" />
       </div>
     )}
   </section>
@@ -55,24 +67,35 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
       </div>
 
       <div class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto lg:pr-2">
-        <!-- Categorías: se elige la línea y abajo aparecen sus categorías -->
+        <!-- Categorías: al elegir una sección se abre su listado (todos sus productos) y abajo aparecen sus categorías -->
         <div class="mb-10">
           <p class="border-b border-black/10 pb-3 text-xs font-bold uppercase tracking-widest text-terza-teal">Categorías</p>
           <label class="relative mt-5 block">
             <span class="sr-only">Línea de producto</span>
             <select class="seccion-select w-full cursor-pointer appearance-none rounded-full border border-black/15 bg-white py-2.5 pl-5 pr-11 text-sm font-medium text-black focus:border-terza-teal focus:outline-none">
-              {secciones.map((sec) => <option value={sec.id} selected={sec.nombre === cat.seccion}>{sec.nombre}</option>)}
+              {secciones.map((sec) => <option value={sec.url} selected={sec.nombre === nombreSeccion}>{sec.nombre}</option>)}
             </select>
             <span class="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-terza-teal" set:html={chevron} />
           </label>
           {secciones.map((sec) => (
-            <ul class:list={['seccion-lista mt-3 space-y-1', sec.nombre !== cat.seccion && 'hidden']} data-seccion={sec.id}>
+            <ul class:list={['mt-3 space-y-1', sec.nombre !== nombreSeccion && 'hidden']}>
+              {sec.categorias.length > 1 && (
+                <li>
+                  <a
+                    href={sec.url}
+                    class:list={['flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-colors', seccion?.id === sec.id ? 'bg-terza-lime-pale font-bold text-terza-teal' : 'text-black/70 hover:text-terza-teal']}
+                    aria-current={seccion?.id === sec.id ? 'page' : undefined}
+                  >
+                    Todos <span class="text-xs text-black/40">{sec.categorias.reduce((n, c) => n + c.total, 0)}</span>
+                  </a>
+                </li>
+              )}
               {sec.categorias.map((c) => (
                 <li>
                   <a
                     href={urlCategoria(c.slug)}
-                    class:list={['flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-colors', c.slug === cat.slug ? 'bg-terza-lime-pale font-bold text-terza-teal' : 'text-black/70 hover:text-terza-teal']}
-                    aria-current={c.slug === cat.slug ? 'page' : undefined}
+                    class:list={['flex items-center justify-between rounded-xl px-3 py-2 text-sm transition-colors', c.slug === cat?.slug ? 'bg-terza-lime-pale font-bold text-terza-teal' : 'text-black/70 hover:text-terza-teal']}
+                    aria-current={c.slug === cat?.slug ? 'page' : undefined}
                   >
                     {c.nombre} <span class="text-xs text-black/40">{c.total}</span>
                   </a>
@@ -122,11 +145,10 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
     <div>
       <div class="flex items-center justify-between gap-4 border-b border-black/10 pb-4">
         <p class="text-sm text-black/70"><span class="results-count font-bold text-black">{lista.length}</span> productos</p>
-        {filtros.length > 0 && (
-          <button type="button" class="filters-open inline-flex items-center gap-2 rounded-full bg-terza-teal px-5 py-1.5 text-sm font-bold text-white lg:hidden" aria-controls="catalog-filters">
-            Filtros <span class="filters-badge hidden rounded-full bg-terza-lime px-2 text-xs text-terza-ink"></span>
-          </button>
-        )}
+        <!-- Siempre: además de los filtros, el panel tiene el selector de sección y las categorías -->
+        <button type="button" class="filters-open inline-flex items-center gap-2 rounded-full bg-terza-teal px-5 py-1.5 text-sm font-bold text-white lg:hidden" aria-controls="catalog-filters">
+          {filtros.length > 0 ? 'Filtros' : 'Categorías'} <span class="filters-badge hidden rounded-full bg-terza-lime px-2 text-xs text-terza-ink"></span>
+        </button>
       </div>
       <div class="active-chips mt-4 flex flex-wrap gap-2 empty:hidden"></div>
 
@@ -197,11 +219,9 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
     aplicar();
   });
 
-  // Selector de línea: muestra las categorías de la línea elegida
-  const listas = document.querySelectorAll<HTMLElement>('.seccion-lista');
+  // Selector de sección: abre su listado (todos los productos de la sección, o su única categoría)
   document.querySelector<HTMLSelectElement>('.seccion-select')!.addEventListener('change', (e) => {
-    const valor = (e.target as HTMLSelectElement).value;
-    listas.forEach((l) => l.classList.toggle('hidden', l.dataset.seccion !== valor));
+    location.href = (e.target as HTMLSelectElement).value;
   });
 
   // Panel de filtros en móvil

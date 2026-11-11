@@ -9,15 +9,17 @@ import bolsaImg from '../assets/images/terza-contacto-bolsa.png';
 
 const { hero, form, links } = data;
 const linkImages = [buzonImg, bolsaImg];
+// Banner de Bolsa de trabajo comentado (la página /bolsa-de-trabajo aún no existe). Para volver a mostrarlo, quitar el filtro.
+const ocultos = ['/bolsa-de-trabajo'];
 ---
 
 <Layout title={data.seo.title} description={data.seo.description}>
   <!-- La foto ya viene oscurecida, por eso va sin overlay -->
-  <FormHero image={heroImg} alt="Sala Terza con vista a la montaña" imageClass="object-cover object-[30%_50%]" overlay={false} title={hero.title} description={hero.description} cta={hero.cta} form={form} endpoint="/api/leads/general" privacyUrl="https://terza-sitio.vercel.app/documentos/aviso-de-privacidad.pdf" />
+  <FormHero image={heroImg} alt="Sala Terza con vista a la montaña" imageClass="object-cover object-[30%_50%]" overlay={false} title={hero.title} description={hero.description} cta={hero.cta} form={form} endpoint="/api/leads/general" />
 
-  <!-- Banners: Buzón de Transparencia y Bolsa de trabajo -->
+  <!-- Banners: Buzón de Transparencia y Bolsa de trabajo (este último oculto por ahora, ver `ocultos`) -->
   <section class="mx-auto grid max-w-[1728px] grid-cols-1 gap-6 px-6 py-10 md:grid-cols-2 md:px-12 xl:px-[72px] xl:py-12">
-    {links.map((link, i) => (
+    {links.map((link, i) => !ocultos.includes(link.href) && (
       <a href={link.href} class="group relative isolate flex h-[220px] items-end justify-end overflow-hidden rounded-[32px] p-5 md:h-[250px] xl:h-[280px]">
         <Image src={linkImages[i]} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" width={540} height={280} />
         <span class="rounded-2xl bg-terza-teal-dark px-7 py-3.5 text-sm font-bold text-white transition group-hover:bg-terza-teal">{link.title}</span>

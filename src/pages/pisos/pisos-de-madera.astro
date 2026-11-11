@@ -28,7 +28,7 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
     <h2 class="text-3xl font-bold leading-[1.15] text-black md:text-4xl xl:text-5xl" set:html={intro.title} />
     <div class="mt-8 flex flex-wrap justify-center gap-3">
       {intro.ctas.map((cta, i) => (
-        <a href={cta.href} class:list={['inline-flex items-center gap-2 rounded-full px-7 py-1.5 text-base font-bold', i === 0 ? 'bg-terza-lime text-terza-ink hover:brightness-95' : 'bg-terza-teal text-white hover:bg-terza-teal-dark']}>
+        <a href={cta.href} target={cta.href.startsWith('http') ? '_blank' : undefined} rel={cta.href.startsWith('http') ? 'noopener' : undefined} class:list={['inline-flex items-center gap-2 rounded-full px-7 py-1.5 text-base font-bold', i === 0 ? 'bg-terza-lime text-terza-ink hover:brightness-95' : 'bg-terza-teal text-white hover:bg-terza-teal-dark']}>
           {cta.label} <Fragment set:html={arrow} />
         </a>
       ))}

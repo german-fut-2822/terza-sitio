@@ -41,6 +41,9 @@ const footerHrefs: Record<string, string> = {
   Contacto: '/contacto',
   'Catálogos digitales': '/catalogos-digitales',
   'Blog - Ideas': '/blog',
+  'Material Lab': '/ubicaciones',
+  'Decorador Virtual': general.decoradorVirtual,
+  'Aviso de privacidad': general.avisoPrivacidad,
   'Buzón de Transparencia': '/buzon-de-transparencia',
   'Shaw Contract': 'https://www.shawcontract.com/es-la',
 };
@@ -66,7 +69,7 @@ const [copyrightMain, copyrightSub] = footer.copyright.split(/(?<=\.)\s+/);
         {col.title === 'Nosotros' && (
           <ul class="mt-6 space-y-1">
             {footer.legal.map((item: string) => (
-              <li><a href={footerHrefs[item] ?? '#'} class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{item}</a></li>
+              <li><a href={footerHrefs[item] ?? '#'} target={footerHrefs[item]?.endsWith('.pdf') ? '_blank' : undefined} rel={footerHrefs[item]?.endsWith('.pdf') ? 'noopener' : undefined} class="text-sm leading-snug text-terza-ink hover:text-terza-teal">{item}</a></li>
             ))}
           </ul>
         )}

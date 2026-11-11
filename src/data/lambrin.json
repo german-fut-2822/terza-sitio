@@ -7,7 +7,7 @@
   "intro": {
     "title": "Proyectos que marcan la diferencia.",
     "ctas": [
-      { "label": "Decorador virtual", "href": "/decorador-virtual" },
+      { "label": "Decorador virtual", "href": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true" },
       { "label": "Catálogo", "href": "/catalogo/paneles" }
     ]
   },

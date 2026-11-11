@@ -48,3 +48,10 @@ export async function guardarUsuariosArchivo(lista: UsuarioGuardado[], mensaje: 
   await almacen().guardar([{ ruta: archivo(), contenido: Buffer.from(`${cifrar(JSON.stringify(lista))}\n`) }], mensaje, autor);
   memoria = { lista, hasta: Date.now() + 30_000 };
 }
+
+// Cambia la contraseña de un usuario de la sección Usuarios (desde el enlace de ¿Olvidaste tu contraseña? o de bienvenida)
+export async function cambiarClaveArchivo(correo: string, claveNueva: string, autor: { correo: string; nombre: string }) {
+  const lista = await leerUsuariosArchivo();
+  const nueva = lista.map((u) => (u.correo.toLowerCase() === correo.toLowerCase() ? { ...u, clave: claveNueva } : u));
+  await guardarUsuariosArchivo(nueva, 'Admin: cambiar contraseña', autor);
+}
