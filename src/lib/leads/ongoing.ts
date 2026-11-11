@@ -14,7 +14,7 @@ export interface LeadOngoing {
   amount?: number;
   campaign_id?: number;
   message?: string;
-  metadata?: Record<string, string>[];
+  metadata?: Record<string, string>;
 }
 
 // Ongoing exige company_name (sin él su API truena con "Column 'company_id' cannot be null" en
@@ -26,12 +26,11 @@ export function nombreCompleto(nombre: string, apellido?: string): string {
 
 // Los datos que el formulario captura pero que no tienen campo propio en el schema de Ongoing
 // (estado, ciudad, sku, etc.) van en "metadata" — separado de "message", que es la nota libre del
-// lead. Cada elemento es un objeto JSON real de una sola clave (no un string con el JSON dentro,
-// eso ya se probó y no funcionó) para que Ongoing lo muestre con esa clave como título.
-export function metadataOngoing(partes: Record<string, string | undefined>): Record<string, string>[] {
-  return Object.entries(partes)
-    .filter(([, v]) => v)
-    .map(([clave, valor]) => ({ [clave]: valor as string }));
+// lead. Confirmado leyendo un lead real existente (Persianas · Benito Juárez): Ongoing lo guarda
+// como un objeto plano con claves en minúscula ("ciudad", "estado", "producto", "proyecto"), no
+// como array — el Swagger documentado decía "array[string]", pero eso no es lo que de verdad usa.
+export function metadataOngoing(partes: Record<string, string | undefined>): Record<string, string> {
+  return Object.fromEntries(Object.entries(partes).filter(([, v]) => v)) as Record<string, string>;
 }
 
 export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
@@ -42,7 +41,7 @@ export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
     return false;
   }
   const datos = Object.fromEntries(
-    Object.entries(lead).filter(([, v]) => v !== null && v !== undefined && v !== '' && !(Array.isArray(v) && v.length === 0)),
+    Object.entries(lead).filter(([, v]) => v !== null && v !== undefined && v !== '' && !(typeof v === 'object' && Object.keys(v).length === 0)),
   );
   const respuesta = await fetch(host, {
     method: 'POST',

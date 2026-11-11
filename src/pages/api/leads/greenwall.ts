@@ -55,7 +55,7 @@ export const POST: APIRoute = async ({ request }) => {
       phone: datos.telefono,
       company_name: nombreCompleto(datos.nombre ?? ''),
       opportunity_title: 'Greenwall - Terza Web',
-      metadata: metadataOngoing({ Estado: datos.estado, Ciudad: datos.ciudad }),
+      metadata: metadataOngoing({ estado: datos.estado, ciudad: datos.ciudad }),
       message: datos.mensaje,
     }),
   ]);

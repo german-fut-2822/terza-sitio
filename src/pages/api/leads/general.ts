@@ -43,7 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
       phone: datos.telefono,
       company_name: nombreCompleto(datos.nombre ?? '', datos.apellido),
       opportunity_title: 'Contacto general - Terza Web',
-      metadata: metadataOngoing({ Estado: datos.estado, Municipio: datos.municipio }),
+      metadata: metadataOngoing({ estado: datos.estado, ciudad: datos.municipio }),
       message: datos.mensaje,
     }),
   ]);
