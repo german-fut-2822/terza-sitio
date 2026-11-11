@@ -15,7 +15,7 @@ const ocultos = ['/bolsa-de-trabajo'];
 
 <Layout title={data.seo.title} description={data.seo.description}>
   <!-- La foto ya viene oscurecida, por eso va sin overlay -->
-  <FormHero image={heroImg} alt="Sala Terza con vista a la montaña" imageClass="object-cover object-[30%_50%]" overlay={false} title={hero.title} description={hero.description} cta={hero.cta} form={form} />
+  <FormHero image={heroImg} alt="Sala Terza con vista a la montaña" imageClass="object-cover object-[30%_50%]" overlay={false} title={hero.title} description={hero.description} cta={hero.cta} form={form} endpoint="/api/leads/general" />
 
   <!-- Banners: Buzón de Transparencia y Bolsa de trabajo (este último oculto por ahora, ver `ocultos`) -->
   <section class="mx-auto grid max-w-[1728px] grid-cols-1 gap-6 px-6 py-10 md:grid-cols-2 md:px-12 xl:px-[72px] xl:py-12">

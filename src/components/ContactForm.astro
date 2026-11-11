@@ -7,9 +7,10 @@ interface Props {
   fields: string[];
   consent: string;
   submit: string;
+  endpoint: string;
 }
 
-const { title, consent, submit } = Astro.props;
+const { title, consent, submit, endpoint } = Astro.props;
 
 const field = 'w-full rounded-xl border-0 bg-white px-4 py-3 text-base text-terza-ink placeholder:text-terza-ink/40 focus:outline focus:outline-2 focus:outline-terza-teal';
 const [consentLead, consentLink] = consent.split(/(?=Aviso)/);
@@ -17,7 +18,8 @@ const [consentLead, consentLink] = consent.split(/(?=Aviso)/);
 
 <div class="w-full max-w-[560px] rounded-[36px] lg:max-w-none bg-terza-cream p-7 shadow-xl md:p-9">
   <p class="mb-5 text-2xl font-bold text-black xl:text-[28px]">{title}</p>
-  <form class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+  <form class="grid grid-cols-1 gap-3.5 sm:grid-cols-2" data-formulario-lead data-endpoint={endpoint}>
+    <input type="text" name="dataspam" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
     <input type="text" name="nombre" placeholder="*Nombre" required autocomplete="given-name" class={field} />
     <input type="text" name="apellido" placeholder="*Apellido" required autocomplete="family-name" class={field} />
     <input type="email" name="email" placeholder="*Email" required autocomplete="email" class={field} />
@@ -26,7 +28,7 @@ const [consentLead, consentLink] = consent.split(/(?=Aviso)/);
       <option value="" disabled selected>Elige un estado</option>
       {estados.map((estado) => <option value={estado} class="text-terza-ink">{estado}</option>)}
     </select>
-    <input type="text" name="ciudad" placeholder="*Ciudad" required autocomplete="address-level2" class={field} />
+    <input type="text" name="municipio" placeholder="*Ciudad" required autocomplete="address-level2" class={field} />
     <textarea name="mensaje" placeholder="Mensaje:" rows="6" class:list={[field, 'mt-2 resize-none sm:col-span-2']}></textarea>
 
     <label class="mt-2 flex items-center gap-3 text-sm text-terza-ink/70 sm:col-span-2">
@@ -37,5 +39,14 @@ const [consentLead, consentLink] = consent.split(/(?=Aviso)/);
       {submit}
       <span>→</span>
     </button>
+    <p hidden data-estado-formulario role="status" aria-live="polite" class="text-right text-sm text-terza-ink sm:col-span-2"></p>
   </form>
 </div>
+
+<script>
+  import { conectarFormulario } from '../scripts/conectarFormulario';
+
+  document.querySelectorAll<HTMLFormElement>('[data-formulario-lead]').forEach((formulario) => {
+    conectarFormulario(formulario, formulario.dataset.endpoint ?? '');
+  });
+</script>

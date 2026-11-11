@@ -74,11 +74,14 @@ const select = `${field} invalid:text-terza-ink/40`;
         Enviar
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </button>
+      <p hidden data-estado-formulario role="status" aria-live="polite" class="text-right text-sm text-terza-ink sm:col-span-2"></p>
     </form>
   </div>
 </dialog>
 
 <script>
+  import { conectarFormulario } from '../../scripts/conectarFormulario';
+
   const modal = document.getElementById('cotizacion') as HTMLDialogElement | null;
   if (modal) {
     document.querySelectorAll('[data-cotizar]').forEach((b) => b.addEventListener('click', (e) => {
@@ -88,8 +91,7 @@ const select = `${field} invalid:text-terza-ink/40`;
     modal.querySelector('[data-cerrar]')?.addEventListener('click', () => modal.close());
     // Clic en el fondo oscuro cierra el modal
     modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
-    // Pendiente: conectar el envío (igual que los formularios de Contacto y Distribuidor). Se evita que los datos
-    // terminen en la URL al enviar mientras no haya destino.
-    modal.querySelector('[data-form-cotizacion]')?.addEventListener('submit', (e) => e.preventDefault());
+    const formulario = modal.querySelector<HTMLFormElement>('[data-form-cotizacion]');
+    if (formulario) conectarFormulario(formulario, '/api/leads/cotizacion');
   }
 </script>
