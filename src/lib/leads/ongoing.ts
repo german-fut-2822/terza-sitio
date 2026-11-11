@@ -14,6 +14,7 @@ export interface LeadOngoing {
   amount?: number;
   campaign_id?: number;
   message?: string;
+  metadata?: string[];
 }
 
 // Ongoing exige company_name (sin él su API truena con "Column 'company_id' cannot be null" en
@@ -23,15 +24,13 @@ export function nombreCompleto(nombre: string, apellido?: string): string {
   return apellido ? `${nombre} ${apellido}` : nombre;
 }
 
-// Junta en un solo texto los datos que el formulario captura pero que no tienen campo propio en
-// el schema de Ongoing (estado, ciudad, sku, etc.) — se van como parte de "message", que es el
-// detalle libre visible para el vendedor.
-export function detalleOngoing(partes: Record<string, string | undefined>, mensaje?: string): string {
-  const etiquetas = Object.entries(partes)
+// Los datos que el formulario captura pero que no tienen campo propio en el schema de Ongoing
+// (estado, ciudad, sku, etc.) van en "metadata": un array de "Clave: Valor" que Ongoing muestra
+// como "Datos complementarios" — separado de "message", que es la nota libre del lead.
+export function metadataOngoing(partes: Record<string, string | undefined>): string[] {
+  return Object.entries(partes)
     .filter(([, v]) => v)
     .map(([clave, valor]) => `${clave}: ${valor}`);
-  if (mensaje) etiquetas.push(mensaje);
-  return etiquetas.join(' | ');
 }
 
 export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
@@ -41,7 +40,9 @@ export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
     console.warn('[leads/ongoing] ONGOING_BASE_URL/ONGOING_API_KEY no configurados, se omite el envío');
     return false;
   }
-  const datos = Object.fromEntries(Object.entries(lead).filter(([, v]) => v !== null && v !== undefined && v !== ''));
+  const datos = Object.fromEntries(
+    Object.entries(lead).filter(([, v]) => v !== null && v !== undefined && v !== '' && !(Array.isArray(v) && v.length === 0)),
+  );
   const respuesta = await fetch(host, {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
