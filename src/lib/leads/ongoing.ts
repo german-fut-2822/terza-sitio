@@ -40,6 +40,6 @@ export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(datos),
   });
-  if (!respuesta.ok) throw new Error(`Ongoing respondió ${respuesta.status}`);
+  if (!respuesta.ok) throw new Error(`Ongoing respondió ${respuesta.status}: ${await respuesta.text()}`);
   return true;
 }
