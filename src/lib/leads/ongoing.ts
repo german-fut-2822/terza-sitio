@@ -14,7 +14,7 @@ export interface LeadOngoing {
   amount?: number;
   campaign_id?: number;
   message?: string;
-  metadata?: string[];
+  metadata?: Record<string, string>[];
 }
 
 // Ongoing exige company_name (sin él su API truena con "Column 'company_id' cannot be null" en
@@ -26,13 +26,12 @@ export function nombreCompleto(nombre: string, apellido?: string): string {
 
 // Los datos que el formulario captura pero que no tienen campo propio en el schema de Ongoing
 // (estado, ciudad, sku, etc.) van en "metadata" — separado de "message", que es la nota libre del
-// lead. Ongoing muestra cada elemento como un campo de "Datos complementarios" con el índice del
-// array (0, 1...) como título — no hay forma documentada de ponerle el título real (p. ej.
-// "CIUDAD") sin confirmar con Ongoing el formato exacto que esperan; no adivinar más formatos aquí.
-export function metadataOngoing(partes: Record<string, string | undefined>): string[] {
+// lead. Cada elemento es un objeto JSON real de una sola clave (no un string con el JSON dentro,
+// eso ya se probó y no funcionó) para que Ongoing lo muestre con esa clave como título.
+export function metadataOngoing(partes: Record<string, string | undefined>): Record<string, string>[] {
   return Object.entries(partes)
     .filter(([, v]) => v)
-    .map(([clave, valor]) => `${clave}: ${valor}`);
+    .map(([clave, valor]) => ({ [clave]: valor as string }));
 }
 
 export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
