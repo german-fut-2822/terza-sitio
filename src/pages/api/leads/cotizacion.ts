@@ -9,7 +9,7 @@ import type { APIRoute } from 'astro';
 import type { DatosCotizacion } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
-import { enviarOngoing, nombreCompleto } from '../../../lib/leads/ongoing';
+import { enviarOngoing, metadataOngoing, nombreCompleto } from '../../../lib/leads/ongoing';
 
 export const prerender = false;
 
@@ -68,14 +68,15 @@ export const POST: APIRoute = async ({ request }) => {
       phone: datos.telefono,
       company_name: nombreCompleto(datos.nombre ?? '', datos.apellido),
       opportunity_title: categoriaProducto,
-      state: datos.estado,
-      city: datos.municipio,
-      ruta: datos.ruta,
-      product: datos.producto,
-      sku: datos.sku,
-      proyecto: datos.proyecto,
-      tipo_pasto: datos.tipo_pasto,
-      categoria: datos.categoria,
+      metadata: metadataOngoing({
+        Estado: datos.estado,
+        Municipio: datos.municipio,
+        Ruta: datos.ruta,
+        Producto: datos.producto,
+        SKU: datos.sku,
+        Proyecto: datos.proyecto,
+        'Tipo de pasto': datos.tipo_pasto,
+      }),
       message: datos.mensaje,
     }),
   ]);
