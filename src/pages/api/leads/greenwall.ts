@@ -7,7 +7,7 @@ import type { APIRoute } from 'astro';
 import type { DatosGreenwall } from '../../../lib/leads/tipos';
 import { validarContacto } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
-import { enviarOngoing, detalleOngoing } from '../../../lib/leads/ongoing';
+import { enviarOngoing, detalleOngoing, nombreCompleto } from '../../../lib/leads/ongoing';
 import { dispararEventoMarketingCloud } from '../../../lib/leads/marketingCloud';
 
 export const prerender = false;
@@ -53,6 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
       first_name: datos.nombre ?? '',
       email: datos.correo ?? '',
       phone: datos.telefono,
+      company_name: nombreCompleto(datos.nombre ?? ''),
       opportunity_title: 'Greenwall - Terza Web',
       message: detalleOngoing({ Estado: datos.estado, Ciudad: datos.ciudad }, datos.mensaje),
     }),

@@ -16,6 +16,13 @@ export interface LeadOngoing {
   message?: string;
 }
 
+// Ongoing exige company_name (sin él su API truena con "Column 'company_id' cannot be null" en
+// vez de crear la empresa genérica "(particular)" que sí usa el resto de su sistema). Mandamos el
+// nombre del contacto como su empresa, que es como aparecen ahí las demás personas sin empresa real.
+export function nombreCompleto(nombre: string, apellido?: string): string {
+  return apellido ? `${nombre} ${apellido}` : nombre;
+}
+
 // Junta en un solo texto los datos que el formulario captura pero que no tienen campo propio en
 // el schema de Ongoing (estado, ciudad, sku, etc.) — se van como parte de "message", que es el
 // detalle libre visible para el vendedor.
