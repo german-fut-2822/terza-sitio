@@ -16,9 +16,12 @@ export const prerender = false;
 const json = (datos: unknown, status = 200) =>
   new Response(JSON.stringify(datos), { status, headers: { 'Content-Type': 'application/json' } });
 
-// Igual que $mapCategorias en el controlador original: normaliza el slug de categoría a un
-// nombre legible para Omnia. Las claves que faltan (p. ej. una categoría nueva) se mandan
-// tal cual, como hacía el original con el `?? $request->categoria`.
+// Normaliza el slug de categoría del catálogo a un nombre legible para Omnia y para el
+// opportunity_title de Ongoing. El original ($mapCategorias en ContactController.php) solo tenía
+// una entrada genérica "Persianas" porque esa versión del catálogo no distinguía submarcas —
+// este catálogo sí tiene Persianas enrollables y Persianas de madera como secciones separadas
+// (igual que Pisos ya las separa), y Deck es su propia sección, no "Pisos de Madera". Las claves
+// que falten se mandan tal cual, como hacía el original con el `?? $request->categoria`.
 const MAPA_CATEGORIAS: Record<string, string> = {
   accesorios: 'Accesorios',
   alfombras: 'Alfombras',
@@ -26,11 +29,11 @@ const MAPA_CATEGORIAS: Record<string, string> = {
   'muros-verdes': 'Follaje Artificial',
   paneles: 'Lambrín y paneles',
   'pasto-sintetico': 'Pastos Sintéticos',
-  'persianas-de-madera': 'Persianas',
-  'persianas-enrollables': 'Persianas',
+  'persianas-de-madera': 'Persianas de Madera',
+  'persianas-enrollables': 'Persianas Enrollables',
   'piso-vinilico': 'Pisos Vinílicos',
   'pisos-de-madera': 'Pisos de Madera',
-  'pisos-deck': 'Pisos de Madera',
+  'pisos-deck': 'Deck',
   'pisos-hibridos': 'Pisos Híbridos',
   'pisos-laminados': 'Pisos Laminados',
 };
