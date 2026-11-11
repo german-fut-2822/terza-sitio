@@ -8,8 +8,6 @@ import { categoriaDe, productosDe, urlCategoria, urlProducto, foto, type Product
 const destino: Record<string, { categoria: string; filtro?: string; fichas?: boolean }> = {
   'pisos-vinilicos': { categoria: 'piso-vinilico' },
   'pisos-laminados': { categoria: 'pisos-laminados' },
-  // Una sola colección (Kiwi): el menú muestra sus colores y cada uno abre su ficha
-  'pisos-hibridos': { categoria: 'pisos-hibridos', fichas: true },
   'pisos-de-madera': { categoria: 'pisos-de-madera' },
   alfombras: { categoria: 'alfombras' },
   'lambrin-y-paneles': { categoria: 'paneles' },

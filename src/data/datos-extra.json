@@ -1,0 +1,450 @@
+{
+  "_nota": "Datos de la ficha que terza.com muestra en la página del producto pero no trae en search-file.json (el importador no los ve). Clave: SKU. medida y rendimiento se agregan a la ficha técnica; composicion y pruebas salen como apartados aparte.",
+  "T15-15813-0CWBB": {
+    "medida": "15.8 cm x 2.9 m",
+    "rendimiento": "6.43 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-15813-WT001": {
+    "medida": "15.8 cm x 2.9 m",
+    "rendimiento": "6.43 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-15813-WT091": {
+    "medida": "15.8 cm x 2.9 m",
+    "rendimiento": "6.43 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-15813-WT112": {
+    "medida": "15.8 cm x 2.9 m",
+    "rendimiento": "6.43 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-15813-WT126": {
+    "medida": "15.8 cm x 2.9 m",
+    "rendimiento": "6.43 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-15813-WT152": {
+    "medida": "15.8 cm x 2.9 m",
+    "rendimiento": "6.43 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-21015-AW041": {
+    "medida": "21 cm x 2.9 m",
+    "rendimiento": "8.12 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-21015-FSH012": {
+    "medida": "21 cm x 2.9 m",
+    "rendimiento": "8.12 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-21015-WT152": {
+    "medida": "21 cm x 2.9 m",
+    "rendimiento": "8.12 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-21015-WT153": {
+    "medida": "21 cm x 2.9 m",
+    "rendimiento": "8.12 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-21015-WT155": {
+    "medida": "21 cm x 2.9 m",
+    "rendimiento": "8.12 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-21015-WT156": {
+    "medida": "21 cm x 2.9 m",
+    "rendimiento": "8.12 m2/cj",
+    "composicion": [
+      [
+        "PVC",
+        "50%"
+      ],
+      [
+        "Polvo de calcio",
+        "40%"
+      ],
+      [
+        "Aditivos",
+        "10%"
+      ]
+    ],
+    "pruebas": [
+      [
+        "Emisiones de formaldehído",
+        "0.080 mg/m3"
+      ],
+      [
+        "Migración de metales pesados",
+        "Aprobado"
+      ]
+    ]
+  },
+  "T15-CTFT1-10091": {
+    "medida": "10 cm x 2.9 m"
+  },
+  "T15-CTFT1-10112": {
+    "medida": "10 cm x 2.9 m"
+  },
+  "T15-CTFT1-10126": {
+    "medida": "10 cm x 2.9 m"
+  },
+  "T15-CTWPC-00092": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-00093": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-00094": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-0CWBB": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-WT001": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-WT041": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-WT091": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-WT112": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-CTWPC-WT126": {
+    "medida": "15.5 cm x 2.9 m"
+  },
+  "T15-PVCM1-8038A": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCM1-82092": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-009Y2": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-063Y9": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-08043": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-08115": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-08159": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-08209": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-08233": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-0BSNH": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-181Y2": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-8038A": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-8038B": {
+    "medida": "1.2 m x 2.4 m"
+  },
+  "T15-PVCMS-80142": {
+    "medida": "2.44 m x 1.22 m"
+  },
+  "T15-PVCMS-80371": {
+    "medida": "2.44 m x 1.22 m"
+  },
+  "T15-PVCMS-88151": {
+    "medida": "2.44 m x 1.22 m"
+  },
+  "T15-PVCMS-B8040": {
+    "medida": "2.44 m x 1.22 m"
+  },
+  "T15-PVCMS-80250": {
+    "medida": "1.22 m x 2.44 m"
+  },
+  "T15-PVCMS-80251": {
+    "medida": "1.22 m x 2.44 m"
+  },
+  "T15-PVCMS-WRBLA": {
+    "medida": "1.22 m x 2.44 m"
+  },
+  "T15-PVCMS-WRGOL": {
+    "medida": "1.22 m x 2.44 m"
+  },
+  "T15-PVCMS-WRSIL": {
+    "medida": "1.22 m x 2.44 m"
+  },
+  "T15-TWPPL-00091": {
+    "medida": "40 cm x 2.9 m"
+  },
+  "T15-TWPPL-00112": {
+    "medida": "40 cm x 2.9 m"
+  },
+  "T15-TWPPL-00126": {
+    "medida": "40 cm x 2.9 m"
+  }
+}

@@ -15,7 +15,7 @@ const porCategoria: Record<string, Cotizacion> = {
   'pisos-laminados': { rangos: ['Rango 1 (0-100 m²)', 'Rango 2 (101-1000 m²)', 'Rango 3 (1001 m² en adelante)'] },
   'persianas-enrollables': { rangos: PIEZAS },
   'persianas-de-madera': { rangos: PIEZAS },
-  // Pisos híbridos, lambrín y paneles, Flexiroc y accesorios: sin tamaño de proyecto
+  // Lambrín y paneles, Flexiroc y accesorios: sin tamaño de proyecto
 };
 
 export const cotizacionDe = (categoria: string): Cotizacion => porCategoria[categoria] ?? {};

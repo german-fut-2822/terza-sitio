@@ -6,6 +6,8 @@ import Compartir from '../../../components/Compartir.astro';
 import QuoteModal from '../../../components/catalogo/QuoteModal.astro';
 import { productos, categorias, categoriaDe, familiaDe, productosDe, foto, fotoOg, urlCategoria, urlProducto } from '../../../lib/catalogo';
 import { decoradorVirtual } from '../../../data/general.json';
+import variaciones from '../../../data/variaciones.json';
+import datosExtra from '../../../data/datos-extra.json';
 
 export function getStaticPaths() {
   return productos.map((p) => ({ params: { categoria: p.categoria, producto: p.slug }, props: { p } }));
@@ -15,7 +17,7 @@ const { p } = Astro.props;
 const cat = categoriaDe(p.categoria);
 const familia = familiaDe(p);
 // Sugerencias solo de la misma línea: primero una tarjeta por cada otra familia y, si no alcanzan
-// (p. ej. Pisos híbridos solo tiene la familia Kiwi), los demás colores de la línea.
+// (p. ej. una línea con una sola familia), los demás colores de la línea.
 // Solo si la línea no tiene más productos se recurre a las demás categorías de la misma sección.
 const unaPorFamilia = (lista: typeof productos) => [...new Map(lista.map((x) => [`${x.categoria}|${x.familia}`, x])).values()];
 const deLaLinea = productosDe(p.categoria).filter((x) => x.slug !== p.slug);
@@ -30,6 +32,34 @@ const nombre = `${p.familia} ${p.variante}`;
 // Texto de la vista previa al compartir: categoría, producto y hasta 3 datos de la ficha técnica
 const datos = p.specs.filter(([e]) => !['Nombre', 'SKU', 'Estilo', 'Color', 'Colección'].includes(e)).slice(0, 3).map(([e, v]) => `${e}: ${v}`);
 const descripcion = p.descripcion || [`${cat.nombre} · ${nombre}`, ...datos].join('. ') + '. Solicita tu cotización en Terza.';
+
+// Datos que terza.com muestra en la ficha pero no trae en su catálogo (src/data/datos-extra.json):
+// Medida va antes de las piezas por caja, Rendimiento después de los m² por caja; Composición y Pruebas son apartados aparte
+type Extra = { medida?: string; rendimiento?: string; composicion?: [string, string][]; pruebas?: [string, string][] };
+const extra = ((datosExtra as Record<string, Extra | string>)[p.sku] ?? {}) as Extra;
+const insertar = (lista: [string, string][], dato: [string, string] | null, antesDe: string[], despuesDe: string[]) => {
+  if (!dato) return lista;
+  const despues = lista.findIndex(([e]) => despuesDe.includes(e));
+  const antes = lista.findIndex(([e]) => antesDe.includes(e));
+  const i = despues >= 0 ? despues + 1 : antes >= 0 ? antes : lista.findIndex(([e]) => e === 'SKU');
+  return i < 0 ? [...lista, dato] : [...lista.slice(0, i), dato, ...lista.slice(i)];
+};
+let specs = p.specs as [string, string][];
+specs = insertar(specs, extra.medida ? ['Medida', extra.medida] : null, ['Piezas por caja', 'Paneles por caja', 'm² por caja', 'Uso'], []);
+specs = insertar(specs, extra.rendimiento ? ['Rendimiento', extra.rendimiento] : null, ['Uso', 'SKU'], ['m² por caja']);
+const apartados = [
+  { titulo: 'Composición', datos: extra.composicion ?? [] },
+  { titulo: 'Pruebas', datos: extra.pruebas ?? [] },
+].filter((a) => a.datos.length);
+
+// Variación de color (solo los productos que la tienen en src/data/variaciones.json)
+const variacion = (variaciones as Record<string, { nivel: string; imagen: string } | string>)[p.sku];
+const niveles = [
+  { id: 'baja', nombre: 'Baja' },
+  { id: 'moderada', nombre: 'Moderada' },
+  { id: 'alta', nombre: 'Alta' },
+  { id: 'muy-alta', nombre: 'Muy alta' },
+];
 
 const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 ---
@@ -90,13 +120,26 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
         <div class="mt-8 rounded-[28px] bg-terza-mist p-6 md:p-8">
           <h2 class="text-2xl font-bold text-black">Información</h2>
           <dl class="mt-5 grid gap-x-10 gap-y-3 sm:grid-cols-2">
-            {p.specs.map(([etiqueta, valor]) => (
+            {specs.map(([etiqueta, valor]) => (
               <div class="flex gap-2 border-b border-black/10 pb-3 text-sm md:text-base">
                 <dt class="font-bold text-terza-teal">{etiqueta}:</dt>
                 <dd class="text-black">{valor}</dd>
               </div>
             ))}
           </dl>
+          {apartados.map((a) => (
+            <>
+              <h3 class="mt-8 text-lg font-bold text-black">{a.titulo}</h3>
+              <dl class="mt-4 grid gap-x-10 gap-y-3 sm:grid-cols-2">
+                {a.datos.map(([etiqueta, valor]) => (
+                  <div class="flex gap-2 border-b border-black/10 pb-3 text-sm md:text-base">
+                    <dt class="font-bold text-terza-teal">{etiqueta}:</dt>
+                    <dd class="text-black">{valor}</dd>
+                  </div>
+                ))}
+              </dl>
+            </>
+          ))}
         </div>
 
         {familia.length > 1 && (
@@ -142,6 +185,34 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-
       </div>
     </div>
   </section>
+
+  {variacion && typeof variacion === 'object' && (
+    <section class="mx-auto mt-20 max-w-[1728px] px-6 md:px-12 xl:mt-28 xl:px-[72px]" aria-labelledby="variacion-titulo">
+      <h2 id="variacion-titulo" class="text-3xl font-bold text-black md:text-4xl">Variación de Color</h2>
+      <!-- En escritorio es una cuadrícula de 2×2 (imágenes arriba, textos abajo) para que los dos textos empiecen a la
+           misma altura. La imagen ocupa todo el alto de la fila de arriba, así que va del borde de los círculos a la base
+           de sus etiquetas (Baja, Moderada…).
+           En móvil el orden es imagen, su texto, círculos y su texto. -->
+      <div class="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-x-16">
+        <div class="relative">
+          <img src={`/assets/catalogo/variaciones/${variacion.imagen}`} alt={`Variación de color ${nombre}`} loading="lazy" width="1800" height="675" class="aspect-[8/3] w-full rounded-[28px] object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full" />
+        </div>
+        <ul class="order-3 mt-4 grid grid-cols-4 gap-3 md:gap-6 lg:order-none lg:mt-0" aria-label={`Nivel de variación: ${niveles.find((n) => n.id === variacion.nivel)?.nombre}`}>
+          {niveles.map((n) => {
+            const activo = n.id === variacion.nivel;
+            return (
+              <li class="flex flex-col items-center gap-3 text-center" aria-current={activo ? 'true' : undefined}>
+                <img src={`/assets/variaciones/maderas/nivel-${n.id}${activo ? '-activo' : ''}.webp`} alt="" loading="lazy" width="200" height="200" class="aspect-square w-full max-w-[160px]" />
+                <span class:list={['rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide md:px-4 md:text-sm lg:whitespace-nowrap lg:px-3 lg:text-xs xl:px-4 xl:text-sm', activo ? 'bg-terza-teal text-white' : 'text-black/60']}>{n.nombre}</span>
+              </li>
+            );
+          })}
+        </ul>
+        <p class="order-2 text-lg text-black/80 lg:order-none">Parte del encanto inherente de la madera auténtica es la variación única y natural de color que hace que cada tablón sea irrepetible. La guía a continuación ilustra la variación de color que puedes esperar en este estilo.</p>
+        <p class="order-4 text-lg text-black/80 lg:order-none">Cada especie de madera tiene un carácter distintivo que puede variar de niveles bajos a altos. La guía a continuación ilustra la variación de características que puedes esperar en este estilo.</p>
+      </div>
+    </section>
+  )}
 
   <QuoteModal categoria={p.categoria} categoriaNombre={cat.nombre} producto={nombre} sku={p.sku} />
 

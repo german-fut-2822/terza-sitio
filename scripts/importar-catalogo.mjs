@@ -16,13 +16,12 @@ const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 const DIR_FOTOS = 'public/assets/catalogo';
 const RUTA_FOTOS = '/assets/catalogo';
 
-// Categorías del catálogo público de terza.com, en el orden y con las secciones del menú principal (src/data/general.json) (tapetes no están publicados ahí; los híbridos llegan como "pisos_rigidos")
+// Categorías del catálogo público de terza.com, en el orden y con las secciones del menú principal (src/data/general.json) (tapetes no están publicados ahí; los pisos híbridos —"pisos_rigidos"— se dejaron fuera a pedido del cliente)
 const CATEGORIAS = [
   { slug: 'alfombras', nombre: 'Alfombras', seccion: 'Alfombras', tipo: 'alfombras', filtros: ['estilo', 'tono', 'uso'], intro: 'Calidez, confort y mejor acústica para residencias, oficinas y hoteles.' },
   { slug: 'pasto-sintetico', nombre: 'Pasto sintético', seccion: 'Pasto Sintético', tipo: 'pastos', filtros: ['estilo'], intro: 'Césped sintético para jardines, terrazas y áreas de juego, verde todo el año.' },
   { slug: 'piso-vinilico', nombre: 'Pisos vinílicos', seccion: 'Pisos', tipo: 'viniles', filtros: ['estilo'], intro: 'Resistentes al agua y al tráfico diario, con la apariencia de la madera y la piedra.' },
   { slug: 'pisos-laminados', nombre: 'Pisos laminados', seccion: 'Pisos', tipo: 'laminados', filtros: ['estilo', 'tono'], intro: 'Vetas naturales y gran resistencia al desgaste para cada espacio de la casa.' },
-  { slug: 'pisos-hibridos', nombre: 'Pisos híbridos', seccion: 'Pisos', tipo: 'pisos_rigidos', filtros: ['coleccion'], intro: 'Lo mejor de los pisos vinílicos y los laminados en uno: resistentes al agua y fáciles de instalar con sistema de clic.' },
   { slug: 'pisos-de-madera', nombre: 'Pisos de madera', seccion: 'Pisos', tipo: 'maderas', filtros: ['estilo', 'especie'], intro: 'Madera de ingeniería con chapas nobles y acabados que resaltan la veta.' },
   { slug: 'paneles', nombre: 'Lambrín y paneles', seccion: 'Muros', tipo: 'paneles', filtros: ['estilo'], intro: 'Lambrín y paneles que transforman muros en minutos, sin obra ni polvo.' },
   { slug: 'flexiroc', nombre: 'Flexiroc', seccion: 'Muros', tipo: 'flexiroc', filtros: [], intro: 'Recubrimiento de piedra flexible que se adapta a muros curvos, columnas y fachadas.' },
@@ -39,7 +38,6 @@ const NOMBRES = {
   viniles: (p) => [p.estilo, p.color],
   laminados: (p) => [p.estilo, p.color],
   maderas: (p) => [p.estilo, p.color],
-  pisos_rigidos: (p) => [p.coleccion, p.color],
   paneles: (p) => [p.estilo, p.color],
   deck: (p) => [p.estilo, p.color],
   persianas: (p) => [p.coleccion, p.color],
@@ -76,7 +74,8 @@ const ETIQUETAS = {
   acabado: 'Acabado', chapa: 'Chapa', brillo: 'Brillo', medidas: 'Medidas', ancho: 'Ancho', largo: 'Largo', longitud: 'Longitud',
   alto: 'Alto', altura: 'Altura', espesor: 'Espesor', desgaste: 'Capa de desgaste', peso: 'Peso', biselado: 'Biselado',
   instalacion: 'Instalación', resistencia: 'Resistencia', apertura: 'Apertura', bloqueo: 'Bloqueo de luz', unidad: 'Presentación',
-  piezas: 'Piezas por caja', m2_cj: 'm² por caja', metros: 'Metros por caja', uso: 'Uso', sku: 'SKU',
+  piezas: 'Piezas por caja', paneles_por_caja: 'Paneles por caja', m2_cj: 'm² por caja', metros: 'Metros por caja',
+  clasificacion: 'Clasificación', uso: 'Uso', sku: 'SKU',
 };
 
 const limpiar = (v) => String(v ?? '').replace(/\s+/g, ' ').trim();
