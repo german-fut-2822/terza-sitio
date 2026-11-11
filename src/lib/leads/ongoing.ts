@@ -25,12 +25,15 @@ export function nombreCompleto(nombre: string, apellido?: string): string {
 }
 
 // Los datos que el formulario captura pero que no tienen campo propio en el schema de Ongoing
-// (estado, ciudad, sku, etc.) van en "metadata": un array de "Clave: Valor" que Ongoing muestra
-// como "Datos complementarios" — separado de "message", que es la nota libre del lead.
+// (estado, ciudad, sku, etc.) van en "metadata" — separado de "message", que es la nota libre del
+// lead. Ongoing muestra cada elemento del array como un campo de "Datos complementarios", pero solo
+// reconoce el título (p. ej. "CIUDAD") si el elemento es un objeto JSON de una sola clave — un
+// string plano "Ciudad: Reynosa" lo muestra con el índice del array (0, 1...) como título en vez
+// de la clave.
 export function metadataOngoing(partes: Record<string, string | undefined>): string[] {
   return Object.entries(partes)
     .filter(([, v]) => v)
-    .map(([clave, valor]) => `${clave}: ${valor}`);
+    .map(([clave, valor]) => JSON.stringify({ [clave]: valor }));
 }
 
 export async function enviarOngoing(lead: LeadOngoing): Promise<boolean> {
