@@ -9,7 +9,7 @@ import type { APIRoute } from 'astro';
 import type { DatosCotizacion } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
-import { enviarOngoing } from '../../../lib/leads/ongoing';
+import { enviarOngoing, detalleOngoing } from '../../../lib/leads/ongoing';
 
 export const prerender = false;
 
@@ -63,18 +63,11 @@ export const POST: APIRoute = async ({ request }) => {
     }),
     enviarOngoing({
       first_name: datos.nombre ?? '',
-      last_name: datos.apellido ?? '',
+      last_name: datos.apellido,
       email: datos.email ?? '',
-      phone: datos.telefono ?? '',
-      state: datos.estado ?? '',
-      city: datos.municipio ?? '',
-      product: datos.producto ?? '',
-      message: datos.mensaje ?? '',
-      categoria: datos.categoria,
-      sku: datos.sku,
-      ruta: datos.ruta ?? '',
-      tipo_pasto: datos.tipo_pasto ?? '',
-      proyecto: datos.proyecto ?? '',
+      phone: datos.telefono,
+      opportunity_title: categoriaProducto,
+      message: detalleOngoing({ Estado: datos.estado, Municipio: datos.municipio, Ruta: datos.ruta }, `${producto}${datos.mensaje ? ` — ${datos.mensaje}` : ''}`),
     }),
   ]);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[leads/cotizacion]', r.reason));

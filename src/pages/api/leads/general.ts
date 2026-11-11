@@ -9,7 +9,7 @@ import type { APIRoute } from 'astro';
 import type { DatosContactoGeneral } from '../../../lib/leads/tipos';
 import { validarContacto, esSpam } from '../../../lib/leads/validar';
 import { enviarOmnia } from '../../../lib/leads/omnia';
-import { enviarOngoing } from '../../../lib/leads/ongoing';
+import { enviarOngoing, detalleOngoing } from '../../../lib/leads/ongoing';
 
 export const prerender = false;
 
@@ -38,12 +38,11 @@ export const POST: APIRoute = async ({ request }) => {
     }),
     enviarOngoing({
       first_name: datos.nombre ?? '',
-      last_name: datos.apellido ?? '',
+      last_name: datos.apellido,
       email: datos.email ?? '',
-      phone: datos.telefono ?? '',
-      state: datos.estado ?? '',
-      city: datos.municipio ?? '',
-      message: datos.mensaje ?? '',
+      phone: datos.telefono,
+      opportunity_title: 'Contacto general - Terza Web',
+      message: detalleOngoing({ Estado: datos.estado, Municipio: datos.municipio }, datos.mensaje),
     }),
   ]);
   resultados.forEach((r) => r.status === 'rejected' && console.error('[leads/general]', r.reason));
