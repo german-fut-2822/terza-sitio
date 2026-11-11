@@ -53,6 +53,12 @@ export const POST: APIRoute = async ({ request }) => {
   if (datos.proyecto) producto += ` Tamaño: ${datos.proyecto}`;
   if (datos.tipo_pasto) producto += ` Tipo de pasto: ${datos.tipo_pasto}`;
 
+  // Confirmado contra un lead real ya en Ongoing ("Torino - Brucia · MONTERREY"): el título de la
+  // oportunidad es "{producto} · {ciudad}", no la categoría — y metadata.categoria lleva el slug
+  // crudo (p. ej. "pisos-de-madera"), no el nombre legible de MAPA_CATEGORIAS.
+  const nombreProducto = datos.producto ?? categoriaProducto;
+  const tituloOportunidad = datos.municipio ? `${nombreProducto} · ${datos.municipio}` : nombreProducto;
+
   const resultados = await Promise.allSettled([
     enviarOmnia(41, {
       nombre: datos.nombre!,
@@ -70,7 +76,7 @@ export const POST: APIRoute = async ({ request }) => {
       email: datos.email ?? '',
       phone: datos.telefono,
       company_name: nombreCompleto(datos.nombre ?? '', datos.apellido),
-      opportunity_title: categoriaProducto,
+      opportunity_title: tituloOportunidad,
       metadata: metadataOngoing({
         estado: datos.estado,
         ciudad: datos.municipio,
@@ -79,6 +85,7 @@ export const POST: APIRoute = async ({ request }) => {
         sku: datos.sku,
         proyecto: datos.proyecto,
         tipo_pasto: datos.tipo_pasto,
+        categoria: datos.categoria,
       }),
       message: datos.mensaje,
     }),
