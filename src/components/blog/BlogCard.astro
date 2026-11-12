@@ -1,0 +1,39 @@
+---
+// Tarjeta de nota del blog: foto, categoría, título, fecha y resumen.
+// data-categorias y data-texto permiten filtrar y buscar en el listado sin recargar.
+import { Image } from 'astro:assets';
+import { urlNota, fechaNota, type Nota } from '../../lib/blog';
+
+interface Props {
+  nota: Nota;
+  categorias: Map<string, string>; // id → nombre
+  resumen?: boolean;
+}
+
+const { nota, categorias, resumen = true } = Astro.props;
+const { titulo, descripcion, fecha, imagen, imagenAlt } = nota.data;
+const cats = nota.data.categorias.map((c) => c.id);
+const etiqueta = cats.length ? categorias.get(cats[0]) : 'Ideas';
+---
+
+<article class="blog-card" data-categorias={cats.join(' ')} data-texto={`${titulo} ${descripcion}`}>
+  <a href={urlNota(nota)} class="group flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_4px_18px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.14)]">
+    <div class="aspect-[3/2] overflow-hidden bg-terza-mist">
+      <Image src={imagen} alt={imagenAlt} width={720} height={480} loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+    </div>
+    <div class="flex flex-1 flex-col p-5 md:p-6">
+      <div class="flex items-center justify-between gap-3 text-xs">
+        <p class="font-bold uppercase tracking-widest text-terza-teal">{etiqueta}</p>
+        <time datetime={fecha.toISOString().slice(0, 10)} class="shrink-0 text-black/50">{fechaNota(fecha)}</time>
+      </div>
+      <h3 class="mt-3 text-lg font-bold leading-snug text-black xl:text-xl">{titulo}</h3>
+      {resumen && descripcion && <p class="mt-2 line-clamp-3 text-sm text-black/70">{descripcion}</p>}
+      <span class="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-terza-teal">
+        Leer nota
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-terza-mist transition-colors group-hover:bg-terza-lime group-hover:text-terza-ink" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+      </span>
+    </div>
+  </a>
+</article>

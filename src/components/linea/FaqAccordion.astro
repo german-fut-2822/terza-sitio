@@ -1,0 +1,25 @@
+---
+// Preguntas frecuentes en acordeón (<details>), la primera abierta.
+// La respuesta acepta HTML (negritas, párrafos, <ul>/<ol>) tal como viene en los JSON de cada página.
+interface Props {
+  title: string;
+  items: { q: string; a: string }[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="mx-auto max-w-[1100px] px-6 py-16 md:px-12 xl:py-24">
+  <h2 class="text-center text-3xl font-bold text-black md:text-4xl xl:text-5xl">{title}</h2>
+  <div class="mt-10 space-y-4">
+    {items.map((faq, i) => (
+      <details class="group rounded-[20px] bg-[#fcfcfc] open:bg-terza-lime-pale" open={i === 0}>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-bold text-black xl:text-xl [&::-webkit-details-marker]:hidden">
+          {faq.q}
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" class="shrink-0 text-terza-teal transition-transform group-open:rotate-180" aria-hidden="true"><path d="M5 8L11 14L17 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </summary>
+        <div class="space-y-3 px-6 pb-6 text-black xl:text-lg [&_li]:marker:text-terza-teal [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-6" set:html={faq.a} />
+      </details>
+    ))}
+  </div>
+</section>

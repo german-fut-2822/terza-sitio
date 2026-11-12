@@ -1,0 +1,118 @@
+{
+  "seo": {
+    "title": "Pasto Sintético | Terza",
+    "description": "Pasto sintético Terza, verde todos los días del año. El fabricante #1 en pasto sintético y alfombras de México y Latinoamérica: pasto para cancha y jardín."
+  },
+  "hero": { "title": "Pasto Sintético", "subtitle": "Verde todos los días del año." },
+  "intro": {
+    "title": "El fabricante #1 en Pasto sintético y Alfombras de México y Latinoamérica",
+    "description": "Pasto sintético para cancha y jardín",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true" },
+      { "label": "Catálogo", "href": "/catalogo/pasto-sintetico" }
+    ]
+  },
+  "calidad": {
+    "title": "La mejor calidad en pasto sintético la encuentras en Terza",
+    "description": "Encuentra aquí lo mejor en pasto sintético para canchas y jardín de la más alta calidad que, además de ser resistente, mantiene una gran similitud con el pasto natural.",
+    "modelos": ["Garden 36", "Bermuda 20", "Bermuda 25", "Bermuda 50", "Bermuda 60", "Emerald 30", "Emerald 40", "Valley 40", "Valley 47"]
+  },
+  "aplicaciones": {
+    "title": "Aplicaciones para espacios residenciales y deportivos",
+    "items": [
+      { "image": "img-01", "alt": "Balón de fútbol sobre pasto sintético para canchas", "title": "Pasto sintético para Canchas", "description": "Conocemos las necesidades de nuestros clientes en pasto sintético para canchas ofreciendo la mejor calidad de pastos para canchas deportivas." },
+      { "image": "img-02", "alt": "Familia sentada en un jardín con pasto sintético", "title": "Pasto Sintético para Jardines", "description": "Crea el mejor ambiente en tu espacio con pasto sintético para jardines. Contamos con productos diseñados para hacer lucir increíble tu espacio." },
+      { "image": "img-03", "alt": "Camellón con pasto sintético Terza", "title": "Pasto sintético para Áreas Verdes", "description": "Mantén tus áreas siempre verdes con el pasto sintético de Terza para parques, camellones o áreas públicas." }
+    ]
+  },
+  "ventajas": {
+    "title": "Ventajas del Pasto Sintético",
+    "items": [
+      { "icon": "icono-01", "label": "Mantenimiento de bajo costo" },
+      { "icon": "icono-05", "label": "Pet friendly" },
+      { "icon": "icono-02", "label": "No depende de sistemas de riego" },
+      { "icon": "icono-06", "label": "No requiere exposición al sol" },
+      { "icon": "icono-03", "label": "Resistente a cambios de clima" },
+      { "icon": "icono-07", "label": "No necesita fertilizantes ni pesticidas" },
+      { "icon": "icono-04", "label": "Siempre verde los 365 días del año" },
+      { "icon": "icono-08", "label": "Apariencia muy similar al pasto natural" }
+    ]
+  },
+  "porQue": {
+    "title": "¿Por qué optar por Pasto Sintético Terza?",
+    "items": [
+      "Brindamos los mejores plazos de entrega en la industria.",
+      "Extensa variedad de estilos para uso deportivo y de jardinería.",
+      "Diseñamos proyectos deportivos personalizados a la medida.",
+      "Trabajamos con materias primas de la mayor calidad.",
+      "Tenemos maquinaria de última gama.",
+      "Nuestra ingeniería disminuye el riesgo de lesiones o heridas ante caídas.",
+      "Contamos con distribuidores autorizados en México, Centro y Sudamérica."
+    ]
+  },
+  "conoceMas": {
+    "title": "Conoce más acerca de nuestros<br />pastos sintéticos",
+    "description": "Terza se destaca por la calidad y atención al detalle que le brinda a sus productos. La tecnología integrada a nuestro pasto sintético refleja nuestra atención al detalle. Con ellos lucirás un espacio siempre verde, que requiere un menor mantenimiento."
+  },
+  "servicios": [
+    { "image": "img-05", "alt": "Rollos de pasto sintético Terza", "title": "Pasto Sintético para Proyectos", "description": "Contamos con un equipo preparado para asesorar durante los proyectos de pasto sintético de acuerdo a las necesidades de nuestros clientes." },
+    { "image": "img-06", "alt": "Instalación de pasto sintético", "title": "Instalación de Pasto Sintético", "description": "Sugerimos que la instalación la realice un distribuidor autorizado Terza, que utilice los materiales adecuados y ofrezca una garantía de instalación." },
+    { "image": "img-07", "alt": "Mano sobre pasto sintético", "title": "Mantenimiento de Pasto Sintético", "description": "Brindamos las herramientas necesarias para que el mantenimiento del pasto sintético sea el adecuado y se le otorgue una larga vida al producto." }
+  ],
+  "tipos": {
+    "title": "Distintas opciones de pasto para<br />distintas necesidades",
+    "items": [
+      { "image": "fibrilado", "title": "Pasto Fibrilado", "points": ["Tiene pequeñas incisiones que dan un aspecto de panal o malla.", "Ofrece mayor estabilidad y agarre durante el juego.", "Mantiene el caucho granulado y la arena sílica en su lugar gracias a su estructura."] },
+      { "image": "monofilamento", "title": "Pasto Monofilamento", "points": ["Está elaborado con hilo grueso extruido y sin fisuras laterales.", "Es altamente resistente al desgaste en áreas residenciales y áreas deportivas.", "Conserva su forma, pues está dividido solo de manera vertical."] },
+      { "image": "hibrido", "title": "Pasto Híbrido", "points": ["Está compuesto por una mezcla de hilo fibrilado e hilo monofilamento.", "Ofrece los beneficios de ambas tecnologías en un solo producto."] },
+      { "image": "residencial", "title": "Pasto Residencial", "points": ["Cuenta con una fibra texturizada.", "Brinda seguridad a toda la familia.", "Tiene una apariencia similar al pasto natural.", "Es permeable y no necesita un sistema de riego, contribuyendo al ahorro de agua."] }
+    ],
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  },
+  "catalogo": {
+    "title": "Catálogo de Pasto Sintético Terza",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/pasto-sintetico" }
+  },
+  "video": {
+    "title": "La empresa #1 de pasto sintético en Latinoamérica",
+    "description": "Conoce los múltiples beneficios del pasto sintético Terza y descubre por qué somos tu mejor opción para vestir tus áreas verdes.",
+    "src": "https://www.youtube.com/embed/wzoYekBcnAI"
+  },
+  "disenaCancha": {
+    "title": "Diseña tu cancha",
+    "description": "Con pasto sintético Terza ¡las opciones nunca terminan! Crea tu cancha y bríndale un estilo único con el color o logotipo de tu equipo. Contamos con la más amplia gama de tonalidades y desarrollamos logotipos tejidos en una sola pieza, lo cual le ofrece resistencia ante el tráfico, en cualquier zona de la cancha.",
+    "colores": [
+      { "image": "color-black", "label": "Black" },
+      { "image": "color-brown", "label": "Brown" },
+      { "image": "color-crimsonred", "label": "Crimson Red" },
+      { "image": "color-fieldgreen", "label": "Field Green" },
+      { "image": "color-floridablue", "label": "Florida Blue" },
+      { "image": "color-gold", "label": "Gold" },
+      { "image": "color-gray", "label": "Gray" },
+      { "image": "color-lightblue", "label": "Light Blue" },
+      { "image": "color-lime", "label": "Lime" },
+      { "image": "color-navyblue", "label": "Navy Blue" },
+      { "image": "color-orange", "label": "Orange" },
+      { "image": "color-purple", "label": "Purple" },
+      { "image": "color-red", "label": "Red" },
+      { "image": "color-redcaly", "label": "Redcaly" },
+      { "image": "color-tan", "label": "Tan" },
+      { "image": "color-white", "label": "White" },
+      { "image": "color-yellow", "label": "Yellow" }
+    ]
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿El Pasto sintético es ideal para las mascotas?", "a": "El Pasto sintético es una excelente opción para las mascotas debido a su durabilidad, facilidad de limpieza y sus beneficios para la salud y comodidad. El Pasto sintético de Terza te ofrece una solución para mantener tus exteriores bonitos y funcionales para las mascotas." },
+      { "q": "¿Cuál es la duración promedio del Pasto sintético?", "a": "La vida útil promedio del pasto sintético varía entre 5 y 15 años dependiendo de factores como la calidad del material, el uso, el mantenimiento y las condiciones climáticas." },
+      { "q": "¿Para qué espacios puede servir el Pasto sintético?", "a": "¡El Pasto sintético es ideal para cualquier espacio exterior! Para uso residencial pueden ser utilizados en patios, jardines, cocheras, parques, plazas comerciales, torres de departamentos, canchas deportivas, campos de golf y áreas de esparcimiento. El Pasto sintético de Terza es una excelente opción gracias a su gran resistencia e increíble similitud con el césped natural. Además, es una magnífica opción para espacios verdes públicos." },
+      { "q": "¿Para qué tipo de deportes se puede utilizar el Pasto sintético de Terza?", "a": "El Pasto sintético es ideal para todos los deportes, pues además de ser resistente y mantener una gran similitud con el pasto natural. En Terza somos expertos en el diseño de canchas de fútbol 7, fútbol rápido, fútbol soccer, fútbol americano, béisbol, golf, tenis, pádel, entre otros." },
+      { "q": "¿Qué tipo de mantenimiento necesita el Pasto sintético para canchas?", "a": "¡Es muy sencillo! Solo debes mantener la superficie libre de humedad excesiva. Evitar que se fume o que se ingieran alimentos y/o bebidas dentro de la cancha. Minimizar el uso de cualquier vehículo dentro del Pasto sintético y asegurarte de que los jugadores utilicen un calzado adecuado." }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

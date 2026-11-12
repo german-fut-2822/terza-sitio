@@ -1,0 +1,14 @@
+{
+  "categorias": [
+    { "id": "alfombras", "nombre": "Alfombras", "pagina": "/alfombras" },
+    { "id": "tapetes", "nombre": "Tapetes" },
+    { "id": "pisos-vinilicos", "nombre": "Pisos vinílicos", "pagina": "/pisos-vinilicos" },
+    { "id": "pisos-laminados", "nombre": "Pisos laminados", "pagina": "/pisos-laminados" },
+    { "id": "pisos-de-madera", "nombre": "Pisos de madera", "pagina": "/pisos-de-madera" },
+    { "id": "lambrin-y-paneles", "nombre": "Lambrín y paneles", "pagina": "/lambrin-y-paneles" },
+    { "id": "follaje-artificial", "nombre": "Follaje artificial", "pagina": "/muros-verdes" },
+    { "id": "persianas", "nombre": "Persianas", "pagina": "/persianas" },
+    { "id": "deck", "nombre": "Deck", "pagina": "/pisos-deck" },
+    { "id": "pasto-sintetico", "nombre": "Pasto sintético", "pagina": "/pasto-sintetico" }
+  ]
+}

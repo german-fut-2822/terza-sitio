@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Biblioteca de medios | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="/admin/comun.js"></script>
+    <link rel="stylesheet" href="/admin/listado.css" />
+    <style>
+            .lote { display: none; align-items: center; gap: 12px; }
+      .lote .ayuda { margin: 0; }
+      body.en-lote .lote { display: flex; }
+      body.en-lote #btn-lote { display: none; }
+      .btn-peligro { box-shadow: inset 0 0 0 1px #f3c4bf; color: var(--danger); }
+      .btn-peligro:hover { box-shadow: inset 0 0 0 1px var(--danger); color: var(--danger); }
+
+      .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; padding: 24px 32px; }
+      @media (max-width: 1023px) { .rejilla { padding: 16px; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
+      .medio { position: relative; aspect-ratio: 1; padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radio); background: var(--bg); cursor: pointer; transition: box-shadow 0.15s; }
+      .medio img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .medio:hover, .medio:focus-visible { box-shadow: 0 2px 4px rgb(0 81 74 / 0.08), 0 12px 24px rgb(0 81 74 / 0.12); outline: 2px solid var(--teal); outline-offset: -2px; }
+      .medio .sin-usar { position: absolute; left: 8px; bottom: 8px; padding: 2px 8px; border-radius: 999px; background: rgb(255 255 255 / 0.92); color: var(--text); font-size: 11px; font-weight: 600; }
+      .medio[aria-pressed="true"] { outline: 4px solid var(--teal); outline-offset: -4px; }
+      .medio[aria-pressed="true"]::after { content: "✓"; position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 700; }
+      .mas { margin: 0; padding: 0 32px 28px; text-align: center; color: var(--muted); }
+
+      /* Detalles del adjunto */
+      dialog { width: min(1100px, 94vw); max-height: 90vh; padding: 0; overflow: hidden; border: 0; border-radius: var(--radio); box-shadow: 0 12px 40px rgb(0 0 0 / 0.25); }
+      dialog::backdrop { background: rgb(0 0 0 / 0.5); }
+      .detalle-cab { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 24px; border-bottom: 1px solid var(--border); }
+      .detalle-cab h2 { margin: 0; font-size: 20px; font-weight: 700; }
+      .detalle-cab button { width: 44px; height: 44px; border: 0; border-radius: 50%; background: none; font-size: 24px; cursor: pointer; }
+      .detalle-cab button:hover { background: var(--bg); }
+      .detalle { display: grid; grid-template-columns: minmax(0, 1fr) 320px; max-height: calc(90vh - 61px); }
+      .detalle-img { display: grid; place-items: center; padding: 16px; background: var(--bg); overflow: auto; }
+      .detalle-img img { max-width: 100%; max-height: calc(90vh - 90px); }
+      .detalle-info { padding: 20px 24px; overflow-y: auto; border-left: 1px solid var(--border); font-size: 14px; }
+      .detalle-info dl { margin: 0 0 16px; }
+      .detalle-info dt { color: var(--ink); font-weight: 600; }
+      .detalle-info dd { margin: 0 0 8px; word-break: break-all; }
+      .detalle-info ul { margin: 4px 0 16px; padding-left: 18px; }
+      .detalle-info input { width: 100%; min-height: 36px; padding: 0 12px; border: 1px solid var(--input); border-radius: 999px; font-size: 12px; }
+      .detalle-info .ayuda { color: var(--muted); }
+      @media (max-width: 782px) { .detalle { grid-template-columns: 1fr; overflow-y: auto; } .detalle-info { border-left: 0; } }
+    </style>
+  </head>
+  <body>
+    <!-- Menú lateral del panel (lo arma comun.js) -->
+    <aside class="lateral" id="lateral" data-actual="medios"></aside>
+
+    <main>
+      <div class="titulo">
+        <h1>Biblioteca de medios</h1>
+        <ol class="migas"><li><a href="/admin/notas.html">Terza</a></li><li>Blog</li><li aria-current="page">Medios</li></ol>
+      </div>
+
+      <div id="aviso" class="aviso" hidden></div>
+
+      <section class="tarjeta" id="contenido" hidden>
+        <div class="filtros">
+          <form class="campo-buscar" id="f-buscar" role="search">
+            <span data-icono="buscar"></span>
+            <input type="search" id="f-texto" placeholder="Buscar por archivo o nota…" aria-label="Buscar medios" />
+          </form>
+          <span class="etiqueta-filtro">Filtrar por:</span>
+          <label class="selector"><span data-icono="medios"></span><span class="solo-lector">Uso</span>
+            <select id="f-uso">
+              <option value="">Todos los medios</option>
+              <option value="usadas">Usadas en notas</option>
+              <option value="sin-usar">Sin usar</option>
+            </select>
+          </label>
+          <label class="selector"><span data-icono="calendario"></span><span class="solo-lector">Fecha</span><select id="f-fecha"><option value="">Todas las fechas</option></select></label>
+          <div class="fin">
+            <button type="button" class="btn" id="btn-lote">Selección en lotes</button>
+            <div class="lote">
+              <span class="ayuda" id="lote-cuenta"></span>
+              <button type="button" class="btn" id="btn-cancelar-lote">Cancelar</button>
+              <button type="button" class="btn btn-peligro" id="btn-borrar-lote" disabled><span data-icono="borrar"></span>Borrar permanentemente</button>
+            </div>
+            <button type="button" class="btn btn-primario" id="btn-subir"><span data-icono="mas"></span>Subir imágenes</button>
+            <input type="file" id="archivos" accept="image/jpeg,image/png,image/webp" multiple hidden />
+          </div>
+        </div>
+
+        <div class="rejilla" id="rejilla"></div>
+        <p class="mas" id="mas"></p>
+      </section>
+    </main>
+
+    <dialog id="detalle" aria-labelledby="detalle-titulo">
+      <div class="detalle-cab">
+        <h2 id="detalle-titulo">Detalles del archivo</h2>
+        <button type="button" id="cerrar" aria-label="Cerrar">×</button>
+      </div>
+      <div class="detalle">
+        <div class="detalle-img"><img id="detalle-img" alt="" /></div>
+        <div class="detalle-info" id="detalle-info"></div>
+      </div>
+    </dialog>
+
+    <script>
+      // Biblioteca de medios del blog al estilo de WordPress: cuadrícula con las imágenes de src/assets/blog, filtros,
+      // subir (máximo 500 KB), detalles y borrar. Lectura de notas y sesión en comun.js.
+      const CARPETA = 'src/assets/blog';
+      const MAX = 500 * 1024;
+      const POR_TANDA = 60;
+      const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      const estado = { medios: [], notas: [], uso: '', fecha: '', texto: '', mostrados: POR_TANDA, lote: false, seleccion: new Set() };
+      let datos;
+
+      const kb = (b) => `${Math.round(b / 1024)} KB`;
+      const fechaTexto = (f) => `${String(f.getUTCDate()).padStart(2, '0')}/${String(f.getUTCMonth() + 1).padStart(2, '0')}/${f.getUTCFullYear()}`;
+      const mensaje = (accion, nombre) => `Blog: ${accion} imagen "${CARPETA}/${nombre}"`;
+      // Lista de imágenes (nombre y peso) desde la API; cada foto se ve con /api/archivo
+      async function leerMedios() {
+        const lista = await api('listMedia', { mediaFolder: CARPETA });
+        return lista.map((m) => ({ nombre: m.nombre, peso: m.peso, url: urlFotoBlog(m.nombre) }));
+      }
+
+      // Qué notas usan cada imagen; la fecha de la imagen es la de la nota más reciente que la usa
+      function relacionar() {
+        for (const m of estado.medios) {
+          m.notas = estado.notas.filter((n) => n.imagenes.includes(m.nombre)).sort((a, b) => b.fecha - a.fecha);
+          m.fecha = m.notas[0]?.fecha;
+          m.mes = m.notas[0]?.mes ?? '';
+        }
+        estado.medios.sort((a, b) => (b.fecha ?? 0) - (a.fecha ?? 0) || a.nombre.localeCompare(b.nombre));
+      }
+
+      function filtrados() {
+        const palabras = normalizar(estado.texto).split(/\s+/).filter(Boolean);
+        return estado.medios.filter(
+          (m) =>
+            (!estado.uso || (estado.uso === 'usadas' ? m.notas.length : !m.notas.length)) &&
+            (!estado.fecha || m.mes === estado.fecha) &&
+            palabras.every((p) => normalizar(`${m.nombre} ${m.notas.map((n) => n.titulo).join(' ')}`).includes(p)),
+        );
+      }
+
+      function pintar() {
+        const lista = filtrados();
+        $('#rejilla').innerHTML = lista
+          .slice(0, estado.mostrados)
+          .map(
+            (m) => `<button type="button" class="medio" data-nombre="${esc(m.nombre)}" ${estado.lote ? `aria-pressed="${estado.seleccion.has(m.nombre)}"` : ''} title="${esc(m.nombre)}">
+              <img src="${m.url}" alt="${esc(m.notas[0]?.titulo ?? m.nombre)}" loading="lazy" decoding="async" />
+              ${m.notas.length ? '' : '<span class="sin-usar">Sin usar</span>'}
+            </button>`,
+          )
+          .join('');
+        $('#mas').innerHTML = lista.length
+          ? `Mostrando ${Math.min(estado.mostrados, lista.length)} de ${lista.length} archivos de medios${lista.length > estado.mostrados ? ' <br><br><button type="button" class="btn btn-primario" id="ver-mas">Cargar más</button>' : ''}`
+          : 'No se encontraron archivos de medios.';
+        $('#lote-cuenta').textContent = estado.seleccion.size ? `${estado.seleccion.size} seleccionados` : '';
+        $('#btn-borrar-lote').disabled = !estado.seleccion.size;
+      }
+
+      function llenarFechas() {
+        const meses = [...new Set(estado.medios.map((m) => m.mes).filter(Boolean))].sort().reverse();
+        $('#f-fecha').innerHTML = '<option value="">Todas las fechas</option>' + meses.map((m) => `<option value="${m}">${MESES[Number(m.slice(5)) - 1]} ${m.slice(0, 4)}</option>`).join('');
+        $('#f-fecha').value = estado.fecha;
+      }
+
+      // ---------- Detalles ----------
+      function abrirDetalle(nombre) {
+        const m = estado.medios.find((x) => x.nombre === nombre);
+        if (!m) return;
+        const ruta = `../../assets/blog/${m.nombre}`;
+        $('#detalle-img').src = m.url;
+        $('#detalle-img').alt = m.nombre;
+        $('#detalle-info').innerHTML = `
+          <dl>
+            <dt>Nombre del archivo</dt><dd>${esc(m.nombre)}</dd>
+            <dt>Peso</dt><dd>${kb(m.peso)}</dd>
+            <dt>Dimensiones</dt><dd id="detalle-dim">…</dd>
+            <dt>Fecha</dt><dd>${m.fecha ? fechaTexto(m.fecha) : '—'}</dd>
+          </dl>
+          <p><strong>${m.notas.length ? `Usada en ${m.notas.length} ${m.notas.length === 1 ? 'nota' : 'notas'}:` : 'No la usa ninguna nota.'}</strong></p>
+          ${m.notas.length ? `<ul>${m.notas.map((n) => `<li><a href="${EDITOR.nota(n.slug)}">${esc(n.titulo)}</a></li>`).join('')}</ul>` : ''}
+          <p><label for="detalle-ruta"><strong>Ruta para usarla en una nota</strong></label></p>
+          <input id="detalle-ruta" readonly value="${esc(ruta)}" />
+          <p><button type="button" class="btn" id="copiar">Copiar ruta</button> <span class="ayuda" id="copiado"></span></p>
+          <p class="ayuda">En el editor de la nota elige la imagen con el botón de imagen; la ruta es por si la necesitas en Markdown.</p>
+          <p><a href="${m.url}" target="_blank" rel="noopener" download="${esc(m.nombre)}">Descargar archivo</a></p>
+          <hr />
+          ${m.notas.length
+            ? '<p class="ayuda">Para borrarla, primero quítala de las notas que la usan.</p>'
+            : '<p><button type="button" class="btn btn-peligro" id="borrar">Borrar permanentemente</button></p>'}`;
+        const img = new Image();
+        img.onload = () => ($('#detalle-dim').textContent = `${img.naturalWidth} × ${img.naturalHeight} px`);
+        img.src = m.url;
+        $('#copiar').onclick = async () => {
+          try { await navigator.clipboard.writeText(ruta); $('#copiado').textContent = 'Copiada'; } catch { $('#detalle-ruta').select(); }
+        };
+        if ($('#borrar')) $('#borrar').onclick = () => borrar([m.nombre]);
+        $('#detalle').showModal();
+      }
+
+      // ---------- Subir ----------
+      const limpiarNombre = (nombre) => {
+        const [base, ext] = [nombre.replace(/\.[^.]+$/, ''), nombre.split('.').pop().toLowerCase().replace('jpeg', 'jpg')];
+        const limpio = normalizar(base).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'imagen';
+        let final = `${limpio}.${ext}`;
+        for (let i = 2; estado.medios.some((m) => m.nombre === final); i++) final = `${limpio}-${i}.${ext}`;
+        return final;
+      };
+      const base64 = (archivo) =>
+        new Promise((ok, mal) => {
+          const lector = new FileReader();
+          lector.onload = () => ok(String(lector.result).split(',')[1]);
+          lector.onerror = mal;
+          lector.readAsDataURL(archivo);
+        });
+
+      async function subir(archivos) {
+        const pesados = archivos.filter((a) => a.size > MAX);
+        if (pesados.length) {
+          alert(`${pesados.map((a) => `"${a.name}" (${kb(a.size)})`).join(', ')} ${pesados.length === 1 ? 'pesa' : 'pesan'} más de 500 KB. Redúcelas (por ejemplo en squoosh.app) y vuelve a subirlas.`);
+        }
+        const validos = archivos.filter((a) => a.size <= MAX);
+        for (const archivo of validos) {
+          const nombre = limpiarNombre(archivo.name);
+          $('#mas').textContent = `Subiendo ${nombre}…`;
+          const contenido = await base64(archivo);
+          await api('persistMedia', { asset: { path: `${CARPETA}/${nombre}`, content: contenido, encoding: 'base64' }, options: { commitMessage: mensaje('subir', nombre) } });
+          // Se muestra con la copia del archivo que ya está en el navegador
+          estado.medios.unshift({ nombre, peso: archivo.size, url: URL.createObjectURL(archivo), notas: [], mes: '' });
+        }
+        estado.uso = estado.fecha = estado.texto = '';
+        $('#f-uso').value = $('#f-fecha').value = $('#f-texto').value = '';
+        pintar();
+        if (validos.length) $('#mas').insertAdjacentHTML('afterbegin', `<strong>${validos.length} ${validos.length === 1 ? 'imagen subida' : 'imágenes subidas'}.</strong> `);
+      }
+
+      // ---------- Borrar ----------
+      async function borrar(nombres) {
+        const usadas = nombres.filter((n) => estado.medios.find((m) => m.nombre === n)?.notas.length);
+        if (usadas.length) {
+          alert(`No se pueden borrar porque las usan notas: ${usadas.join(', ')}. Quítalas de esas notas primero.`);
+          return;
+        }
+        if (!confirm(`Vas a borrar permanentemente ${nombres.length === 1 ? `"${nombres[0]}"` : `${nombres.length} imágenes`}. Esta acción no se puede deshacer.`)) return;
+        try {
+          for (const nombre of nombres) {
+            await borrarArchivo(`${CARPETA}/${nombre}`, mensaje('borrar', nombre));
+            estado.medios = estado.medios.filter((x) => x.nombre !== nombre);
+            estado.seleccion.delete(nombre);
+          }
+        } catch (error) {
+          alert(`No se pudo borrar: ${error.message}`);
+        }
+        if ($('#detalle').open) $('#detalle').close();
+        pintar();
+      }
+
+      // ---------- Eventos ----------
+      $('#btn-subir').addEventListener('click', () => $('#archivos').click());
+      $('#archivos').addEventListener('change', async (e) => {
+        const archivos = [...e.target.files];
+        e.target.value = '';
+        try { await subir(archivos); } catch (error) { alert(`No se pudo subir: ${error.message}`); pintar(); }
+      });
+      $('#f-uso').addEventListener('change', (e) => { estado.uso = e.target.value; estado.mostrados = POR_TANDA; pintar(); });
+      $('#f-fecha').addEventListener('change', (e) => { estado.fecha = e.target.value; estado.mostrados = POR_TANDA; pintar(); });
+      $('#f-texto').addEventListener('input', (e) => { estado.texto = e.target.value; estado.mostrados = POR_TANDA; pintar(); });
+      $('#f-buscar').addEventListener('submit', (e) => e.preventDefault());
+      $('#btn-lote').addEventListener('click', () => { estado.lote = true; document.body.classList.add('en-lote'); pintar(); });
+      $('#btn-cancelar-lote').addEventListener('click', () => { estado.lote = false; estado.seleccion.clear(); document.body.classList.remove('en-lote'); pintar(); });
+      $('#btn-borrar-lote').addEventListener('click', () => borrar([...estado.seleccion]));
+      $('#cerrar').addEventListener('click', () => $('#detalle').close());
+      $('#detalle').addEventListener('click', (e) => { if (e.target === $('#detalle')) $('#detalle').close(); });
+      document.addEventListener('click', (e) => {
+        if (e.target.id === 'ver-mas') { estado.mostrados += POR_TANDA; pintar(); return; }
+        const medio = e.target.closest('.medio');
+        if (!medio) return;
+        if (estado.lote) {
+          const n = medio.dataset.nombre;
+          estado.seleccion.has(n) ? estado.seleccion.delete(n) : estado.seleccion.add(n);
+          pintar();
+        } else abrirDetalle(medio.dataset.nombre);
+      });
+      // Arrastrar y soltar imágenes sobre la página también las sube
+      document.addEventListener('dragover', (e) => e.preventDefault());
+      document.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const archivos = [...(e.dataTransfer?.files ?? [])].filter((a) => a.type.startsWith('image/'));
+        if (archivos.length && datos) subir(archivos).catch((error) => alert(`No se pudo subir: ${error.message}`));
+      });
+
+      (async () => {
+        datos = await cargarDatos();
+        if (!datos) return;
+        try {
+          estado.notas = datos.notas;
+          estado.medios = await leerMedios();
+          relacionar();
+          llenarFechas();
+          $('#contenido').hidden = false;
+          pintar();
+        } catch (error) {
+          if (error.message !== 'sesion') avisar(`No se pudieron cargar las imágenes (${esc(error.message)}).`);
+        }
+      })();
+    </script>
+  </body>
+</html>

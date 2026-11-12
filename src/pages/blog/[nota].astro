@@ -1,0 +1,123 @@
+---
+// Página de una nota del blog: encabezado, texto, compartir, liga a la línea de producto, notas anterior/siguiente
+// y relacionadas.
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import Compartir from '../../components/Compartir.astro';
+import ContactBand from '../../components/linea/ContactBand.astro';
+import { notasPublicadas, categoriasBlog, urlNota, fechaNota, minutosLectura, type Nota } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const notas = await notasPublicadas();
+  return notas.map((nota) => ({ params: { nota: nota.id }, props: { nota } }));
+}
+
+const { nota } = Astro.props as { nota: Nota };
+const { titulo, descripcion, fecha, autor, imagen, imagenAlt } = nota.data;
+const { Content } = await render(nota);
+
+const todas = await notasPublicadas();
+const categorias = await categoriasBlog();
+const nombres = new Map(categorias.map((c) => [c.id, c.data.nombre]));
+const cats = nota.data.categorias.map((r) => categorias.find((c) => c.id === r.id)!).filter(Boolean);
+const linea = cats.find((c) => c.data.pagina);
+
+// Anterior = más antigua, siguiente = más reciente (por fecha, sin contar destacadas)
+const cronologico = [...todas].sort((a, b) => a.data.fecha.valueOf() - b.data.fecha.valueOf());
+const pos = cronologico.findIndex((n) => n.id === nota.id);
+const anterior = cronologico[pos - 1];
+const siguiente = cronologico[pos + 1];
+
+// Relacionadas: primero las de la misma categoría y luego las más recientes
+const ids = cats.map((c) => c.id);
+const relacionadas = [
+  ...todas.filter((n) => n.id !== nota.id && n.data.categorias.some((c) => ids.includes(c.id))),
+  ...todas.filter((n) => n.id !== nota.id),
+].filter((n, i, lista) => lista.findIndex((x) => x.id === n.id) === i).slice(0, 3);
+
+const og = await getImage({ src: imagen, format: 'jpg', width: 1200, height: 630, fit: 'cover' });
+const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+const arrowLeft = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15 9H3M3 9L8 4M3 9L8 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+---
+
+<Layout title={`${titulo} | Blog Terza`} description={descripcion || undefined} image={og.src} imageAlt={imagenAlt} type="article">
+  <!-- Encabezado: texto a la izquierda y la foto de la nota pegada al borde derecho -->
+  <section class="grid bg-terza-teal text-white lg:grid-cols-[minmax(0,1fr)_minmax(0,42%)]">
+    <div class="flex flex-col justify-center px-6 py-12 md:px-12 xl:px-[72px] xl:py-16">
+      <nav class="text-sm text-white/70" aria-label="Ruta">
+        <a href="/" class="hover:text-white">Inicio</a><span class="mx-2">/</span>
+        <a href="/blog" class="hover:text-white">Blog</a>
+      </nav>
+      {cats.length > 0 && (
+        <ul class="mt-6 flex flex-wrap gap-x-4 gap-y-1">
+          {cats.map((c) => <li><a href={`/blog?categoria=${c.id}`} class="text-sm font-bold uppercase tracking-widest text-terza-lime hover:underline">{c.data.nombre}</a></li>)}
+        </ul>
+      )}
+      <h1 class="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{titulo}</h1>
+      <p class="mt-6 text-sm text-white/70 xl:text-base">
+        Por <span class="font-bold text-white">{autor}</span> · <time datetime={fecha.toISOString().slice(0, 10)}>{fechaNota(fecha)}</time> · {minutosLectura(nota)} min de lectura
+      </p>
+    </div>
+    <div class="relative aspect-[3/2] overflow-hidden lg:aspect-auto lg:min-h-[420px] lg:rounded-l-[32px] xl:rounded-l-[56px]">
+      <Image src={imagen} alt={imagenAlt} width={1400} loading="eager" class="absolute inset-0 h-full w-full object-cover" />
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[1728px] gap-12 px-6 py-12 md:px-12 lg:grid-cols-[minmax(0,1fr)_320px] xl:gap-20 xl:px-[72px] xl:py-16">
+    <article class="nota mx-auto w-full max-w-[780px] lg:mx-0">
+      <Content />
+    </article>
+
+    <aside class="space-y-8 lg:sticky lg:top-6 lg:self-start">
+      <Compartir nombre={titulo} detalle="Blog" titulo="Compartir nota" />
+
+      {linea && (
+        <div class="rounded-[28px] bg-terza-lime-pale p-7">
+          <p class="text-sm font-bold uppercase tracking-widest text-terza-teal">{linea.data.nombre}</p>
+          <p class="mt-2 text-xl font-bold leading-snug text-black">Conoce nuestra línea de {linea.data.nombre.toLowerCase()}</p>
+          <a href={linea.data.pagina} class="mt-5 inline-flex items-center gap-2 rounded-full bg-terza-lime px-6 py-1.5 text-sm font-bold text-terza-ink hover:brightness-95">Ver más <Fragment set:html={arrow} /></a>
+        </div>
+      )}
+
+      <div class="rounded-[28px] bg-terza-teal p-7 text-white">
+        <p class="text-xl font-bold leading-snug">¿Necesitas asesoría para tu proyecto?</p>
+        <p class="mt-2 text-sm text-white/80">Nuestro equipo te ayuda a elegir la mejor solución para tu espacio.</p>
+        <a href="/contacto" class="mt-5 inline-flex items-center gap-2 rounded-full bg-terza-lime px-6 py-1.5 text-sm font-bold text-terza-ink hover:brightness-95">Contáctanos <Fragment set:html={arrow} /></a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Nota anterior / siguiente -->
+  <nav class="mx-auto grid max-w-[1728px] gap-4 px-6 pb-14 md:grid-cols-2 md:px-12 xl:px-[72px]" aria-label="Más notas">
+    {anterior ? (
+      <a href={urlNota(anterior)} class="group rounded-[24px] border border-black/10 p-6 transition-colors hover:border-terza-teal">
+        <span class="inline-flex items-center gap-2 text-sm font-bold text-terza-teal"><Fragment set:html={arrowLeft} /> Nota anterior</span>
+        <p class="mt-2 font-bold leading-snug text-black group-hover:text-terza-teal">{anterior.data.titulo}</p>
+      </a>
+    ) : <span />}
+    {siguiente && (
+      <a href={urlNota(siguiente)} class="group rounded-[24px] border border-black/10 p-6 text-right transition-colors hover:border-terza-teal">
+        <span class="inline-flex items-center gap-2 text-sm font-bold text-terza-teal">Nota siguiente <Fragment set:html={arrow} /></span>
+        <p class="mt-2 font-bold leading-snug text-black group-hover:text-terza-teal">{siguiente.data.titulo}</p>
+      </a>
+    )}
+  </nav>
+
+  {relacionadas.length > 0 && (
+    <section class="bg-terza-mist">
+      <div class="mx-auto max-w-[1728px] px-6 py-14 md:px-12 xl:px-[72px] xl:py-20">
+        <div class="flex items-end justify-between gap-6">
+          <h2 class="text-3xl font-bold text-black md:text-4xl">También te puede interesar</h2>
+          <a href="/blog" class="hidden items-center gap-2 font-bold text-terza-teal hover:underline sm:inline-flex">Ver todas las notas <Fragment set:html={arrow} /></a>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-3 xl:gap-8">
+          {relacionadas.map((n) => <BlogCard nota={n} categorias={nombres} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <ContactBand title="Transforma tus espacios con Terza" cta={{ label: 'Contáctanos', href: '/contacto' }} />
+</Layout>

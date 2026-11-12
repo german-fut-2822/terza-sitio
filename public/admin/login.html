@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Entrar | Administrador Terza</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/admin/listado.css" />
+  </head>
+  <body class="entrar">
+    <main class="entrar-tarjeta">
+      <div class="entrar-cab"><img src="/admin/terza-logo.webp" alt="Terza" /></div>
+      <div class="entrar-cuerpo">
+        <div id="entrar">
+        <h1>Administrador del blog</h1>
+        <p>Escribe tu correo y contraseña para entrar.</p>
+        <p class="entrar-aviso error" id="error" role="alert" hidden>El correo o la contraseña no son correctos.</p>
+        <p class="entrar-aviso listo" id="salio" role="status" hidden>Cerraste sesión.</p>
+        <p class="entrar-aviso listo" id="enviado" role="status" hidden>Si el correo es de un usuario del panel, le enviamos un enlace para crear una contraseña nueva. Revisa tu bandeja (y la de spam); el enlace sirve durante 1 hora.</p>
+        <p class="entrar-aviso listo" id="restablecida" role="status" hidden>Tu contraseña se guardó. Ya puedes entrar con ella.</p>
+        <!-- POST normal al servidor: funciona aunque la página no haya terminado de cargar su JavaScript -->
+        <form method="post" action="/api/sesion" id="f-entrar">
+          <input type="hidden" name="volver" id="volver" />
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" autocomplete="username" required autofocus />
+          <label for="clave">Contraseña</label>
+          <div class="campo-clave">
+            <input id="clave" name="clave" type="password" autocomplete="current-password" required />
+            <button type="button" data-ver-clave aria-label="Mostrar contraseña" aria-pressed="false"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+          <button class="btn btn-primario" type="submit">Entrar</button>
+        </form>
+        <p class="entrar-pie"><button type="button" class="btn-enlace" id="abrir-olvido">¿Olvidaste tu contraseña?</button></p>
+        </div>
+
+        <!-- ¿Olvidaste tu contraseña?: manda un enlace al correo para crear una nueva (src/pages/api/recuperar.ts) -->
+        <div id="olvido" hidden>
+          <h1>¿Olvidaste tu contraseña?</h1>
+          <p>Escribe tu correo y te enviaremos un enlace para crear una contraseña nueva.</p>
+          <form method="post" action="/api/recuperar">
+            <label for="o-correo">Correo</label>
+            <input id="o-correo" name="correo" type="email" autocomplete="username" required />
+            <button class="btn btn-primario" type="submit">Enviar enlace</button>
+          </form>
+          <p class="entrar-pie"><button type="button" class="btn-enlace" id="cerrar-olvido">← Regresar a entrar</button></p>
+        </div>
+
+        <!-- Primera vez (todavía no hay usuarios): crear el primer administrador con el código de instalación -->
+        <div id="instalar" hidden>
+          <h1>Crear el primer administrador</h1>
+          <p>Todavía no hay usuarios. Escribe el código de instalación (el valor de <code>ADMIN_SECRETO</code> en Vercel) y los datos de quien administrará el panel.</p>
+          <p class="entrar-aviso error" id="error-instalar" role="alert" hidden></p>
+          <form method="post" action="/api/instalar">
+            <label for="i-codigo">Código de instalación</label>
+            <div class="campo-clave">
+              <input id="i-codigo" name="codigo" type="password" autocomplete="off" required />
+              <button type="button" data-ver-clave aria-label="Mostrar contraseña" aria-pressed="false"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <label for="i-nombre">Nombre</label>
+            <input id="i-nombre" name="nombre" type="text" autocomplete="name" required />
+            <label for="i-correo">Correo</label>
+            <input id="i-correo" name="correo" type="email" autocomplete="username" required />
+            <label for="i-clave">Contraseña (mínimo 10 caracteres)</label>
+            <div class="campo-clave">
+              <input id="i-clave" name="clave" type="password" autocomplete="new-password" minlength="10" required />
+              <button type="button" data-ver-clave aria-label="Mostrar contraseña" aria-pressed="false"><svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <button class="btn btn-primario" type="submit">Crear y entrar</button>
+          </form>
+        </div>
+        <p class="entrar-pie"><a href="/">← Regresar al sitio</a></p>
+      </div>
+    </main>
+
+    <script>
+      // Avisos (?error=1 o ?salio=1), página a la que se regresa al entrar (?volver=) y mostrar u ocultar las contraseñas
+      const p = new URLSearchParams(location.search);
+      document.getElementById('error').hidden = !p.has('error');
+      document.getElementById('salio').hidden = !p.has('salio');
+      document.getElementById('enviado').hidden = !p.has('enviado');
+      document.getElementById('restablecida').hidden = !p.has('restablecida');
+      // ¿Olvidaste tu contraseña?: cambia el formulario de entrar por el de pedir el enlace
+      const verOlvido = (si) => {
+        document.getElementById('entrar').hidden = si;
+        document.getElementById('olvido').hidden = !si;
+        if (si) {
+          document.getElementById('o-correo').value = document.getElementById('correo').value;
+          document.getElementById('o-correo').focus();
+        }
+      };
+      document.getElementById('abrir-olvido').addEventListener('click', () => verOlvido(true));
+      document.getElementById('cerrar-olvido').addEventListener('click', () => verOlvido(false));
+      if (p.has('olvido')) verOlvido(true);
+      document.getElementById('volver').value = p.get('volver') ?? '';
+      // El correo se conserva si la contraseña no fue correcta (en esta pestaña, nunca en la dirección)
+      const correo = document.getElementById('correo');
+      try {
+        if (p.has('error')) correo.value = sessionStorage.getItem('admin-correo') ?? '';
+        if (correo.value) document.getElementById('clave').focus();
+        document.getElementById('f-entrar').addEventListener('submit', () => sessionStorage.setItem('admin-correo', correo.value));
+      } catch { /* sin almacenamiento */ }
+      // Botón del ojo: muestra u oculta la contraseña de su campo
+      document.addEventListener('click', (e) => {
+        const boton = e.target.closest('[data-ver-clave]');
+        if (!boton) return;
+        const campo = boton.parentElement.querySelector('input');
+        const ver = campo.type === 'password';
+        campo.type = ver ? 'text' : 'password';
+        boton.setAttribute('aria-pressed', String(ver));
+        boton.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      });
+      // Si ya hay sesión, directo al panel
+      fetch('/api/sesion').then((r) => r.ok && location.replace(/^\/admin\/[^/]/.test(p.get('volver') ?? '') ? p.get('volver') : '/admin/notas.html'));
+      // Si todavía no hay ningún usuario, en lugar de entrar se crea el primer administrador
+      const ERRORES_INSTALAR = {
+        codigo: 'El código de instalación no es correcto.',
+        datos: 'Revisa el nombre y el correo.',
+        clave: 'La contraseña debe tener al menos 10 caracteres.',
+      };
+      fetch('/api/instalar').then((r) => r.json()).then(({ necesaria }) => {
+        if (!necesaria) return;
+        document.getElementById('entrar').hidden = true;
+        document.getElementById('instalar').hidden = false;
+        const error = ERRORES_INSTALAR[p.get('instalar')];
+        document.getElementById('error-instalar').textContent = error ?? '';
+        document.getElementById('error-instalar').hidden = !error;
+        document.getElementById('i-codigo').focus();
+      }).catch(() => {});
+    </script>
+  </body>
+</html>

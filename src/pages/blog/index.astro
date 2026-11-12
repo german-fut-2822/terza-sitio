@@ -1,0 +1,142 @@
+---
+// Listado del blog: nota más reciente destacada, filtro por categoría, búsqueda y cuadrícula con "Ver más".
+// El filtro y la búsqueda se aplican en el navegador y se guardan en la URL (?categoria=deck&q=limpiar).
+import { Image, getImage } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import ContactBand from '../../components/linea/ContactBand.astro';
+import heroBlog from '../../assets/images/transformar-espacios.webp';
+import { notasPublicadas, categoriasBlog, urlNota, fechaNota, minutosLectura } from '../../lib/blog';
+
+const notas = await notasPublicadas();
+const nombres = new Map((await categoriasBlog()).map((c) => [c.id, c.data.nombre]));
+const categorias = [...nombres]
+  .map(([id, nombre]) => ({ id, nombre, total: notas.filter((n) => n.data.categorias.some((c) => c.id === id)).length }))
+  .filter((c) => c.total > 0);
+
+const [portada] = notas;
+const og = await getImage({ src: portada.data.imagen, format: 'jpg', width: 1200, height: 630, fit: 'cover' });
+
+const descripcion = 'Consejos, tendencias y guías prácticas para crear espacios más funcionales, bonitos y duraderos con pisos, muros, persianas y exteriores Terza.';
+const arrow = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+const lupa = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"></circle><path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>';
+const POR_PAGINA = 12;
+---
+
+<Layout title="Blog | Ideas para transformar tus espacios | Terza" description={descripcion} image={og.src}>
+  <!-- Encabezado: texto a la izquierda y la foto pegada al borde derecho -->
+  <section class="grid bg-terza-teal text-white lg:grid-cols-[minmax(0,1fr)_minmax(0,40%)]">
+    <div class="px-6 py-12 md:px-12 xl:px-[72px] xl:py-16">
+      <nav class="text-sm text-white/70" aria-label="Ruta">
+        <a href="/" class="hover:text-white">Inicio</a><span class="mx-2">/</span>
+        <span class="text-white">Blog</span>
+      </nav>
+      <p class="mt-6 text-sm font-bold uppercase tracking-widest text-terza-lime">Blog | Ideas</p>
+      <h1 class="mt-2 max-w-3xl text-5xl font-bold leading-none md:text-6xl">Ideas para transformar tus espacios</h1>
+      <p class="mt-5 max-w-2xl text-lg text-white/85 xl:text-xl">{descripcion}</p>
+    </div>
+    <div class="relative hidden overflow-hidden rounded-l-[32px] lg:block xl:rounded-l-[56px]">
+      <Image src={heroBlog} alt="" width={1100} loading="eager" class="absolute inset-0 h-full w-full object-cover" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1728px] px-6 py-12 md:px-12 xl:px-[72px] xl:py-16">
+    <!-- Nota más reciente (se oculta al filtrar o buscar) -->
+    <a href={urlNota(portada)} class="blog-portada group grid overflow-hidden rounded-[32px] bg-terza-lime-pale md:grid-cols-2">
+      <div class="aspect-[3/2] overflow-hidden md:aspect-auto md:min-h-[380px]">
+        <Image src={portada.data.imagen} alt={portada.data.imagenAlt} width={1000} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      </div>
+      <div class="flex flex-col justify-center p-7 md:p-10 xl:p-14">
+        <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{portada.data.destacada ? 'Nota destacada' : 'Nota más reciente'}</p>
+        <h2 class="mt-3 text-3xl font-bold leading-tight text-black xl:text-4xl">{portada.data.titulo}</h2>
+        {portada.data.descripcion && <p class="mt-4 text-base text-black/70 xl:text-lg">{portada.data.descripcion}</p>}
+        <p class="mt-5 text-sm text-black/50">{fechaNota(portada.data.fecha)} · {minutosLectura(portada)} min de lectura</p>
+        <span class="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-terza-lime px-7 py-1.5 text-base font-bold text-terza-ink group-hover:brightness-95">Leer nota <Fragment set:html={arrow} /></span>
+      </div>
+    </a>
+
+    <!-- Categorías y búsqueda -->
+    <div class="blog-portada-sep mt-14 xl:mt-20"></div>
+    <div class="flex flex-col gap-5 border-b border-black/10 pb-5 lg:flex-row lg:items-center lg:justify-between">
+      <div class="-mx-6 overflow-x-auto px-6 md:mx-0 md:px-0">
+        <ul class="flex gap-2 md:flex-wrap" aria-label="Categorías">
+          <li><button type="button" class="blog-cat whitespace-nowrap rounded-full border border-terza-teal/20 px-4 py-1.5 text-sm font-medium text-terza-teal transition-colors hover:border-terza-teal data-[active]:border-terza-teal data-[active]:bg-terza-teal data-[active]:text-white" data-cat="" data-active>Todas</button></li>
+          {categorias.map((c) => (
+            <li><button type="button" class="blog-cat whitespace-nowrap rounded-full border border-terza-teal/20 px-4 py-1.5 text-sm font-medium text-terza-teal transition-colors hover:border-terza-teal data-[active]:border-terza-teal data-[active]:bg-terza-teal data-[active]:text-white" data-cat={c.id}>{c.nombre} <span class="opacity-60">{c.total}</span></button></li>
+          ))}
+        </ul>
+      </div>
+      <label class="relative block w-full shrink-0 lg:w-80">
+        <span class="sr-only">Buscar en el blog</span>
+        <input type="search" class="blog-buscar w-full rounded-full border border-black/15 bg-white py-2.5 pl-5 pr-11 text-sm text-black placeholder:text-black/40 focus:border-terza-teal focus:outline-none" placeholder="Buscar notas" />
+        <span class="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-terza-teal" set:html={lupa} />
+      </label>
+    </div>
+    <p class="mt-4 text-sm text-black/70"><span class="blog-total font-bold text-black">{notas.length}</span> notas</p>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-8">
+      {notas.map((n, i) => (
+        <div class:list={['blog-item', (i === 0 || i > POR_PAGINA) && 'hidden']} data-portada={i === 0 ? '' : undefined}>
+          <BlogCard nota={n} categorias={nombres} />
+        </div>
+      ))}
+    </div>
+    <p class="blog-vacio mt-10 hidden text-center text-black/70">
+      No encontramos notas con esa búsqueda.
+      <button type="button" class="blog-limpiar font-bold text-terza-teal hover:underline">Ver todas</button>
+    </p>
+    <div class="mt-12 text-center">
+      <button type="button" class="blog-mas inline-flex items-center gap-2 rounded-full bg-terza-teal px-7 py-1.5 text-base font-bold text-white hover:bg-terza-teal-dark">Ver más notas</button>
+    </div>
+  </section>
+
+  <ContactBand title="¿Tienes un proyecto en mente?" cta={{ label: 'Contáctanos', href: '/contacto' }} />
+</Layout>
+
+<script define:vars={{ POR_PAGINA }}>
+  const items = [...document.querySelectorAll('.blog-item')];
+  const botones = [...document.querySelectorAll('.blog-cat')];
+  const buscar = document.querySelector('.blog-buscar');
+  const portada = document.querySelector('.blog-portada');
+  const separador = document.querySelector('.blog-portada-sep');
+  const total = document.querySelector('.blog-total');
+  const vacio = document.querySelector('.blog-vacio');
+  const mas = document.querySelector('.blog-mas');
+  const normalizar = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const textos = new Map(items.map((el) => [el, normalizar(el.querySelector('.blog-card').dataset.texto)]));
+
+  const params = new URLSearchParams(location.search);
+  let categoria = params.get('categoria') ?? '';
+  let mostradas = POR_PAGINA;
+  buscar.value = params.get('q') ?? '';
+
+  const pintar = () => {
+    const palabras = normalizar(buscar.value.trim()).split(/\s+/).filter(Boolean);
+    const filtrando = Boolean(categoria || palabras.length);
+    // Sin filtros la nota más reciente va arriba en grande y no se repite en la cuadrícula
+    portada.classList.toggle('hidden', filtrando);
+    separador.classList.toggle('hidden', filtrando);
+    const visibles = items.filter((el) => {
+      if (!filtrando && el.hasAttribute('data-portada')) return false;
+      const cats = el.querySelector('.blog-card').dataset.categorias.split(' ');
+      return (!categoria || cats.includes(categoria)) && palabras.every((p) => textos.get(el).includes(p));
+    });
+    items.forEach((el) => el.classList.add('hidden'));
+    visibles.slice(0, mostradas).forEach((el) => el.classList.remove('hidden'));
+    total.textContent = String(visibles.length + (filtrando ? 0 : 1));
+    vacio.classList.toggle('hidden', visibles.length > 0);
+    mas.classList.toggle('hidden', visibles.length <= mostradas);
+    botones.forEach((b) => b.toggleAttribute('data-active', b.dataset.cat === categoria));
+
+    const url = new URL(location.href);
+    categoria ? url.searchParams.set('categoria', categoria) : url.searchParams.delete('categoria');
+    buscar.value.trim() ? url.searchParams.set('q', buscar.value.trim()) : url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  };
+
+  botones.forEach((b) => b.addEventListener('click', () => { categoria = b.dataset.cat; mostradas = POR_PAGINA; pintar(); }));
+  buscar.addEventListener('input', () => { mostradas = POR_PAGINA; pintar(); });
+  mas.addEventListener('click', () => { mostradas += POR_PAGINA; pintar(); });
+  document.querySelector('.blog-limpiar').addEventListener('click', () => { categoria = ''; buscar.value = ''; pintar(); });
+  pintar();
+</script>

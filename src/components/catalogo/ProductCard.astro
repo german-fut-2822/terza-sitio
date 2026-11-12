@@ -1,0 +1,36 @@
+---
+// Tarjeta de producto del catálogo: foto, etiqueta "Nuevo", familia y variante.
+// Los data-f-* permiten filtrar las tarjetas en el listado sin recargar.
+import { foto, textoTarjeta, urlProducto, type Producto } from '../../lib/catalogo';
+
+interface Props {
+  producto: Producto;
+}
+
+const { producto: p } = Astro.props;
+const img = foto(p.fotos[0], 'sm');
+const filtros = Object.entries(p.filtros as Record<string, string>);
+const texto = textoTarjeta(p); // en el título se puede partir después de una diagonal (Walnut/Teak)
+---
+
+<article class="product-card" {...Object.fromEntries(filtros.map(([campo, valor]) => [`data-f-${campo}`, valor]))}>
+  <a href={urlProducto(p)} class="group flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_4px_18px_rgba(0,0,0,0.08)] transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.14)]">
+    <div class="relative aspect-square overflow-hidden bg-terza-mist">
+      {img && (
+        <img src={img} alt={`${p.familia} ${p.variante}`} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+      )}
+      {p.nuevo && (
+        <span class="absolute left-3 top-3 rounded-full bg-terza-lime px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-terza-ink">Nuevo</span>
+      )}
+    </div>
+    <div class="flex flex-1 items-end justify-between gap-3 p-4 md:p-5">
+      <div class="min-w-0">
+        <p class="text-xs font-bold uppercase tracking-widest text-terza-teal">{texto.arriba}</p>
+        <h3 class="mt-1 text-base font-medium leading-snug text-black [overflow-wrap:anywhere] md:text-lg">{texto.titulo.replaceAll('/', '/\u200b')}</h3>
+      </div>
+      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-terza-mist text-terza-teal transition-colors group-hover:bg-terza-lime group-hover:text-terza-ink" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </span>
+    </div>
+  </a>
+</article>

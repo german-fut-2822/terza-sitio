@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "Pisos de Madera | Terza",
+    "description": "Dale a tu espacio un toque natural, cálido y elegante con Pisos de Madera Terza, fabricados con maderas naturales de la más alta calidad como encino y nogal."
+  },
+  "hero": { "title": "Pisos de Madera", "subtitle": "Dale vida a tu espacio" },
+  "intro": {
+    "title": "Dale a tu espacio un toque natural, cálido y <br class=\"hidden md:inline\" />elegante, con Pisos de Madera Terza",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true" },
+      { "label": "Catálogo", "href": "/catalogo/pisos-de-madera" }
+    ]
+  },
+  "porQue": {
+    "title": "Pisos de Madera Terza",
+    "paragraphs": [
+      "Los pisos de madera Terza, con sus diferentes acabados y matices, hacen que cualquier ambiente brille con naturaleza y elegancia.",
+      "Haz que tus espacios se transformen en un ambiente amplio, cálido y natural. Con distintos acabados y matices, nuestros pisos de madera te permiten decorar creando estilos únicos.",
+      "Las colecciones de pisos de madera de Terza son fabricados con maderas naturales de la más alta calidad, como encino y nogal."
+    ]
+  },
+  "colecciones": [
+    {
+      "image": "img-02",
+      "alt": "Mamá e hija recostadas sobre piso de madera Unika",
+      "title": "Pisos de madera Unika",
+      "description": "Gracias a nuestra tecnología en la colección UNIKA, podrás personalizar el color de tus pisos de madera, para que tus expectativas de decoración se cumplan por completo.",
+      "cta": { "label": "Ver catálogo", "href": "/catalogo/pisos-de-madera" }
+    },
+    {
+      "image": "img-03",
+      "alt": "Sala con piso de madera Vallée du Mât",
+      "title": "Descubre la elegancia de los Pisos de Madera Vallée du Mât",
+      "cta": { "label": "Ver Vallée du Mât", "href": "https://www.valleedumat.com/" }
+    }
+  ],
+  "catalogo": {
+    "title": "Catálogo de Pisos de Madera",
+    "description": "Descubre la variedad de Pisos de Madera Terza que personalizan y embellecen tu hogar u oficina.",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/pisos-de-madera" }
+  },
+  "marcas": {
+    "title": "Transforma tus espacios con nuestras colecciones de Pisos de Madera.",
+    "logos": [
+      { "image": "logo-01", "alt": "Terza" },
+      { "image": "logo-02", "alt": "Unika Custom Design Hardwood" },
+      { "image": "logo-03", "alt": "Vallée du Mât by Terza" }
+    ]
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿Qué cuidados deben tener los pisos de madera?", "a": "<p>Existen algunas recomendaciones que sirven para mantener tu piso de madera en las mejores condiciones, con brillo y sin rayones o marcas:</p><ul><li>Si se derrama algún líquido, procura secarlo al momento.</li><li>No utilizar limpiadores, se aconseja utilizar una escoba y trapeador semi húmedo.</li><li>Puedes utilizar tapetes en algunas áreas de mayor tráfico para proteger tu piso.</li><li>Protege tus pisos del sol ya que puede cambiar el color. Procura cerrar las persianas o cortinas en las horas más calurosas del día.</li></ul>" },
+      { "q": "¿Qué debo hacer si mis pisos de madera se dañan por agua o líquidos derramados?", "a": "<p>Si tus pisos de madera se dañaron por agua o líquidos, lo primero que debes hacer es secar todo el piso con trapos secos para que absorban todo el agua posible, posteriormente se debe dejar pasar alrededor de 2 a 6 meses para que seque por completo antes de someterlo a otro proceso de reparación.</p>" },
+      { "q": "¿Cómo puedo proteger mis pisos de madera del sol y decoloración?", "a": "<p>Para proteger tus pisos de madera de la decoloración y daños ocasionados por el sol, procura mantener cerradas persianas o cortinas en la horas más calurosas del día, evitando los rayos del sol directos en tus pisos de madera.</p>" },
+      { "q": "¿Cómo limpiar los pisos de madera?", "a": "<p>Cuando sea el momento de limpiar tus <strong>pisos de madera</strong>, te recomendamos seguir los siguientes pasos:</p><ul><li>Barre el piso con una mopa de microfibra para quitar cualquier partícula de polvo o suciedad.</li><li>Utiliza agua en un trapeador semi húmedo para retirar residuos que la barrida no quitó.</li></ul>" },
+      { "q": "¿Cuáles son los mejores tipos de pisos de madera?", "a": "<p>Cada tipo de piso cuenta con características, diseños y tonalidades únicas, por lo que tu decisión de escoger el mejor debe basarse en tus necesidades así como en el espacio donde deseas instalarlo. Si tienes dudas o requieres de asesoría, no dudes en contactarnos.</p>" },
+      { "q": "¿Pueden los pisos de madera decolorarse fácilmente?", "a": "<p>Los pisos de madera tienden a modificar un poco su tonalidad con el paso del tiempo y el sol, sin embargo no será un cambio drástico. Procura proteger tus pisos cerrando tus persianas o cortinas en las horas del día en que el sol es mas intenso.</p>" },
+      { "q": "¿Cuánto tiempo duran los pisos de madera?", "a": "<p>Depende mucho de los cuidados que les des a tus pisos de madera, por lo que es necesario brindarle el mantenimiento necesario para que su durabilidad se extienda. Con los cuidados correctos, tus pisos de madera pueden durar hasta 20 años.</p>" },
+      { "q": "¿Cómo puedo saber si mis pisos de madera necesitan ser renovados o reemplazados?", "a": "<p>Existen diversos factores que con el tiempo pueden ir dañando tus pisos de madera, como lo es la mala instalación, la humedad o los cambios bruscos de temperatura, los cuales comenzarán a mostrar daños en la apariencia de tus pisos, como madera levantada o pandeada, si ese es el caso podemos comenzar a considerar una renovación de nuestros pisos de madera.</p>" },
+      { "q": "¿Cómo puedo mantener el brillo y la apariencia de mis pisos de madera?", "a": "<p>Para poder disfrutar de un acabado reluciente en tus pisos de madera y prolongar su durabilidad procura seguir lo siguientes sencillos pasos:</p><ul><li>Emplea productos específicos para la limpieza de madera.</li><li>Para evitar los rayones o marcas, utiliza protectores en las patas de los muebles que se encuentran en áreas de mayor tráfico.</li><li>Limpia el polvo frecuentemente para evitar la acumulación de partículas que puedan rayar o dañar la superficie de tus pisos.</li><li>Evita usar zapatos con tacones o suelas que puedan rayar tus pisos.</li><li>Evita arrastrar muebles pesados sobre el piso, mejor levántalos.</li></ul>" },
+      { "q": "¿Qué se debe de hacer para darle mantenimiento a un piso de madera y mantenerlo en buenas condiciones?", "a": "<p>Para darle mantenimiento a un piso de madera, se recomienda seguir los siguientes pasos:</p><ul><li>Se debe barrer constantemente la madera.</li><li>También se puede trapear el piso con un trapeador semi húmedo.</li><li>Evitar utilizar limpiadores a base de aceite.</li><li>Si se desea usar una aspiradora, se debe asegurar que sea con un cepillo suave para no dañar la superficie de madera.</li><li>Utilizar productos específicos para la limpieza de la madera.</li></ul>" }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

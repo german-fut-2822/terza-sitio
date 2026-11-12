@@ -1,0 +1,26 @@
+{
+  "seo": {
+    "title": "Buzón de Transparencia | Terza",
+    "description": "Línea de Integridad y Transparencia de Alpek y sus subsidiarias."
+  },
+  "hero": { "title": "Buzón de Transparencia" },
+  "intro": "Alpek y sus subsidiarias unieron esfuerzos para brindar mayor transparencia, confianza y seguridad en sus relaciones con empresas y colaboradores.",
+  "paragraphs": [
+    "Con el fin de mantener un ambiente de transparencia en nuestra compañía, hemos creado la “Línea de Integridad y Transparencia”. Te invitamos a contactarnos por correo electrónico o por teléfono siempre que desees reportar cualquier situación que consideres que no cumple con los niveles de transparencia y seguridad que nuestra organización requiere.",
+    "Tus comentarios pueden enviarse de manera anónima, aunque te recomendamos incluir tu información de contacto en caso de que sea necesario dar seguimiento. Puedes tener la certeza de que la información que proporciones será manejada con absoluta confidencialidad. Para poder llevar a cabo una investigación completa, necesitamos la mayor cantidad posible de información específica y verificable."
+  ],
+  "contacto": {
+    "title": "Línea de Integridad y Transparencia",
+    "telefono": {
+      "text": "Si deseas contactarnos, llame sin costo desde México:",
+      "label": "811-134-8760",
+      "href": "tel:8111348760"
+    },
+    "web": {
+      "text": "También nos puedes escribir y enviar tus comentarios dando click aquí",
+      "label": "Enviar comentarios",
+      "href": "https://www.alpek.com/transparency-helpline/espanol/"
+    }
+  },
+  "logos": ["shawcontract", "mohawk", "graber"]
+}

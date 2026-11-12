@@ -1,0 +1,72 @@
+{
+  "seo": {
+    "title": "Pisos Deck | Terza",
+    "description": "Transforma tus espacios exteriores con la confianza que te brinda la resistencia de los Pisos Deck de Terza."
+  },
+  "hero": { "title": "Pisos Deck", "subtitle": "Dale vida a tu espacio" },
+  "intro": {
+    "title": "Transforma tus espacios exteriores con la confianza que te brinda la resistencia de los Pisos Deck de Terza",
+    "ctas": [
+      { "label": "Decorador virtual", "href": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true" },
+      { "label": "Catálogo", "href": "/catalogo/pisos-deck" }
+    ]
+  },
+  "porQue": {
+    "title": "¿Por qué optar por pisos deck Terza?",
+    "paragraphs": [
+      "La resistencia a la humedad y el calor son una de las ventajas más sobresalientes de los pisos deck, por lo que son perfectos para complementar la decoración de terrazas, jardines, albercas y demás áreas expuestas al exterior.",
+      "Haz que tus espacios luzcan especiales, con un toque único y con el estilo que vaya más contigo.",
+      "¡Elige entre la variedad de pisos deck que Terza tiene para ti y dale un toque natural y fresco a tus espacios exteriores!"
+    ]
+  },
+  "conoceMas": {
+    "title": "Conoce más de los pisos deck",
+    "items": [
+      { "image": "img-02", "alt": "Jardinera con piso deck", "title": "Durabilidad garantizada", "description": "Los pisos deck son resistentes al agua, sol y alto tráfico sin deformarse ni astillarse. Mantienen su forma y estabilidad por años incluso en espacios muy expuestos." },
+      { "image": "img-03", "alt": "Terraza con piso deck", "title": "Cualidades extraordinarias", "description": "Son impermeables, antiderrapantes, no requieren barniz ni selladores. No atraen insectos, no generan hongos ni moho porque no retienen humedad, y su superficie es ideal para hogares con mascotas." },
+      { "image": "img-04", "alt": "Patio con piso deck", "title": "Diferencias entre pisos deck y pisos de madera.", "description": "A diferencia de la madera, el piso deck no se pudre, no requiere lijado ni barnizado constante y no cambia de forma por humedad o calor. Su mantenimiento es mínimo y su durabilidad es mucho mayor, por lo que es más conveniente para exteriores." }
+    ]
+  },
+  "beneficios": {
+    "title": "Beneficios de los pisos deck",
+    "items": [
+      { "icon": "icono-01", "title": "Resistente a la humedad", "description": "Soporta perfectamente el clima húmedo al no guardar humedad, evita la proliferación de hongos y el desgaste." },
+      { "icon": "icono-02", "title": "No recibirá ataques de insectos", "description": "A diferencia de la madera natural, los pisos deck no sufren invasiones de insectos, ya que no son atractivos para ellos y no tendrás que preocuparte por termitas u otro tipo de plagas." },
+      { "icon": "icono-03", "title": "Resistente a impactos", "description": "Gracias a su robustez, los pisos deck pueden aguantar el desgaste más que otros, por lo que podrás confiar en que durarán mucho tiempo como nuevos." }
+    ]
+  },
+  "variedad": {
+    "title": "En Terza, ¡tenemos lo que buscas!<br />Contamos con gran variedad de<br />estilos y colores",
+    "description": "Encontrarás diferentes opciones con estilos y colores de pisos deck para decorar tus espacios con el toque que más te guste."
+  },
+  "cuidados": {
+    "title": "Cuidados esenciales de los pisos deck",
+    "items": [
+      { "icon": "icono-04", "title": "Limpieza", "description": "Usa agua tibia con jabón neutro y una esponja o cepillo suave para lavar las tablas." },
+      { "icon": "icono-05", "title": "No usar químicos", "description": "No necesita productos químicos agresivos ni limpiadores ácidos." },
+      { "icon": "icono-06", "title": "No rayar", "description": "No arrastres muebles o parrillas. Para evitar rayones, levanta los objetos al moverlos." }
+    ]
+  },
+  "catalogo": {
+    "title": "Catálogo de Pisos Deck Terza",
+    "cta": { "label": "Ver catálogo", "href": "/catalogo/pisos-deck" }
+  },
+  "video": {
+    "title": "Diseña tu espacio",
+    "description": "Conoce los pisos deck Terza y nuestra gran variedad de estilos, así podrás elegir el que mejor se adapte a las necesidades y estilo de tu hogar.",
+    "src": "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FTerzaMexico%2Fvideos%2F1704571233287185%2F&show_text=0&width=500"
+  },
+  "faqs": {
+    "title": "FAQ'S",
+    "items": [
+      { "q": "¿Cómo limpiar los pisos deck?", "a": "Comienza barriendo los pisos deck para eliminar la suciedad superficial. Después prepara una solución con agua tibia y jabón suave y frota el piso con una toalla o trapeador. Deja que se seque al aire y aplica un sellador o protector para mantener su durabilidad. Realiza esta limpieza regularmente, evita productos corrosivos y utiliza alfombras o protectores para prevenir daños adicionales." },
+      { "q": "¿Cómo dar mantenimiento a pisos deck?", "a": "No es necesario el mantenimiento exhaustivo o a fondo. Solo con mantener el piso deck limpio es suficiente, no requiere lijado ni barnizado." },
+      { "q": "¿Cuál es la durabilidad de los pisos deck?", "a": "Con el cuidado adecuado, los pisos deck pueden durar varios años manteniendo su apariencia y funcionalidad, ya que son resistentes a los rayos UV, humedad, lluvia y cambios de temperatura." },
+      { "q": "¿Puedo poner muebles sobre los pisos deck sin que se dañen?", "a": "Sí, puedes colocar muebles sobre pisos deck sin dañarlos, siempre que distribuyas bien el peso y uses protectores en las patas para evitar rayones. Los materiales como el compuesto o PVC son más resistentes, y con limpieza regular, tus pisos deck se mantendrán en excelente estado." }
+    ]
+  },
+  "cierre": {
+    "title": "Queremos ser parte de tu espacio",
+    "cta": { "label": "Contáctanos", "href": "/contacto" }
+  }
+}

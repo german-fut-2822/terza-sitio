@@ -6,21 +6,51 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  /** Ruta de la imagen para compartir (WhatsApp, Facebook, LinkedIn); por defecto /og-terza.jpg */
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'product' | 'article';
 }
 
-const { title, description = 'Terza - Transformamos espacios contigo.' } = Astro.props;
+const { title, description = 'Terza - Transformamos espacios contigo.', image = '/og-terza.jpg', imageAlt, type = 'website' } = Astro.props;
+
+// Las redes piden direcciones completas; se arman con el dominio de astro.config (site)
+const base = Astro.site ?? Astro.url;
+const url = new URL(Astro.url.pathname, base).href;
+const imageUrl = new URL(image, base).href;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5WWHFKG');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+
+    <!-- Vista previa al compartir (Open Graph y X/Twitter) -->
+    <meta property="og:site_name" content="Terza" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={imageUrl} />
+    {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
   </head>
   <body class="bg-white text-terza-ink">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WWHFKG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <Navbar />
     <main>
       <slot />

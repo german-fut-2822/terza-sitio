@@ -1,0 +1,169 @@
+---
+// Buscador de pantalla completa (se abre con cualquier botón .search-open de la navbar).
+// Índice: categorías y familias del catálogo, páginas de línea, páginas del sitio y notas del blog. Los productos uno por uno
+// (nombre y SKU) llegan aparte desde /buscador-productos.json al abrir el buscador.
+import { categorias, productos, urlCategoria, urlProducto, paginasLinea } from '../lib/catalogo';
+import { notasPublicadas, categoriasBlog, urlNota } from '../lib/blog';
+
+type Entrada = { title: string; cat: string; href: string };
+
+// Una entrada por familia (p. ej. "Bilbao" en pisos vinílicos) que lleva a su primer producto
+const familias = new Map<string, { p: (typeof productos)[number]; colores: number }>();
+for (const p of productos) {
+  const clave = `${p.categoria}|${p.familia}`;
+  const actual = familias.get(clave);
+  if (actual) actual.colores++;
+  else familias.set(clave, { p, colores: 1 });
+}
+const nombreCategoria = (slug: string) => categorias.find((c) => c.slug === slug)!.nombre;
+const lineas = [...new Map(Object.values(paginasLinea).map((l) => [l.href, l])).values()];
+
+const nombresBlog = new Map((await categoriasBlog()).map((c) => [c.id, c.data.nombre]));
+
+const indice: Entrada[] = [
+  ...categorias.map((c) => ({ title: c.nombre, cat: `Catálogo · ${c.total} productos`, href: urlCategoria(c.slug) })),
+  ...[...familias.values()].map(({ p, colores }) => ({
+    title: p.familia,
+    cat: `${nombreCategoria(p.categoria)} · ${colores} ${colores === 1 ? 'color' : 'colores'}`,
+    href: urlProducto(p),
+  })),
+  ...lineas.map((l) => ({ title: l.etiqueta.replace('Conoce más sobre ', '').replace(/^\w/, (c) => c.toUpperCase()), cat: 'Información de la línea', href: l.href })),
+  { title: 'Catálogo de productos', cat: 'Catálogo', href: '/catalogo' },
+  { title: 'Catálogos digitales', cat: 'Recursos', href: '/catalogos-digitales' },
+  { title: 'Quiénes somos', cat: 'Nosotros', href: '/quienes-somos' },
+  { title: 'Ubicaciones', cat: 'Showrooms y oficinas', href: '/ubicaciones' },
+  { title: 'Quiero ser distribuidor', cat: 'Distribuidores', href: '/quiero-ser-distribuidor' },
+  { title: 'Contacto', cat: 'Atención a clientes', href: '/contacto' },
+  { title: 'Blog', cat: 'Ideas y consejos', href: '/blog' },
+];
+// Las notas van al final (después de los productos) para que primero aparezcan productos y páginas
+const notas: Entrada[] = [
+  ...(await notasPublicadas()).map((n) => ({
+    title: n.data.titulo,
+    cat: ['Blog', nombresBlog.get(n.data.categorias[0]?.id)].filter(Boolean).join(' · '),
+    href: urlNota(n),
+  })),
+];
+
+const populares = ['Pasto sintético', 'Flexiroc', 'Pisos vinílicos', 'Persianas', 'Deck', 'Alfombras'];
+---
+
+<div id="buscador" class="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-terza-teal-dark/95 px-6 pb-16 pt-24 backdrop-blur-md md:items-center md:pt-16" role="dialog" aria-modal="true" aria-label="Buscador" hidden>
+  <button type="button" class="search-close absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white text-white transition-colors hover:bg-white hover:text-terza-teal md:right-8 md:top-8" aria-label="Cerrar buscador">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+  </button>
+
+  <div class="w-full max-w-3xl">
+    <p class="text-sm font-bold uppercase tracking-widest text-terza-lime">¿Qué estás buscando?</p>
+    <form class="search-form relative mt-6" role="search" action="#">
+      <label for="search-input" class="sr-only">Buscar</label>
+      <input
+        id="search-input"
+        class="search-input h-14 w-full appearance-none rounded-full border-2 border-white bg-transparent pl-7 pr-16 text-lg text-white outline-none transition-colors placeholder:text-white/70 focus:border-terza-lime md:h-16 md:text-xl [&::-webkit-search-cancel-button]:hidden"
+        type="search"
+        placeholder="Buscar pisos, colecciones, productos…"
+        autocomplete="off"
+        enterkeyhint="search"
+      />
+      <button type="submit" class="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-terza-lime text-terza-ink transition-colors hover:bg-white md:h-12 md:w-12" aria-label="Buscar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.8"></circle><path d="M16 16L12.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      </button>
+    </form>
+
+    <!-- Sugerencias cuando el campo está vacío -->
+    <div class="search-popular mt-8">
+      <p class="text-xs font-bold uppercase tracking-widest text-white/60">Búsquedas populares</p>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {populares.map((term) => (
+          <li><button type="button" class="search-chip rounded-full border border-white/30 px-4 py-1.5 text-sm text-white transition-colors hover:border-terza-lime hover:bg-terza-lime hover:text-terza-ink" data-term={term}>{term}</button></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Resultados en vivo -->
+    <ul class="search-results mt-6 divide-y divide-white/10" aria-live="polite"></ul>
+    <p class="search-empty mt-8 hidden text-white/70">Sin resultados para esa búsqueda. Prueba con otra palabra o <a href="/contacto" class="search-link font-bold text-terza-lime hover:underline">escríbenos</a>.</p>
+  </div>
+  <script type="application/json" id="search-index" set:html={JSON.stringify({ indice, notas })}></script>
+</div>
+
+<script>
+  type Entrada = { title: string; cat: string; href: string };
+  const capa = document.getElementById('buscador')!;
+  const campo = capa.querySelector<HTMLInputElement>('.search-input')!;
+  const lista = capa.querySelector<HTMLElement>('.search-results')!;
+  const vacio = capa.querySelector('.search-empty')!;
+  const populares = capa.querySelector('.search-popular')!;
+  const datos: { indice: Entrada[]; notas: Entrada[] } = JSON.parse(document.getElementById('search-index')!.textContent!);
+  let indice: Entrada[] = [...datos.indice, ...datos.notas];
+  // Productos uno por uno: se bajan la primera vez que se abre el buscador y van antes de las notas del blog
+  let productos: Promise<void> | null = null;
+  const cargarProductos = () =>
+    (productos ??= fetch('/buscador-productos.json')
+      .then((r) => r.json())
+      .then((lista: Entrada[]) => {
+        indice = [...datos.indice, ...lista, ...datos.notas];
+        if (!capa.hidden) pintar();
+      })
+      .catch(() => {
+        productos = null;
+      }));
+  const disparadores = document.querySelectorAll<HTMLElement>('.search-open');
+  let origen: HTMLElement | null = null;
+  const normalizar = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const flecha = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+
+  const pintar = () => {
+    const palabras = normalizar(campo.value.trim()).split(/\s+/).filter(Boolean);
+    const hallados = palabras.length
+      ? indice.filter((r) => palabras.every((w) => normalizar(`${r.title} ${r.cat}`).includes(w))).slice(0, 8)
+      : [];
+    populares.classList.toggle('hidden', palabras.length > 0);
+    vacio.classList.toggle('hidden', !palabras.length || hallados.length > 0);
+    lista.innerHTML = hallados.map((r) => `
+      <li>
+        <a href="${r.href}" class="search-link group flex items-center justify-between gap-6 py-4 text-white">
+          <span>
+            <span class="block text-xl font-bold transition-colors group-hover:text-terza-lime md:text-2xl">${r.title}</span>
+            <span class="mt-1 block text-xs uppercase tracking-widest text-white/60">${r.cat}</span>
+          </span>
+          <span class="transition-transform group-hover:translate-x-1">${flecha}</span>
+        </a>
+      </li>`).join('');
+  };
+
+  const abrir = (disparador: HTMLElement) => {
+    origen = disparador;
+    cargarProductos();
+    campo.value = '';
+    pintar();
+    capa.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    disparadores.forEach((d) => d.setAttribute('aria-expanded', 'true'));
+    // El foco va en el mismo toque: en iPhone el teclado solo se abre así
+    campo.focus({ preventScroll: true });
+  };
+  const cerrar = () => {
+    capa.hidden = true;
+    document.documentElement.style.overflow = '';
+    disparadores.forEach((d) => d.setAttribute('aria-expanded', 'false'));
+    origen?.focus();
+  };
+
+  disparadores.forEach((d) => d.addEventListener('click', () => abrir(d)));
+  capa.querySelector('.search-close')!.addEventListener('click', cerrar);
+  capa.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    if (t === capa || t.closest('.search-link')) cerrar();
+    const chip = t.closest<HTMLElement>('.search-chip');
+    if (chip) { campo.value = chip.dataset.term!; pintar(); campo.focus(); }
+  });
+  campo.addEventListener('input', pintar);
+  capa.querySelector('.search-form')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const primero = lista.querySelector('a');
+    if (primero) { cerrar(); location.href = primero.getAttribute('href')!; }
+  });
+  document.addEventListener('keydown', (e) => { if (!capa.hidden && e.key === 'Escape') cerrar(); });
+  window.addEventListener('pageshow', (e) => { if (e.persisted) { capa.hidden = true; document.documentElement.style.overflow = ''; } });
+</script>

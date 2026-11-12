@@ -1,0 +1,57 @@
+{
+  "seo": {
+    "title": "Quiénes somos | Terza",
+    "description": "En Terza, somos la empresa más importante en México y Latinoamérica en la producción y comercialización de superficies."
+  },
+  "hero": { "title": "Quiénes somos." },
+  "intro": {
+    "statement": "En Terza, somos la empresa más importante en México y Latinoamérica en la producción y comercialización de superficies, con más de 45 años de respaldo en el mercado.",
+    "description": "Ofrecemos una amplia variedad de productos para innovar y transformar espacios interiores y exteriores, tales como persianas, pisos, pasto sintético, muros verdes, alfombras y tapetes, siempre a la vanguardia en la tecnología e innovación."
+  },
+  "alianzas": [
+    {
+      "image": "alfa",
+      "logo": "alfa",
+      "title": "Grupo Alfa",
+      "paragraphs": [
+        "Contamos con alianzas comerciales en todo el mundo con socios como Alfa, empresa mexicana con presencia global en 28 países, y que se ha convertido en un socio estratégico."
+      ]
+    },
+    {
+      "image": "shawcontract",
+      "title": "Orgullosos socios de<br />ShawContract",
+      "paragraphs": [
+        "Dentro de nuestra alianzas comerciales está ShawContract, la empresa norteamericana líder en fabricación de alfombras y recubrimientos a nivel mundial.",
+        "Con ShawContract nuestro trabajo de embellecer espacios se complementa de la mejor manera, pues ofrecen la mejor gama de productos para que tu hogar pueda lucir como tú quieres que luzca."
+      ]
+    }
+  ],
+  "planta": {
+    "title": "Terza, un producto para cada espacio.",
+    "description": "Nuestra planta ubicada en El Carmen, Nuevo León, México, donde se trabaja con las mejores materias primas, tecnología de punta y estrictos controles de calidad, es el principal factor por el que somos el fabricante más grande en Latinoamérica de pasto sintético y alfombras, exportando a más de 30 países."
+  },
+  "lineas": [
+    {
+      "image": "planta-pasto",
+      "alt": "Producción de pasto sintético en la planta Terza",
+      "paragraphs": [
+        "Nuestra línea de <strong>Pasto Sintético</strong> es la más completa para el sector deportivo, así como para el paisajismo, ya que sus materiales ofrecen una alta resistencia y una estética única.",
+        "En cuanto a la línea de <strong>Alfombras</strong>, la variedad de diseños, colores y texturas son ideales para todo tipo de proyecto, ya sea residencial o comercial.",
+        "A esto se le suma nuestra línea de <strong>Pisos</strong>, la más extensa del país. Contamos con pisos laminados, vinílicos y de madera para exterior e interior, en una amplia variedad de diseños y texturas que se adaptarán al espacio donde planees colocarlos."
+      ]
+    },
+    {
+      "image": "persianas",
+      "alt": "Equipo de Terza en la planta",
+      "paragraphs": [
+        "Nuestra línea <strong>Terza Persianas</strong> está compuesta por colecciones que buscan responder al gusto del consumidor final para todo tipo de proyecto. Gracias a nuestra alianza con Springs Window Fashions ofrecemos 3 líneas de productos Graber en el mercado mexicano: Persianas enrollables, de madera y enrollables para exterior.",
+        "Adicionalmente fabricamos <strong>persianas enrollables y sheer</strong> de la más alta tecnología, utilizando las mejores telas, componentes y mecanismos.",
+        "Contamos con <strong>oficinas de venta</strong> y <strong>showrooms</strong> en Monterrey, Ciudad de México, Guadalajara y Puebla, para poder estar siempre cerca de nuestros clientes."
+      ]
+    }
+  ],
+  "cierre": {
+    "statement": "En Terza, somos la empresa más importante en México y Latinoamérica en la producción y comercialización de superficies, con más de 45 años de respaldo en el mercado.",
+    "logos": ["shawcontract", "mohawk", "valle-dumat", "graber"]
+  }
+}

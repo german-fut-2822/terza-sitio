@@ -1,0 +1,167 @@
+{
+  "_nota": "Variación de color de pisos de madera (la sección que terza.com muestra en algunas fichas). Clave: SKU. nivel: baja | moderada | alta | muy-alta. imagen: archivo en public/assets/catalogo/variaciones/.",
+  "T06-40101-00013": {
+    "nivel": "moderada",
+    "imagen": "montpellier-biscotto.webp"
+  },
+  "T06-40101-0EL08": {
+    "nivel": "moderada",
+    "imagen": "montpellier-rame.webp"
+  },
+  "T06-80101-000W2": {
+    "nivel": "alta",
+    "imagen": "premium-classics-walnut.webp"
+  },
+  "T06-80101-00NCW": {
+    "nivel": "alta",
+    "imagen": "premium-classics-narrow.webp"
+  },
+  "T36-02234-200032": {
+    "nivel": "moderada",
+    "imagen": "napoli-hb-champagne.webp"
+  },
+  "T36-02234-200207": {
+    "nivel": "moderada",
+    "imagen": "napoli-hb-arene.webp"
+  },
+  "T36-33707-200301": {
+    "nivel": "moderada",
+    "imagen": "torino-latte.webp"
+  },
+  "T36-33707-200381": {
+    "nivel": "moderada",
+    "imagen": "torino-panna.webp"
+  },
+  "T36-33707-200382": {
+    "nivel": "moderada",
+    "imagen": "torino-oro.webp"
+  },
+  "T36-33707-200383": {
+    "nivel": "moderada",
+    "imagen": "torino-terra.webp"
+  },
+  "T36-33707-200571": {
+    "nivel": "moderada",
+    "imagen": "torino-olio-naturale.webp"
+  },
+  "T36-33707-200592": {
+    "nivel": "moderada",
+    "imagen": "torino-brucia.webp"
+  },
+  "T36-33707-200593": {
+    "nivel": "moderada",
+    "imagen": "torino-leggero.webp"
+  },
+  "T36-34592-200073": {
+    "nivel": "alta",
+    "imagen": "bari-bistro.webp"
+  },
+  "T36-34592-200074": {
+    "nivel": "alta",
+    "imagen": "bari-pietra.webp"
+  },
+  "T36-34592-200207": {
+    "nivel": "alta",
+    "imagen": "bari-arene.webp"
+  },
+  "T36-34592-200242": {
+    "nivel": "alta",
+    "imagen": "bari-grigio.webp"
+  },
+  "T36-34592-200347": {
+    "nivel": "alta",
+    "imagen": "bari-cenere.webp"
+  },
+  "T36-35127-200042": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-marrone.webp"
+  },
+  "T36-35127-200044": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-rovere.webp"
+  },
+  "T36-35127-200073": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-bistro.webp"
+  },
+  "T36-35127-200074": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-pietra.webp"
+  },
+  "T36-35127-200093": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-mocca.webp"
+  },
+  "T36-35127-200241": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-neve-grigio.webp"
+  },
+  "T36-35127-200343": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-sabbia.webp"
+  },
+  "T36-35127-200344": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-miele.webp"
+  },
+  "T36-35127-200345": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-lino.webp"
+  },
+  "T36-35127-200347": {
+    "nivel": "moderada",
+    "imagen": "napoli-20-cenere.webp"
+  },
+  "T36-40101-00890": {
+    "nivel": "moderada",
+    "imagen": "montpellier-arene.webp"
+  },
+  "T36-40101-200032": {
+    "nivel": "moderada",
+    "imagen": "montpellier-champagne.webp"
+  },
+  "T36-40101-200041": {
+    "nivel": "moderada",
+    "imagen": "montpellier-neve-grigio.webp"
+  },
+  "T36-40101-200151": {
+    "nivel": "moderada",
+    "imagen": "montpellier-ginger.webp"
+  },
+  "T36-40401-200112": {
+    "nivel": "alta",
+    "imagen": "cannes-tarte.webp"
+  },
+  "T36-40401-200131": {
+    "nivel": "alta",
+    "imagen": "cannes-soleil.webp"
+  },
+  "T36-40401-200141": {
+    "nivel": "alta",
+    "imagen": "cannes-sombre.webp"
+  },
+  "T36-40401-200531": {
+    "nivel": "alta",
+    "imagen": "cannes-cendre.webp"
+  },
+  "T36-40401-200533": {
+    "nivel": "alta",
+    "imagen": "cannes-foret.webp"
+  },
+  "T36-40401-200535": {
+    "nivel": "alta",
+    "imagen": "cannes-beton.webp"
+  },
+  "T36-40401-200537": {
+    "nivel": "alta",
+    "imagen": "cannes-ville.webp"
+  },
+  "T36-40401-200539": {
+    "nivel": "alta",
+    "imagen": "cannes-noisette.webp"
+  },
+  "T36-40401-200562": {
+    "nivel": "alta",
+    "imagen": "cannes-galet.webp"
+  }
+}

@@ -1,6 +1,24 @@
 {
   "logo": { "text": "terza" },
+  "avisoPrivacidad": "/aviso-de-privacidad.pdf",
+  "decoradorVirtual": "https://www.terza.com/decorador-virtual/roomvo?roomvoAutoStart=true",
   "nav": [
+    {
+      "label": "Alfombras",
+      "slug": "alfombras",
+      "description": "Calidez, confort y mejor acústica para residencias, oficinas y hoteles.",
+      "groups": [
+        { "label": "Alfombras", "slug": "alfombras", "items": ["Colección Allegro", "Colección Gladiador", "Colección Guerrero", "Colección Terza Kids"] }
+      ]
+    },
+    {
+      "label": "Pasto Sintético",
+      "slug": "pasto-sintetico",
+      "description": "Césped sintético para jardines, terrazas y áreas de juego, verde todo el año.",
+      "groups": [
+        { "label": "Pasto sintético", "slug": "pasto-sintetico", "items": ["Colección Bay", "Colección Breeze", "Colección Emerald", "Colección Playground"] }
+      ]
+    },
     {
       "label": "Pisos",
       "slug": "pisos",
@@ -8,8 +26,7 @@
       "groups": [
         { "label": "Pisos vinílicos", "slug": "pisos-vinilicos", "items": ["Colección Bilbao", "Colección Norwich", "Colección Sevilla", "Colección Vigo"] },
         { "label": "Pisos laminados", "slug": "pisos-laminados", "items": ["Colección Class", "Colección Imperial Plus", "Colección Mammut Plus", "Colección Trend"] },
-        { "label": "Pisos de madera", "slug": "pisos-de-madera", "items": ["Colección Bari", "Colección Cannes", "Colección Montpellier", "Colección Napoli 2.0"] },
-        { "label": "Alfombras", "slug": "alfombras", "items": ["Colección Allegro", "Colección Gladiador", "Colección Guerrero", "Colección Terza Kids"] }
+        { "label": "Pisos de madera", "slug": "pisos-de-madera", "items": ["Colección Bari", "Colección Cannes", "Colección Montpellier", "Colección Napoli 2.0"] }
       ]
     },
     {
@@ -32,12 +49,11 @@
       ]
     },
     {
-      "label": "Exterior",
-      "slug": "exterior",
+      "label": "Deck",
+      "slug": "deck",
       "description": "Soluciones que llevan el diseño a tus espacios al aire libre.",
       "groups": [
-        { "label": "Deck", "slug": "deck", "items": ["Deck", "Lambrín de Exterior", "Vigas", "Cladding"] },
-        { "label": "Pasto sintético", "slug": "pasto-sintetico", "items": ["Colección Bay", "Colección Breeze", "Colección Emerald", "Colección Playground"] }
+        { "label": "Deck", "slug": "deck", "items": ["Deck", "Lambrín de Exterior", "Vigas", "Cladding"] }
       ]
     },
     {
@@ -53,12 +69,17 @@
   "footer": {
     "tagline": "Transformamos espacios contigo.",
     "columns": [
-      { "title": "Productos", "links": ["Pisos", "Muros", "Persianas", "Exterior", "Accesorios"] },
+      { "title": "Productos", "links": ["Alfombras", "Deck", "Lambrín y paneles", "Follaje artificial", "Pasto sintético", "Persianas", "Pisos laminados", "Pisos de madera", "Pisos vinílicos"] },
       { "title": "Recursos", "links": ["Catálogos digitales", "Blog - Ideas", "Decorador Virtual", "Material Lab", "Shaw Contract"] },
       { "title": "Nosotros", "links": ["Quienes somos", "Quiero ser distribuidor", "Contacto"] }
     ],
     "legal": ["Aviso de privacidad", "Buzón de Transparencia"],
-    "social": ["facebook", "instagram", "youtube", "linkedin"],
+    "social": [
+      { "name": "facebook", "href": "https://www.facebook.com/TerzaMexico/" },
+      { "name": "instagram", "href": "https://www.instagram.com/terzamexico/" },
+      { "name": "youtube", "href": "https://www.youtube.com/channel/UCnIDmz5VV5tsZ7pMiOvwa1A" },
+      { "name": "linkedin", "href": "https://www.linkedin.com/company/terza-s-a-/" }
+    ],
     "copyright": "© 2026 Terza. Todos los derechos reservados."
   }
 }
