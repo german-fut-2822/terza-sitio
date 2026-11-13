@@ -32,6 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
     phone: datos.telefono,
     company_name: nombreCompleto(datos.nombre ?? '', datos.apellido),
     opportunity_title: 'Quiero ser distribuidor - Terza Web',
+    campaign_id: 13, // "Quiero ser Distribuidor - Terza Web" en Ongoing (Configuración > Marketing y Campañas)
     metadata: metadataOngoing({ estado: datos.estado, ciudad: datos.municipio }),
     message: datos.mensaje,
   }).catch((e) => {
