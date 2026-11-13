@@ -52,6 +52,38 @@ export default defineConfig({
     '/piso-vinilico': '/pisos-vinilicos',
     '/lambrin-pvc': '/lambrin-y-paneles',
     '/distribuidor': '/quiero-ser-distribuidor',
+    // Indexadas en el sitemap.xml del sitio Laravel (terza.com) sin página equivalente directa aquí
+    '/tapetes': '/alfombras', // "alfombras y tapetes" es la misma línea de producto (ver quienes-somos.json)
+    '/shaw-contract': '/', // la sección ShawContract ahora vive en el home, no en una página aparte
+
+    // Resto de URLs indexadas según Search Console (16 meses de clics/impresiones), cruzadas contra
+    // src/data/catalogo.json. El slug de cada producto es su SKU en minúsculas (ver scripts/importar-catalogo.mjs),
+    // así que las notas del blog y el listado de cada categoría migran 1:1 con una sola regla cada uno.
+    '/blog/post/[nota]': '/blog/[nota]',
+    '/alfombras/catalogo': '/catalogo/alfombras',
+    '/tapetes/catalogo': '/catalogo/alfombras',
+    '/pasto-sintetico/catalogo': '/catalogo/pasto-sintetico',
+    '/piso-vinilico/catalogo': '/catalogo/piso-vinilico',
+    '/pisos-laminados/catalogo': '/catalogo/pisos-laminados',
+    '/pisos-de-madera/catalogo': '/catalogo/pisos-de-madera',
+    '/paneles/catalogo': '/catalogo/paneles',
+    '/flexiroc/catalogo': '/catalogo/flexiroc',
+    '/muros-verdes/catalogo': '/catalogo/muros-verdes',
+    '/persianas/catalogo': '/catalogo/persianas', // sección con 2 categorías (enrollables y de madera)
+    '/persianas-de-madera/catalogo': '/catalogo/persianas-de-madera',
+    '/pisos-deck/catalogo': '/catalogo/pisos-deck',
+    '/accesorios/catalogo': '/catalogo/accesorios',
+    '/catalogos': '/catalogos-digitales',
+    // Subpáginas de pasto-sintetico del sitio viejo (canchas, instalaciones, jardines...): hoy toda esa
+    // información vive consolidada en una sola página.
+    '/pasto-sintetico/canchas': '/pasto-sintetico',
+    '/pasto-sintetico/instalaciones': '/pasto-sintetico',
+    '/pasto-sintetico/jardines': '/pasto-sintetico',
+    '/pasto-sintetico/mantenimiento': '/pasto-sintetico',
+    '/pasto-sintetico/areas-verdes': '/pasto-sintetico',
+    '/pasto-sintetico/tipos-de-hilos': '/pasto-sintetico',
+    '/pasto-sintetico/proyectos': '/pasto-sintetico',
+    '/decorador-virtual/roomvo': '/', // hoy es una sección del home, no una página aparte
   },
   adapter: vercel(),
   integrations: [redireccionesConMayusculas],
