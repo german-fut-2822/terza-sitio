@@ -99,6 +99,17 @@ export default defineConfig({
     '/pasto-sintetico/proyectos': '/pasto-sintetico',
     '/decorador-virtual/roomvo': '/', // hoy es una sección del home, no una página aparte
     '/login': '/admin', // login viejo del administrador
+
+    // Pisos híbridos (línea KIWI ... OAK): descontinuada por el proveedor, confirmado por Alex/Selene
+    // (commit 067427c). Sin sustituto directo, así que van al catálogo general.
+    '/pisos-hibridos': '/catalogo',
+    '/pisos-hibridos/catalogo': '/catalogo',
+    '/pisos-hibridos/catalogo/producto/T04-91800-00010': '/catalogo',
+    '/pisos-hibridos/catalogo/producto/T04-91800-00063': '/catalogo',
+    '/pisos-hibridos/catalogo/producto/T04-91800-00522': '/catalogo',
+    '/pisos-hibridos/catalogo/producto/T04-91800-00542': '/catalogo',
+    '/pisos-hibridos/catalogo/producto/T04-91800-00782': '/catalogo',
+    '/pisos-hibridos/catalogo/producto/T04-91800-00792': '/catalogo',
   },
   adapter: vercel(),
   integrations: [redireccionesPostBuild],
