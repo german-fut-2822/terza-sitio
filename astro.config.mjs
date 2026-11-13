@@ -13,19 +13,33 @@ const site = process.env.SITE_URL ?? (dominioVercel ? `https://${dominioVercel}`
 // y haría un bucle; por eso se agregan aquí, al final del build, marcadas como sensibles a mayúsculas.
 const redireccionesExactas = { '/AVISO-DE-PRIVACIDAD.pdf': '/aviso-de-privacidad.pdf' };
 const escaparRegex = (texto) => texto.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const redireccionesConMayusculas = {
-  name: 'redirecciones-con-mayusculas',
+
+// Fichas de producto del sitio anterior (terza.com/<categoría-vieja>/catalogo/producto/<SKU>), indexadas en Google
+// con tráfico real. La categoría de la URL vieja no siempre coincide con la actual (un producto puede haberse
+// recategorizado), así que no se puede resolver con la config normal de `redirects` de Astro (exige que el destino
+// use el mismo parámetro dinámico que el origen). Se agrega aquí, al final del build, con una categoría comodín
+// en el origen y el destino fijo que corresponde al SKU hoy en src/data/catalogo.json.
+const catalogo = JSON.parse(readFileSync(new URL('./src/data/catalogo.json', import.meta.url), 'utf-8'));
+const redireccionesProducto = catalogo.productos.map((p) => ({
+  src: `^/[^/]+/catalogo/producto/${escaparRegex(p.sku)}$`,
+  headers: { Location: `/catalogo/${p.categoria}/${p.slug}` },
+  status: 301,
+}));
+
+const redireccionesPostBuild = {
+  name: 'redirecciones-post-build',
   hooks: {
     'astro:build:done': () => {
       const archivo = new URL('./.vercel/output/config.json', import.meta.url);
       if (!existsSync(archivo)) return;
       const config = JSON.parse(readFileSync(archivo, 'utf-8'));
-      const nuevas = Object.entries(redireccionesExactas).map(([origen, destino]) => ({
+      const conMayusculas = Object.entries(redireccionesExactas).map(([origen, destino]) => ({
         src: `^${escaparRegex(origen)}$`,
         headers: { Location: destino },
         status: 301,
         caseSensitive: true,
       }));
+      const nuevas = [...conMayusculas, ...redireccionesProducto];
       config.routes = [...nuevas, ...config.routes.filter((r) => !nuevas.some((n) => n.src === r.src))];
       writeFileSync(archivo, JSON.stringify(config, null, 2));
     },
@@ -84,9 +98,10 @@ export default defineConfig({
     '/pasto-sintetico/tipos-de-hilos': '/pasto-sintetico',
     '/pasto-sintetico/proyectos': '/pasto-sintetico',
     '/decorador-virtual/roomvo': '/', // hoy es una sección del home, no una página aparte
+    '/login': '/admin', // login viejo del administrador
   },
   adapter: vercel(),
-  integrations: [redireccionesConMayusculas],
+  integrations: [redireccionesPostBuild],
   vite: {
     plugins: [tailwindcss()],
   },
