@@ -127,7 +127,7 @@ function github(token: string): Almacen {
         const commit = await (
           await pedir(`${base}/commits`, {
             method: 'POST',
-            body: JSON.stringify({ message: mensaje, tree: tree.sha, parents: [padre.sha], author: { name: autor.nombre, email: 'administrador-blog@noreply.terza.com' } }),
+            body: JSON.stringify({ message: mensaje, tree: tree.sha, parents: [padre.sha], author: { name: autor.nombre, email: 'web.terza@yahoo.com' } }),
           })
         ).json();
         const r = await fetch(`https://api.github.com${base}/refs/heads/${encodeURIComponent(rama)}`, {
