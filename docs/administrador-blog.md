@@ -25,13 +25,13 @@ Piezas:
 ## Activarlo en Vercel (una sola vez)
 
 1. **Crear la llave de GitHub.** Desde la cuenta dueña del repo: GitHub → Settings → Developer settings → Personal access tokens → *Fine-grained tokens* → *Generate new token*:
-   - Repository access: solo `german-fut-2822/terza-sitio`.
+   - Repository access: solo `webterza/web-terza`.
    - Permissions → Repository permissions → **Contents: Read and write**.
    - Ponle una fecha de vencimiento y anótala: cuando venza, el panel dejará de guardar hasta poner una nueva.
 2. **Agregar las variables en Vercel.** En Project → Settings → Environment Variables (Production):
    - `GITHUB_TOKEN`: la llave del paso 1.
    - `ADMIN_SECRETO`: una frase larga al azar (por ejemplo, 40 letras y números). Firma las sesiones, cifra los usuarios y es el **código de instalación** del paso 4. Guárdala en un lugar seguro y no la cambies después.
-   - Opcionales: `GITHUB_REPO` (por omisión `german-fut-2822/terza-sitio`) y `GITHUB_BRANCH` (por omisión `main`).
+   - Opcionales: `GITHUB_REPO` (por omisión `webterza/web-terza`) y `GITHUB_BRANCH` (por omisión `main`).
 
    Después vuelve a desplegar el sitio.
 3. **Subir el blog a `main`.** El panel lee y guarda las notas en `main`. Por eso la rama con el blog tiene que estar unida a `main` antes de usarlo en línea.

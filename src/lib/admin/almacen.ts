@@ -71,7 +71,7 @@ const local: Almacen = {
 
 // ---------- GitHub ----------
 function github(token: string): Almacen {
-  const repo = variable('GITHUB_REPO') ?? 'german-fut-2822/terza-sitio';
+  const repo = variable('GITHUB_REPO') ?? 'webterza/web-terza';
   const rama = variable('GITHUB_BRANCH') ?? 'main';
   const pedir = async (ruta: string, opciones: RequestInit = {}) => {
     const r = await fetch(`https://api.github.com${ruta}`, {
