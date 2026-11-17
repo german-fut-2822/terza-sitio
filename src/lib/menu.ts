@@ -1,4 +1,4 @@
-// Enlaces y fotos del mega menú a partir del catálogo:
+
 // - cada colección abre su categoría ya filtrada (p. ej. "Colección Bilbao" → /catalogo/piso-vinilico?estilo=Bilbao)
 // - "Ver más" abre el listado de la subcategoría elegida
 // - la foto de cada colección es la de su primer producto (o la portada de la categoría)
